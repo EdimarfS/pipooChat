@@ -73,7 +73,7 @@ return(
     <Scene key="root">
 
             <Scene key="auth" hideNavBar>
-                <Scene key="introduction">
+                <Scene key="introduction" initial>
                 <Scene
                 key="introductionscreen"
                 component={IntroductionScreen}

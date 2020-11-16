@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "android": "react-native run-android",
-    "ios": "react-native run-ios",
+    "ios": "npx react-native run-ios --simulator='iPhone SE'",
     "start": "react-native start",
     "test": "jest",
     "lint": "eslint ."
@@ -13,7 +13,6 @@
     "@expo/vector-icons": "^10.2.1",
     "@react-native-firebase/admob": "^7.6.12",
     "@react-native-firebase/app": "^9.0.0",
-    "@unimodules/core": "^5.5.1",
     "expo-asset": "^8.2.0",
     "expo-constants": "^9.2.0",
     "expo-file-system": "^9.2.0",
@@ -31,6 +30,7 @@
     "react-native-reanimated": "^1.13.2",
     "react-native-router-flux": "^4.2.0",
     "react-native-screens": "^2.15.0",
+    "react-native-unimodules": "^0.11.0",
     "react-native-vector-icons": "^7.1.0",
     "react-redux": "^7.2.2",
     "redux": "^4.0.5",

@@ -1,9 +1,14 @@
 import React, { Component } from 'react';
 import {
   View,
-  Text
+  Text,
+  StatusBar
 } from 'react-native';
 import OneSignal from 'react-native-onesignal';
+import { IntroductionScreen } from './src/screens';
+import './src/fixtimerbug';
+//import { Router } from 'react-native-router-flux';
+//import { IntroductionScreen } from './src/screens';
 //import Router from './src/router/Router';
 
 //OneSignal ID : 751410b2-8b48-456d-9034-27161bc1a717
@@ -13,6 +18,7 @@ class  App extends Component{
 
     UNSAFE_componentWillMount()
     {
+        StatusBar.setHidden(true);
         OneSignal.init('9f18c05f-885a-4168-bd3f-bae752dfe31c');
         OneSignal.addEventListener('opened', this.onOpened) 
     }
@@ -35,15 +41,7 @@ class  App extends Component{
   render()
   {
     return(
-      <View style={{
-        flex:1,
-        justifyContent:'center',
-        alignContent:'center',
-
-
-      }}>
-          <Text>Hello App</Text>
-      </View>
+      <IntroductionScreen/>
     )
   }
 
