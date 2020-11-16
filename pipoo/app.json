@@ -1,0 +1,12 @@
+{
+  "name": "pipoo",
+  "displayName": "pipoo",
+  "expo": {
+    "name": "pipoo",
+    "slug": "pipoo",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
