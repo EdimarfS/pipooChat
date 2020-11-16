@@ -23,8 +23,36 @@ import {
   DebugInstructions,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
+import OneSignal from 'react-native-onesignal';
+
+
+
+
+//OneSignal ID : 751410b2-8b48-456d-9034-27161bc1a717
+
 
 class  App extends Component{
+
+    UNSAFE_componentWillMount()
+    {
+        OneSignal.init('751410b2-8b48-456d-9034-27161bc1a717');
+        OneSignal.addEventListener('opened', this.onOpened) 
+    }
+
+    onOpened = (result) =>
+    {
+      console.log('Messagem: ', result.notification.payload.body);
+      console.log('Result: ', result);
+    }
+
+    componentDidMount()
+    {
+      OneSignal.removeEventListener('opened', this.onOpened) 
+
+    }
+
+
+
 
   render()
   {
