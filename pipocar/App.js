@@ -5,8 +5,9 @@ import {
   StatusBar
 } from 'react-native';
 import OneSignal from 'react-native-onesignal';
-import { IntroductionScreen } from './src/screens';
+import { IntroductionScreen, LoginScreen, SignScreen } from './src/screens';
 import './src/fixtimerbug';
+import SignForm from './src/components/screenForms/SignForm';
 //import { Router } from 'react-native-router-flux';
 //import { IntroductionScreen } from './src/screens';
 //import Router from './src/router/Router';
@@ -41,7 +42,7 @@ class  App extends Component{
   render()
   {
     return(
-      <IntroductionScreen/>
+      <LoginScreen/>
     )
   }
 
