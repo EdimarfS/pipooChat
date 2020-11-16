@@ -20,4 +20,4 @@ render(){
 
 
 
-export default UserPersonalDataScreen;
+export  {UserPersonalDataScreen};

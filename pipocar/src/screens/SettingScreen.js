@@ -1,45 +1,97 @@
   
 //Essa é a aplicação Ngambwe, todos os direitos estão reservados para empresa @Uajiza
 // Uajiza - 2020
-
- 
 import React, { Component } from "react";
 import { 
   View, 
   Text, 
-  FlatList, 
-  TouchableOpacity, 
-  ScrollView, 
-  Image
+  FlatList,
 } from "react-native";
-//import firebase from 'firebase';
-import {connect} from 'react-redux';
-import _ from 'lodash';
-import { Actions } from "react-native-router-flux";
-import { Input } from '../components/reusebleComponents/index';
-import Lottie from 'lottie-react-native';
-import ImageBlurLoading from 'react-native-image-blur-loading'
-
-
 
 class  SettingScreen extends Component {
 
+data = [
+{
+    account : 'Accout',
+    key:1,
 
+    favorite : 'Favorite',
+    key:2,
+
+    logout : 'Log Out',
+    key:3,
+}
+
+]
 
 
 render(){ 
+  console.log('SettingScreen');
   return (
-    <View
-    //showsVerticalScrollIndicator={false}
-     style={{
-      flex:1,
-   //   backgroundColor:'red'
-    }}>
+    <FlatList
+    style={{ width:'100%', }}
+    data={this.data}
+    keyExtractor={(item) => item.key}
+    showsHorizontalScrollIndicator={false}
+    showsVerticalScrollIndicator={false}
+    renderItem= {({item}) => {
+
+      return(
+        <View style={{ marginLeft:10, marginRight:10}}>
+          <View
+          style={{
+            marginTop:40,
+          }}
+          >
+                  <View 
+                  style={{
+                    marginBottom:50,
+
+                  }}
+                  >
+  
+                    <Text 
+                    style={{
+                      fontSize:20,
+                      fontWeight:'bold'
+                    }}>
+                    {item.account}
+                    </Text>
+                  </View>
 
 
+                  <View 
+                    style={{
+                    marginBottom:50,
+                    
+
+                  }}>
+                    <Text
+                    style={{
+                      fontSize:20,
+                      fontWeight:'bold'
+                    }}>{item.favorite}</Text>  
+                  </View>
 
 
-    </View>
+                  <View>
+                    <Text 
+                    style={{
+                      fontSize:20,
+                      fontWeight:'bold'
+                    }}>{item.logout}</Text>
+                    </View>
+
+                    </View>
+
+        </View>
+
+      )}}
+    
+    
+    
+    
+    />
 
  
   );
@@ -51,43 +103,10 @@ render(){
 export  {SettingScreen};
 
 
+
 const styles = {
-  GroupsName:{
-    fontSize:20,
-    fontWeight:'bold',
-    color:'black'
-  },
-  lastestMessageStyles:{
-  color:'black', 
-  fontSize:10,
-  },
-  currentUserStyle: {
-    color:'black', 
-    fontWeight:'bold',
-
-
-  },
-  avatarStyle:{
-     backgroundColor:'grey', 
-  },
-  nameAvatar:{
-    fontWeight:'bold',
-    fontSize:20,
-  },
-  latestMessageAvatar:{
-   color:'grey',
-    fontSize:11,
-  },
-  lottieStyle : {
-    // flex:1,
-    //  width:100, //--> Problem
-    height:100,
-     // alignSelf:'center',
-    //justifyContent:'center', 
-
-
-   // marginTop:20,
-   // marginLeft:5,  
+  listBackground : {
+    listBackgroundColor:'red',
 
   }
   

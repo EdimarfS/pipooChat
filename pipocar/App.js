@@ -5,10 +5,15 @@ import {
   StatusBar
 } from 'react-native';
 import OneSignal from 'react-native-onesignal';
-import { IntroductionScreen, LoginScreen, SignScreen, UserPersonalEditDataScreen } from './src/screens';
+import { 
+  IntroductionScreen, 
+  LoginScreen, SignScreen, 
+  UserPersonalEditDataScreen,
+  UserPersonalDataScreen,
+  SettingScreen
+} from './src/screens';
 import './src/fixtimerbug';
 import SignForm from './src/components/screenForms/SignForm';
-import UserPersonalDataScreen from './src/screens/UserPersonalDataScreen';
 //import { Router } from 'react-native-router-flux';
 //import { IntroductionScreen } from './src/screens';
 //import Router from './src/router/Router';
@@ -43,7 +48,7 @@ class  App extends Component{
   render()
   {
     return(
-      <UserPersonalDataScreen/>
+      <SettingScreen/>
     )
   }
 

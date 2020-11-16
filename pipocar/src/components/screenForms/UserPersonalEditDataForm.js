@@ -12,7 +12,7 @@ import {
   Button,
 } from '../reusebleComponents/index';
 
-class  UserPersonalDataForm extends Component {
+class  UserPersonalEditDataForm extends Component {
 
 
 
@@ -104,7 +104,7 @@ render(){
       color:'white',
       fontWeight:'bold'
 
-      }}> Finish </Text>
+      }}> Update </Text>
 
 
       </View>
@@ -125,4 +125,4 @@ render(){
 
 
 
-export default UserPersonalDataForm;
+export default UserPersonalEditDataForm;

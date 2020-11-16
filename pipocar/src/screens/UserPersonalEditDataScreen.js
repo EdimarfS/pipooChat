@@ -6,7 +6,7 @@ import {
   View, 
   Text, 
 } from "react-native";
-import UserPersonalEditDataForm from '../components/screenForms/UserPersonalDataForm';
+import UserPersonalEditDataForm from '../components/screenForms/UserPersonalEditDataForm';
 
 class  UserPersonalEditDataScreen extends Component {
 
