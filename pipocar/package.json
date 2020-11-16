@@ -10,14 +10,31 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "@expo/vector-icons": "^10.2.1",
     "@react-native-firebase/admob": "^7.6.12",
     "@react-native-firebase/app": "^9.0.0",
+    "@unimodules/core": "^5.5.1",
+    "expo-asset": "^8.2.0",
+    "expo-constants": "^9.2.0",
+    "expo-file-system": "^9.2.0",
+    "expo-font": "^8.3.0",
     "expo-image-picker": "^9.1.1",
+    "expo-status-bar": "^1.0.2",
+    "lodash.memoize": "^4.1.2",
+    "lottie-react-native": "^3.5.0",
     "react": "16.13.1",
     "react-native": "0.63.3",
+    "react-native-gesture-handler": "^1.8.0",
     "react-native-gifted-chat": "^0.16.3",
+    "react-native-image-blur-loading": "^1.1.4",
     "react-native-onesignal": "^3.9.2",
-    "react-native-router-flux": "^4.2.0"
+    "react-native-reanimated": "^1.13.2",
+    "react-native-router-flux": "^4.2.0",
+    "react-native-screens": "^2.15.0",
+    "react-native-vector-icons": "^7.1.0",
+    "react-redux": "^7.2.2",
+    "redux": "^4.0.5",
+    "unimodules": "^1.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.3",
