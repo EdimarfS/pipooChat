@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "403288616720",
+    "firebase_url": "https://pipocar-61cd8.firebaseio.com",
+    "project_id": "pipocar-61cd8",
+    "storage_bucket": "pipocar-61cd8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:403288616720:android:ea45d68fabeee82074ff95",
+        "android_client_info": {
+          "package_name": "com.pipocar"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "403288616720-pcpcnnbejel154u6jpa3l3r371ibhrl7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCAgJ6a3gOTmNf8uYISwWVpXa3VpeC-mgY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "403288616720-pcpcnnbejel154u6jpa3l3r371ibhrl7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
