@@ -6,6 +6,7 @@ import {
   View, 
   Text, 
 } from "react-native";
+import UserPersonalEditDataForm from '../components/screenForms/UserPersonalDataForm';
 
 class  UserPersonalEditDataScreen extends Component {
 
@@ -14,16 +15,7 @@ class  UserPersonalEditDataScreen extends Component {
 
 render(){ 
   console.log('UserPersonalEditDataScreen');
-  return (
-    <View>
-
-
-            <Text> UserPersonalEditDataScreen </Text>
-
-    </View>
-
- 
-  );
+  return (<UserPersonalEditDataForm/>);
 }
 }
 

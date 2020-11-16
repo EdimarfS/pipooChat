@@ -5,7 +5,12 @@ import React, { Component } from "react";
 import { 
   View, 
   Text, 
+  TouchableOpacity,
 } from "react-native";
+import { 
+  Input,
+  Button,
+} from '../reusebleComponents/index';
 
 class  UserPersonalDataForm extends Component {
 
@@ -13,12 +18,101 @@ class  UserPersonalDataForm extends Component {
 
 
 render(){ 
-  console.log('UserPersonalDataForm');
+  console.log('LoginForm');
   return (
-    <View>
+    <View 
+    style={{
+      marginLeft:10,
+      marginRight:10,
+
+    }}>  
+    
+
+    
+        <TouchableOpacity            
+        style={{
+            marginTop:10,
+             width:150,
+             height:150,
+             borderRadius:100,
+             alignSelf:'center',
+             backgroundColor:'lightgrey'
+           }}>
 
 
-            <Text> UserPersonalDataForm </Text>
+        </TouchableOpacity>
+
+
+
+
+
+
+
+      <View 
+      style={{
+        marginBottom:70,
+      }}>  
+        <Input
+      
+        placeholder="Username"
+        />
+      </View>
+      <View 
+      style={{
+        marginBottom:70,
+      }}>  
+        <Input
+      
+        placeholder="ID"
+        />
+      </View>
+      <View 
+      style={{
+        marginBottom:70,
+      }}>  
+        <Input
+        placeholder="Bio"
+        multiline={true}
+        maxLength={40}
+        />
+      </View>
+      <View 
+      style={{
+        marginBottom:70,
+      }}>  
+        <Input
+        placeholder="Mantra"
+        secureTextEntry
+        />
+      </View>
+
+      <View       
+      style={{
+        marginBottom:30,
+        justifyContent:'center',
+        alignSelf:'center',
+        backgroundColor:'#44e300',
+        width:'100%',
+        height:60,
+        borderRadius:5,
+      }}>  
+      <Text 
+      style={{
+      fontSize:20,
+      textAlign:'center',
+      color:'white'
+
+      }}> Finish </Text>
+
+
+      </View>
+
+
+   
+
+
+
+
 
     </View>
 
@@ -29,4 +123,4 @@ render(){
 
 
 
-export  {UserPersonalDataForm};
+export default UserPersonalDataForm;
