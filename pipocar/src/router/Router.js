@@ -183,49 +183,7 @@ return(
             }}  
             hideNavBar
             > 
-                    <Scene
-                    key="feednews"
-                    component={FeedNewsScreen}
-                    iconName={"md-planet"}
-                   // icon={TabIcon}
-                    activeTintColor={tint_color}
-                    inactiveTintColor={inactive_Color}
-                    renderRightButton={
-                        <TouchableOpacity onPress={()=>{
-                
-                        }}>
-                            <Text style={{
-                                fontSize:20,
-                                marginRight:10,
-                            }}>Add</Text>
-                        </TouchableOpacity>
-                        }
-                        renderLeftButton={
-                            <TouchableOpacity onPress={()=>{
-                    
-                            }}>
-                                <Text style={{
-                                    fontSize:20,
-                                    marginLeft:10,
-                                }}>Add</Text>
-                            </TouchableOpacity>
-                    }
-                    renderTitle={()=>{
-                        return(
-                            <View style={{
-                                flex:1,
-                                justifyContent:'center',
-                                alignItems:'center',
-                                }}>
-                                <Text style={{fontWeight:'bold',fontSize:20}}>chat</Text>
-                          
-                                
-
-                            </View>
-                        )
-                    }}
-                    />
-                    <Scene
+                                <Scene
                     key="ngambwe"
                     component={ChatScreen}
                     //iconName={"ios-chatboxes"}
@@ -269,6 +227,49 @@ return(
                     }}
                     />
                     
+                    <Scene
+                    key="feednews"
+                    component={FeedNewsScreen}
+                    iconName={"md-planet"}
+                   // icon={TabIcon}
+                    activeTintColor={tint_color}
+                    inactiveTintColor={inactive_Color}
+                    renderRightButton={
+                        <TouchableOpacity onPress={()=>{
+                
+                        }}>
+                            <Text style={{
+                                fontSize:20,
+                                marginRight:10,
+                            }}>Add</Text>
+                        </TouchableOpacity>
+                        }
+                        renderLeftButton={
+                            <TouchableOpacity onPress={()=>{
+                    
+                            }}>
+                                <Text style={{
+                                    fontSize:20,
+                                    marginLeft:10,
+                                }}>Add</Text>
+                            </TouchableOpacity>
+                    }
+                    renderTitle={()=>{
+                        return(
+                            <View style={{
+                                flex:1,
+                                justifyContent:'center',
+                                alignItems:'center',
+                                }}>
+                                <Text style={{fontWeight:'bold',fontSize:20}}>chat</Text>
+                          
+                                
+
+                            </View>
+                        )
+                    }}
+                    />
+
 
                     <Scene
                     key="setting"

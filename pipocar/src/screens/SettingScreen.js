@@ -9,8 +9,46 @@ import {
   TouchableOpacity
 } from "react-native";
 import { Actions } from 'react-native-router-flux';
+import { Modalize } from 'react-native-modalize';
 
 class  SettingScreen extends Component {
+  
+  
+  constructor(props)
+  {
+    super(props)
+
+    this.modalizeAccountRef = React.createRef();
+
+    this.modalizeFavoritetRef = React.createRef();
+
+
+  }
+//Modalize
+
+        //Open Modal
+onAccountOPEN()
+    {
+        this.modalizeAccountRef.current?.open();
+    }
+    //Close Modal
+onCloseAccount()
+    {
+        this.modalizeAccountRef.current?.close();
+    }
+
+
+onCloseFavorite()
+    {
+      this.modalizeFavoritetRef.current?.close();
+    }
+onFavoriteOPEN()
+    {
+        this.modalizeFavoritetRef.current?.open();
+    }
+
+
+
 
 data = [
 {
@@ -24,6 +62,7 @@ data = [
     key:3,
 }
 
+
 ]
 
 onLogoutPRESSED = () =>{
@@ -34,10 +73,13 @@ onLogoutPRESSED = () =>{
 render(){ 
   console.log('SettingScreen');
   return (
+    <View style={{
+      flex:1,
+    }}>
     <FlatList
     style={{ width:'100%', }}
     data={this.data}
-    keyExtractor={(item) => item.key}
+    keyExtractor={(item) => item.key.toString()}
     showsHorizontalScrollIndicator={false}
     showsVerticalScrollIndicator={false}
     renderItem= {({item}) => {
@@ -49,7 +91,8 @@ render(){
             marginTop:40,
           }}
           > 
-                  <TouchableOpacity>    
+                  <TouchableOpacity 
+                  onPress={this.onAccountOPEN.bind(this)}>    
                   <View 
                   style={{
                     marginBottom:50,
@@ -71,7 +114,7 @@ render(){
                   </View>
                   </TouchableOpacity>
 
-                  <TouchableOpacity>
+                  <TouchableOpacity onPress={this.onFavoriteOPEN.bind(this)}>
                   <View 
                     style={{
                     marginBottom:50,
@@ -111,6 +154,8 @@ render(){
 
                     </View>
 
+
+
         </View>
 
       )}}
@@ -119,6 +164,51 @@ render(){
     
     
     />
+     
+                  <Modalize 
+                  
+                    ref={this.modalizeAccountRef}
+                    snapPoint={550}
+                    modalHeight={550}
+                    animationType='fade'
+
+                    
+                    >
+
+                      <View style={{
+                        flex:1,
+                        justifyContent:'center',
+                        alignItems:'center'
+                      }}>
+                        <TouchableOpacity onPress={this.onCloseAccount.bind(this)}>
+                        <Text>Account</Text>
+                        </TouchableOpacity>
+                      </View>
+                    </Modalize>
+    
+
+                    <Modalize 
+                    ref={this.modalizeFavoritetRef}
+                    snapPoint={550}
+                    modalHeight={550}
+                     // animationType='fade'
+                    
+                    >
+                      <View style={{
+                        flex:1,
+                        justifyContent:'center',
+                        alignItems:'center'
+                      }}>
+                        <TouchableOpacity onPress={this.onCloseFavorite.bind(this)}>
+                        <Text>Favorite</Text>
+                        </TouchableOpacity>
+                      </View>
+                    </Modalize>
+
+
+
+
+    </View>
 
  
   );
