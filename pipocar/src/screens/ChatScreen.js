@@ -10,7 +10,37 @@ import {
 import  { 
 Input,
 } from '../components/reusebleComponents/index';
+/*
+      <View 
+      style={{
+        marginTop:'22%',
+        flexDirection:'row',
+        justifyContent:'flex-end'
 
+      }}>
+        <TouchableOpacity style={{
+          width:100,
+          height:50,
+          marginRight:10,
+          borderWidth:0.3,
+         // borderRadius:5,
+        }}>
+
+        </TouchableOpacity>
+
+        <TouchableOpacity 
+        style={{
+          width:100,
+          height:50,
+          marginRight:5,
+          //backgroundColor:'white',
+          borderWidth:0.3,
+         // borderRadius:5,
+        }}>
+
+        </TouchableOpacity>
+      </View>
+*/
 
 
 class  ChatScreen extends Component {
@@ -26,7 +56,6 @@ render(){
       style={{
         justifyContent:'center',
       // alignSelf:'center'
-
       }}>
         <Text 
         style={{
@@ -35,41 +64,10 @@ render(){
         }}>
           Chat
         </Text>
-        <Input
-        placeholder="search a group or business..."
-        
-        />
 
       </View>
 
-      <View 
-      style={{
-        marginTop:'22%',
-        flexDirection:'row',
-        justifyContent:'flex-end'
 
-      }}>
-        <TouchableOpacity style={{
-          width:100,
-          height:50,
-          marginRight:10,
-         // backgroundColor:'white',
-          borderWidth:0.3
-        }}>
-
-        </TouchableOpacity>
-
-        <TouchableOpacity 
-        style={{
-          width:100,
-          height:50,
-          marginRight:10,
-          //backgroundColor:'white',
-          borderWidth:0.3
-        }}>
-
-        </TouchableOpacity>
-      </View>
 
     </View>
 
