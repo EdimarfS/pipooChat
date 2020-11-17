@@ -11,6 +11,9 @@ import {
 import { 
   Button
 } from '../components/reusebleComponents/index';
+import { 
+  Actions
+  } from 'react-native-router-flux';
 
 class  IntroductionScreen extends Component {
 
@@ -42,6 +45,7 @@ render(){
       }}
       >
         <Button
+        onPress={()=>{ Actions.sign({type:'replace'})}}
         label="Create an account"
         />
       </View>
@@ -50,7 +54,7 @@ render(){
         justifyContent:'center',
         alignItems:'center'
         }}>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={()=>{ Actions.login({type:'replace'})}}>
           <Text
           style={{
            // fontWeight:'bold',

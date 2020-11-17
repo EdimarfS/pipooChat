@@ -11,6 +11,10 @@ import {
   Input,
   Button
 } from '../reusebleComponents/index';
+import { 
+  Actions
+  } from 'react-native-router-flux';
+
 class  LoginForm extends Component {
 
 
@@ -68,6 +72,9 @@ render(){
         />
       </View>
 
+      <TouchableOpacity
+      onPress={()=>{ Actions.forgetpassword({type:'replace'})}}
+      >
       <View       
       style={{
         marginBottom:30,
@@ -76,13 +83,18 @@ render(){
       }}>  
       <Text 
       style={{
-      fontSize:20
+      fontSize:20,
+      fontWeight:'bold'
 
       }}>Forget your accout</Text>
-
-
       </View>
+      </TouchableOpacity>
 
+
+      <TouchableOpacity
+      
+      onPress={()=>{ Actions.sign({type:'replace'})}}
+      >
       <View 
       style={{
         justifyContent:'center',
@@ -91,10 +103,13 @@ render(){
       <Text 
       style={{
       fontSize:20,
-      textAlign:'center'
+      textAlign:'center',
+      fontWeight:'bold',
+      color:'#44e300'
 
       }}>Sign In</Text>
       </View>
+      </TouchableOpacity>
 
 
 

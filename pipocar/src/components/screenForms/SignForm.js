@@ -11,7 +11,9 @@ import {
   Input,
   Button
 } from '../reusebleComponents/index';
-
+import { 
+  Actions
+  } from 'react-native-router-flux';
 
 class  SignForm extends Component {
 
@@ -70,7 +72,9 @@ render(){
         />
       </View>
 
-      <TouchableOpacity>
+      <TouchableOpacity 
+      onPress={()=>{ Actions.login({type:'replace'})}}
+      >
       <View       
       style={{
         marginBottom:30,
@@ -85,7 +89,8 @@ render(){
       style={{
       fontSize:20,
       textAlign:'center',
-      color:'white'
+      color:'white',
+      fontWeight:'bold'
 
       }}>I have an account</Text>
 

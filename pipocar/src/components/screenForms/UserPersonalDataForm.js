@@ -12,7 +12,8 @@ import {
   Button,
 } from '../reusebleComponents/index';
 
-class  UserPersonalDataForm extends Component {
+class  
+UserPersonalDataForm extends Component {
 
 
 
