@@ -49,7 +49,6 @@ render(){
 
                   }}
                   >
-  
                     <Text 
                     style={{
                       fontSize:20,

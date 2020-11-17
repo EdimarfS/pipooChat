@@ -3,7 +3,6 @@ export * from './ChatScreen';
 export * from  './CreateGroupScreen';
 export * from './FeedNewsScreen';
 export * from './IntroductionScreen';
-export * from './IntroductionScreen';
 export * from './LoginScreen';
 export * from './MessageScreen';
 export * from './PostCommentsScreen';

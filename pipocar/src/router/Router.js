@@ -23,10 +23,10 @@ import {
    UserPersonalDataScreen,
    CreateGroupScreen,
    UserPersonalEditDataScreen,
-   PostCommentsScreen
+   PostCommentsScreen,
+   MessageScreen
 } from '../screens/index';
 
-import MessageScreen from '../screens/MessageScreen';
 
 import {Ionicons} from 'react-native-vector-icons';
 import { EvilIcons } from '@expo/vector-icons';
@@ -61,7 +61,7 @@ import { EvilIcons } from '@expo/vector-icons';
     }
 }
  
-const RouterComponet = () => { 
+const RouterComponent = () => { 
     let sizeicons = 28;
     let tint_color = "#00c6e8";
     let inactive_Color = "#2b2b2b";
@@ -73,7 +73,7 @@ return(
     <Scene key="root">
 
             <Scene key="auth" hideNavBar>
-                <Scene key="introduction" initial>
+                <Scene key="introduction">
                 <Scene
                 key="introductionscreen"
                 component={IntroductionScreen}
@@ -268,4 +268,4 @@ return(
 }
 
 
-export default RouterComponet;
+export  default RouterComponent;

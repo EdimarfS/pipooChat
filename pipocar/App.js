@@ -14,6 +14,9 @@ import {
 } from './src/screens';
 import './src/fixtimerbug';
 import SignForm from './src/components/screenForms/SignForm';
+//import SplashLoading from './src/screens/SplashLoadingCounter';
+import Router from './src/router/Router';
+
 //import { Router } from 'react-native-router-flux';
 //import { IntroductionScreen } from './src/screens';
 //import Router from './src/router/Router';
@@ -22,6 +25,17 @@ import SignForm from './src/components/screenForms/SignForm';
 
 
 class  App extends Component{
+
+  constructor(props)
+  {
+    super(props)
+    {
+      this.state = {
+        loading:false,
+      }
+    }
+  }
+
 
     UNSAFE_componentWillMount()
     {
@@ -39,7 +53,11 @@ class  App extends Component{
     componentDidMount()
     {
       OneSignal.removeEventListener('opened', this.onOpened) 
-
+/*       if(!this.state.loading)
+      {    
+        SplashLoading.load(app => this.setState({ loading: true}));
+      }
+ */
     }
 
 
@@ -47,8 +65,10 @@ class  App extends Component{
 
   render()
   {
+
     return(
-      <SettingScreen/>
+    <Router/>
+
     )
   }
 
