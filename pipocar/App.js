@@ -10,7 +10,8 @@ import {
   LoginScreen, SignScreen, 
   UserPersonalEditDataScreen,
   UserPersonalDataScreen,
-  SettingScreen
+  SettingScreen,
+  ChatScreen
 } from './src/screens';
 import './src/fixtimerbug';
 import SignForm from './src/components/screenForms/SignForm';
@@ -67,7 +68,7 @@ class  App extends Component{
   {
 
     return(
-    <Router/>
+    <ChatScreen/>
 
     )
   }
