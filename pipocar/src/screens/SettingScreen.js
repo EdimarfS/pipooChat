@@ -36,12 +36,17 @@ onCloseAccount()
     {
         this.modalizeAccountRef.current?.close();
     }
+onOverlayPress = () => { 
+      this.onCloseAccount();
+    }
 
 
 onCloseFavorite()
     {
       this.modalizeFavoritetRef.current?.close();
     }
+
+
 onFavoriteOPEN()
     {
         this.modalizeFavoritetRef.current?.open();
@@ -168,9 +173,27 @@ render(){
                   <Modalize 
                   
                     ref={this.modalizeAccountRef}
+                    scrollViewProps={{ showsVerticalScrollIndicator: false }}
                     snapPoint={550}
                     modalHeight={550}
                     animationType='fade'
+                    HeaderComponent={
+                      <View style={{                        
+                        justifyContent:'center',
+                        alignItems:'center'}}>
+                        <Text>Account</Text>
+                      </View>
+                    }
+                    FooterComponent={
+                      <TouchableOpacity onPress={this.onCloseAccount.bind(this)}>
+                      <View style={{                        
+                        justifyContent:'center',
+                        alignItems:'center'}}>
+                        <Text style={{ fontSize:30 }}>close</Text>
+                      </View>
+                      </TouchableOpacity>
+                    }
+
 
                     
                     >
@@ -180,9 +203,7 @@ render(){
                         justifyContent:'center',
                         alignItems:'center'
                       }}>
-                        <TouchableOpacity onPress={this.onCloseAccount.bind(this)}>
                         <Text>Account</Text>
-                        </TouchableOpacity>
                       </View>
                     </Modalize>
     
@@ -192,6 +213,22 @@ render(){
                     snapPoint={550}
                     modalHeight={550}
                      // animationType='fade'
+                     HeaderComponent={
+                      <View style={{                        
+                        justifyContent:'center',
+                        alignItems:'center'}}>
+                        <Text>Favorite</Text>
+                      </View>
+                    }
+                    FooterComponent={
+                      <TouchableOpacity onPress={this.onCloseFavorite.bind(this)}>
+                      <View style={{                        
+                        justifyContent:'center',
+                        alignItems:'center'}}>
+                          <Text style={{ fontSize:30 }}>close</Text>
+                      </View>
+                      </TouchableOpacity>
+                    }
                     
                     >
                       <View style={{
@@ -199,9 +236,7 @@ render(){
                         justifyContent:'center',
                         alignItems:'center'
                       }}>
-                        <TouchableOpacity onPress={this.onCloseFavorite.bind(this)}>
                         <Text>Favorite</Text>
-                        </TouchableOpacity>
                       </View>
                     </Modalize>
 
