@@ -11,6 +11,7 @@ import {
 import { Actions } from 'react-native-router-flux';
 import { Modalize } from 'react-native-modalize';
 
+
 class  SettingScreen extends Component {
   
   
@@ -80,6 +81,7 @@ render(){
   return (
     <View style={{
       flex:1,
+      backgroundColor:'#f2f2f2'
     }}>
     <FlatList
     style={{ width:'100%', }}
@@ -90,29 +92,36 @@ render(){
     renderItem= {({item}) => {
 
       return(
-        <View style={{ marginLeft:10, marginRight:10}}>
+        <View 
+        //style={{ marginLeft:10, marginRight:10}}
+        >
           <View
           style={{
-            marginTop:40,
+            marginTop:'40%',
           }}
           > 
                   <TouchableOpacity 
                   onPress={this.onAccountOPEN.bind(this)}>    
                   <View 
                   style={{
-                    marginBottom:50,
-                    flexDirection:'row'
+                   // marginBottom:30,
+                    flexDirection:'row',
+                    backgroundColor:'white',
+                    borderBottomColor:'#d4d4d4',
+                    borderBottomWidth:1,
+                    
 
                   }}
                   >
                     <View style={styles.iconStyles}>
                     <Text>Icon</Text>
+              
 
                     </View>
                     <Text 
                     style={{
                       fontSize:25,
-                      fontWeight:'bold'
+                      //fontWeight:'bold'
                     }}>
                     {item.account}
                     </Text>
@@ -122,9 +131,11 @@ render(){
                   <TouchableOpacity onPress={this.onFavoriteOPEN.bind(this)}>
                   <View 
                     style={{
-                    marginBottom:50,
-                    flexDirection:'row'
-                    
+                   // marginBottom:30,
+                    flexDirection:'row',
+                    backgroundColor:'white',
+                    borderBottomColor:'#d4d4d4',
+                    borderBottomWidth:1,
 
                   }}>
                     <View style={styles.iconStyles}>
@@ -133,7 +144,7 @@ render(){
                     <Text
                     style={{
                       fontSize:25,
-                      fontWeight:'bold'
+                     // fontWeight:'bold'
                     }}>{item.favorite}</Text>  
                   </View>
                   </TouchableOpacity>
@@ -142,8 +153,11 @@ render(){
                   onPress={this.onLogoutPRESSED.bind(this)}>
                   <View
                   style={{
-                    marginBottom:50,
-                    flexDirection:'row'
+                    marginBottom:30,
+                    flexDirection:'row',
+                    backgroundColor:'white',
+                    borderBottomColor:'#d4d4d4',
+                    borderBottomWidth:1,
                   }}
                   >
                     <View style={styles.iconStyles}>
@@ -152,7 +166,7 @@ render(){
                     <Text 
                     style={{
                       fontSize:25,
-                      fontWeight:'bold'
+                     // fontWeight:'bold'
                     }}>{item.logout}</Text>
                     </View>
                     </TouchableOpacity>
@@ -174,8 +188,8 @@ render(){
                   
                     ref={this.modalizeAccountRef}
                     scrollViewProps={{ showsVerticalScrollIndicator: false }}
-                    snapPoint={550}
-                    modalHeight={550}
+                    snapPoint={450}
+                    modalHeight={450}
                     animationType='fade'
                     HeaderComponent={
                       <View style={{                        
@@ -210,8 +224,8 @@ render(){
 
                     <Modalize 
                     ref={this.modalizeFavoritetRef}
-                    snapPoint={550}
-                    modalHeight={550}
+                    snapPoint={450}
+                    modalHeight={450}
                      // animationType='fade'
                      HeaderComponent={
                       <View style={{                        
@@ -262,6 +276,7 @@ const styles = {
   },
   iconStyles : { 
     marginRight:10,
+    marginBottom:20,
   }
   
 }
