@@ -69,6 +69,7 @@ render(){
       }}>  
         <Button
         label="Login"
+        onPress={()=>{ Actions.main({type:'replace'})}}
         />
       </View>
 

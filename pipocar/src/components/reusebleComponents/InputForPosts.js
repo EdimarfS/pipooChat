@@ -1,7 +1,5 @@
 import React from 'react';
 import { TextInput,View, Text } from 'react-native';
-import { MaterialCommunityIcons } from '@expo/vector-icons'; 
-
 
 const InputForPosts = ({ value, onChangeText, label, placeholderTextColor, paddingRight , paddingLeft, placeholder, autoCapitalize, autoCorrect, secureTextEntry, multiline, numberOfLines, maxLength}) =>{
 

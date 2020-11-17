@@ -28,12 +28,11 @@ import {
 } from '../screens/index';
 
 
-import {Ionicons} from 'react-native-vector-icons';
-import { EvilIcons } from '@expo/vector-icons';
 
 
 
- class TabIcon extends Component {
+
+/*  class TabIcon extends Component {
 
     render () {
 
@@ -59,7 +58,7 @@ import { EvilIcons } from '@expo/vector-icons';
 
         return componentBody;
     }
-}
+} */
  
 const RouterComponent = () => { 
     let sizeicons = 28;
@@ -115,6 +114,8 @@ return(
                 />
                 </Scene>
             </Scene>
+
+            
 
             <Scene key="messages">
                 <Scene
@@ -186,9 +187,29 @@ return(
                     key="feednews"
                     component={FeedNewsScreen}
                     iconName={"md-planet"}
-                    icon={TabIcon}
+                   // icon={TabIcon}
                     activeTintColor={tint_color}
                     inactiveTintColor={inactive_Color}
+                    renderRightButton={
+                        <TouchableOpacity onPress={()=>{
+                
+                        }}>
+                            <Text style={{
+                                fontSize:20,
+                                marginRight:10,
+                            }}>Add</Text>
+                        </TouchableOpacity>
+                        }
+                        renderLeftButton={
+                            <TouchableOpacity onPress={()=>{
+                    
+                            }}>
+                                <Text style={{
+                                    fontSize:20,
+                                    marginLeft:10,
+                                }}>Add</Text>
+                            </TouchableOpacity>
+                    }
                     renderTitle={()=>{
                         return(
                             <View style={{
@@ -207,10 +228,31 @@ return(
                     <Scene
                     key="ngambwe"
                     component={ChatScreen}
-                    iconName={"ios-chatboxes"}
-                    icon={TabIcon}
+                    //iconName={"ios-chatboxes"}
+                    //icon={TabIcon}
                     activeTintColor={tint_color}
                     inactiveTintColor={inactive_Color}
+                    renderRightButton={
+                        <TouchableOpacity onPress={()=>{
+                
+                        }}>
+                            <Text style={{
+                                fontSize:20,
+                                marginRight:10,
+                            }}>Add</Text>
+                        </TouchableOpacity>
+                        }
+                        renderLeftButton={
+                            <TouchableOpacity onPress={()=>{
+                    
+                            }}>
+                                <Text style={{
+                                    fontSize:20,
+                                    marginLeft:10,
+                                }}>Add</Text>
+                            </TouchableOpacity>
+                    }
+          
                     renderTitle={()=>{
                         return(
                             <View style={{
@@ -232,9 +274,10 @@ return(
                     key="setting"
                     component={SettingScreen}
                     iconName={"ios-settings"}
-                    icon={TabIcon}
+                    //icon={TabIcon}
                     activeTintColor={tint_color}
                     inactiveTintColor={inactive_Color}
+                    
                     renderTitle={()=>{
                         return(
                             <View style={{

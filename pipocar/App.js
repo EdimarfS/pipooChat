@@ -68,7 +68,7 @@ class  App extends Component{
   {
 
     return(
-    <SettingScreen/>
+    <Router/>
 
     )
   }

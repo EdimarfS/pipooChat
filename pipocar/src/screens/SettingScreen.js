@@ -8,6 +8,7 @@ import {
   FlatList,
   TouchableOpacity
 } from "react-native";
+import { Actions } from 'react-native-router-flux';
 
 class  SettingScreen extends Component {
 
@@ -24,6 +25,10 @@ data = [
 }
 
 ]
+
+onLogoutPRESSED = () =>{
+    Actions.auth({type:'replace'});
+}
 
 
 render(){ 
@@ -54,6 +59,7 @@ render(){
                   >
                     <View style={styles.iconStyles}>
                     <Text>Icon</Text>
+
                     </View>
                     <Text 
                     style={{
@@ -84,7 +90,8 @@ render(){
                   </View>
                   </TouchableOpacity>
 
-                  <TouchableOpacity>
+                  <TouchableOpacity 
+                  onPress={this.onLogoutPRESSED.bind(this)}>
                   <View
                   style={{
                     marginBottom:50,
