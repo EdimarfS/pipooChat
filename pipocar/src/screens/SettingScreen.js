@@ -6,6 +6,7 @@ import {
   View, 
   Text, 
   FlatList,
+  TouchableOpacity
 } from "react-native";
 
 class  SettingScreen extends Component {
@@ -42,44 +43,64 @@ render(){
           style={{
             marginTop:40,
           }}
-          >
+          > 
+                  <TouchableOpacity>    
                   <View 
                   style={{
                     marginBottom:50,
+                    flexDirection:'row'
 
                   }}
                   >
+                    <View style={styles.iconStyles}>
+                    <Text>Icon</Text>
+                    </View>
                     <Text 
                     style={{
-                      fontSize:20,
+                      fontSize:25,
                       fontWeight:'bold'
                     }}>
                     {item.account}
                     </Text>
                   </View>
+                  </TouchableOpacity>
 
-
+                  <TouchableOpacity>
                   <View 
                     style={{
                     marginBottom:50,
+                    flexDirection:'row'
                     
 
                   }}>
+                    <View style={styles.iconStyles}>
+                    <Text>Icon</Text>
+                    </View>
                     <Text
                     style={{
-                      fontSize:20,
+                      fontSize:25,
                       fontWeight:'bold'
                     }}>{item.favorite}</Text>  
                   </View>
+                  </TouchableOpacity>
 
-
-                  <View>
+                  <TouchableOpacity>
+                  <View
+                  style={{
+                    marginBottom:50,
+                    flexDirection:'row'
+                  }}
+                  >
+                    <View style={styles.iconStyles}>
+                    <Text>Icon</Text>
+                    </View>
                     <Text 
                     style={{
-                      fontSize:20,
+                      fontSize:25,
                       fontWeight:'bold'
                     }}>{item.logout}</Text>
                     </View>
+                    </TouchableOpacity>
 
                     </View>
 
@@ -106,7 +127,9 @@ export  {SettingScreen};
 const styles = {
   listBackground : {
     listBackgroundColor:'red',
-
+  },
+  iconStyles : { 
+    marginRight:10,
   }
   
 }
