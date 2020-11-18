@@ -14,8 +14,27 @@ import {
 import { 
   Actions
   } from 'react-native-router-flux';
+  import { 
+    emailCHANGED, 
+    forgotPASSWORD,
+
+  } from '../../actions/index';
+import {connect } from 'react-redux';
+
 
 class  ForgetPasswordForm extends Component {
+
+onEmailChange(text){
+
+    this.props.emailCHANGED(text);
+    
+}
+
+onForgetPassword()
+{
+  const { email } = this.props;
+  this.props.forgotPASSWORD(email);
+}
 
 render(){ 
   console.log('ForgetPasswordForm');
@@ -76,9 +95,13 @@ render(){
       style={{
         marginBottom:70,
       }}>  
-        <Input
-      
+        <Input  
+        autoCapitalize="none"
+        autoCorrect={false}
         placeholder="email"
+        value={this.props.email}
+        onChangeText={this.onEmailChange.bind(this)}   
+        autoCapitalize='none'
         />
       </View>
       <View       
@@ -87,6 +110,7 @@ render(){
       }}>  
         <Button
         label="Request"
+        onPress={this.onForgetPassword.bind(this)}
         />
       </View>
 
@@ -131,7 +155,16 @@ render(){
   );
 }
 }
+const mapStateToProps = ({ auth }) => {
+  
+  const {email, password, loading, error } = auth;
 
+  return{ email, password, loading, error };
+}
 
+export default connect(mapStateToProps, { 
+  emailCHANGED, 
+  forgotPASSWORD,
 
-export default ForgetPasswordForm;
+  
+})(ForgetPasswordForm);

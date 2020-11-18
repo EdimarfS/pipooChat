@@ -214,16 +214,16 @@ export const resetPASSWORD_RESET_SUCCESS = (dispatch) => {
 }
 
 
-/* export const forgotPASSWORD = (email) =>{
+export const forgotPASSWORD = (email) =>{
 return(dispatch) => {    
-    firebase.auth().sendPasswordResetEmail(email)
+    auth().sendPasswordResetEmail(email)
     .then(() => { 
         console.log("DONEE!!!!!!!!!");
         resetPASSWORD_RESET_SUCCESS(dispatch) 
         Actions.auth_LOGIN({
             type:'replace'
         });
-        Actions.refresh({});
+        Actions.login({});
     
     }
         
@@ -234,7 +234,6 @@ return(dispatch) => {
     })}
  
 }
- */
 /*
              userName = userData.userName;
                userID = userData.userID;
