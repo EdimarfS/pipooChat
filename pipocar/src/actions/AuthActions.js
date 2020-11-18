@@ -54,12 +54,12 @@ export const loginUSER = ({ email, password }) => {
 
 }
 
-export const createUserACCOUNT = ({ name, email, password}) => {
+export const createUserACCOUNT = ({ email, password}) => {
     return(dispatch) => {
         dispatch({type:  CREATED_ACCOUNT})
      {   
          auth().createUserWithEmailAndPassword(email, password)
-        .then(user => createACCOUNT_SUCCESS(dispatch, user, name))
+        .then(user => createACCOUNT_SUCCESS(dispatch, user))
         .catch(() => createACCOUNT_FAIL(dispatch));
     }
 

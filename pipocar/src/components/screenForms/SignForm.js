@@ -17,11 +17,27 @@ import {
 import { 
     emailCHANGED, 
     passwordCHANGED, 
-    loginUSER, 
+    createUserACCOUNT
   } from '../../actions/index';
 import { connect } from 'react-redux';
 
 class  SignForm extends Component {
+  
+
+onEmailChange(text){
+    this.props.emailCHANGED(text);
+}
+
+onPasswordChange(text)
+{
+    this.props.passwordCHANGED(text);
+}
+
+onButtonPress()
+{
+    const { email, password } = this.props;
+    this.props.createUserACCOUNT({ email, password });
+}
 
 
 
@@ -56,8 +72,11 @@ render(){
         marginBottom:70,
       }}>  
         <Input
-      
         placeholder="email"
+        value={this.props.email}
+        onChangeText={this.onEmailChange.bind(this)}   
+        autoCapitalize='none'
+        autoCorrect={false}
         />
       </View>
       <View 
@@ -66,15 +85,26 @@ render(){
       }}>  
         <Input
         placeholder="password"
+        value={this.props.password}
+        onChangeText={this.onPasswordChange.bind(this)}   
+        autoCapitalize='none'
+        autoCorrect={false}
         secureTextEntry
         />
       </View>
+      
+
+      <View style={{ justifyContent:'center', alignItems:'center'}}>
+      <Text style={{color:'red'}}>{this.props.errorCREATE_ACCOUNT}</Text>
+      </View>
+      
       <View       
       style={{
         marginBottom:80,
       }}>  
         <Button
         label="create an account"
+        onPress={this.onButtonPress.bind(this)}
         />
       </View>
 
@@ -116,13 +146,14 @@ render(){
 }
 const mapStateToProps = ({ auth }) => {
   
-  const {email, password, loading, error } = auth;
+  const {email, password, loading, errorCREATE_ACCOUNT } = auth;
 
-  return{ email, password, loading, error };
+  return{ email, password, loading, errorCREATE_ACCOUNT };
 }
 
 export default connect(mapStateToProps, {
   emailCHANGED, 
   passwordCHANGED, 
-  loginUSER, 
+  createUserACCOUNT,
+
  })(SignForm);

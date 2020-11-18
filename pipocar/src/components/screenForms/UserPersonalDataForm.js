@@ -14,11 +14,22 @@ import {
 import { 
   emailCHANGED, 
   passwordCHANGED, 
-  loginUSER, 
+  userUPDATE_DATA,
 } from '../../actions/index';
 import { connect } from 'react-redux';
 
 class  UserPersonalDataForm extends Component {
+
+  onButtonPress()
+  {
+      console.log("UserPersonalData");
+    //  const { userName, userID, userLocation, userMantra, userDateOfRegistration } = this.props;
+  //    this.props.createUSER({userName,userID,userLocation, userMantra});
+  }
+
+
+
+
 
 render(){ 
   console.log('LoginForm');
@@ -57,8 +68,14 @@ render(){
         marginBottom:70,
       }}>  
         <Input
-      
         placeholder="Username"
+        autoCapitalize='none'
+        autoCorrect={false}
+        value={this.props.userName}
+        onChangeText={value => this.props.userUPDATE_DATA({
+            prop: "userName",
+            value
+        })} 
         />
       </View>
       <View 
@@ -66,8 +83,31 @@ render(){
         marginBottom:70,
       }}>  
         <Input
-      
         placeholder="ID"
+        autoCapitalize='none'
+        autoCorrect={false}
+        value={this.props.userID}
+        onChangeText={value => this.props.userUPDATE_DATA({
+            prop: "userID",
+            value
+        })} 
+        />
+      </View>
+      <View 
+      style={{
+        marginBottom:70,
+      }}>  
+        <Input
+        placeholder="Location"
+        multiline={true}
+        maxLength={40}
+        autoCapitalize='none'
+        autoCorrect={false}
+        value={this.props.userLocation}
+        onChangeText={value => this.props.userUPDATE_DATA({
+            prop: "userLocation",
+            value
+        })} 
         />
       </View>
       <View 
@@ -78,18 +118,18 @@ render(){
         placeholder="Bio"
         multiline={true}
         maxLength={40}
-        />
-      </View>
-      <View 
-      style={{
-        marginBottom:70,
-      }}>  
-        <Input
-        placeholder="Mantra"
+        autoCapitalize='none'
+        autoCorrect={false}
+        value={this.props.userBio}
+        onChangeText={value => this.props.userUPDATE_DATA({
+            prop: "userBio",
+            value
+        })} 
         secureTextEntry
         />
       </View>
-
+      
+      <TouchableOpacity onPress={this.onButtonPress.bind(this)}>
       <View       
       style={{
         marginBottom:30,
@@ -111,6 +151,7 @@ render(){
 
 
       </View>
+      </TouchableOpacity>
 
 
    
@@ -129,13 +170,13 @@ render(){
 
 const mapStateToProps = ({ auth }) => {
   
-  const {email, password, loading, error } = auth;
+  const { loading, errorOncreateAccount, userName, userID, userLocation, userBio, userDateOfRegistration} = auth;
 
-  return{ email, password, loading, error };
+  return{ loading, errorOncreateAccount, userName, userID, userLocation, userBio, userDateOfRegistration};
 }
 
 export default connect(mapStateToProps, {
   emailCHANGED, 
   passwordCHANGED, 
-  loginUSER, 
+  userUPDATE_DATA
  })(UserPersonalDataForm);

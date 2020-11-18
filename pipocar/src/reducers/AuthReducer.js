@@ -30,7 +30,7 @@ const INITIAL_STATE = {
    userName:'',
    userID:'',
    userLocation:'',
-   userMantra:'',
+   userBio:'',
    userAllData:'',
    userDateOfRegistration:'',
 }
