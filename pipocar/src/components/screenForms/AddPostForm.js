@@ -82,24 +82,19 @@ class  AddPostForm extends Component {
                       cropping: true,
   
 
-                  });
-                  console.log(result);
-                  if(!result.cancelled)
-                  {
-                      console.log('upload image');
-                      this.setState({
-                          imageSelected: true,
-                          imageId: this.uniqueId(),
-                          uri: result.uri
-                      })
-          
-                  }else{
-                      console.log('cancel');
-                      this.setState({
-                          imageSelected: false
-                        });
-                  } 
-              }
+                  }).then(image => {
+                    this.setState({
+                      imageSelected: true,
+                      imageId: this.uniqueId(),
+                      uri: result.uri
+                  })
+                  }).catch(error => {
+                    this.setState({
+                      imageSelected: false
+                    });
+
+                  })
+}
 
 
 render(){ 
