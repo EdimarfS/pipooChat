@@ -6,6 +6,7 @@ import {
   View, 
   Text, 
   TouchableOpacity,
+  Image
 } from "react-native";
 import { 
 InputForPosts,
@@ -14,6 +15,28 @@ Button
 import ImagePicker from 'react-native-image-crop-picker';
 import {check, PERMISSIONS, RESULTS} from 'react-native-permissions';
 class  AddPostForm extends Component {
+  constructor(props)
+  {
+      super(props);
+      this.state = {
+          loggedin: false,
+          imageID: this.uniqueId(),
+          imageSelected: false,
+          uploading: false,
+          caption: "",
+          progress: 0,
+          imageURI:'https://firebasestorage.googleapis.com/v0/b/pipocar-61cd8.appspot.com/o/images.png?alt=media&token=18ff2968-3858-41fa-b0d4-694dae37491e'
+       
+      };
+  }
+
+
+
+
+
+
+
+
    //Image Picker 
   _checkPermissions = () => {
     check(PERMISSIONS.IOS.LOCATION_ALWAYS)
@@ -81,12 +104,13 @@ class  AddPostForm extends Component {
                       height: 400,
                       cropping: true,
   
-
+                      
                   }).then(image => {
                     this.setState({
                       imageSelected: true,
                       imageId: this.uniqueId(),
-                      uri: result.uri
+                      imageURI: image.path,
+                      
                   })
                   }).catch(error => {
                     this.setState({
@@ -101,17 +125,22 @@ render(){
   console.log('AddPostForm');
   return (
     <View style={{ marginLeft:10, marginRight:10}}>
-      <View>
-        <TouchableOpacity 
-        onPress={this.findNewImage}
+      <View style={{
+        alignSelf:'center',
+        marginTop:20,
+      }}>
+
+        <TouchableOpacity onPress={this.findNewImage}>
+        <Image
+        source={{
+          uri:this.state.imageURI
+        }}
         style={{
           width:100,
           height:100,
-          backgroundColor:'red',
-          justifyContent:'center',
-          alignSelf:'center',
-          marginTop:'30%',
-        }}>
+        }}
+        
+        />
         </TouchableOpacity>
       </View>
       <View style={{ alignSelf:'center', marginTop:10}}>
