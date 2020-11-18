@@ -209,16 +209,7 @@ render(){
                         }}>Edit your personal information</Text>
                       </View>
                     }
-                    FooterComponent={
-                      <TouchableOpacity onPress={this.onCloseAccount.bind(this)}>
-                      <View style={{                        
-                        justifyContent:'center',
-                        alignItems:'center'}}>
-                        <Text style={{ fontSize:30 }}>close</Text>
-                      </View>
-                      </TouchableOpacity>
-                    }
-                    >    
+                    >   
                     <View 
                     style={{
                       marginLeft:10,
