@@ -11,12 +11,14 @@ import {
   Input,
   Button,
 } from '../reusebleComponents/index';
+import { 
+  emailCHANGED, 
+  passwordCHANGED, 
+  loginUSER, 
+} from '../../actions/index';
+import { connect } from 'react-redux';
 
-class  
-UserPersonalDataForm extends Component {
-
-
-
+class  UserPersonalDataForm extends Component {
 
 render(){ 
   console.log('LoginForm');
@@ -125,5 +127,15 @@ render(){
 }
 
 
+const mapStateToProps = ({ auth }) => {
+  
+  const {email, password, loading, error } = auth;
 
-export default UserPersonalDataForm;
+  return{ email, password, loading, error };
+}
+
+export default connect(mapStateToProps, {
+  emailCHANGED, 
+  passwordCHANGED, 
+  loginUSER, 
+ })(UserPersonalDataForm);

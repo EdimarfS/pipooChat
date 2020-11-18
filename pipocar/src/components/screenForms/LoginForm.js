@@ -14,8 +14,16 @@ import {
 import { 
   Actions
   } from 'react-native-router-flux';
+import { connect } from 'react-redux';
+import { 
+  emailCHANGED, 
+  passwordCHANGED, 
+  loginUSER, 
+} from '../../actions/index';
+import { Spinner} from '../reusebleComponents/index';
 
-class  LoginForm extends Component {
+
+class LoginForm extends Component {
 
 
 
@@ -125,4 +133,15 @@ render(){
 
 
 
-export default LoginForm;
+const mapStateToProps = ({ auth }) => {
+  
+  const {email, password, loading, error } = auth;
+
+  return{ email, password, loading, error };
+}
+
+export default connect(mapStateToProps, {
+  emailCHANGED, 
+  passwordCHANGED, 
+  loginUSER, 
+ })(LoginForm);

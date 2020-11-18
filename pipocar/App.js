@@ -7,7 +7,8 @@ import {
 import OneSignal from 'react-native-onesignal';
 import { 
   IntroductionScreen, 
-  LoginScreen, SignScreen, 
+  LoginScreen, 
+  SignScreen, 
   UserPersonalEditDataScreen,
   UserPersonalDataScreen,
   SettingScreen,
@@ -17,6 +18,11 @@ import './src/fixtimerbug';
 import SignForm from './src/components/screenForms/SignForm';
 //import SplashLoading from './src/screens/SplashLoadingCounter';
 import Router from './src/router/Router';
+import auth from '@react-native-firebase/auth';
+import {createStore, applyMiddleware} from 'redux';
+import ReduxThunk from 'redux-thunk';
+import {Provider} from 'react-redux';
+import Reducers from './src/reducers/index';
 
 //import { Router } from 'react-native-router-flux';
 //import { IntroductionScreen } from './src/screens';
@@ -67,8 +73,19 @@ class  App extends Component{
   render()
   {
 
+    const store = createStore(Reducers, {}, applyMiddleware(ReduxThunk));
+    store.subscribe(() =>{
+      console.log("NEW STATE!")
+    })
+
     return(
-    <Router/>
+
+
+      <Provider store={store}>
+              <SettingScreen/>
+      </Provider>
+
+
 
     )
   }

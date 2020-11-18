@@ -12,6 +12,7 @@
   "dependencies": {
     "@react-native-firebase/admob": "^7.6.12",
     "@react-native-firebase/app": "9.0.0",
+    "@react-native-firebase/auth": "^10.0.0",
     "add": "^2.0.6",
     "expo-asset": "^8.2.0",
     "expo-constants": "^9.2.0",
@@ -35,6 +36,7 @@
     "react-native-vector-icons": "^7.1.0",
     "react-redux": "^7.2.2",
     "redux": "^4.0.5",
+    "redux-thunk": "^2.3.0",
     "unimodules": "^1.0.0",
     "yarn": "^1.22.10"
   },

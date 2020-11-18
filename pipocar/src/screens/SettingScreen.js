@@ -8,6 +8,11 @@ import {
   FlatList,
   TouchableOpacity
 } from "react-native";
+import { 
+  Input,
+  Button
+
+} from '../components/reusebleComponents/index';
 import { Actions } from 'react-native-router-flux';
 import { Modalize } from 'react-native-modalize';
 
@@ -188,8 +193,8 @@ render(){
                   
                     ref={this.modalizeAccountRef}
                     scrollViewProps={{ showsVerticalScrollIndicator: false }}
-                    snapPoint={450}
-                    modalHeight={450}
+                    snapPoint={600}
+                    modalHeight={600}
                     animationType='fade'
                     HeaderComponent={
                       <View style={{                        
@@ -207,19 +212,95 @@ render(){
                       </View>
                       </TouchableOpacity>
                     }
+                    >    
+                    <View 
+                    style={{
+                      marginLeft:10,
+                      marginRight:10,
+                
+                    }}>  
+
+                        <TouchableOpacity            
+                        style={{
+                            marginTop:10,
+                            marginBottom:20,
+                             width:50,
+                             height:50,
+                             borderRadius:100,
+                             alignSelf:'center',
+                             backgroundColor:'lightgrey',
+                           }}>
+                
+                
+                        </TouchableOpacity>
+
+                      <View 
+                      style={{
+                        marginBottom:10,
+                      }}>  
+                        <Input
+                      
+                        placeholder="Username"
+                        />
+                      </View>
+                      <View 
+                      style={{
+                        marginBottom:10,
+                      }}>  
+                        <Input
+                      
+                        placeholder="ID"
+                        />
+                      </View>
+                      <View 
+                      style={{
+                        marginBottom:10,
+                      }}>  
+                        <Input
+                        placeholder="Bio"
+                        multiline={true}
+                        maxLength={40}
+                        />
+                      </View>
+                      <View 
+                      style={{
+                        marginBottom:10,
+                      }}>  
+                        <Input
+                        placeholder="Mantra"
+                        secureTextEntry
+                        />
+                      </View>
+                
+                      <View       
+                      style={{
+                        marginBottom:30,
+                        justifyContent:'center',
+                        alignSelf:'center',
+                        backgroundColor:'#44e300',
+                        width:'100%',
+                        height:60,
+                        borderRadius:5,
+                      }}>  
+                      <Text 
+                      style={{
+                      fontSize:20,
+                      textAlign:'center',
+                      color:'white',
+                      fontWeight:'bold'
+                
+                      }}> Finish </Text>
+                
+                
+                      </View>
+                
+                    </View>
+
+                    </Modalize>
+
 
 
                     
-                    >
-
-                      <View style={{
-                        flex:1,
-                        justifyContent:'center',
-                        alignItems:'center'
-                      }}>
-                        <Text>Account</Text>
-                      </View>
-                    </Modalize>
     
 
                     <Modalize 

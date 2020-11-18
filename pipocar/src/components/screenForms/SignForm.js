@@ -14,6 +14,12 @@ import {
 import { 
   Actions
   } from 'react-native-router-flux';
+import { 
+    emailCHANGED, 
+    passwordCHANGED, 
+    loginUSER, 
+  } from '../../actions/index';
+import { connect } from 'react-redux';
 
 class  SignForm extends Component {
 
@@ -108,7 +114,15 @@ render(){
   );
 }
 }
+const mapStateToProps = ({ auth }) => {
+  
+  const {email, password, loading, error } = auth;
 
+  return{ email, password, loading, error };
+}
 
-
-export default SignForm;
+export default connect(mapStateToProps, {
+  emailCHANGED, 
+  passwordCHANGED, 
+  loginUSER, 
+ })(SignForm);
