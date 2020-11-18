@@ -10,7 +10,8 @@ import {
 } from "react-native";
 import { 
   Input,
-  Button
+  Button,
+  InputDataEdit
 
 } from '../reusebleComponents/index';
 import { Actions } from 'react-native-router-flux';
@@ -264,8 +265,8 @@ render(){
                     //disableScrollIfPossible={true}
                     ref={this.modalizeAccountRef}
                     scrollViewProps={{ showsVerticalScrollIndicator: false }}
-                    snapPoint={500}
-                    modalHeight={500}
+                    snapPoint={400}
+                    modalHeight={550}
                     
                     animationType='fade'
                     HeaderComponent={
@@ -292,8 +293,8 @@ render(){
                         style={{
                             marginTop:10,
                            // marginBottom:20,
-                             width:100,
-                             height:100,
+                             width:50,
+                             height:50,
                              borderRadius:100,
                              alignSelf:'center',
                              backgroundColor:'lightgrey',
@@ -306,7 +307,7 @@ render(){
                       style={{
                         marginBottom:0,
                       }}>  
-                        <Input
+                        <InputDataEdit
                         value={this.state.userName}
                         onChangeText={text => this.setState({ userName:text})}
                         />
@@ -315,7 +316,7 @@ render(){
                       style={{
                       //  marginBottom:10,
                       }}>  
-                        <Input
+                        <InputDataEdit
                        value={this.state.userID}
                        onChangeText={text => this.setState({ userID:text})}
                     
@@ -325,7 +326,7 @@ render(){
                       style={{
                         //marginBottom:10,
                       }}>  
-                        <Input
+                        <InputDataEdit
                         value={this.state.userLocation}
                         onChangeText={text => this.setState({ userLocation:text})}
                         multiline={true}
@@ -336,7 +337,7 @@ render(){
                       style={{
                         //marginBottom:10,
                       }}>  
-                        <Input
+                        <InputDataEdit
                         value={this.state.userBio}
                         onChangeText={text => this.setState({ userBio:text})}
                       
@@ -380,8 +381,8 @@ render(){
 
                     <Modalize 
                     ref={this.modalizeFavoritetRef}
-                    snapPoint={480}
-                    modalHeight={480}
+                    snapPoint={500}
+                    modalHeight={500}
                      // animationType='fade'
                      HeaderComponent={
                       <View style={{                        

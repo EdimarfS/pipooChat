@@ -2,7 +2,7 @@ import React from 'react';
 import { TextInput,View, Text } from 'react-native';
 
 
-const InputForPosts = ({ value, onChangeText, label, placeholderTextColor, paddingRight , paddingLeft, placeholder, autoCapitalize, autoCorrect, secureTextEntry, multiline, numberOfLines, maxLength}) =>{
+const InputDataEdit = ({ value, onChangeText, label, placeholderTextColor, paddingRight , paddingLeft, placeholder, autoCapitalize, autoCorrect, secureTextEntry, multiline, numberOfLines, maxLength}) =>{
 
 const {container, TextInputStyle} = styles;
 
@@ -39,7 +39,7 @@ const styles = {
         fontSize:15,
         backgroundColor:'white',
         padding:10,
-        borderColor:'#cccccc',
+        borderColor:'#f0f0f0',
         //borderWidth:1,
         borderBottomWidth:0.3,
     
@@ -48,4 +48,4 @@ const styles = {
      },   
 }
 
-export { InputForPosts };
+export { InputDataEdit };

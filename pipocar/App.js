@@ -12,7 +12,8 @@ import {
   UserPersonalEditDataScreen,
   UserPersonalDataScreen,
   SettingScreen,
-  ChatScreen
+  ChatScreen,
+  AddPostScreen
 } from './src/screens';
 import './src/fixtimerbug';
 import SignForm from './src/components/screenForms/SignForm';
@@ -82,7 +83,7 @@ class  App extends Component{
 
 
       <Provider store={store}>
-              <Router/>
+              <AddPostScreen/>
       </Provider>
 
 

@@ -5,3 +5,4 @@ export * from './Input';
 export * from './Spinner';
 export * from './CreateAnAccountButton';
 export * from './InputForPosts';
+export * from './InputDataEdit';

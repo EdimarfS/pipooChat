@@ -202,6 +202,7 @@ return(
                         }
                         renderLeftButton={
                             <TouchableOpacity onPress={()=>{
+                              
                     
                             }}>
                                 <Text style={{
@@ -211,20 +212,14 @@ return(
                             </TouchableOpacity>
                     }
           
-                    renderTitle={()=>{
-                        return(
-                            <View style={{
-                                flex:1,
-                                justifyContent:'center',
-                                alignItems:'center',
-                                }}>
-                                <Text style={{fontWeight:'bold',fontSize:20}}>chat</Text>
-                          
-                                
-
-                            </View>
-                        )
-                    }}
+                    renderRightButton={
+                        <TouchableOpacity onPress={()=>{ Actions.addpost()}}>
+                            <Text style={{
+                                fontSize:20,
+                                marginLeft:10,
+                            }}>Add</Text>
+                        </TouchableOpacity>
+                }
                     />
                     
                     <Scene

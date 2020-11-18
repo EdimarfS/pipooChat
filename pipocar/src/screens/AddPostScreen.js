@@ -6,24 +6,12 @@ import {
   View, 
   Text, 
 } from "react-native";
-
+import AddPostForm from '../components/screenForms/AddPostForm';
 class  AddPostScreen extends Component {
-
-
-
 
 render(){ 
   console.log('AddPostScreen');
-  return (
-    <View>
-
-
-            <Text> AddPostScreen</Text>
-
-    </View>
-
- 
-  );
+  return (<AddPostForm/>);
 }
 }
 
