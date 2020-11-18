@@ -82,7 +82,7 @@ class  App extends Component{
 
 
       <Provider store={store}>
-              <SettingScreen/>
+              <Router/>
       </Provider>
 
 

@@ -7,7 +7,6 @@ import {
   Text, 
   FlatList,
   TouchableOpacity,
-  ScrollView
 } from "react-native";
 import { 
   Input,
@@ -191,7 +190,8 @@ render(){
     />
      
                   <Modalize 
-                  
+                    //propagateSwipe
+                    //disableScrollIfPossible={true}
                     ref={this.modalizeAccountRef}
                     scrollViewProps={{ showsVerticalScrollIndicator: false }}
                     snapPoint={450}
@@ -219,7 +219,7 @@ render(){
                       </TouchableOpacity>
                     }
                     >    
-                    <ScrollView 
+                    <View 
                     style={{
                       marginLeft:10,
                       marginRight:10,
@@ -301,7 +301,7 @@ render(){
                 
                       </View>
                 
-                    </ScrollView>
+                    </View>
 
                     </Modalize>
 
