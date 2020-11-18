@@ -33,6 +33,7 @@ const INITIAL_STATE = {
    userBio:'',
    userAllData:'',
    userDateOfRegistration:'',
+   requestNEW_PASSWORD_ERROR:'',
 }
 
 export default (state = INITIAL_STATE, action) => {
@@ -67,7 +68,7 @@ export default (state = INITIAL_STATE, action) => {
        case FORGOT_PASSWORD:
            return { ...state, ...INITIAL_STATE}
        case RESET_PASSWORD_FAIL:
-           return { ...state, error: 'Reset password fail', loading:false}
+           return { ...state, requestNEW_PASSWORD_ERROR: 'Reset password fail', loading:false}
        case RESET_PASSWORD_SUCCESS:
            return { ...state, ...INITIAL_STATE }
        case EMPTY_ALL_FIELDS:

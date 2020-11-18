@@ -104,6 +104,13 @@ render(){
         autoCapitalize='none'
         />
       </View>
+
+
+      <View style={{ justifyContent:'center', alignItems:'center'}}>
+      <Text style={{color:'red'}}>{this.props.requestNEW_PASSWORD_ERROR}</Text>
+      </View>
+
+
       <View       
       style={{
         marginBottom:100,
@@ -114,15 +121,8 @@ render(){
         />
       </View>
 
-      <TouchableOpacity
-      onPress={()=>{ Actions.forgetpassword({type:'replace'})}}
-      >
-      </TouchableOpacity>
 
-
-      <TouchableOpacity 
-      onPress={()=>{ Actions.login({type:'replace'})}}
-      >
+      <TouchableOpacity  onPress={()=>{ Actions.login({type:'replace'})}}>
       <View       
       style={{
         marginBottom:30,
@@ -157,9 +157,9 @@ render(){
 }
 const mapStateToProps = ({ auth }) => {
   
-  const {email, password, loading, error } = auth;
+  const {email, password, loading, requestNEW_PASSWORD_ERROR } = auth;
 
-  return{ email, password, loading, error };
+  return{ email, password, loading, requestNEW_PASSWORD_ERROR };
 }
 
 export default connect(mapStateToProps, { 

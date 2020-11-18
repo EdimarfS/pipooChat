@@ -214,22 +214,15 @@ export const resetPASSWORD_RESET_SUCCESS = (dispatch) => {
 }
 
 
-export const forgotPASSWORD = (email) =>{
+export const forgotPASSWORD = (email) => {
 return(dispatch) => {    
     auth().sendPasswordResetEmail(email)
     .then(() => { 
-        console.log("DONEE!!!!!!!!!");
         resetPASSWORD_RESET_SUCCESS(dispatch) 
-        Actions.auth_LOGIN({
-            type:'replace'
-        });
-        Actions.login({});
-    
+        Actions.login({type:'replace'});
     }
         
         ).catch(() =>{ 
-            
-            console.log("DONEE!!!!!!!!!");
             resetPASSWORD_FAIL(dispatch)
     })}
  
