@@ -312,17 +312,7 @@ render(){
                         alignItems:'center'}}>
                         <Text>Favorite</Text>
                       </View>
-                    }
-                    FooterComponent={
-                      <TouchableOpacity onPress={this.onCloseFavorite.bind(this)}>
-                      <View style={{                        
-                        justifyContent:'center',
-                        alignItems:'center'}}>
-                          <Text style={{ fontSize:30 }}>close</Text>
-                      </View>
-                      </TouchableOpacity>
-                    }
-                    
+                    }     
                     >
                       <View style={{
                         flex:1,

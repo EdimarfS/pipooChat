@@ -24,6 +24,20 @@ import { Spinner} from '../reusebleComponents/index';
 
 
 class LoginForm extends Component {
+onEmailChange(text){
+    this.props.emailCHANGED(text);
+}
+
+onPasswordChange(text)
+{
+    this.props.passwordCHANGED(text);
+}
+
+onButtonPress()
+{
+    const { email, password } = this.props;
+    this.props.loginUSER({ email, password });
+}
 
 
 
@@ -49,7 +63,7 @@ render(){
           fontWeight:'bold',
           fontSize:30,
         }}>
-          login to your account
+          log to your account
         </Text>
 
       </View>
@@ -57,9 +71,12 @@ render(){
       style={{
         marginBottom:70,
       }}>  
-        <Input
-      
+        <Input 
         placeholder="email"
+        value={this.props.email}
+        onChangeText={this.onEmailChange.bind(this)}   
+        autoCapitalize='none'
+        autoCorrect={false}
         />
       </View>
       <View 
@@ -68,16 +85,25 @@ render(){
       }}>  
         <Input
         placeholder="password"
+        value={this.props.password}
+        onChangeText={this.onPasswordChange.bind(this)}   
+        autoCapitalize='none'
+        autoCorrect={false}
         secureTextEntry
+
         />
+      </View>
+
+      <View style={{ justifyContent:'center', alignItems:'center'}}>
+      <Text style={{color:'red'}}>{this.props.error}</Text>
       </View>
       <View       
       style={{
         marginBottom:100,
       }}>  
         <Button
+        onPress={this.onButtonPress.bind(this)}
         label="Login"
-        onPress={()=>{ Actions.main({type:'replace'})}}
         />
       </View>
 
@@ -101,7 +127,6 @@ render(){
 
 
       <TouchableOpacity
-      
       onPress={()=>{ Actions.sign({type:'replace'})}}
       >
       <View 
@@ -120,10 +145,6 @@ render(){
       </View>
       </TouchableOpacity>
 
-
-
-
-
     </View>
 
  
@@ -135,7 +156,7 @@ render(){
 
 const mapStateToProps = ({ auth }) => {
   
-  const {email, password, loading, error } = auth;
+  const { email, password, loading, error } = auth;
 
   return{ email, password, loading, error };
 }

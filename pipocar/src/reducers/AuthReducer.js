@@ -18,7 +18,7 @@ import {
     USER_PERSONAL_INFO_FETCH,
     CREATED_USER,
     CREATED_ACCOUNT
-   } from '../actions/index';
+   } from '../actions/types';
 
 const INITIAL_STATE = { 
    email:'',
