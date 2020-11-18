@@ -15,6 +15,7 @@ import {
   emailCHANGED, 
   passwordCHANGED, 
   userUPDATE_DATA,
+  createUSER
 } from '../../actions/index';
 import { connect } from 'react-redux';
 
@@ -23,8 +24,8 @@ class  UserPersonalDataForm extends Component {
   onButtonPress()
   {
       console.log("UserPersonalData");
-    //  const { userName, userID, userLocation, userMantra, userDateOfRegistration } = this.props;
-  //    this.props.createUSER({userName,userID,userLocation, userMantra});
+      const { userName, userID, userLocation, userMantra, userDateOfRegistration } = this.props;
+      this.props.createUSER({userName,userID,userLocation, userMantra});
   }
 
 
@@ -178,5 +179,6 @@ const mapStateToProps = ({ auth }) => {
 export default connect(mapStateToProps, {
   emailCHANGED, 
   passwordCHANGED, 
-  userUPDATE_DATA
+  userUPDATE_DATA,
+  createUSER
  })(UserPersonalDataForm);

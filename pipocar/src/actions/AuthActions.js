@@ -1,4 +1,6 @@
 import auth from '@react-native-firebase/auth';
+import database from '@react-native-firebase/database';
+
 import { Actions } from 'react-native-router-flux';
 import {
      EMAIL_CHANGED, 
@@ -80,9 +82,9 @@ export const userUPDATE_DATA= ({prop, value}) => {
     }
 }
 
-/* export const createUSER = ({ userName, userID, userLocation, userMantra}) => {
+ export const createUSER = ({ userName, userID, userLocation, userBio}) => {
 
-    console.log(userName, userID, userLocation, userMantra);
+    console.log(userName, userID, userLocation, userBio);
     const { currentUser } = auth();
 
     return(dispatch) => {
@@ -97,30 +99,23 @@ export const userUPDATE_DATA= ({prop, value}) => {
             
 
         });
-        firebase.database().ref(`/users/${currentUser.uid}`)
+        database().ref(`/users/${currentUser.uid}`)
         .update({
                 userName, 
                 userID, 
                 userLocation, 
-                userMantra, 
+                userBio, 
                 userDateOfRegistration
             })
         .then(()=>{
             dispatch({type: USER_CREATED_SUCCESS})
-            Actions.main({
-                type:'replace',
-                userName:userName,
-                userID:userID,
-                userLocation:userLocation,
-                userMantra:userMantra,
-
-            });
+            Actions.main({type:'replace'});
             Actions.refresh({});
         })
     
 
     }
-} */
+} 
 
 
 
