@@ -244,6 +244,9 @@ PODS:
   - Firebase/Firestore (7.0.0):
     - Firebase/CoreOnly
     - FirebaseFirestore (~> 7.0.0)
+  - Firebase/Storage (7.0.0):
+    - Firebase/CoreOnly
+    - FirebaseStorage (~> 7.0.0)
   - FirebaseAuth (7.0.0):
     - FirebaseCore (~> 7.0)
     - GoogleUtilities/AppDelegateSwizzler (~> 7.0)
@@ -273,6 +276,9 @@ PODS:
     - "gRPC-C++ (~> 1.28.0)"
     - leveldb-library (~> 1.22)
     - nanopb (~> 2.30906.0)
+  - FirebaseStorage (7.0.0):
+    - FirebaseCore (~> 7.0)
+    - GTMSessionFetcher/Core (~> 1.4)
   - Flipper (0.54.0):
     - Flipper-Folly (~> 2.2)
     - Flipper-RSocket (~> 1.1)
@@ -682,6 +688,10 @@ PODS:
     - Firebase/Firestore (~> 7.0.0)
     - React-Core
     - RNFBApp
+  - RNFBStorage (10.0.0):
+    - Firebase/Storage (~> 7.0.0)
+    - React-Core
+    - RNFBApp
   - RNGestureHandler (1.8.0):
     - React
   - RNImageCropPicker (0.35.1):
@@ -777,6 +787,7 @@ DEPENDENCIES:
   - "RNFBAuth (from `../node_modules/@react-native-firebase/auth`)"
   - "RNFBDatabase (from `../node_modules/@react-native-firebase/database`)"
   - "RNFBFirestore (from `../node_modules/@react-native-firebase/firestore`)"
+  - "RNFBStorage (from `../node_modules/@react-native-firebase/storage`)"
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
   - RNImageCropPicker (from `../node_modules/react-native-image-crop-picker`)
   - RNPermissions (from `../node_modules/react-native-permissions`)
@@ -798,6 +809,7 @@ SPEC REPOS:
     - FirebaseCoreDiagnostics
     - FirebaseDatabase
     - FirebaseFirestore
+    - FirebaseStorage
     - Flipper
     - Flipper-DoubleConversion
     - Flipper-Folly
@@ -922,6 +934,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/@react-native-firebase/database"
   RNFBFirestore:
     :path: "../node_modules/@react-native-firebase/firestore"
+  RNFBStorage:
+    :path: "../node_modules/@react-native-firebase/storage"
   RNGestureHandler:
     :path: "../node_modules/react-native-gesture-handler"
   RNImageCropPicker:
@@ -952,6 +966,7 @@ SPEC CHECKSUMS:
   FirebaseCoreDiagnostics: 872cdb9b749b23346dddd5c1014d1babd2257de3
   FirebaseDatabase: 2481b48ebfd233ef591095d79d76720ea85cde74
   FirebaseFirestore: 969dd448250bee681d0e2d0af89cbb76ef955bb0
+  FirebaseStorage: ea52bc7a1cb540406ed1e1acfc2bf3946621ed34
   Flipper: be611d4b742d8c87fbae2ca5f44603a02539e365
   Flipper-DoubleConversion: 38631e41ef4f9b12861c67d17cb5518d06badc41
   Flipper-Folly: e4493b013c02d9347d5e0cb4d128680239f6c78a
@@ -1020,6 +1035,7 @@ SPEC CHECKSUMS:
   RNFBAuth: c5b14ebc14be8076c606ca925552db26f1fd8413
   RNFBDatabase: 4df534b954f864e807a62804cd07ae42ad2e0292
   RNFBFirestore: 2859bdbeb9b6d86a1c69826edaa2a531062108e4
+  RNFBStorage: cb70b781341ff6d663b99c0b620b0f7333b144b3
   RNGestureHandler: 7a5833d0f788dbd107fbb913e09aa0c1ff333c39
   RNImageCropPicker: 16951bc02411f50c4d197488ed6406a23dc3b5f1
   RNPermissions: 5df468064df661a4c8c017e2791ce90d7695eea5

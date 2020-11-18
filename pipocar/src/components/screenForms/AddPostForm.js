@@ -14,6 +14,12 @@ Button
 } from '../reusebleComponents/index';
 import ImagePicker from 'react-native-image-crop-picker';
 import {check, PERMISSIONS, RESULTS} from 'react-native-permissions';
+import ImageBlurLoading from 'react-native-image-blur-loading';
+import auth from '@react-native-firebase/auth';
+import firestore from '@react-native-firebase/firestore';
+import { 
+  Actions
+  } from 'react-native-router-flux';
 class  AddPostForm extends Component {
   constructor(props)
   {
@@ -25,8 +31,7 @@ class  AddPostForm extends Component {
           uploading: false,
           caption: "",
           progress: 0,
-          imageURI:'https://firebasestorage.googleapis.com/v0/b/pipocar-61cd8.appspot.com/o/images.png?alt=media&token=18ff2968-3858-41fa-b0d4-694dae37491e'
-       
+          imageURI:'https://firebasestorage.googleapis.com/v0/b/pipocar-61cd8.appspot.com/o/groupCovers%2Fcef4c151ecd7c2fd46180b45fb5bc1a1.jpg?alt=media&token=8beea4de-e1fd-439d-8162-eb7bab61e41c'
       };
   }
 
@@ -100,7 +105,7 @@ class  AddPostForm extends Component {
                   //Here we open the camera
                   let result = await ImagePicker.openPicker({
                       mediaTypes: 'Images',
-                      width: 300,
+                      width: 400,
                       height: 400,
                       cropping: true,
   
@@ -121,6 +126,128 @@ class  AddPostForm extends Component {
 }
 
 
+
+//Upload File ----------------------------------------->
+
+uploadImage = async (uri) => {
+  var that = this;
+  var imageID = this.state.imageID;
+  console.log('ImageID!!!', imageID)
+  var re = /(?:\.([^.]+))?$/;
+  var ext = re.exec(uri)[1];
+  console.log('EXTENSION!!!', ext)
+  this.setState({
+      currentFileType: ext,
+      uploading: true
+    });
+
+  const response = await fetch(uri);
+  const blob = await response.blob();
+  var FilePath = imageID+'.'+that.state.currentFileType;
+  console.log("FilePath!!!!!!!!!!", FilePath); 
+  const uploadTask =  storage().ref('POST/img').child(FilePath).put(blob);
+  uploadTask.on('state_changed', snapshot => {
+      var progress = (( snapshot.bytesTransferred / snapshot.totalBytes)*100).toFixed(0);
+      console.log('Upload is ' + progress + "% complete");
+      this.setState({
+          progress:progress,
+      });
+  }, function(error) {
+      console.log('error with upload - '+error);
+
+  }, function(){
+      that.setState({props:100});
+      uploadTask.snapshot.ref.getDownloadURL().then(function(downloadURL){
+          that.processUpload(downloadURL)
+      })
+  }
+  )
+  
+
+
+}
+
+
+
+
+processUpload = (imageUrl) => {
+
+  var userID = auth().currentUser.uid;
+  var userName = auth().currentUser.displayName;
+  var imageID = this.state.imageID;
+  var caption = this.state.caption;
+  var dateTime = Date.now();
+  var timestamp = Math.floor(dateTime / 1000);
+  var profilepicture = auth().currentUser.photoURL;
+  var photoObject = {
+      author: userID,
+      userName: userName,
+      caption : caption,
+      posted: timestamp,
+      url: imageUrl,
+      profilepicture: profilepicture,
+      likes:0,
+      comments_number: 0,
+      liked: false,
+  
+
+  }
+  //Group field --> FIRESTORE
+  firestore().collection('POST')
+  .add(photoObject);
+  //set user photos object
+  database().ref(`/users/${userID}/photos/${imageID}`)
+  .set(photoObject);
+                      
+
+  this.setState({
+      uploading: false,
+      imageSelected: false,
+      caption:'',
+      imageURI:'https://firebasestorage.googleapis.com/v0/b/pipocar-61cd8.appspot.com/o/groupCovers%2Fcef4c151ecd7c2fd46180b45fb5bc1a1.jpg?alt=media&token=8beea4de-e1fd-439d-8162-eb7bab61e41c'
+    }) 
+    
+    
+
+
+//Actions Here
+Actions.pop();
+Actions.refresh({});
+}
+
+
+
+
+
+
+
+
+onButtonPress()
+{ 
+    console.log('UPLOAD PUBLISH!!!')
+     this.UploadPublish();  
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 render(){ 
   console.log('AddPostForm');
   return (
@@ -130,25 +257,38 @@ render(){
         marginTop:20,
       }}>
 
-        <TouchableOpacity onPress={this.findNewImage}>
-        <Image
-        source={{
-          uri:this.state.imageURI
-        }}
+        
+        <TouchableOpacity 
         style={{
-          width:100,
+          borderWidth:1,
+          borderColor:'#05c7fc',
+          padding:10,
+        }}
+        onPress={this.findNewImage}>
+        <ImageBlurLoading
+        thumbnailSource={{uri:this.state.imageURI}}
+        source={{uri:this.state.imageURI}}
+        style={{
+          width:106,
           height:100,
+
         }}
         
         />
         </TouchableOpacity>
       </View>
       <View style={{ alignSelf:'center', marginTop:10}}>
-      <Text>Description of the picture</Text>
+      <Text style={{ fontWeight:'bold', color:'grey'}}>Share your picture with others</Text>
       </View>
       <View>
         <InputForPosts
+        autoCapitalize="none"
+        autoCorrect={false}
         maxLength={10}
+        value={this.state.caption}
+        onChangeText={(text) => this.setState({
+           caption:text,
+        })} 
         
         />
       </View>
@@ -156,6 +296,7 @@ render(){
         marginTop:60,
       }}>
         <Button
+        onPress={this.onButtonPress.bind(this)}
         label="Post"
         />
       </View>

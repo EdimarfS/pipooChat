@@ -56,6 +56,13 @@
 			</dict>
 		</dict>
 	</dict>
+
+<key>NSAppTransportSecurity</key>
+<dict>
+    <key>NSAllowsArbitraryLoads</key>
+    <true/>
+</dict>
+
   <key>NSLocationWhenInUseUsageDescription</key>
   <string>Location access is required to run the app</string>
   <key>NSAppleMusicUsageDescription</key>
