@@ -121,20 +121,20 @@ export const userUPDATE_DATA= ({prop, value}) => {
 
 
 //UpdateUser 
-export const updateUSER = (userName, userID, userLocation, userMantra) => {
+export const updateUSER = (userName, userID, userLocation, userBio) => {
 
 
 
 
-/* 
-    console.log({userName, userID, userLocation, userMantra});
-    const { currentUser } = firebase.auth();
+
+    console.log({userName, userID, userLocation, userBio});
+    const { currentUser } = auth();
 
 
 
     return(dispatch) => {
     
-        firebase.auth().currentUser.updateProfile({
+        auth().currentUser.updateProfile({
 
             displayName:userName,
             
@@ -143,13 +143,13 @@ export const updateUSER = (userName, userID, userLocation, userMantra) => {
 
 
         //RealTime Database    
-        firebase.database()
+        database()
         .ref(`/users/${currentUser.uid}`)
         .update({
                 userName:userName,
                 userID:userID,
                 userLocation:userLocation,
-                userMantra:userMantra,
+                userBio:userBio,
             })
         .then(()=>{
     
@@ -162,38 +162,17 @@ export const updateUSER = (userName, userID, userLocation, userMantra) => {
             Actions.pop();
             Actions.refresh({});
 
-        }) */
-        
-/*         firebase.firestore()
-        .collection('POST').doc(uid).update({
-          userName : userName 
-        
-        }) */
-
-/*         //FireStore Database
-        firebase.firestore()
-        .collection('POST')
-        .where()
-        .update({
-            userName:userName,
-        });
- */
-
+        }) 
         
 
-
-        //Missing to Update on Firestore 
-        //Groups and Messages
-        /* 
-        the idea  : 
-        firestore -> collection('Post') -> where(athor === currentUser)
-        --> update --> userName .
-        upda
         
-        */
+    }
+
+
+    
     
 
-   // }ÅÎ
+   
 
 }
 
