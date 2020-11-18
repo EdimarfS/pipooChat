@@ -39,9 +39,10 @@ const styles = {
         fontSize:15,
         backgroundColor:'white',
         padding:10,
-        borderColor:'#c7c7c7',
+        borderColor:'#f0f0f0',
         //borderWidth:1,
         borderBottomWidth:0.3,
+    
       //  borderRadius:10,
         
      },   

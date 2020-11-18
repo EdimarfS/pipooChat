@@ -6,7 +6,8 @@ import {
   View, 
   Text, 
   FlatList,
-  TouchableOpacity
+  TouchableOpacity,
+  ScrollView
 } from "react-native";
 import { 
   Input,
@@ -112,7 +113,7 @@ render(){
                    // marginBottom:30,
                     flexDirection:'row',
                     backgroundColor:'white',
-                    borderBottomColor:'#d4d4d4',
+                    borderBottomColor:'#f0f0f0',
                     borderBottomWidth:1,
                     
 
@@ -139,7 +140,7 @@ render(){
                    // marginBottom:30,
                     flexDirection:'row',
                     backgroundColor:'white',
-                    borderBottomColor:'#d4d4d4',
+                    borderBottomColor:'#f0f0f0',
                     borderBottomWidth:1,
 
                   }}>
@@ -161,7 +162,7 @@ render(){
                     marginBottom:30,
                     flexDirection:'row',
                     backgroundColor:'white',
-                    borderBottomColor:'#d4d4d4',
+                    borderBottomColor:'#f0f0f0',
                     borderBottomWidth:1,
                   }}
                   >
@@ -193,14 +194,19 @@ render(){
                   
                     ref={this.modalizeAccountRef}
                     scrollViewProps={{ showsVerticalScrollIndicator: false }}
-                    snapPoint={600}
-                    modalHeight={600}
+                    snapPoint={450}
+                    modalHeight={450}
                     animationType='fade'
                     HeaderComponent={
                       <View style={{                        
                         justifyContent:'center',
+                        marginBottom:10,
+                        marginTop:10,
                         alignItems:'center'}}>
-                        <Text>Account</Text>
+                        <Text style={{
+                          fontWeight:'bold',
+                          color:'grey'
+                        }}>Edit your personal information</Text>
                       </View>
                     }
                     FooterComponent={
@@ -213,7 +219,7 @@ render(){
                       </TouchableOpacity>
                     }
                     >    
-                    <View 
+                    <ScrollView 
                     style={{
                       marginLeft:10,
                       marginRight:10,
@@ -223,9 +229,9 @@ render(){
                         <TouchableOpacity            
                         style={{
                             marginTop:10,
-                            marginBottom:20,
-                             width:50,
-                             height:50,
+                           // marginBottom:20,
+                             width:100,
+                             height:100,
                              borderRadius:100,
                              alignSelf:'center',
                              backgroundColor:'lightgrey',
@@ -236,7 +242,7 @@ render(){
 
                       <View 
                       style={{
-                        marginBottom:10,
+                        marginBottom:0,
                       }}>  
                         <Input
                       
@@ -245,7 +251,7 @@ render(){
                       </View>
                       <View 
                       style={{
-                        marginBottom:10,
+                      //  marginBottom:10,
                       }}>  
                         <Input
                       
@@ -254,7 +260,7 @@ render(){
                       </View>
                       <View 
                       style={{
-                        marginBottom:10,
+                        //marginBottom:10,
                       }}>  
                         <Input
                         placeholder="Bio"
@@ -264,7 +270,7 @@ render(){
                       </View>
                       <View 
                       style={{
-                        marginBottom:10,
+                        //marginBottom:10,
                       }}>  
                         <Input
                         placeholder="Mantra"
@@ -274,13 +280,14 @@ render(){
                 
                       <View       
                       style={{
-                        marginBottom:30,
+                      //  marginBottom:30,
                         justifyContent:'center',
                         alignSelf:'center',
                         backgroundColor:'#44e300',
                         width:'100%',
                         height:60,
                         borderRadius:5,
+                        marginTop:10,
                       }}>  
                       <Text 
                       style={{
@@ -294,7 +301,7 @@ render(){
                 
                       </View>
                 
-                    </View>
+                    </ScrollView>
 
                     </Modalize>
 
