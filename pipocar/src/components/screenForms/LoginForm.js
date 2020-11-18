@@ -36,7 +36,9 @@ onPasswordChange(text)
 onButtonPress()
 {
     const { email, password } = this.props;
+    if(email!='' && email!= null &&  password!='' && password!= null ){
     this.props.loginUSER({ email, password });
+    }
 }
 
 
