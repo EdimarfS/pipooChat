@@ -5,7 +5,7 @@ import React, { Component } from "react";
 import { 
   View, 
   Text, 
-  TouchableOpacity
+  TouchableOpacity,
 } from "react-native";
 import { 
   Input,
@@ -49,6 +49,7 @@ render(){
   return (
     <View 
     style={{
+      flex:1,
       marginLeft:10,
       marginRight:10,
 
@@ -146,6 +147,7 @@ render(){
       }}>Sign In</Text>
       </View>
       </TouchableOpacity>
+ 
 
     </View>
 

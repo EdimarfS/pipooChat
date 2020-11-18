@@ -264,8 +264,8 @@ render(){
                     //disableScrollIfPossible={true}
                     ref={this.modalizeAccountRef}
                     scrollViewProps={{ showsVerticalScrollIndicator: false }}
-                    snapPoint={470}
-                    modalHeight={460}
+                    snapPoint={500}
+                    modalHeight={500}
                     
                     animationType='fade'
                     HeaderComponent={
