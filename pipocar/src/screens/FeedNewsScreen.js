@@ -11,6 +11,10 @@ import {
 import database from '@react-native-firebase/database';
 import firestore from '@react-native-firebase/firestore';
 import ImageBlurLoading from 'react-native-image-blur-loading';
+import * as tf from '@tensorflow/tfjs';
+import * as mobilrnet from '@tensorflow-models/mobilenet';
+
+
 
 class  FeedNewsScreen extends Component {
 
