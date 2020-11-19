@@ -167,6 +167,14 @@ return(
                 />
             </Scene>
 
+            <Scene key="userpersonaleditdata">
+                <Scene
+                key="userpersonaleditdatascreen"
+                component={UserPersonalEditDataScreen}
+                hideNavBar 
+                />
+            </Scene>
+
 
 
             <Scene 

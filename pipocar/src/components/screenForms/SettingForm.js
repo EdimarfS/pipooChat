@@ -177,7 +177,8 @@ render(){
           }}
           > 
                   <TouchableOpacity 
-                  onPress={this.onAccountOPEN.bind(this)}>    
+                  onPress={()=>{Actions.userpersonaleditdata()}}
+                  >    
                   <View 
                   style={{
                    // marginBottom:30,
@@ -260,125 +261,6 @@ render(){
     
     />
      
-                  <Modalize 
-                    //propagateSwipe
-                    //disableScrollIfPossible={true}
-                    ref={this.modalizeAccountRef}
-                    scrollViewProps={{ showsVerticalScrollIndicator: false }}
-                    snapPoint={400}
-                    modalHeight={550}
-                    
-                    animationType='fade'
-                    HeaderComponent={
-                      <View style={{                        
-                        justifyContent:'center',
-                        marginBottom:10,
-                        marginTop:10,
-                        alignItems:'center'}}>
-                        <Text style={{
-                          fontWeight:'bold',
-                          color:'grey'
-                        }}>Edit your personal information</Text>
-                      </View>
-                    }
-                    >   
-                    <View 
-                    style={{
-                      marginLeft:10,
-                      marginRight:10,
-                
-                    }}>  
-
-                        <TouchableOpacity            
-                        style={{
-                            marginTop:10,
-                           // marginBottom:20,
-                             width:50,
-                             height:50,
-                             borderRadius:100,
-                             alignSelf:'center',
-                             backgroundColor:'lightgrey',
-                           }}>
-                
-                
-                        </TouchableOpacity>
-
-                      <View 
-                      style={{
-                        marginBottom:0,
-                      }}>  
-                        <InputDataEdit
-                        value={this.state.userName}
-                        onChangeText={text => this.setState({ userName:text})}
-                        />
-                      </View>
-                      <View 
-                      style={{
-                      //  marginBottom:10,
-                      }}>  
-                        <InputDataEdit
-                       value={this.state.userID}
-                       onChangeText={text => this.setState({ userID:text})}
-                    
-                        />
-                      </View>
-                      <View 
-                      style={{
-                        //marginBottom:10,
-                      }}>  
-                        <InputDataEdit
-                        value={this.state.userLocation}
-                        onChangeText={text => this.setState({ userLocation:text})}
-                        multiline={true}
-                        maxLength={40}
-                        />
-                      </View>
-                      <View 
-                      style={{
-                        //marginBottom:10,
-                      }}>  
-                        <InputDataEdit
-                        value={this.state.userBio}
-                        onChangeText={text => this.setState({ userBio:text})}
-                      
-                        />
-                      </View>
-                
-                      <TouchableOpacity  onPress={this.onButtonPress.bind(this)}>
-                      <View  
-                          
-                      style={{
-                      //  marginBottom:30,
-                        justifyContent:'center',
-                        alignSelf:'center',
-                        backgroundColor:'#44e300',
-                        width:'100%',
-                        height:60,
-                        borderRadius:5,
-                        marginTop:10,
-                      }}>  
-                      <Text 
-                      style={{
-                      fontSize:20,
-                      textAlign:'center',
-                      color:'white',
-                      fontWeight:'bold'
-                
-                      }}> Finish </Text>
-                
-                
-                      </View>
-                      </TouchableOpacity>
-                
-                    </View>
-
-                    </Modalize>
-
-
-
-                    
-    
-
                     <Modalize 
                     ref={this.modalizeFavoritetRef}
                     snapPoint={500}

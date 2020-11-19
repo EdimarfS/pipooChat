@@ -17,6 +17,8 @@ import {check, PERMISSIONS, RESULTS} from 'react-native-permissions';
 import ImageBlurLoading from 'react-native-image-blur-loading';
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
+import database from '@react-native-firebase/database';
+import storage from '@react-native-firebase/storage';
 import { 
   Actions
   } from 'react-native-router-flux';
@@ -81,7 +83,7 @@ class  AddPostForm extends Component {
               //UploadPublish
     UploadPublish = () => {
          
-                    this.uploadImage(this.state.uri);
+                    this.uploadImage(this.state.imageURI);
           
      
 
@@ -103,7 +105,7 @@ class  AddPostForm extends Component {
           
           
                   //Here we open the camera
-                  let result = await ImagePicker.openPicker({
+                  await ImagePicker.openPicker({
                       mediaTypes: 'Images',
                       width: 400,
                       height: 400,
@@ -118,6 +120,7 @@ class  AddPostForm extends Component {
                       
                   })
                   }).catch(error => {
+                    console.log(error)
                     this.setState({
                       imageSelected: false
                     });
@@ -193,8 +196,8 @@ processUpload = (imageUrl) => {
 
   }
   //Group field --> FIRESTORE
-  firestore().collection('POST')
-  .add(photoObject);
+  database().ref(`/photos/${imageID}`)
+  .set(photoObject);
   //set user photos object
   database().ref(`/users/${userID}/photos/${imageID}`)
   .set(photoObject);
@@ -263,6 +266,7 @@ render(){
           borderWidth:1,
           borderColor:'#05c7fc',
           padding:10,
+          
         }}
         onPress={this.findNewImage}>
         <ImageBlurLoading
@@ -271,6 +275,8 @@ render(){
         style={{
           width:106,
           height:100,
+          alignSelf:'center',
+          justifyContent:'center'
 
         }}
         
