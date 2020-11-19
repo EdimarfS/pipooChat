@@ -196,11 +196,12 @@ processUpload = (imageUrl) => {
 
   }
   //Group field --> FIRESTORE
-  database().ref(`/photos/${imageID}`)
-  .set(photoObject);
+  firestore().collection('POST')
+  .add(photoObject);
   //set user photos object
   database().ref(`/users/${userID}/photos/${imageID}`)
   .set(photoObject);
+                                        
                       
 
   this.setState({
@@ -221,16 +222,18 @@ Actions.refresh({});
 
 
 
-
-
-
-
 onButtonPress()
-{ 
-    console.log('UPLOAD PUBLISH!!!')
-     this.UploadPublish();  
+{
 
+     this.UploadPublish();
+
+   
 }
+
+
+
+
+
 
 
 

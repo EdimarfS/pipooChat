@@ -6,7 +6,9 @@ import {
   View, 
   Text, 
   TouchableOpacity,
-  Image
+  Image,
+  ScrollView,
+  SafeAreaView,
 } from "react-native";
 import { 
     Input,
@@ -15,6 +17,9 @@ import {
 
 } from '../reusebleComponents/index'
 import ImageBlurLoading from 'react-native-image-blur-loading';
+import auth from '@react-native-firebase/auth';
+import database from '@react-native-firebase/database';
+
 import style from "react-native-image-blur-loading/src/style";
 
 /* 
@@ -64,22 +69,54 @@ constructor(props)
   
     }
 
+UNSAFE_componentWillMount()
+{
+    this.userAllInfo();
+}
+
+userAllInfo = () => {
+        //fecthing the data first
+      
+            const { currentUser } = auth();
+            database().ref(`/users/${currentUser.uid}`)
+            .on('value', snapshot => {
+               console.log('SANPSHOT', snapshot)
+      
+                console.log("USER DATA FETCH From User Reducer!!!!!!!!!!!!!!!!!!!!!!");
+                const data = snapshot.val();
+                this.setState({
+                    userName: data.userName,
+                    userID: data.userID,
+                    userLocation: data.userLocation,
+                    userBio: data.userBio,
+                    loaded: true,
+      
+                })
+                     
+                }) 
+      
+                
+      }
+      
+      
 
 
 
 render(){ 
   console.log('MessageForm');
   return (  
-    <View style={{ 
+    <SafeAreaView style={{ 
         //alignSelf:'center'
         backgroundColor:'#f5f5f5',
-        flex:1,
+      // flex:1,
         }}>
+            
+        
         <View style={{ marginLeft:10, marginRight:10,}}>
         <View>
             <TouchableOpacity 
             style={{
-                marginTop:'30%',
+                marginTop:'10%',
                 borderWidth:1,
                 borderColor:'#05c7fc',
                 padding:10,
@@ -163,7 +200,7 @@ render(){
 
 
     </View>
-    </View>
+    </SafeAreaView>
  
   );
 }
