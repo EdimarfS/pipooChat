@@ -82,7 +82,7 @@ export const userUPDATE_DATA= ({prop, value}) => {
     }
 }
 
- export const createUSER = ({ userName, userID, userLocation, userBio}) => {
+ export const createUSER = ({ userName, userID, userLocation, userBio, ImageDefault}) => {
 
     console.log(userName, userID, userLocation, userBio);
     const { currentUser } = auth();
@@ -96,6 +96,7 @@ export const userUPDATE_DATA= ({prop, value}) => {
         auth().currentUser.updateProfile({
 
             displayName:userName,
+            photoURL:ImageDefault,
             
 
         });

@@ -34,6 +34,8 @@ const INITIAL_STATE = {
    userAllData:'',
    userDateOfRegistration:'',
    requestNEW_PASSWORD_ERROR:'',
+   ImageDefault:'https://firebasestorage.googleapis.com/v0/b/pipocar-61cd8.appspot.com/o/groupCovers%2Fcef4c151ecd7c2fd46180b45fb5bc1a1.jpg?alt=media&token=8beea4de-e1fd-439d-8162-eb7bab61e41c'
+
 }
 
 export default (state = INITIAL_STATE, action) => {

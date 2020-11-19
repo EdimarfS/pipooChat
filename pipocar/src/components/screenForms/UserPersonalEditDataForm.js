@@ -40,16 +40,11 @@ onChangeText={text => this.setState({ userBio:text})}
 
 
 
-
 class  UserPersonalEditDataForm extends Component {
-onButtonPress()
-    { 
-        console.log('UPLOAD PUBLISH!!!')
-         this.UploadPublish();  
-    
-    }
 
-constructor(props)
+
+
+    constructor(props)
     {
       super(props)
   
@@ -68,6 +63,73 @@ constructor(props)
   
   
     }
+
+    UNSAFE_componentWillMount()
+    {
+        this.userAllInfo();
+    }
+
+userAllInfo = () => {
+        //fecthing the data first
+      
+            const { currentUser } = auth();
+            database().ref(`/users/${currentUser.uid}`)
+            .on('value', snapshot => {
+               console.log('SANPSHOT', snapshot)
+      
+                console.log("USER DATA FETCH From User Reducer!!!!!!!!!!!!!!!!!!!!!!");
+                const data = snapshot.val();
+                this.setState({
+                    userName: data.userName,
+                    userID: data.userID,
+                    userLocation: data.userLocation,
+                    userBio: data.userBio,
+                    loaded: true,
+      
+                })
+                     
+                }) 
+      
+                
+      }
+
+
+    
+onButtonPress()
+    { 
+        console.log('UPLOAD PUBLISH!!!')
+         this.UploadPublish();  
+    
+    }
+UploadPublish = () => {
+             
+        this.processUpload(this.state.imageURL);
+
+}
+
+
+processUpload = (imageUrl) => {
+    const { currentUserName } = auth().currentUser.displayName;
+    var userID = auth().currentUser.uid;
+
+
+    var userObject = {
+        profilePictures:imageUrl,
+    }
+
+
+    //Update database -> This can be accesble in the whole App
+    if(auth().currentUser)
+    { 
+        auth().currentUser.updateProfile({
+        photoURL: imageUrl,
+    });
+}
+
+
+
+
+
 
 UNSAFE_componentWillMount()
 {
@@ -97,6 +159,7 @@ userAllInfo = () => {
       
                 
       }
+    }
       
       
 
@@ -115,6 +178,7 @@ render(){
         <View style={{ marginLeft:10, marginRight:10,}}>
         <View>
             <TouchableOpacity 
+
             style={{
                 marginTop:'10%',
                 borderWidth:1,
@@ -122,15 +186,17 @@ render(){
                 padding:10,
                 alignSelf:'center',
                 backgroundColor:'white',
+               
                 marginBottom:10,
 
             }}>
                 <ImageBlurLoading
-                thumbnailSource={{ uri:this.state.imagePath}}
-                source={{ uri:this.state.imagePath}}
+                thumbnailSource={{ uri: auth().currentUser.photoURL}}
+                source={{ uri: auth().currentUser.photoURL}}
                 style={{
                     width:100,
                     height:100,
+            
                 }}
                 />
             </TouchableOpacity>
@@ -170,7 +236,8 @@ render(){
         </View>
 
         <View>
-        <TouchableOpacity  //onPress={this.onButtonPress.bind(this)}
+        <TouchableOpacity  
+        onPress={this.onButtonPress.bind(this)}
         >
                       <View  
                           

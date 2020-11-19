@@ -5,10 +5,13 @@ import React, { Component } from "react";
 import { 
   View, 
   Text, 
-  FlatList
+  FlatList,
+  TouchableOpacity
 } from "react-native";
 import database from '@react-native-firebase/database';
 import firestore from '@react-native-firebase/firestore';
+import ImageBlurLoading from 'react-native-image-blur-loading';
+
 class  FeedNewsScreen extends Component {
 
   //Constructor 
@@ -70,8 +73,6 @@ render(){
   console.log('FeedNewsScreen');
   return (
     <View>
-      <Text>hELLO</Text>
-
       <FlatList
         data={this.state.data}
         refreshing={this.state.refreshing} 
@@ -86,15 +87,66 @@ render(){
         renderItem={({item}) => {
           return (
             <View style={{
-               flex:1,
+              // flex:1,
                justifyContent:'center',
                marginTop:2,
                marginBottom:0,
                padding:10,
              }}>
+               <View>
+              <TouchableOpacity
+              onLongPress={() => { console.log(item.userName,item.caption) }}
+              >
+               <View>
+                 <ImageBlurLoading
+                 style={{
+                   width:'100%',
+                   height:330,
+              
+                 }}
+                 thumbnailSource={{ uri: item.url}}
+                 source={{ uri: item.url}}
+                 />
+               </View>
+               </TouchableOpacity>
+               <View style={{
+                 top:10,
+                 marginBottom:'14%',
+                 flexDirection:'row'
+               }}>
+                 <ImageBlurLoading
+                 style={{
+                   width:40,
+                   height:40,
+                   borderRadius:50, 
+                 }}
+                 thumbnailSource={{ uri: item.profilepicture}}
+                 source={{ uri: item.profilepicture}}
+                 />
+
+                 <View style={{
+                   marginLeft:'10%',
+                 }}>
+                    <View>
+                     <Text style={{
+                       fontWeight:'bold'
+                     }}>{item.userName}</Text>
+                    </View>
+                    <View style={{ marginTop:5}}>
+                     <Text>{item.caption}</Text>
+                    </View>
 
 
-            <Text>{item.userName}</Text>
+                 </View>
+
+                  
+                  </View>
+
+               </View>
+
+
+  
+            
              </View>
 
                )

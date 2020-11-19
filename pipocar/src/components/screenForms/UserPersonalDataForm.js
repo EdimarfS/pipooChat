@@ -17,17 +17,35 @@ import {
   createUSER
 } from '../../actions/index';
 import { connect } from 'react-redux';
+import auth from '@react-native-firebase/auth';
+import ImageBlurLoading from 'react-native-image-blur-loading';
 
 class  UserPersonalDataForm extends Component {
+
+  constructor(props)
+  {
+    super(props);
+    this.state = {
+      userName:'',
+      userID:'',
+      userLocation:'',
+      userBio:'',
+      loaded: false,
+      data:[],
+    }
+  }
 
   onButtonPress()
   {
       console.log("UserPersonalData");
-      const { userName, userID, userLocation, userMantra, userDateOfRegistration } = this.props;
-      this.props.createUSER({userName,userID,userLocation, userMantra});
+      const { userName, userID, userLocation, userBio, ImageDefault} = this.props;
+      this.props.createUSER({userName,userID,userLocation, userBio, ImageDefault});
+
+
   }
 
 
+//      imageURI:'https://firebasestorage.googleapis.com/v0/b/pipocar-61cd8.appspot.com/o/groupCovers%2Fcef4c151ecd7c2fd46180b45fb5bc1a1.jpg?alt=media&token=8beea4de-e1fd-439d-8162-eb7bab61e41c'
 
 
 
@@ -43,19 +61,27 @@ render(){
     
 
     
-        <TouchableOpacity            
-        style={{
-            marginTop:10,
-            marginBottom:20,
-             width:150,
-             height:150,
-             borderRadius:100,
-             alignSelf:'center',
-             backgroundColor:'lightgrey',
-           }}>
-
-
-        </TouchableOpacity>
+       <View 
+       style={{ 
+         alignSelf:'center', 
+         marginTop:10,
+         padding:10,
+         backgroundColor:'white',
+         borderWidth:1,
+         borderColor:'#05c7fc',
+         padding:10,
+         }}>
+         <ImageBlurLoading
+         source={{
+           uri: 'https://firebasestorage.googleapis.com/v0/b/pipocar-61cd8.appspot.com/o/groupCovers%2Fcef4c151ecd7c2fd46180b45fb5bc1a1.jpg?alt=media&token=8beea4de-e1fd-439d-8162-eb7bab61e41c'
+         }}
+         style={{
+           width:110,
+           height:100,
+         }}
+         
+         />
+       </View>
 
 
 
@@ -170,9 +196,9 @@ render(){
 
 const mapStateToProps = ({ auth }) => {
   
-  const { loading, errorOncreateAccount, userName, userID, userLocation, userBio, userDateOfRegistration} = auth;
+  const { loading, errorOncreateAccount, userName, userID, userLocation, userBio, userDateOfRegistration, ImageDefault} = auth;
 
-  return{ loading, errorOncreateAccount, userName, userID, userLocation, userBio, userDateOfRegistration};
+  return{ loading, errorOncreateAccount, userName, userID, userLocation, userBio, userDateOfRegistration, ImageDefault};
 }
 
 export default connect(mapStateToProps, {

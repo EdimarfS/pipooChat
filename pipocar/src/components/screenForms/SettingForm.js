@@ -49,10 +49,8 @@ class  SettingForm extends Component {
 
   }
 
-    UNSAFE_componentWillMount()
-    {
-      this.userAllInfo();
-    }
+
+    
 
 
 
@@ -60,7 +58,7 @@ class  SettingForm extends Component {
     {
       console.log("Bottom pressed!");
       const { userName, userID, userLocation, userBio } = this.state;
-      this.props.updateUSER(userName,userID,userLocation, userBio);
+   //   this.props.updateUSER(userName,userID,userLocation, userBio);
     
 
     }
@@ -70,31 +68,6 @@ class  SettingForm extends Component {
 
 
 //Fecthing the data
-
-userAllInfo = () => {
-  //fecthing the data first
-
-      const { currentUser } = auth();
-      database().ref(`/users/${currentUser.uid}`)
-      .on('value', snapshot => {
-         console.log('SANPSHOT', snapshot)
-
-          console.log("USER DATA FETCH From User Reducer!!!!!!!!!!!!!!!!!!!!!!");
-          const data = snapshot.val();
-          this.setState({
-              userName: data.userName,
-              userID: data.userID,
-              userLocation: data.userLocation,
-              userBio: data.userBio,
-              loaded: true,
-
-          })
-               
-          }) 
-
-          
-}
-
 
 
 
