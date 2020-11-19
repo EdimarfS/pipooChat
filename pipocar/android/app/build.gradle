@@ -1,19 +1,10 @@
 apply plugin: "com.android.application"
-
+apply from: '../../node_modules/react-native-unimodules/gradle.groovy'
 import com.android.build.OutputFile
 
 
 
-buildscript {
-    repositories {
-        maven { url 'https://plugins.gradle.org/m2/' } // Gradle Plugin Portal 
-    }
-    dependencies {
-        classpath 'gradle.plugin.com.onesignal:onesignal-gradle-plugin:[0.12.9, 0.99.99]'
-    }
-}
 
-apply plugin: 'com.onesignal.androidsdk.onesignal-gradle-plugin'
 
 
 
@@ -93,6 +84,32 @@ apply plugin: 'com.onesignal.androidsdk.onesignal-gradle-plugin'
  * ]
  */
 
+buildscript {
+    repositories {
+        maven { url 'https://plugins.gradle.org/m2/' } // Gradle Plugin Portal 
+    }
+    dependencies {
+        classpath 'gradle.plugin.com.onesignal:onesignal-gradle-plugin:[0.12.9, 0.99.99]'
+    }
+}
+apply plugin: 'com.onesignal.androidsdk.onesignal-gradle-plugin'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 project.ext.react = [
     enableHermes: false,  // clean and rebuild if changing
 ]
@@ -154,6 +171,8 @@ android {
         versionName "1.0"
         multiDexEnabled true
         vectorDrawables.useSupportLibrary = true
+        missingDimensionStrategy 'react-native-camera', 'general'
+
 
     }
     splits {
@@ -207,6 +226,8 @@ dependencies {
     implementation "com.facebook.react:react-native:+"  // From node_modules
 
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.0.0"
+    addUnimodulesDependencies()
+
 
     debugImplementation("com.facebook.flipper:flipper:${FLIPPER_VERSION}") {
       exclude group:'com.facebook.fbjni'
