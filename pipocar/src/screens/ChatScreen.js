@@ -10,10 +10,11 @@ import {
   Image
 } from "react-native";
 import  { 
-Input,
+  SearchBar
 } from '../components/reusebleComponents/index';
 import firestore from '@react-native-firebase/firestore';
 import _ from 'lodash';
+
 /*
 
 
@@ -31,6 +32,7 @@ class  ChatScreen extends Component {
       found:false,
       category:'',
       onRefreshing:false,
+      searchBarText:'',
 
     }
   }
@@ -51,7 +53,7 @@ handleSearch = (text) => {
   const formatQuery = text.toLowerCase();
   const data = _.filter(this.state.fullData, user => {
  
-          if(user.category.toLowerCase().includes(formatQuery))
+          if(user.category.toLowerCase().includes(formatQuery) || user.name.toLowerCase().includes(formatQuery) )
          {
            this.setState({
              found:true,
@@ -183,7 +185,109 @@ fetchCreateGroup = () => {
 
 
 
+renderHeader = () => {
+  return(
+    <View>
+        <View style={{ 
+          flex:1,
+         // alignSelf:'center'
+         marginLeft:10
+          
+          }}>
+        <Text 
+        style={{
+          fontSize:50,
+          fontWeight:'bold',
+         // backgroundColor:'red'
+        }}>
+          Rooms 
+        </Text>
+        </View>
+    <View style={{ 
+      justifyContent:'center',
+      alignContent:'center',
+      }}>
+      <SearchBar
+      placeholder="search a group or business...."
+      onChangeText={this.handleSearch}
+      />
+    </View>
 
+
+    <FlatList
+    data={this.data}
+    showsVerticalScrollIndicator ={false}
+    showsHorizontalScrollIndicator={false}
+    keyExtractor={ item => item.key.toString()}
+    //numColumns={3}
+    horizontal 
+    renderItem={({item}) => {
+
+      return(
+        <View style={{ 
+          flexDirection:'row', 
+          marginTop:10,
+
+         
+       //   backgroundColor:'blue'
+          //backgroundColor:'red',
+      
+  
+          }}>
+          <TouchableOpacity onPress={()=> this.handleSearch(item.travel)}>
+          <View style={styles.categoryContainer1}>
+             <Text style={styles.categoryText1}>#{item.travel}</Text>
+          </View>
+          </TouchableOpacity>
+          
+          <TouchableOpacity onPress={()=> this.handleSearch(item.healthAndwellness)}>
+          <View style={styles.categoryContainer2}>
+             <Text style={styles.categoryText2}>#{item.healthAndwellness}</Text>
+          </View>
+          </TouchableOpacity>
+          
+          <TouchableOpacity onPress={()=> this.handleSearch(item.beauty)}>
+          <View style={styles.categoryContainer3}>
+             <Text style={styles.categoryText3}>#{item.beauty}</Text>
+          </View>
+          </TouchableOpacity>
+
+          <TouchableOpacity onPress={()=> this.handleSearch(item.food_And_drink)}>
+          <View style={styles.categoryContainer4}>
+             <Text style={styles.categoryText4}>#{item.food_And_drink}</Text>
+          </View>
+          </TouchableOpacity>
+
+          <TouchableOpacity onPress={()=> this.handleSearch(item.motivational_quotes)}>
+          <View style={styles.categoryContainer5}>
+             <Text style={styles.categoryText5}>#{item.motivational_quotes}</Text>
+          </View>
+          </TouchableOpacity>
+
+          <TouchableOpacity onPress={()=> this.handleSearch(item.sport)}>
+          <View style={styles.categoryContainer7}>
+             <Text style={styles.categoryText7}>#{item.sport}</Text>
+          </View>
+          </TouchableOpacity>
+          
+          <TouchableOpacity onPress={()=> this.handleSearch(item.other)}>
+          <View style={styles.categoryContainer6}>
+             <Text style={styles.categoryText6}>#{item.other}...</Text>
+          </View>
+          </TouchableOpacity>
+          
+          
+        </View>
+      )
+
+    }}
+    
+    
+    />
+    </View>
+    
+  )
+}
 
 
 
@@ -192,114 +296,6 @@ fetchCreateGroup = () => {
 render(){ 
   console.log('ChatScreen');
   return (
-    <View style={styles.container}>
-      <View 
-      style={{
-      //flex:1,
-        justifyContent:'center',
-       // backgroundColor:'yellow'
-      // alignSelf:'center'
-      }}>
-        <View style={{ 
-          //flex:1
-          
-          }}>
-        <Text 
-        style={{
-          fontSize:58,
-          fontWeight:'bold',
-         // backgroundColor:'red'
-        }}>
-          Chat
-        </Text>
-        </View>
-
-
-        <View style={{
-          height:40,
-        //  marginTop:50,
-         // flex:1,
-        }}>
-        <FlatList
-        data={this.data}
-        showsVerticalScrollIndicator ={false}
-        showsHorizontalScrollIndicator={false}
-        keyExtractor={ item => item.key.toString()}
-        //numColumns={3}
-        horizontal 
-        renderItem={({item}) => {
-
-          return(
-            <View style={{ 
-              flexDirection:'row', 
-              marginTop:10,
-  
-             
-           //   backgroundColor:'blue'
-              //backgroundColor:'red',
-          
-      
-              }}>
-              <TouchableOpacity onPress={()=> this.handleSearch(item.travel)}>
-              <View style={styles.categoryContainer1}>
-                 <Text style={styles.categoryText1}>#{item.travel}</Text>
-              </View>
-              </TouchableOpacity>
-              
-              <TouchableOpacity onPress={()=> this.handleSearch(item.healthAndwellness)}>
-              <View style={styles.categoryContainer2}>
-                 <Text style={styles.categoryText2}>#{item.healthAndwellness}</Text>
-              </View>
-              </TouchableOpacity>
-              
-              <TouchableOpacity onPress={()=> this.handleSearch(item.beauty)}>
-              <View style={styles.categoryContainer3}>
-                 <Text style={styles.categoryText3}>#{item.beauty}</Text>
-              </View>
-              </TouchableOpacity>
-
-              <TouchableOpacity onPress={()=> this.handleSearch(item.food_And_drink)}>
-              <View style={styles.categoryContainer4}>
-                 <Text style={styles.categoryText4}>#{item.food_And_drink}</Text>
-              </View>
-              </TouchableOpacity>
-
-              <TouchableOpacity onPress={()=> this.handleSearch(item.motivational_quotes)}>
-              <View style={styles.categoryContainer5}>
-                 <Text style={styles.categoryText5}>#{item.motivational_quotes}</Text>
-              </View>
-              </TouchableOpacity>
-
-              <TouchableOpacity onPress={()=> this.handleSearch(item.sport)}>
-              <View style={styles.categoryContainer7}>
-                 <Text style={styles.categoryText7}>#{item.sport}</Text>
-              </View>
-              </TouchableOpacity>
-              
-              <TouchableOpacity onPress={()=> this.handleSearch(item.other)}>
-              <View style={styles.categoryContainer6}>
-                 <Text style={styles.categoryText6}>#{item.other}...</Text>
-              </View>
-              </TouchableOpacity>
-              
-              
-            </View>
-          )
-
-        }}
-        
-        
-        />
-        </View>
-
-
-
-        {/* Here we will define our groups*/}
-        <View style={{
-          marginTop:60,
-         // backgroundColor:'red',
-          height:'70%',
-        }}>
         <FlatList
           data={this.state.data}
           refreshing={this.state.onRefreshing}
@@ -307,7 +303,7 @@ render(){
           showsVerticalScrollIndicator={false}
           showsHorizontalScrollIndicator={false}
           numColumns={3}
-         // ListHeaderComponent={this.renderHeader}
+         ListHeaderComponent={this.renderHeader}
          // ListEmptyComponent={this._listEmptyComponent}
           keyExtractor={ item => item._id.toString()}
           renderItem={({item}) => {
@@ -380,11 +376,11 @@ render(){
 
 
           }}/>
-          </View>
-        </View>
+  
+
         
 
-      </View>
+
 
 
 

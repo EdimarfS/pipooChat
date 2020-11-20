@@ -29,7 +29,7 @@ import {
 
 
 
-
+           
 
 
 /*  class TabIcon extends Component {
@@ -248,9 +248,6 @@ return(
                         </TouchableOpacity>
                         }
                     />
-                    
-
-
 
                     <Scene
                     key="setting"
