@@ -198,7 +198,10 @@ processUpload = (imageUrl) => {
 
 
     var userObject = {
-        profilePictures:imageUrl,
+        userName: this.state.userName,
+        userID: this.state.userID,
+        userLocation: this.state.userLocation,
+        userBio: this.state.userBio,
     }
 
 
@@ -344,12 +347,11 @@ render(){
                 style={{
                     width:100,
                     height:100,
-            
                 }}
                 /> :    
                 <ImageBlurLoading
-                thumbnailSource={{ uri: this.state.imageURL }}
-                source={{ uri: this.state.imageURL }}
+                thumbnailSource={{ uri: auth().currentUser.photoURL}}
+                source={{ uri: auth().currentUser.photoURL}}
                 style={{
                     width:100,
                     height:100,
