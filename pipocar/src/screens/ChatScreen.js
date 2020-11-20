@@ -316,6 +316,12 @@ render(){
               <View style={{
                 flex:1/3, 
                 marginTop:20,
+                borderWidth:0.3,
+                marginLeft:10,
+                marginRight:10,
+                padding:10,
+                borderColor:'#05c7fc'
+               // height:140,
                 }}>
 
       
@@ -327,8 +333,8 @@ render(){
                 uri:item.groupcover.groupcover
               }}
               style={{
-                width:100,
-                height:100,
+                width:80,
+                height:80,
                 alignSelf:'center'
               }}
               />
