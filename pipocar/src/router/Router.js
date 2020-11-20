@@ -125,14 +125,6 @@ return(
                 />
             </Scene>
 
-            <Scene key="creategroup">
-                <Scene
-                key="creategroupscreen"
-                component={CreateGroupScreen}
-                hideNavBar 
-                />
-            </Scene>
-
             <Scene key="userpersonaldata">
                 <Scene
                 key="userpersonaldatascreen"
@@ -171,6 +163,14 @@ return(
                 <Scene
                 key="userpersonaleditdatascreen"
                 component={UserPersonalEditDataScreen}
+                hideNavBar 
+                />
+            </Scene>
+
+            <Scene key="creategroup">
+                <Scene
+                key="creategroupscreen"
+                component={CreateGroupScreen}
                 hideNavBar 
                 />
             </Scene>
@@ -233,42 +233,20 @@ return(
                     />
 
                     <Scene
-                    key="ngambwe"
+                    key="chat"
                     component={ChatScreen}
                     //iconName={"ios-chatboxes"}
                     //icon={TabIcon}
                     activeTintColor={tint_color}
                     inactiveTintColor={inactive_Color}
                     renderRightButton={
-                        <TouchableOpacity onPress={()=>{
-                
-                        }}>
+                        <TouchableOpacity onPress={()=>{ Actions.creategroup()}}>
                             <Text style={{
                                 fontSize:20,
                                 marginRight:10,
                             }}>Add</Text>
                         </TouchableOpacity>
                         }
-                        renderLeftButton={
-                            <TouchableOpacity onPress={()=>{
-                              
-                    
-                            }}>
-                                <Text style={{
-                                    fontSize:20,
-                                    marginLeft:10,
-                                }}>Add</Text>
-                            </TouchableOpacity>
-                    }
-          
-                    renderRightButton={
-                        <TouchableOpacity>
-                            <Text style={{
-                                fontSize:20,
-                                marginLeft:10,
-                            }}>Add</Text>
-                        </TouchableOpacity>
-                }
                     />
                     
 

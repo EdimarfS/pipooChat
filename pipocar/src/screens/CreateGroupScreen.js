@@ -6,6 +6,7 @@ import {
   View, 
   Text, 
 } from "react-native";
+import CreateGroupForm from '../components/screenForms/CreateGroupForm';
 
 class  CreateGroupScreen extends Component {
 
@@ -14,16 +15,7 @@ class  CreateGroupScreen extends Component {
 
 render(){ 
   console.log('CreateGroupScreen');
-  return (
-    <View>
-
-
-            <Text> CreateGroupScreen</Text>
-
-    </View>
-
- 
-  );
+  return (<CreateGroupForm/>);
 }
 }
 

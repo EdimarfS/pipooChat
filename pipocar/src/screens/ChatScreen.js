@@ -6,45 +6,74 @@ import {
   View, 
   Text,
   TouchableOpacity,
-  FlatList
+  FlatList,
 } from "react-native";
 import  { 
 Input,
 } from '../components/reusebleComponents/index';
-/*
-      <View 
-      style={{
-        marginTop:'22%',
-        flexDirection:'row',
-        justifyContent:'flex-end'
-
-      }}>
-        <TouchableOpacity style={{
-          width:100,
-          height:50,
-          marginRight:10,
-          borderWidth:0.3,
-         // borderRadius:5,
-        }}>
-
-        </TouchableOpacity>
-
-        <TouchableOpacity 
-        style={{
-          width:100,
-          height:50,
-          marginRight:5,
-          //backgroundColor:'white',
-          borderWidth:0.3,
-         // borderRadius:5,
-        }}>
-
-        </TouchableOpacity>
-      </View>
-*/
+import firestore from '@react-native-firebase/firestore';
 
 
 class  ChatScreen extends Component {
+
+  constructor(props)
+  {
+    super(props)
+    this.state={ 
+      query:"",
+      data:[],
+      fullData:[],
+      found:false,
+
+    }
+  }
+
+
+//This will run each time the App is called
+UNSAFE_componentWillMount()
+{ 
+
+  this._isMounted = false;
+    //we are calling here the funtion to get all the groups
+    this.fetchCreateGroup();
+
+    
+
+  
+
+}
+
+//This functions is fetching the group names that we created 
+fetchCreateGroup = () => {
+
+ firestore()
+ .collection('MESSAGE_THREADS')
+ .orderBy('latestMessage.createdAt', 'desc')
+ .onSnapshot(querySnapshot => {
+     
+     var  thread  = querySnapshot.docs.map(doc => {
+
+         return {
+             _id : doc.id,
+             name: '',
+             color: '',
+             latestMessage: { text : '' },
+             ...doc.data()
+         }
+     })
+
+     this.setState({
+       data:thread,
+       fullData:thread,
+     })
+ }) 
+
+}
+
+
+
+
+  
 
 
   data = [
@@ -52,16 +81,16 @@ class  ChatScreen extends Component {
         travel : 'Travel',
         key:1,
     
-        healthAndwellness : 'Health and wellness',
+        healthAndwellness : 'Education',
         key:2,
 
-        beauty : 'Beauty',
+        beauty : 'MeetMe',
         key:3,
         
-        food_And_drink : 'Food and drink',
+        food_And_drink : 'Food',
         key:4,
 
-        motivational_quotes: 'Motivational quotes',
+        motivational_quotes: 'Drinks',
         key:5,
 
         sport : 'Sport',
@@ -105,28 +134,53 @@ render(){
         renderItem={({item}) => {
 
           return(
-            <View style={{ flexDirection:'row', marginTop:20 }}>
+            <View style={{ 
+              flexDirection:'row', 
+              marginTop:20,
+              //backgroundColor:'red',
+              height:30,
+              }}>
+              <TouchableOpacity>
               <View style={styles.categoryContainer1}>
                  <Text style={styles.categoryText1}>#{item.travel}</Text>
               </View>
+              </TouchableOpacity>
+              
+              <TouchableOpacity>
               <View style={styles.categoryContainer2}>
                  <Text style={styles.categoryText2}>#{item.healthAndwellness}</Text>
               </View>
+              </TouchableOpacity>
+              
+              <TouchableOpacity>
               <View style={styles.categoryContainer3}>
                  <Text style={styles.categoryText3}>#{item.beauty}</Text>
               </View>
+              </TouchableOpacity>
+
+              <TouchableOpacity>
               <View style={styles.categoryContainer4}>
                  <Text style={styles.categoryText4}>#{item.food_And_drink}</Text>
               </View>
+              </TouchableOpacity>
+
+              <TouchableOpacity>
               <View style={styles.categoryContainer5}>
                  <Text style={styles.categoryText5}>#{item.motivational_quotes}</Text>
               </View>
+              </TouchableOpacity>
+
+              <TouchableOpacity>
               <View style={styles.categoryContainer7}>
                  <Text style={styles.categoryText7}>#{item.sport}</Text>
               </View>
+              </TouchableOpacity>
+              
+              <TouchableOpacity>
               <View style={styles.categoryContainer6}>
-                 <Text style={styles.categoryText6}>#{item.other}</Text>
+                 <Text style={styles.categoryText6}>#{item.other}...</Text>
               </View>
+              </TouchableOpacity>
               
               
             </View>
