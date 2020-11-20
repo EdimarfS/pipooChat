@@ -74,58 +74,58 @@ class  AddPostForm extends Component {
     } 
           
               //S4
-    s4 = () => {
-                  return Math.floor((1 + Math.random()) * 0x10000)
-                    .toString(16)
-                    .substring(1);
-                };
-          
-              //UploadPublish
-    UploadPublish = () => {
-         
-                    this.uploadImage(this.state.imageURI);
-          
-     
+s4 = () => {
+return Math.floor((1 + Math.random()) * 0x10000)
+.toString(16)
+.substring(1);
+};
 
-  
-               
-              }
-              
-              //Unique ID
-              uniqueId = () => {
-                  return (
-                    this.s4() + this.s4() + "-" + this.s4() + "-" + this.s4() + "-" + this.s4() + "-" + this.s4() + "-" + this.s4() + "-" + this.s4()
-                  );
-                };
-          
-          
-              //ImagePicker
-              findNewImage = async () => {
-                  this._checkPermissions();
-          
-          
-                  //Here we open the camera
-                  await ImagePicker.openPicker({
-                      mediaTypes: 'Images',
-                      width: 400,
-                      height: 400,
-                      cropping: true,
-  
-                      
-                  }).then(image => {
-                    this.setState({
-                      imageSelected: true,
-                      imageId: this.uniqueId(),
-                      imageURI: image.path,
-                      
-                  })
-                  }).catch(error => {
-                    console.log(error)
-                    this.setState({
-                      imageSelected: false
-                    });
+//UploadPublish
+UploadPublish = () => {
 
-                  })
+this.uploadImage(this.state.imageURI);
+
+
+
+
+
+}
+
+//Unique ID
+uniqueId = () => {
+return (
+this.s4() + this.s4() + "-" + this.s4() + "-" + this.s4() + "-" + this.s4() + "-" + this.s4() + "-" + this.s4() + "-" + this.s4()
+);
+};
+
+
+//ImagePicker
+findNewImage = async () => {
+this._checkPermissions();
+
+
+//Here we open the camera
+await ImagePicker.openPicker({
+mediaTypes: 'Images',
+width: 400,
+height: 400,
+cropping: true,
+
+
+}).then(image => {
+this.setState({
+imageSelected: true,
+imageId: this.uniqueId(),
+imageURI: image.path,
+
+})
+}).catch(error => {
+console.log(error)
+this.setState({
+imageSelected: false
+});
+
+})
 }
 
 

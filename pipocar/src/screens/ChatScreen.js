@@ -366,7 +366,8 @@ render(){
                 }}>
               <View>
               <Text style={{
-                fontWeight:'bold'
+                fontWeight:'bold',
+                textAlign:'center'
               }}>{item.name}</Text>
               </View>
 

@@ -420,7 +420,7 @@ render(){
         <InputForPosts
         autoCapitalize="none"
         autoCorrect={false}
-        maxLength={10}
+        maxLength={20}
         value={this.state.groupname}
         onChangeText={(text) => this.setState({
            groupname:text,

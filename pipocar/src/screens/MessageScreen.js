@@ -62,7 +62,7 @@ onSendMessage(messages=[])
     .add({
         text,
         createdAt: new Date().getTime(),
-        image:this.state.imageFromChat,
+       // image:this.state.imageFromChat,
         user : {
             _id: currentUser.uid,
             name: auth().currentUser.displayName,
@@ -106,6 +106,8 @@ render(){
       flex:1
     }}>
     <GiftedChat
+    showUserAvatar
+    showAvatarForEveryMessage
     renderUsernameOnMessage
     messages={this.props.messages}
     onSend={this.onSendMessage.bind(this)}

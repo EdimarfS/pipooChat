@@ -19,7 +19,8 @@ import {
 import ImageBlurLoading from 'react-native-image-blur-loading';
 import auth from '@react-native-firebase/auth';
 import database from '@react-native-firebase/database';
-
+import {check, PERMISSIONS, RESULTS} from 'react-native-permissions';
+import ImagePicker from 'react-native-image-crop-picker';
 import style from "react-native-image-blur-loading/src/style";
 
 /* 
@@ -57,8 +58,9 @@ class  UserPersonalEditDataForm extends Component {
         userLocation:'',
         userBio:'',
         loaded: false,
-        imagePath:'https://firebasestorage.googleapis.com/v0/b/pipocar-61cd8.appspot.com/o/groupCovers%2Fcrowd.png?alt=media&token=0f2ecb98-b3d7-40b6-af96-5e6eaeed6370',
+        imageURL:'https://firebasestorage.googleapis.com/v0/b/pipocar-61cd8.appspot.com/o/groupCovers%2Fcrowd.png?alt=media&token=0f2ecb98-b3d7-40b6-af96-5e6eaeed6370',
         data:[],
+        imageSelected:false
       }
   
   
@@ -68,6 +70,85 @@ class  UserPersonalEditDataForm extends Component {
     {
         this.userAllInfo();
     }
+
+//Image Picker 
+_checkPermissions = () => {
+    check(PERMISSIONS.IOS.LOCATION_ALWAYS)
+    .then((result) => {
+    switch (result) {
+    case RESULTS.UNAVAILABLE:
+    console.log(
+    'This feature is not available (on this device / in this context)',
+    );
+    break;
+    case RESULTS.DENIED:
+    console.log(
+    'The permission has not been requested / is denied but requestable',
+    );
+    break;
+    case RESULTS.GRANTED:
+    console.log('The permission is granted');
+    break;
+    case RESULTS.BLOCKED:
+    console.log('The permission is denied and not requestable anymore');
+    break;
+    }
+    })
+    .catch((error) => {
+    // …
+    console.log('Unknown Error', error);
+    });
+    } 
+
+
+
+
+
+
+
+//ImagePicker
+findNewImage = async () => {
+    this._checkPermissions();
+
+
+    //Here we open the camera
+    await ImagePicker.openPicker({
+        mediaTypes: 'Images',
+        width: 400,
+        height: 400,
+        cropping: true,
+
+        
+    }).then(image => {
+      this.setState({
+        imageSelected: true,
+        imageId: this.uniqueId(),
+        imageURL: image.path,
+        
+    })
+    }).catch(error => {
+      console.log(error)
+      this.setState({
+      imageSelected: false
+    });
+
+  })
+}
+s4 = () => {
+    return Math.floor((1 + Math.random()) * 0x10000)
+      .toString(16)
+      .substring(1);
+  };
+
+
+uniqueId = () => {
+    return (
+      this.s4() + this.s4() + "-" + this.s4() + "-" + this.s4() + "-" + this.s4() + "-" + this.s4() + "-" + this.s4() + "-" + this.s4()
+    );
+  };
+
+
+//ImagePic
 
 userAllInfo = () => {
         //fecthing the data first
@@ -127,15 +208,6 @@ processUpload = (imageUrl) => {
 }
 
 
-
-
-
-
-UNSAFE_componentWillMount()
-{
-    this.userAllInfo();
-}
-
 userAllInfo = () => {
         //fecthing the data first
       
@@ -166,7 +238,7 @@ userAllInfo = () => {
 
 
 render(){ 
-  console.log('MessageForm');
+  console.log('UserPersonEditScreen');
   return (  
     <SafeAreaView style={{ 
         //alignSelf:'center'
@@ -178,7 +250,7 @@ render(){
         <View style={{ marginLeft:10, marginRight:10,}}>
         <View>
             <TouchableOpacity 
-
+            onPress={this.findNewImage}
             style={{
                 marginTop:'10%',
                 borderWidth:1,
@@ -190,15 +262,25 @@ render(){
                 marginBottom:10,
 
             }}>
+{ this.state.imageSelected === true ?  
                 <ImageBlurLoading
-                thumbnailSource={{ uri: auth().currentUser.photoURL}}
-                source={{ uri: auth().currentUser.photoURL}}
+                thumbnailSource={{ uri: this.state.imageURL }}
+                source={{ uri: this.state.imageURL }}
                 style={{
                     width:100,
                     height:100,
             
                 }}
-                />
+                /> :    
+                <ImageBlurLoading
+                thumbnailSource={{ uri: this.state.imageURL }}
+                source={{ uri: this.state.imageURL }}
+                style={{
+                    width:100,
+                    height:100,
+            
+                }}
+                /> }
             </TouchableOpacity>
         </View>
         <View style={styles.MarginBettwenFields}>

@@ -142,7 +142,7 @@ render(){
       fontSize:20,
       textAlign:'center',
       fontWeight:'bold',
-      color:'#44e300'
+      color:'#05c7fc'
 
       }}>Sign In</Text>
       </View>
