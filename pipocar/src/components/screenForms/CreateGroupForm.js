@@ -38,6 +38,7 @@ class  CreateGroupForm extends Component {
           progress: 0,
           imageURI:'https://firebasestorage.googleapis.com/v0/b/pipocar-61cd8.appspot.com/o/groupCovers%2Fcef4c151ecd7c2fd46180b45fb5bc1a1.jpg?alt=media&token=8beea4de-e1fd-439d-8162-eb7bab61e41c',
           category:'Travel',
+          groupname:''
       };
   }
 
@@ -219,11 +220,11 @@ processUpload = (imageUrl) => {
       firestore()
       .collection('MESSAGE_THREADS')
       .add({
-          name: this.state.roomName,
+          name: this.state.groupname,
           groupcover: groupObject,
           category: this.state.category,
           latestMessage: {
-              text: `${this.state.roomName} created. Welcome!`,
+              text: `${this.state.groupname} created. Welcome!`,
               createdAt: new Date().getTime(),
           }
       })
@@ -231,7 +232,7 @@ processUpload = (imageUrl) => {
           docRef
           .collection('MESSAGES')
           .add({
-              text:`${this.state.roomName} created. Welcome!`,
+              text:`${this.state.groupname} created. Welcome!`,
               createdAt: new Date().getTime(),
               system: true,
               
@@ -420,9 +421,9 @@ render(){
         autoCapitalize="none"
         autoCorrect={false}
         maxLength={10}
-        value={this.state.caption}
+        value={this.state.groupname}
         onChangeText={(text) => this.setState({
-           caption:text,
+           groupname:text,
         })} 
         />
       </View>

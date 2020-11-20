@@ -7,12 +7,16 @@ import {
   Text,
   TouchableOpacity,
   FlatList,
+  Image
 } from "react-native";
 import  { 
 Input,
 } from '../components/reusebleComponents/index';
 import firestore from '@react-native-firebase/firestore';
+/*
 
+
+*/
 
 class  ChatScreen extends Component {
 
@@ -33,12 +37,8 @@ class  ChatScreen extends Component {
 UNSAFE_componentWillMount()
 { 
 
-  this._isMounted = false;
     //we are calling here the funtion to get all the groups
     this.fetchCreateGroup();
-
-    
-
   
 
 }
@@ -46,6 +46,7 @@ UNSAFE_componentWillMount()
 //This functions is fetching the group names that we created 
 fetchCreateGroup = () => {
 
+  console.log('Fetch Data Group!!!!!!!!!!!')
  firestore()
  .collection('MESSAGE_THREADS')
  .orderBy('latestMessage.createdAt', 'desc')
@@ -70,10 +71,6 @@ fetchCreateGroup = () => {
 
 }
 
-
-
-
-  
 
 
   data = [
@@ -106,24 +103,73 @@ fetchCreateGroup = () => {
     
     ]
 
+
+
+//Fecthing Groups
+fetchCreateGroup = () => {
+
+ firestore()
+ .collection('MESSAGE_THREADS')
+ .orderBy('latestMessage.createdAt', 'desc')
+ .onSnapshot(querySnapshot => {
+     
+     var  thread  = querySnapshot.docs.map(doc => {
+
+         return {
+             _id : doc.id,
+             name: '',
+             color: '',
+             latestMessage: { text : '' },
+             ...doc.data()
+         }
+     })
+
+     this.setState({
+       data:thread,
+       fullData:thread,
+     })
+ }) 
+
+}
+
+
+
+
+
+
+
+
+
+
 render(){ 
   console.log('ChatScreen');
   return (
     <View style={styles.container}>
       <View 
       style={{
-        flex:1,
+       // flex:1,
         justifyContent:'center',
       // alignSelf:'center'
       }}>
+        <View style={{ 
+          //flex:1
+          
+          }}>
         <Text 
         style={{
           fontSize:58,
-          fontWeight:'bold'
+          fontWeight:'bold',
+         // backgroundColor:'red'
         }}>
           Chat
         </Text>
+        </View>
 
+
+        <View style={{
+          height:40,
+          marginTop:50,
+        }}>
         <FlatList
         data={this.data}
         showsVerticalScrollIndicator ={false}
@@ -136,9 +182,10 @@ render(){
           return(
             <View style={{ 
               flexDirection:'row', 
-              marginTop:20,
+              marginTop:10,
               //backgroundColor:'red',
-              height:30,
+          
+      
               }}>
               <TouchableOpacity>
               <View style={styles.categoryContainer1}>
@@ -190,13 +237,95 @@ render(){
         
         
         />
+        </View>
+
+
+
+        {/* Here we will define our groups*/}
+        <View style={{
+          marginTop:60,
+        }}>
+        <FlatList
+          data={this.state.data}
+          showsVerticalScrollIndicator={false}
+          showsHorizontalScrollIndicator={false}
+          numColumns={3}
+         // ListHeaderComponent={this.renderHeader}
+         // ListEmptyComponent={this._listEmptyComponent}
+          keyExtractor={ item => item._id.toString()}
+          renderItem={({item}) => {
+            console.log(item);
+            return(
+              <View style={{
+                flex:1/3, 
+                marginTop:20,
+                }}>
+
+      
+              <View 
+              
+              style={{ flex:1}}>
+              <Image
+              source={{
+                uri:item.groupcover.groupcover
+              }}
+              style={{
+                width:100,
+                height:100,
+                alignSelf:'center'
+              }}
+              />
+              </View>
+
+              <View style={{ alignSelf:'center'}}>
+              <View>
+              <Text style={{
+                fontWeight:'bold'
+              }}>{item.name}</Text>
+              </View>
+
+              
+              <View style={{ alignSelf:'center'}}>
+              <Text style={{
+                fontSize:10,
+                color:'grey'
+              }}>{item.category}</Text>
+              </View>
+              </View>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                </View>
+            )
+
+
+          }}/>
+          </View>
+        </View>
         
 
       </View>
 
 
 
-    </View>
+    
 
  
   );
