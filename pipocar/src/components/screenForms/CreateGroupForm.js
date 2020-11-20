@@ -6,8 +6,7 @@ import {
   View, 
   Text, 
   TouchableOpacity,
-  Image,
-  Picker
+  Image
 } from "react-native";
 import { 
 InputForPosts,
@@ -20,6 +19,8 @@ import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
 import database from '@react-native-firebase/database';
 import storage from '@react-native-firebase/storage';
+import { Picker} from '@react-native-community/picker';
+
 import { 
   Actions
   } from 'react-native-router-flux';
@@ -261,7 +262,7 @@ render(){
     <View style={{ marginLeft:10, marginRight:10}}>
       <View style={{
         alignSelf:'center',
-        marginTop:20,
+        marginTop:10,
       }}>
 
         
@@ -287,10 +288,31 @@ render(){
         />
         </TouchableOpacity>
       </View>
-      <View style={{ alignSelf:'center', marginTop:10}}>
+      <View style={{ 
+        alignSelf:'center', 
+        marginTop:10}}>
       <Text style={{ fontWeight:'bold', color:'grey'}}>Share your picture with others</Text>
       </View>
-      <View>
+      <View style={{ alignSelf:'center'}}>
+      <Picker
+        selectedValue={this.state.language}
+        style={{
+          height: 10, 
+          width: 100,       
+       //   marginTop:2, 
+          marginBottom:130, 
+       }}
+        onValueChange={(itemValue, itemIndex) =>
+          this.setState({language: itemValue})
+        }>
+        <Picker.Item label="Java" value="java" />
+        <Picker.Item label="JavaScript" value="js" />
+      </Picker>
+      </View>
+      <View style={{ 
+      //  flex:1, 
+
+        }}>
         <InputForPosts
         autoCapitalize="none"
         autoCorrect={false}
@@ -302,9 +324,10 @@ render(){
         />
       </View>
       <View>
-        <Picker>
-          
-        </Picker>
+
+
+
+
       </View>
       <View style={{
         marginTop:60,

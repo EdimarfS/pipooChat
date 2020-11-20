@@ -684,6 +684,8 @@ PODS:
     - React-Core (= 0.63.3)
     - React-cxxreact (= 0.63.3)
     - React-jsi (= 0.63.3)
+  - RNCPicker (1.8.1):
+    - React-Core
   - RNFBAdMob (7.6.12):
     - Firebase/AdMob (~> 7.0.0)
     - PersonalizedAdConsent (~> 1.0.4)
@@ -820,6 +822,7 @@ DEPENDENCIES:
   - React-RCTText (from `../node_modules/react-native/Libraries/Text`)
   - React-RCTVibration (from `../node_modules/react-native/Libraries/Vibration`)
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
+  - "RNCPicker (from `../node_modules/@react-native-community/picker`)"
   - "RNFBAdMob (from `../node_modules/@react-native-firebase/admob`)"
   - "RNFBApp (from `../node_modules/@react-native-firebase/app`)"
   - "RNFBAuth (from `../node_modules/@react-native-firebase/auth`)"
@@ -985,6 +988,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/Libraries/Vibration"
   ReactCommon:
     :path: "../node_modules/react-native/ReactCommon"
+  RNCPicker:
+    :path: "../node_modules/@react-native-community/picker"
   RNFBAdMob:
     :path: "../node_modules/@react-native-firebase/admob"
   RNFBApp:
@@ -1122,6 +1127,7 @@ SPEC CHECKSUMS:
   React-RCTText: 65a6de06a7389098ce24340d1d3556015c38f746
   React-RCTVibration: 8e9fb25724a0805107fc1acc9075e26f814df454
   ReactCommon: 4167844018c9ed375cc01a843e9ee564399e53c3
+  RNCPicker: 914b557e20b3b8317b084aca9ff4b4edb95f61e4
   RNFBAdMob: a621df96fcc7043c54f4208eb85a9d88305acbef
   RNFBApp: 2810471bdc092151f20f16a9f8915b1ad70325b2
   RNFBAuth: c5b14ebc14be8076c606ca925552db26f1fd8413
