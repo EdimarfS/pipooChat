@@ -466,41 +466,48 @@ const styles = {
   categoryText1:{
     fontWeight:'bold',
     justifyContent:'center',
-    alignSelf:'center'
+    alignSelf:'center',
+    color:'#05c7fc'
   },
   categoryText2:{
     fontWeight:'bold',
     justifyContent:'center',
-    alignSelf:'center'
+    alignSelf:'center',
+    color:'#05c7fc'
 
   },
   categoryText3:{
     fontWeight:'bold',
     justifyContent:'center',
-    alignSelf:'center'
+    alignSelf:'center',
+    color:'#05c7fc'
   },
   categoryText4:{
     fontWeight:'bold',
     justifyContent:'center',
-    alignSelf:'center'
+    alignSelf:'center',
+    color:'#05c7fc'
   },
   categoryText5:{
     fontWeight:'bold',
     justifyContent:'center',
-    alignSelf:'center'
+    alignSelf:'center',
+    color:'#05c7fc'
   },  
   categoryText6:{
     fontWeight:'bold',
     justifyContent:'center',
-    alignSelf:'center'
+    alignSelf:'center',
+    color:'#05c7fc'
   },  
   categoryText7:{
     fontWeight:'bold',
     justifyContent:'center',
-    alignSelf:'center'
+    alignSelf:'center',
+    color:'#05c7fc'
   },
   categoryContainer1:{
-    backgroundColor:'#00d9ff',
+   // backgroundColor:'#00d9ff',
     width:100,
     height:30,
     borderRadius:90,
@@ -510,7 +517,7 @@ const styles = {
 
   },
   categoryContainer2:{
-    backgroundColor:'#cbffbf',
+   //backgroundColor:'#cbffbf',
     width:100,
     height:30,
     borderRadius:90,
@@ -519,7 +526,7 @@ const styles = {
 
   },
   categoryContainer3:{
-    backgroundColor:'#ffc9fc',
+  //  backgroundColor:'#ffc9fc',
     width:100,
     height:30,
     borderRadius:90,
@@ -528,7 +535,7 @@ const styles = {
 
   },
   categoryContainer4:{
-    backgroundColor:'#ffea00',
+  // backgroundColor:'#ffea00',
     width:100,
     height:30,
     borderRadius:90,
@@ -537,7 +544,7 @@ const styles = {
 
   },
   categoryContainer5:{
-    backgroundColor:'#ff6a00',
+  //  backgroundColor:'#ff6a00',
     width:100,
     height:30,
     borderRadius:90,
@@ -546,7 +553,7 @@ const styles = {
 
   },
   categoryContainer6:{
-    backgroundColor:'#ff005d',
+ //  backgroundColor:'#ff005d',
     width:100,
     height:30,
     borderRadius:90,
@@ -555,7 +562,7 @@ const styles = {
 
   },
   categoryContainer7:{
-    backgroundColor:'#00ddff',
+//   backgroundColor:'#00ddff',
     width:100,
     height:30,
     borderRadius:90,
