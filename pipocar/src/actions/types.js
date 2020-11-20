@@ -40,6 +40,5 @@ export const CREATE_GROUP_FETCH = "create_group_fecth";
 export const MESSAGE_GROUP_FETCH = "message_group_fetch";
 export const HANDLE_SEARCH = "handle_search";
 
-
 //Fetch Group
-export const FEED_POST_FETCH = "feed_post_fetch";
+export const FEED_POST_FETCH = "feed_post_fetch"; 

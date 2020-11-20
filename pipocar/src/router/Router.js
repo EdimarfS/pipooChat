@@ -24,8 +24,10 @@ import {
    CreateGroupScreen,
    UserPersonalEditDataScreen,
    PostCommentsScreen,
-   MessageScreen
+
 } from '../screens/index';
+
+import MessageScreen from '../screens/MessageScreen';
 
 
 
@@ -71,7 +73,10 @@ return(
     <Router>
     <Scene key="root">
 
-            <Scene key="auth" hideNavBar>
+            <Scene 
+            key="auth" 
+            hideNavBar
+            >
                 <Scene key="introduction">
                 <Scene
                 key="introductionscreen"
@@ -117,11 +122,15 @@ return(
 
             
 
-            <Scene key="messages">
+            <Scene 
+            key="messages"
+            >
                 <Scene
                 key="messagesscreen"
                 component={MessageScreen}
-                hideNavBar 
+              //gesturesEnabled={false}
+                hideNavBar
+                
                 />
             </Scene>
 
@@ -180,6 +189,9 @@ return(
             <Scene 
             key="main"
             tabs
+            swipeEnabled={true}
+            
+           // showLabel={false}
             tabStyle={{
                 backgroundColor:'white',
                // borderRadius:10,

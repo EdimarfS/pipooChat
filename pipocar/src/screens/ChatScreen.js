@@ -13,6 +13,7 @@ import  {
   SearchBar
 } from '../components/reusebleComponents/index';
 import firestore from '@react-native-firebase/firestore';
+import { Actions } from 'react-native-router-flux';
 import _ from 'lodash';
 
 /*
@@ -325,22 +326,28 @@ render(){
           renderItem={({item}) => {
             console.log(item);
             return(
-              <TouchableOpacity onPress={()=>{ console.log('View')}}>
+              <TouchableOpacity 
+              
+              style={{ flex:1/3}}
+              onPress={()=>{ Actions.messages({ title:item.name, thread:item}) }}>
               <View style={{
                 flex:1/3, 
                 marginTop:20,
                 borderWidth:0.3,
                 marginLeft:10,
                 marginRight:10,
-                padding:10,
+            
+               // padding:10,
                 borderColor:'#05c7fc',
-                height:140,
+              //  height:140,
+                marginBottom:10,
                 }}>
 
       
               <View 
               
-              style={{ flex:1}}>
+              style={{ flex:1, marginTop:10}}
+              >
               <Image
               source={{
                 uri:item.groupcover.groupcover
@@ -353,7 +360,10 @@ render(){
               />
               </View>
 
-              <View style={{ alignSelf:'center'}}>
+              <View style={{ 
+                alignSelf:'center',
+                marginBottom:3,
+                }}>
               <View>
               <Text style={{
                 fontWeight:'bold'
