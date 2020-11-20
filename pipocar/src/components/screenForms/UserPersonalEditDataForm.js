@@ -234,7 +234,7 @@ processUpload = (imageUrl) => {
 
     this.setState({
         uploading: false,
-        imageSelected: false,
+       // imageSelected: false,
         caption:'',
         uri:'',
     })        
