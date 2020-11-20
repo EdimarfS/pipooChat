@@ -206,50 +206,51 @@ uploadImage = async (uri) => {
 
 
 
-processUpload = (imageUrl) => {
 
-  var userID = auth().currentUser.uid;
-  var userName = auth().currentUser.displayName;
-  var imageID = this.state.imageID;
-  var caption = this.state.caption;
-  var dateTime = Date.now();
-  var timestamp = Math.floor(dateTime / 1000);
-  var profilepicture = auth().currentUser.photoURL;
-  var photoObject = {
-      author: userID,
-      userName: userName,
-      caption : caption,
-      posted: timestamp,
-      url: imageUrl,
-      profilepicture: profilepicture,
-      likes:0,
-      comments_number: 0,
-      liked: false,
-  
+processUpload = (imageUrl) => {
+            
+  var groupObject = {
+      groupcover:imageUrl,
 
   }
-  //Group field --> FIRESTORE
-  firestore().collection('POST')
-  .add(photoObject);
-  //set user photos object
-  database().ref(`/users/${userID}/photos/${imageID}`)
-  .set(photoObject);
-                                        
-                      
+
+  //Group field
+      
+      firestore()
+      .collection('MESSAGE_THREADS')
+      .add({
+          name: this.state.roomName,
+          groupcover: groupObject,
+          category: this.state.category,
+          latestMessage: {
+              text: `${this.state.roomName} created. Welcome!`,
+              createdAt: new Date().getTime(),
+          }
+      })
+      .then(docRef => { 
+          docRef
+          .collection('MESSAGES')
+          .add({
+              text:`${this.state.roomName} created. Welcome!`,
+              createdAt: new Date().getTime(),
+              system: true,
+              
+          })
+
+      })
+
 
   this.setState({
       uploading: false,
       imageSelected: false,
       caption:'',
-      imageURI:'https://firebasestorage.googleapis.com/v0/b/pipocar-61cd8.appspot.com/o/groupCovers%2Fcef4c151ecd7c2fd46180b45fb5bc1a1.jpg?alt=media&token=8beea4de-e1fd-439d-8162-eb7bab61e41c'
-    }) 
-    
-    
+      uri:'',
+  })      
+  
+  
 
-
-//Actions Here
-Actions.pop();
-Actions.refresh({});
+  Actions.pop();
+  Actions.refresh({});
 }
 
 
@@ -259,6 +260,7 @@ onButtonPress()
 {
 
      this.UploadPublish();
+     
 
    
 }
