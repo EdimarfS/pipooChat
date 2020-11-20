@@ -189,6 +189,9 @@ UploadPublish = () => {
 }
 
 
+
+
+
 processUpload = (imageUrl) => {
     const { currentUserName } = auth().currentUser.displayName;
     var userID = auth().currentUser.uid;
@@ -202,10 +205,40 @@ processUpload = (imageUrl) => {
     //Update database -> This can be accesble in the whole App
     if(auth().currentUser)
     { 
-        auth().currentUser.updateProfile({
+    auth().currentUser.updateProfile({
         photoURL: imageUrl,
     });
+    }
+
+/*                 //
+    //Group field --> FIRESTORE
+    firebase.firestore()
+    .collection('POST')
+    .where("userName", "==", currentUserName)
+    .update({
+        profilePictures:imageUrl
+    });
+*/
+
+
+    //Update user  object --> From Real Time database USER
+    database().ref(`/users/${userID}`)
+    .update(userObject);
+/* 
+    //Updating the user photo --> From Real Time database PHOTO                 
+    firebase.database().ref(`/users/photos${userID}`)
+    .update(photoObject); */
+
+    this.setState({
+        uploading: false,
+        imageSelected: false,
+        caption:'',
+        uri:'',
+    })        
 }
+
+
+
 
 
 userAllInfo = () => {
@@ -231,10 +264,52 @@ userAllInfo = () => {
       
                 
       }
-    }
+    
       
       
 
+//UploadImage
+uploadImage = async (uri) => {
+    var that = this;
+    var userID = auth().currentUser.uid;
+    var imageID = this.state.imageID;
+    console.log('ImageID!!!', imageID)
+    var re = /(?:\.([^.]+))?$/;
+    var ext = re.exec(uri)[1];
+    console.log('EXTENSION!!!', ext)
+    this.setState({
+        currentFileType: ext,
+        uploading: true
+      });
+
+    const response = await fetch(uri);
+    const blob = await response.blob();
+    var FilePath = imageID+'.'+that.state.currentFileType;
+    console.log("FilePath!!!!!!!!!!", FilePath);
+    
+
+    const uploadTask = storage().ref('profilePictures/'+userID+'/img').child(FilePath).put(blob);
+    
+
+    uploadTask.on('state_changed', snapshot => {
+        var progress = (( snapshot.bytesTransferred / snapshot.totalBytes)*100).toFixed(0);
+        console.log('Upload is ' + progress + "% complete");
+        this.setState({
+            progress:progress,
+        });
+    }, function(error) {
+        console.log('error with upload - '+error);
+
+    }, function(){
+        that.setState({props:100});
+        uploadTask.snapshot.ref.getDownloadURL().then(function(downloadURL){
+            that.processUpload(downloadURL)
+        })
+    }
+    )
+
+
+}
 
 
 render(){ 

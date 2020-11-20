@@ -84,11 +84,6 @@ render(){
        </View>
 
 
-
-
-
-
-
       <View 
       style={{
         marginBottom:70,
