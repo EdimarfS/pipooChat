@@ -217,8 +217,9 @@ renderHeader = () => {
     <FlatList
     data={this.data}
     showsVerticalScrollIndicator ={false}
-    showsH
-    orizontalScrollIndicator={false}
+    showsHorizontalScrollIndicator={false}
+
+    showsHorizontalScrollIndicator={false}
     keyExtractor={ item => item.key.toString()}
     //numColumns={3}
     horizontal 
@@ -306,6 +307,10 @@ footerComponents = () => {
 render(){ 
   console.log('ChatScreen');
   return (
+        <View style={{ 
+          flex:1, 
+         // backgroundColor:'red'
+          }}>
         <FlatList
           data={this.state.data}
           refreshing={this.state.onRefreshing}
@@ -320,6 +325,7 @@ render(){
           renderItem={({item}) => {
             console.log(item);
             return(
+              <TouchableOpacity onPress={()=>{ console.log('View')}}>
               <View style={{
                 flex:1/3, 
                 marginTop:20,
@@ -327,8 +333,8 @@ render(){
                 marginLeft:10,
                 marginRight:10,
                 padding:10,
-                borderColor:'#05c7fc'
-               // height:140,
+                borderColor:'#05c7fc',
+                height:140,
                 }}>
 
       
@@ -363,30 +369,14 @@ render(){
               </View>
               </View>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                </View>
+              </View>
+              </TouchableOpacity>
             )
 
 
           }}/>
+          </View>
+
   
 
         
