@@ -37,7 +37,7 @@ class  CreateGroupForm extends Component {
           caption: "",
           progress: 0,
           imageURI:'https://firebasestorage.googleapis.com/v0/b/pipocar-61cd8.appspot.com/o/groupCovers%2Fcef4c151ecd7c2fd46180b45fb5bc1a1.jpg?alt=media&token=8beea4de-e1fd-439d-8162-eb7bab61e41c',
-          category:'',
+          category:'Travel',
       };
   }
 
@@ -397,8 +397,13 @@ render(){
         />
       </View>
 
-      <View>
-      <Text>{this.state.category}</Text>
+      <View style={{ 
+        alignSelf:'center',
+        marginTop:10,
+        flexDirection:'row'
+        }}>
+      <Text>Category : </Text>
+      <Text style={{ fontWeight:'bold'}}>{this.state.category}</Text>
       </View>
 
 
