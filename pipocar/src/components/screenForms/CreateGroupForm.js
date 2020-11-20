@@ -6,7 +6,8 @@ import {
   View, 
   Text, 
   TouchableOpacity,
-  Image
+  Image,
+  FlatList
 } from "react-native";
 import { 
 InputForPosts,
@@ -35,12 +36,42 @@ class  CreateGroupForm extends Component {
           uploading: false,
           caption: "",
           progress: 0,
-          imageURI:'https://firebasestorage.googleapis.com/v0/b/pipocar-61cd8.appspot.com/o/groupCovers%2Fcef4c151ecd7c2fd46180b45fb5bc1a1.jpg?alt=media&token=8beea4de-e1fd-439d-8162-eb7bab61e41c'
+          imageURI:'https://firebasestorage.googleapis.com/v0/b/pipocar-61cd8.appspot.com/o/groupCovers%2Fcef4c151ecd7c2fd46180b45fb5bc1a1.jpg?alt=media&token=8beea4de-e1fd-439d-8162-eb7bab61e41c',
+          category:'',
       };
   }
 
 
 
+  data = [
+    {
+        travel : 'Travel',
+        key:1,
+    
+        healthAndwellness : 'Education',
+        key:2,
+
+        beauty : 'MeetMe',
+        key:3,
+        
+        food_And_drink : 'Food',
+        key:4,
+
+        motivational_quotes: 'Drinks',
+        key:5,
+
+        sport : 'Sport',
+        key:6,
+        
+        other : 'Other',
+        key:7,
+
+
+        
+    }
+    
+    
+    ]
 
 
 
@@ -271,6 +302,7 @@ render(){
           borderWidth:1,
           borderColor:'#05c7fc',
           padding:10,
+
           
         }}
         onPress={this.findNewImage}>
@@ -287,28 +319,92 @@ render(){
         
         />
         </TouchableOpacity>
+ 
+
       </View>
       <View style={{ 
         alignSelf:'center', 
         marginTop:10}}>
       <Text style={{ fontWeight:'bold', color:'grey'}}>Share your picture with others</Text>
       </View>
-      <View style={{ alignSelf:'center'}}>
-      <Picker
-        selectedValue={this.state.language}
-        style={{
-          height: 10, 
-          width: 100,       
-       //   marginTop:2, 
-          marginBottom:130, 
-       }}
-        onValueChange={(itemValue, itemIndex) =>
-          this.setState({language: itemValue})
-        }>
-        <Picker.Item label="Java" value="java" />
-        <Picker.Item label="JavaScript" value="js" />
-      </Picker>
+      
+      <View>
+      <FlatList
+        data={this.data}
+        showsVerticalScrollIndicator ={false}
+        showsHorizontalScrollIndicator={false}
+        keyExtractor={ item => item.key.toString()}
+        //numColumns={3}
+        horizontal 
+        renderItem={({item}) => {
+
+          return(
+            <View style={{ 
+              flexDirection:'row', 
+              marginTop:20,
+              //backgroundColor:'red',
+              height:30,
+              }}>
+              <TouchableOpacity onPress={()=> this.setState({ category: item.travel})}>
+              <View style={styles.categoryContainer1}>
+                 <Text style={styles.categoryText1}>#{item.travel}</Text>
+              </View>
+              </TouchableOpacity>
+              
+              <TouchableOpacity onPress={()=> this.setState({ category: item.healthAndwellness})}>
+              <View style={styles.categoryContainer2}>
+                 <Text style={styles.categoryText2}>#{item.healthAndwellness}</Text>
+              </View>
+              </TouchableOpacity>
+              
+              <TouchableOpacity onPress={()=> this.setState({ category: item.beauty})}>
+              <View style={styles.categoryContainer3}>
+                 <Text style={styles.categoryText3}>#{item.beauty}</Text>
+              </View>
+              </TouchableOpacity>
+
+              <TouchableOpacity onPress={()=> this.setState({ category: item.food_And_drink})}>
+              <View style={styles.categoryContainer4}>
+                 <Text style={styles.categoryText4}>#{item.food_And_drink}</Text>
+              </View>
+              </TouchableOpacity>
+
+              <TouchableOpacity onPress={()=> this.setState({ category: item.motivational_quotes})}>
+              <View style={styles.categoryContainer5}>
+                 <Text style={styles.categoryText5}>#{item.motivational_quotes}</Text>
+              </View>
+              </TouchableOpacity>
+
+              <TouchableOpacity onPress={()=> this.setState({ category: item.sport})}>
+              <View style={styles.categoryContainer7}>
+                 <Text style={styles.categoryText7}>#{item.sport}</Text>
+              </View>
+              </TouchableOpacity>
+              
+              <TouchableOpacity onPress={()=> this.setState({ category: item.other})}>
+              <View style={styles.categoryContainer6}>
+                 <Text style={styles.categoryText6}>#{item.other}...</Text>
+              </View>
+              </TouchableOpacity>
+              
+              
+            </View>
+          )
+
+        }}
+        
+        
+        />
       </View>
+
+      <View>
+      <Text>{this.state.category}</Text>
+      </View>
+
+
+
+
+
       <View style={{ 
       //  flex:1, 
 
@@ -350,3 +446,114 @@ render(){
 
 
 export  default CreateGroupForm;
+
+
+const styles = { 
+  container:{
+    flex:1,
+
+  //  justifyContent:'center',
+   // alignSelf:'center'
+  },
+  categoryText1:{
+    fontWeight:'bold',
+    justifyContent:'center',
+    alignSelf:'center'
+  },
+  categoryText2:{
+    fontWeight:'bold',
+    justifyContent:'center',
+    alignSelf:'center'
+
+  },
+  categoryText3:{
+    fontWeight:'bold',
+    justifyContent:'center',
+    alignSelf:'center'
+  },
+  categoryText4:{
+    fontWeight:'bold',
+    justifyContent:'center',
+    alignSelf:'center'
+  },
+  categoryText5:{
+    fontWeight:'bold',
+    justifyContent:'center',
+    alignSelf:'center'
+  },  
+  categoryText6:{
+    fontWeight:'bold',
+    justifyContent:'center',
+    alignSelf:'center'
+  },  
+  categoryText7:{
+    fontWeight:'bold',
+    justifyContent:'center',
+    alignSelf:'center'
+  },
+  categoryContainer1:{
+    backgroundColor:'#00d9ff',
+    width:100,
+    height:30,
+    borderRadius:90,
+    justifyContent:'center',
+
+
+
+  },
+  categoryContainer2:{
+    backgroundColor:'#cbffbf',
+    width:100,
+    height:30,
+    borderRadius:90,
+    justifyContent:'center',
+    marginLeft:10,
+
+  },
+  categoryContainer3:{
+    backgroundColor:'#ffc9fc',
+    width:100,
+    height:30,
+    borderRadius:90,
+    justifyContent:'center',
+    marginLeft:10,
+
+  },
+  categoryContainer4:{
+    backgroundColor:'#ffea00',
+    width:100,
+    height:30,
+    borderRadius:90,
+    justifyContent:'center',
+    marginLeft:10,
+
+  },
+  categoryContainer5:{
+    backgroundColor:'#ff6a00',
+    width:100,
+    height:30,
+    borderRadius:90,
+    justifyContent:'center',
+    marginLeft:10,
+
+  },
+  categoryContainer6:{
+    backgroundColor:'#ff005d',
+    width:100,
+    height:30,
+    borderRadius:90,
+    justifyContent:'center',
+    marginLeft:10,
+
+  },
+  categoryContainer7:{
+    backgroundColor:'#00ddff',
+    width:100,
+    height:30,
+    borderRadius:90,
+    justifyContent:'center',
+    marginLeft:10,
+
+  },
+
+}
