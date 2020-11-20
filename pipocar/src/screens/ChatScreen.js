@@ -217,7 +217,8 @@ renderHeader = () => {
     <FlatList
     data={this.data}
     showsVerticalScrollIndicator ={false}
-    showsHorizontalScrollIndicator={false}
+    showsH
+    orizontalScrollIndicator={false}
     keyExtractor={ item => item.key.toString()}
     //numColumns={3}
     horizontal 
@@ -290,7 +291,16 @@ renderHeader = () => {
 }
 
 
+footerComponents = () => {
 
+  return(
+    <View style={{ flex:1,}}>
+      <Text>hello</Text>
+    </View>
+  )
+
+  
+}
 
 
 render(){ 
@@ -305,6 +315,7 @@ render(){
           numColumns={3}
          ListHeaderComponent={this.renderHeader}
          // ListEmptyComponent={this._listEmptyComponent}
+         ListFooterComponentStyle={this.footerComponents}
           keyExtractor={ item => item._id.toString()}
           renderItem={({item}) => {
             console.log(item);
