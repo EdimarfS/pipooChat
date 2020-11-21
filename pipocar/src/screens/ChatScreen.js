@@ -199,6 +199,7 @@ renderHeader = () => {
         style={{
           fontSize:50,
           fontWeight:'bold',
+          marginTop:40,
          // backgroundColor:'red'
         }}>
           Rooms 
@@ -357,31 +358,20 @@ render(){
                 
               }}
               >
-              <View style={{
-
-shadowColor: "#000",
-shadowOffset: {
-	width: 0,
-	height: 4,
-},
-shadowOpacity: 0.1,
-shadowRadius: 1,
-
-elevation: 1,
-              }}>
+              <View>
               <Image
               source={{
                 uri:item.groupcover.groupcover
               }}
               style={{
-                width:100,
-                height:100,
+                width:80,
+                height:80,
                 borderRadius:50,
-                borderWidth:2,
-               // borderColor:'#05c7fc',
-               borderColor:'#00ff80',
+               // borderWidth:2,
+              //borderColor:'#05c7fc',
+              //borderColor:'#00ff80',
                 padding:10,
-                shadowColor: "#000",
+          
 
 
           

@@ -8,7 +8,8 @@ import {
   TouchableOpacity,
   FlatList,
   Image,
-  ImageBackground
+  ImageBackground,
+  Linking
 } from "react-native";
 import  { 
   SearchBar
@@ -214,16 +215,19 @@ renderHeader = () => {
         <View style={{ 
           flex:1,
          // alignSelf:'center'
-         marginLeft:10
+         marginLeft:10,
+         flexDirection:'row'
+         
           
           }}>
         <Text 
         style={{
           fontSize:50,
           fontWeight:'bold',
+          marginBottom:10
          // backgroundColor:'red'
         }}>
-          Market 
+          Store
         </Text>
         </View>
     <View style={{ 
@@ -436,9 +440,9 @@ render(){
                 }}>
               <View>
               <Text style={{
-                fontWeight:'bold',
-               textAlign:'center',
-               marginTop:10,
+              fontWeight:'bold',
+              textAlign:'center',
+              marginTop:10,
                 
                 fontSize:15
               }}>{item.name.substring(0,14)+'...'}</Text>
@@ -452,22 +456,8 @@ render(){
                 alignSelf:'center'
                // backgroundColor:'red'
                 }}>
-              <Text style={{
-                fontSize:14,
-                fontWeight:'bold',
-                color:'red',
-                marginTop:10,
-                textAlign:'center',
-               // alignSelf:'center'
-              }}>{item.category}</Text>
 
-              <Text style={{
-                fontSize:14,
-                color:'grey',
-                marginTop:10,
-                textAlign:'center',
-               // alignSelf:'center'
-              }}>Location</Text>
+
               </View>
 
               
@@ -476,22 +466,31 @@ render(){
                 justifyContent:'space-between',
                 marginLeft:10,
                 marginRight:10,
+       
                // backgroundColor:'red'
                 }}>
               <Text style={{
                 fontSize:14,
-                color:'#00e33d',
-                fontWeight:'bold',
+                color:'grey',
+               // fontWeight:'bold',
                 marginTop:10,
                // alignSelf:'center'
               }}>$11</Text>
+
+              <View>
                 <Text style={{
                 fontSize:14,
-                color:'#05c7fc',
-                fontWeight:'bold',
+                color:'grey',
+               // fontWeight:'bold',
                 marginTop:10,
+               // backgroundColor:'red',
+      
                // alignSelf:'center'
-              }}>Pick</Text>
+              }}>Web site</Text>
+              </View>
+
+
+
               </View>
               
               </View>

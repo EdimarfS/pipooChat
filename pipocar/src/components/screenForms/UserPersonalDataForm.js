@@ -69,7 +69,11 @@ render(){
          backgroundColor:'white',
          borderWidth:1,
          borderColor:'#05c7fc',
-         padding:10,
+         padding:10,  
+         borderRadius:50,
+
+
+         
          }}>
          <ImageBlurLoading
          source={{
@@ -78,6 +82,8 @@ render(){
          style={{
            width:110,
            height:100,
+           borderRadius:50,
+
          }}
          
          />

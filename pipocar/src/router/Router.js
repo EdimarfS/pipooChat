@@ -25,7 +25,7 @@ import {
    UserPersonalEditDataScreen,
    PostCommentsScreen,
    StoreScreen,
-   AddProducts
+   AddProductsScreen
 
 } from '../screens/index';
 
@@ -140,8 +140,8 @@ return(
             key="products"
             >
                 <Scene
-                key="productsscreen"
-                component={AddPostScreen}
+                key="addproductsscreen"
+                component={AddProductsScreen}
               //gesturesEnabled={false}
                 hideNavBar
                 
@@ -197,7 +197,6 @@ return(
                 hideNavBar 
                 />
             </Scene>
-
 
 
             <Scene 
@@ -266,14 +265,10 @@ return(
             tabBarPosition="top"
             swipeEnabled={true}
             activeTintColor="#05c7fc"
-            inactiveTintColor="grey"
-            tabs
-           // showLabel={false}
-            tabStyle={{
-                backgroundColor:'white',
-              
-            }}  
+            inactiveTintColor="#1f1f1f"
 
+            tabs
+          //  showLabel={false}
            // hideNavBar
             > 
                     <Scene

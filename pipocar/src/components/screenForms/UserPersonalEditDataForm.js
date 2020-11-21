@@ -352,6 +352,7 @@ render(){
                 backgroundColor:'white',
                
                 marginBottom:10,
+                borderRadius:90,
 
             }}>
 { this.state.imageSelected === false ? 
@@ -361,6 +362,7 @@ render(){
                 style={{
                     width:100,
                     height:100,
+                    borderRadius:50,
                 }}
                 />  : 
                 <ImageBlurLoading

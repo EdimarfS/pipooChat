@@ -79,6 +79,7 @@ renderHeader()
       alignSelf:'center',
       marginTop:10,
       marginBottom:20,
+      
     }}>
      <TouchableOpacity 
      onPress={()=>{ Actions.addpost()}}
@@ -117,6 +118,7 @@ render(){
           return (
             <View style={{
               // flex:1,
+
                justifyContent:'center',
                marginTop:2,
                marginBottom:0,

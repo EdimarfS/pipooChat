@@ -44,88 +44,83 @@ class  AddPostForm extends Component {
 
 
 
-   //Image Picker 
-  _checkPermissions = () => {
-    check(PERMISSIONS.IOS.LOCATION_ALWAYS)
-    .then((result) => {
-    switch (result) {
-    case RESULTS.UNAVAILABLE:
-    console.log(
-    'This feature is not available (on this device / in this context)',
-    );
-    break;
-    case RESULTS.DENIED:
-    console.log(
-    'The permission has not been requested / is denied but requestable',
-    );
-    break;
-    case RESULTS.GRANTED:
-    console.log('The permission is granted');
-    break;
-    case RESULTS.BLOCKED:
-    console.log('The permission is denied and not requestable anymore');
-    break;
-    }
-    })
-    .catch((error) => {
-    // …
-    console.log('Unknown Error', error);
-    });
-    } 
-          
-              //S4
+//Image Picker 
+_checkPermissions = () => {
+check(PERMISSIONS.IOS.LOCATION_ALWAYS)
+.then((result) => {
+switch (result) {
+case RESULTS.UNAVAILABLE:
+console.log(
+'This feature is not available (on this device / in this context)',
+);
+break;
+case RESULTS.DENIED:
+console.log(
+'The permission has not been requested / is denied but requestable',
+);
+break;
+case RESULTS.GRANTED:
+console.log('The permission is granted');
+break;
+case RESULTS.BLOCKED:
+console.log('The permission is denied and not requestable anymore');
+break;
+}
+})
+.catch((error) => {
+// …
+console.log('Unknown Error', error);
+});
+} 
+      
+          //S4
 s4 = () => {
-return Math.floor((1 + Math.random()) * 0x10000)
-.toString(16)
-.substring(1);
-};
+      return Math.floor((1 + Math.random()) * 0x10000)
+        .toString(16)
+        .substring(1);
+    };
 
-//UploadPublish
+  //UploadPublish
 UploadPublish = () => {
 
-this.uploadImage(this.state.imageURI);
+        this.uploadImage(this.state.imageURI);
+  }
+  
+  //Unique ID
+  uniqueId = () => {
+      return (
+        this.s4() + this.s4() + "-" + this.s4() + "-" + this.s4() + "-" + this.s4() + "-" + this.s4() + "-" + this.s4() + "-" + this.s4()
+      );
+    };
 
 
-
-
-
-}
-
-//Unique ID
-uniqueId = () => {
-return (
-this.s4() + this.s4() + "-" + this.s4() + "-" + this.s4() + "-" + this.s4() + "-" + this.s4() + "-" + this.s4() + "-" + this.s4()
-);
-};
-
-
-//ImagePicker
+  //ImagePicker
 findNewImage = async () => {
-this._checkPermissions();
+      this._checkPermissions();
 
 
-//Here we open the camera
-await ImagePicker.openPicker({
-mediaTypes: 'Images',
-width: 400,
-height: 400,
-cropping: true,
+      //Here we open the camera
+      await ImagePicker.openPicker({
+          mediaTypes: 'Images',
+          width: 400,
+          height: 400,
+          cropping: true,
 
+          
+      }).then(image => {
+        this.setState({
+          imageSelected: true,
+          imageId: this.uniqueId(),
+          imageURI: image.path,
+          
+      })
+      }).catch(error => {
+        console.log(error)
+        this.setState({
+        imageSelected: false
+      });
 
-}).then(image => {
-this.setState({
-imageSelected: true,
-imageId: this.uniqueId(),
-imageURI: image.path,
-
-})
-}).catch(error => {
-console.log(error)
-this.setState({
-imageSelected: false
-});
-
-})
+    })
 }
 
 

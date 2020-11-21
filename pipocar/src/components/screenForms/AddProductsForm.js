@@ -37,7 +37,7 @@ class  CreateGroupForm extends Component {
           caption: "",
           progress: 0,
           imageURI:'https://firebasestorage.googleapis.com/v0/b/pipocar-61cd8.appspot.com/o/groupCovers%2Fcef4c151ecd7c2fd46180b45fb5bc1a1.jpg?alt=media&token=8beea4de-e1fd-439d-8162-eb7bab61e41c',
-          category:'Travel',
+          category:'Vehicles',
           groupname:''
       };
   }
@@ -46,32 +46,31 @@ class  CreateGroupForm extends Component {
 
   data = [
     {
-        travel : 'Travel',
+       vehicles : 'Vehicles',
         key:1,
     
-        healthAndwellness : 'Education',
+        properties : 'Properties',
         key:2,
 
-        beauty : 'MeetMe',
+        apperel : 'Apperel',
         key:3,
         
-        food_And_drink : 'Food',
+        classifieds : 'Classifieds',
         key:4,
 
-        motivational_quotes: 'Drinks',
+        electronics: 'Electronics',
         key:5,
 
-        sport : 'Sport',
+        entertaiment : 'Entertaiment',
         key:6,
         
-        other : 'Other',
+        family : 'Family',
         key:7,
 
-
-        
+        freestuffs : 'Free Stuffs',
+        key:8,
     }
-    
-    
+
     ]
 
 
@@ -328,77 +327,85 @@ render(){
       <View style={{ 
         alignSelf:'center', 
         marginTop:10}}>
-      <Text style={{ fontWeight:'bold', color:'grey'}}>Share your picture with others</Text>
+      <Text style={{ fontWeight:'bold', color:'grey'}}>Create a product</Text>
       </View>
       
       <View>
       <FlatList
-        data={this.data}
-        showsVerticalScrollIndicator ={false}
-        showsHorizontalScrollIndicator={false}
-        keyExtractor={ item => item.key.toString()}
-        //numColumns={3}
-        horizontal 
-        renderItem={({item}) => {
+    data={this.data}
+    showsVerticalScrollIndicator ={false}
+    showsHorizontalScrollIndicator={false}
 
-          return(
-            <View style={{ 
-              flexDirection:'row', 
-              marginTop:20,
-              //backgroundColor:'red',
-              height:30,
-              
-              }}>
-              <TouchableOpacity onPress={()=> this.setState({ category: item.travel})}>
-              <View style={styles.categoryContainer1}>
-                 <Text style={styles.categoryText1}>#{item.travel}</Text>
-              </View>
-              </TouchableOpacity>
-              
-              <TouchableOpacity onPress={()=> this.setState({ category: item.healthAndwellness})}>
-              <View style={styles.categoryContainer2}>
-                 <Text style={styles.categoryText2}>#{item.healthAndwellness}</Text>
-              </View>
-              </TouchableOpacity>
-              
-              <TouchableOpacity onPress={()=> this.setState({ category: item.beauty})}>
-              <View style={styles.categoryContainer3}>
-                 <Text style={styles.categoryText3}>#{item.beauty}</Text>
-              </View>
-              </TouchableOpacity>
+    showsHorizontalScrollIndicator={false}
+    keyExtractor={ item => item.key.toString()}
+    //numColumns={3}
+    horizontal 
+    renderItem={({item}) => {
 
-              <TouchableOpacity onPress={()=> this.setState({ category: item.food_And_drink})}>
-              <View style={styles.categoryContainer4}>
-                 <Text style={styles.categoryText4}>#{item.food_And_drink}</Text>
-              </View>
-              </TouchableOpacity>
+      return(
+        <View style={{ 
+          flexDirection:'row', 
+          marginTop:10,
+       //   backgroundColor:'blue'
+          //backgroundColor:'red',
+          }}>
+          <TouchableOpacity onPress={()=> this.setState({ category: item.vehicles})}>
+          <View style={styles.categoryContainer1}>
+             <Text style={styles.categoryText1}>#{item.vehicles}</Text>
+          </View>
+          </TouchableOpacity>
+          
+          <TouchableOpacity onPress={()=> this.setState({ category: item.properties})}>
+          <View style={styles.categoryContainer2}>
+             <Text style={styles.categoryText2}>#{item.properties}</Text>
+          </View>
+          </TouchableOpacity>
+          
+          <TouchableOpacity onPress={()=> this.setState({ category: item.apperel})}>
+          <View style={styles.categoryContainer3}>
+             <Text style={styles.categoryText3}>#{item.apperel}</Text>
+          </View>
+          </TouchableOpacity>
 
-              <TouchableOpacity onPress={()=> this.setState({ category: item.motivational_quotes})}>
-              <View style={styles.categoryContainer5}>
-                 <Text style={styles.categoryText5}>#{item.motivational_quotes}</Text>
-              </View>
-              </TouchableOpacity>
+          <TouchableOpacity onPress={()=> this.setState({ category: item.classifieds})}>
+          <View style={styles.categoryContainer4}>
+             <Text style={styles.categoryText4}>#{item.classifieds}</Text>
+          </View>
+          </TouchableOpacity>
 
-              <TouchableOpacity onPress={()=> this.setState({ category: item.sport})}>
-              <View style={styles.categoryContainer7}>
-                 <Text style={styles.categoryText7}>#{item.sport}</Text>
-              </View>
-              </TouchableOpacity>
-              
-              <TouchableOpacity onPress={()=> this.setState({ category: item.other})}>
-              <View style={styles.categoryContainer6}>
-                 <Text style={styles.categoryText6}>#{item.other}...</Text>
-              </View>
-              </TouchableOpacity>
-              
-              
-            </View>
-          )
+          <TouchableOpacity onPress={()=> this.setState({ category: item.electronics})}>
+          <View style={styles.categoryContainer5}>
+             <Text style={styles.categoryText5}>#{item.electronics}</Text>
+          </View>
+          </TouchableOpacity>
 
-        }}
-        
-        
-        />
+          <TouchableOpacity onPress={()=> this.setState({ category: item.entertaiment})}>
+          <View style={styles.categoryContainer7}>
+             <Text style={styles.categoryText7}>#{item.entertaiment}</Text>
+          </View>
+          </TouchableOpacity>
+          
+          <TouchableOpacity onPress={()=> this.setState({ category: item.family})}>
+          <View style={styles.categoryContainer6}>
+             <Text style={styles.categoryText6}>#{item.family}</Text>
+          </View>
+          </TouchableOpacity>
+
+          <TouchableOpacity onPress={()=> this.setState({ category: item.freestuffs})}>
+          <View style={styles.categoryContainer6}>
+             <Text style={styles.categoryText6}>#{item.freestuffs}</Text>
+          </View>
+          </TouchableOpacity>
+          
+          
+        </View>
+
+      )
+
+    }}
+    
+    
+    />
       </View>
 
       <View style={{ 
@@ -411,14 +418,26 @@ render(){
       </View>
 
 
+      <View style={{ 
+        alignSelf:'center',
+        marginTop:10,
+        flexDirection:'row'
+        }}>
+      <Text>Condition : </Text>
+      <Text style={{ fontWeight:'bold'}}>{this.state.category}</Text>
+      </View>
+
+
+
 
 
 
       <View style={{ 
       //  flex:1, 
-
+        marginBottom:50,
         }}>
         <InputForPosts
+        placeholder="Title"
         autoCapitalize="none"
         autoCorrect={false}
         maxLength={20}
@@ -428,6 +447,69 @@ render(){
         })} 
         />
       </View>
+
+
+      <View style={{ 
+      //  flex:1, 
+      marginBottom:50,
+
+        }}>
+        <InputForPosts
+        placeholder="Price"
+        autoCapitalize="none"
+        autoCorrect={false}
+        maxLength={20}
+        value={this.state.groupname}
+        onChangeText={(text) => this.setState({
+           groupname:text,
+        })} 
+        />
+      </View>
+
+      <View style={{ 
+      //  flex:1, 
+      marginBottom:50,
+
+        }}>
+        <InputForPosts
+        placeholder="Category"
+        autoCapitalize="none"
+        autoCorrect={false}
+        maxLength={20}
+        value={this.state.groupname}
+        onChangeText={(text) => this.setState({
+           groupname:text,
+        })} 
+        />
+      </View>
+
+      <View style={{ 
+      //  flex:1, 
+      //marginBottom:50,
+
+        }}>
+        <InputForPosts
+        placeholder="Location"
+        autoCapitalize="none"
+        autoCorrect={false}
+        maxLength={20}
+        value={this.state.groupname}
+        onChangeText={(text) => this.setState({
+           groupname:text,
+        })} 
+        />
+      </View>
+
+      
+
+
+
+
+
+
+
+
+
       <View>
 
 
