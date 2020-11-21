@@ -340,7 +340,8 @@ render(){
                 marginRight:10,
             
                // padding:10,
-                //borderColor:'#05c7fc',
+
+              
               //  height:140,
                 marginBottom:10,
                 }}>
@@ -352,18 +353,38 @@ render(){
                 flex:1, 
                 marginTop:10, 
               //  backgroundColor:'red',
-                flexDirection:'row'
+                flexDirection:'row',
+                
               }}
               >
-              <View>
+              <View style={{
+
+shadowColor: "#000",
+shadowOffset: {
+	width: 0,
+	height: 4,
+},
+shadowOpacity: 0.1,
+shadowRadius: 1,
+
+elevation: 1,
+              }}>
               <Image
               source={{
                 uri:item.groupcover.groupcover
               }}
               style={{
-                width:50,
-                height:50,
-                borderRadius:90,
+                width:100,
+                height:100,
+                borderRadius:50,
+                borderWidth:2,
+               // borderColor:'#05c7fc',
+               borderColor:'#00ff80',
+                padding:10,
+                shadowColor: "#000",
+
+
+          
                 
                 //alignSelf:'center'
               }}
@@ -383,7 +404,7 @@ render(){
               <Text style={{
                 fontWeight:'bold',
                 textAlign:'center',
-                fontSize:20
+                fontSize:15
               }}>{item.name}</Text>
               </View>
 
