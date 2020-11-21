@@ -188,8 +188,10 @@ return(
 
             <Scene 
             key="main"
-            tabs
+            legacy={true} 
+            tabBarPosition="bottom"
             swipeEnabled={true}
+            tabs
             
            // showLabel={false}
             tabStyle={{
@@ -204,7 +206,65 @@ return(
             hideNavBar
             > 
                     <Scene
+                    key="chat"
+                    component={ChatScreen}
+                    //iconName={"ios-chatboxes"}
+                    //icon={TabIcon}
+                    activeTintColor={tint_color}
+                    inactiveTintColor={inactive_Color}
+                    renderRightButton={
+                        <TouchableOpacity onPress={()=>{ Actions.creategroup()}}>
+                            <Text style={{
+                                fontSize:20,
+                                marginRight:10,
+                            }}>Add</Text>
+                        </TouchableOpacity>
+                        }
+                    />
+
+
+
+
+
+
+
+            <Scene 
+            
+            key="feedandbusinessscreen"
+            renderTitle={()=>{
+                return(
+                    <View style={{
+                        flex:1,
+                        justifyContent:'center',
+                        alignItems:'center',
+                        }}>
+                        <Text style={{fontWeight:'bold',fontSize:20}}>pipoca</Text>
+                  
+                        
+
+                    </View>
+                )
+            }}
+            >
+            <Scene 
+            key="feedandbusiness"
+            legacy={true} 
+            tabBarPosition="top"
+            swipeEnabled={true}
+            activeTintColor="#05c7fc"
+            inactiveTintColor="grey"
+            tabs
+           // showLabel={false}
+            tabStyle={{
+                backgroundColor:'white',
+              
+            }}  
+
+           // hideNavBar
+            > 
+                    <Scene
                     key="feednews"
+                    hideNavBar
                     component={FeedNewsScreen}
                     iconName={"md-planet"}
                    // icon={TabIcon}
@@ -242,10 +302,12 @@ return(
                             </View>
                         )
                     }}
-                    />
 
+                
+                    />
                     <Scene
                     key="chat"
+                    hideNavBar
                     component={ChatScreen}
                     //iconName={"ios-chatboxes"}
                     //icon={TabIcon}
@@ -259,7 +321,13 @@ return(
                             }}>Add</Text>
                         </TouchableOpacity>
                         }
+                    
                     />
+
+                    </Scene>
+                    </Scene>
+
+
 
                     <Scene
                     key="setting"

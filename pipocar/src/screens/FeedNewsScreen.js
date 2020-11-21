@@ -71,6 +71,26 @@ onError = (error) => {
 }
 
 
+renderHeader()
+{
+  return(
+    <View style={{
+      alignSelf:'center',
+      marginTop:10,
+      marginBottom:20,
+    }}>
+     <TouchableOpacity 
+     style={{
+       borderWidth:1,
+       padding:10,
+       borderColor:'#05c7fc'
+     }}>
+       <Text>Add post</Text>
+     </TouchableOpacity>
+   </View>
+  )
+}
+
 
 
 render(){ 
@@ -81,6 +101,7 @@ render(){
         data={this.state.data}
         refreshing={this.state.refreshing} 
         onRefresh={this.onRefresh}
+        ListHeaderComponent={this.renderHeader}
         showsVerticalScrollIndicator ={false}
         showsHorizontalScrollIndicator={false}
        // ListEmptyComponent={this._listEmptyComponent}
@@ -97,6 +118,7 @@ render(){
                marginBottom:0,
                padding:10,
              }}>
+ 
                <View>
               <TouchableOpacity
               onLongPress={() => { console.log(item.userName,item.caption) }}
