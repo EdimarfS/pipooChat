@@ -310,7 +310,7 @@ render(){
   return (
         <View style={{ 
           flex:1, 
-         // backgroundColor:'red'
+          backgroundColor:'#fafafa'
           }}>
         <FlatList
           data={this.state.data}
@@ -318,7 +318,7 @@ render(){
           onRefresh={this.fetchCreateGroup}
           showsVerticalScrollIndicator={false}
           showsHorizontalScrollIndicator={false}
-          numColumns={3}
+         // numColumns={3}
          ListHeaderComponent={this.renderHeader}
          // ListEmptyComponent={this._listEmptyComponent}
          ListFooterComponentStyle={this.footerComponents}
@@ -328,17 +328,18 @@ render(){
             return(
               <TouchableOpacity 
               
-              style={{ flex:1/3}}
+              style={{ flex:1}}
               onPress={()=>{ Actions.messages({ title:item.name, thread:item}) }}>
               <View style={{
-                flex:1/3, 
+                flex:1, 
+
                 marginTop:20,
-                borderWidth:0.3,
+                //borderWidth:0.3,
                 marginLeft:10,
                 marginRight:10,
             
                // padding:10,
-                borderColor:'#05c7fc',
+                //borderColor:'#05c7fc',
               //  height:140,
                 marginBottom:10,
                 }}>
@@ -346,39 +347,72 @@ render(){
       
               <View 
               
-              style={{ flex:1, marginTop:10}}
+              style={{ 
+                flex:1, 
+                marginTop:10, 
+              //  backgroundColor:'red',
+                flexDirection:'row'
+              }}
               >
+              <View>
               <Image
               source={{
                 uri:item.groupcover.groupcover
               }}
               style={{
-                width:80,
-                height:80,
-                alignSelf:'center'
+                width:50,
+                height:50,
+                borderRadius:90,
+                
+                //alignSelf:'center'
               }}
               />
               </View>
+              
+
+
 
               <View style={{ 
                 alignSelf:'center',
-                marginBottom:3,
+                //marginBottom:3,
+               // backgroundColor:'red',
+                marginLeft:20,
                 }}>
               <View>
               <Text style={{
                 fontWeight:'bold',
-                textAlign:'center'
+                textAlign:'center',
+                fontSize:20
               }}>{item.name}</Text>
               </View>
 
               
-              <View style={{ alignSelf:'center'}}>
+              <View>
               <Text style={{
-                fontSize:10,
-                color:'grey'
+                fontSize:14,
+                color:'#05c7fc',
+                marginTop:10,
               }}>{item.category}</Text>
               </View>
               </View>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+              </View>
+
+
 
               </View>
               </TouchableOpacity>
