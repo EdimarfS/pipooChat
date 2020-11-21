@@ -22,7 +22,8 @@ import database from '@react-native-firebase/database';
 import {check, PERMISSIONS, RESULTS} from 'react-native-permissions';
 import ImagePicker from 'react-native-image-crop-picker';
 import style from "react-native-image-blur-loading/src/style";
-
+import { Actions } from 'react-native-router-flux';
+import storage from '@react-native-firebase/storage';
 /* 
 
 <InputDataEdit
@@ -53,6 +54,7 @@ class  UserPersonalEditDataForm extends Component {
   
       this.modalizeFavoritetRef = React.createRef();
       this.state = {
+        imageID: this.uniqueId(),
         userName:'',
         userID:'',
         userLocation:'',
@@ -107,7 +109,9 @@ _checkPermissions = () => {
 
 
 //ImagePicker
-findNewImage = async () => {
+
+  //ImagePicker
+  findNewImage = async () => {
     this._checkPermissions();
 
 
@@ -123,7 +127,7 @@ findNewImage = async () => {
       this.setState({
         imageSelected: true,
         imageId: this.uniqueId(),
-        imageURL: image.path,
+        imageURI: image.path,
         
     })
     }).catch(error => {
@@ -134,6 +138,12 @@ findNewImage = async () => {
 
   })
 }
+
+
+
+
+
+//S4s
 s4 = () => {
     return Math.floor((1 + Math.random()) * 0x10000)
       .toString(16)
@@ -148,7 +158,53 @@ uniqueId = () => {
   };
 
 
-//ImagePic
+
+
+
+  processUpload = (imageUrl) => {
+
+    var userID = auth().currentUser.uid;
+    var userName = auth().currentUser.displayName;
+    var imageID = this.state.imageID;
+    var caption = this.state.caption;
+    var dateTime = Date.now();
+    var timestamp = Math.floor(dateTime / 1000);
+
+    var userObject = {
+
+        userName:this.state.userName,
+        userID:this.state.userID,
+        userLocation:this.state.userLocation,
+        userBio:this.state.userBio,
+        profilepicture:imageUrl,
+
+    }
+
+    //set user photos object
+    database().ref(`/users/${userID}`)
+    .set(userObject);
+    
+    auth().currentUser.updateProfile({
+        photoURL:imageUrl
+    })
+                                          
+                        
+  
+    this.setState({
+        uploading: false,
+        imageURI:'https://firebasestorage.googleapis.com/v0/b/pipocar-61cd8.appspot.com/o/groupCovers%2Fcef4c151ecd7c2fd46180b45fb5bc1a1.jpg?alt=media&token=8beea4de-e1fd-439d-8162-eb7bab61e41c'
+
+      }) 
+
+      
+      
+  
+  
+  //Actions Here
+  Actions.pop();
+  Actions.refresh({});
+  }
+
 
 userAllInfo = () => {
         //fecthing the data first
@@ -183,62 +239,15 @@ onButtonPress()
     
     }
 UploadPublish = () => {
-             
-        this.processUpload(this.state.imageURL);
 
-}
-
-
+        this.uploadImage(this.state.imageURI);
+  }
+  
 
 
 
-processUpload = (imageUrl) => {
-    const { currentUserName } = auth().currentUser.displayName;
-    var userID = auth().currentUser.uid;
 
 
-    var userObject = {
-        userName: this.state.userName,
-        userID: this.state.userID,
-        userLocation: this.state.userLocation,
-        userBio: this.state.userBio,
-    }
-
-
-    //Update database -> This can be accesble in the whole App
-    if(auth().currentUser)
-    { 
-    auth().currentUser.updateProfile({
-        photoURL: imageUrl,
-    });
-    }
-
-/*                 //
-    //Group field --> FIRESTORE
-    firebase.firestore()
-    .collection('POST')
-    .where("userName", "==", currentUserName)
-    .update({
-        profilePictures:imageUrl
-    });
-*/
-
-
-    //Update user  object --> From Real Time database USER
-    database().ref(`/users/${userID}`)
-    .update(userObject);
-/* 
-    //Updating the user photo --> From Real Time database PHOTO                 
-    firebase.database().ref(`/users/photos${userID}`)
-    .update(photoObject); */
-
-    this.setState({
-        uploading: false,
-       // imageSelected: false,
-        caption:'',
-        uri:'',
-    })        
-}
 
 
 
@@ -260,6 +269,7 @@ userAllInfo = () => {
                     userLocation: data.userLocation,
                     userBio: data.userBio,
                     loaded: true,
+                  
       
                 })
                      
@@ -267,52 +277,46 @@ userAllInfo = () => {
       
                 
       }
-    
-      
-      
 
-//UploadImage
-uploadImage = async (uri) => {
-    var that = this;
-    var userID = auth().currentUser.uid;
-    var imageID = this.state.imageID;
-    console.log('ImageID!!!', imageID)
-    var re = /(?:\.([^.]+))?$/;
-    var ext = re.exec(uri)[1];
-    console.log('EXTENSION!!!', ext)
-    this.setState({
-        currentFileType: ext,
-        uploading: true
-      });
-
-    const response = await fetch(uri);
-    const blob = await response.blob();
-    var FilePath = imageID+'.'+that.state.currentFileType;
-    console.log("FilePath!!!!!!!!!!", FilePath);
-    
-
-    const uploadTask = storage().ref('profilePictures/'+userID+'/img').child(FilePath).put(blob);
-    
-
-    uploadTask.on('state_changed', snapshot => {
-        var progress = (( snapshot.bytesTransferred / snapshot.totalBytes)*100).toFixed(0);
-        console.log('Upload is ' + progress + "% complete");
+      uploadImage = async (uri) => {
+        var that = this;
+        var imageID = this.state.imageID;
+        console.log('ImageID!!!', imageID)
+        var re = /(?:\.([^.]+))?$/;
+        var ext = re.exec(uri)[1];
+        console.log('EXTENSION!!!', ext)
         this.setState({
-            progress:progress,
-        });
-    }, function(error) {
-        console.log('error with upload - '+error);
+            currentFileType: ext,
+            uploading: true
+          });
+      
+        const response = await fetch(uri);
+        const blob = await response.blob();
+        var FilePath = imageID+'.'+that.state.currentFileType;
+        console.log("FilePath!!!!!!!!!!", FilePath); 
+        const uploadTask =  storage().ref('POST/img').child(FilePath).put(blob);
+        uploadTask.on('state_changed', snapshot => {
+            var progress = (( snapshot.bytesTransferred / snapshot.totalBytes)*100).toFixed(0);
+            console.log('Upload is ' + progress + "% complete");
+            this.setState({
+                progress:progress,
+            });
+        }, function(error) {
+            console.log('error with upload - '+error);
+      
+        }, function(){
+            that.setState({props:100});
+            uploadTask.snapshot.ref.getDownloadURL().then(function(downloadURL){
+                that.processUpload(downloadURL)
+            })
+        }
+        )
+        
+      
+      
+      }
+      
 
-    }, function(){
-        that.setState({props:100});
-        uploadTask.snapshot.ref.getDownloadURL().then(function(downloadURL){
-            that.processUpload(downloadURL)
-        })
-    }
-    )
-
-
-}
 
 
 render(){ 
@@ -340,24 +344,27 @@ render(){
                 marginBottom:10,
 
             }}>
-{ this.state.imageSelected === true ?  
+{ this.state.imageSelected === false ? 
                 <ImageBlurLoading
-                thumbnailSource={{ uri: this.state.imageURL }}
-                source={{ uri: this.state.imageURL }}
+                thumbnailSource={{ uri: auth().currentUser.photoURL }}
+                source={{ uri: auth().currentUser.photoURL }}
                 style={{
                     width:100,
                     height:100,
                 }}
-                /> :    
+                />  : 
                 <ImageBlurLoading
-                thumbnailSource={{ uri: auth().currentUser.photoURL}}
-                source={{ uri: auth().currentUser.photoURL}}
+                thumbnailSource={{ uri: this.state.imageURI}}
+                source={{ uri: this.state.imageURI }}
                 style={{
                     width:100,
                     height:100,
-            
                 }}
-                /> }
+                /> 
+                
+                
+                }
+
             </TouchableOpacity>
         </View>
         <View style={styles.MarginBettwenFields}>
