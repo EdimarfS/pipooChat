@@ -316,7 +316,17 @@ userAllInfo = () => {
       
       }
       
+onDeleteAccount(){
+    var user = auth().currentUser;
 
+    console.log("DELETED ACCOUNT!!")
+/*     user.delete().then(function() {
+    // User deleted.
+        
+    }, function(error) {
+    // An error happened.
+    }); */
+}
 
 
 render(){ 
@@ -428,7 +438,34 @@ render(){
                 
                 
                       </View>
-                      </TouchableOpacity>
+            </TouchableOpacity>
+        <TouchableOpacity  
+        onPress={this.onDeleteAccount.bind(this)}
+        >
+                      <View  
+                          
+                      style={{
+                      //  marginBottom:30,
+                        justifyContent:'center',
+                        alignSelf:'center',
+                        backgroundColor:'red',
+                        width:'100%',
+                        height:60,
+                        borderRadius:5,
+                        marginTop:10,
+                      }}>  
+                      <Text 
+                      style={{
+                      fontSize:20,
+                      textAlign:'center',
+                      color:'white',
+                      fontWeight:'bold'
+                
+                      }}> Delete my account </Text>
+                
+                
+                      </View>
+            </TouchableOpacity>
         </View>
 
 

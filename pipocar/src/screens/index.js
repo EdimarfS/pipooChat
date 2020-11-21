@@ -13,3 +13,4 @@ export * from './ForgetPasswordScreen';
 export * from './SettingScreen';
 export * from './SplashScreen';
 export * from './StoreScreen';
+export * from './AddProducts';

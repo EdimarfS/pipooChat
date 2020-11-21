@@ -24,7 +24,8 @@ import {
    CreateGroupScreen,
    UserPersonalEditDataScreen,
    PostCommentsScreen,
-   StoreScreen
+   StoreScreen,
+   AddProducts
 
 } from '../screens/index';
 
@@ -129,6 +130,18 @@ return(
                 <Scene
                 key="messagesscreen"
                 component={MessageScreen}
+              //gesturesEnabled={false}
+                hideNavBar
+                
+                />
+            </Scene>
+
+            <Scene 
+            key="products"
+            >
+                <Scene
+                key="productsscreen"
+                component={AddPostScreen}
               //gesturesEnabled={false}
                 hideNavBar
                 
