@@ -38,7 +38,8 @@ class  CreateGroupForm extends Component {
           progress: 0,
           imageURI:'https://firebasestorage.googleapis.com/v0/b/pipocar-61cd8.appspot.com/o/groupCovers%2Fcef4c151ecd7c2fd46180b45fb5bc1a1.jpg?alt=media&token=8beea4de-e1fd-439d-8162-eb7bab61e41c',
           category:'Vehicles',
-          groupname:''
+          groupname:'',
+          condition:'New',
       };
   }
 
@@ -71,7 +72,24 @@ class  CreateGroupForm extends Component {
         key:8,
     }
 
-    ]
+    ];
+
+
+
+    condition_data = [
+        {
+            new: 'New',
+            key:1,
+        
+            used_good : 'Used Good',
+            key:2,
+    
+            used_fair : 'Used Fair',
+            key:3,
+        }
+    
+        ]
+    
 
 
 
@@ -406,6 +424,12 @@ render(){
     
     
     />
+
+
+
+
+
+
       </View>
 
       <View style={{ 
@@ -418,14 +442,63 @@ render(){
       </View>
 
 
+      <FlatList
+    data={this.condition_data}
+    showsVerticalScrollIndicator ={false}
+    showsHorizontalScrollIndicator={false}
+
+    showsHorizontalScrollIndicator={false}
+    keyExtractor={ item => item.key.toString()}
+    //numColumns={3}
+    horizontal 
+    renderItem={({item}) => {
+
+      return(
+        <View style={{ 
+          flexDirection:'row', 
+          marginTop:10,
+       //   backgroundColor:'blue'
+          //backgroundColor:'red',
+          }}>
+          <TouchableOpacity onPress={()=> this.setState({ condition: item.new})}>
+          <View style={styles.categoryContainer1}>
+             <Text style={styles.categoryText1}>#{item.new}</Text>
+          </View>
+          </TouchableOpacity>
+          
+          <TouchableOpacity onPress={()=> this.setState({ condition: item.used_good})}>
+          <View style={styles.categoryContainer2}>
+             <Text style={styles.categoryText2}>#{item.used_good}</Text>
+          </View>
+          </TouchableOpacity>
+          
+          <TouchableOpacity onPress={()=> this.setState({ condition: item.used_fair})}>
+          <View style={styles.categoryContainer3}>
+             <Text style={styles.categoryText3}>#{item.used_fair}</Text>
+          </View>
+          </TouchableOpacity>
+          
+          
+        </View>
+
+      )
+
+    }}
+    
+    
+    />
+
+
       <View style={{ 
         alignSelf:'center',
         marginTop:10,
         flexDirection:'row'
         }}>
       <Text>Condition : </Text>
-      <Text style={{ fontWeight:'bold'}}>{this.state.category}</Text>
+      <Text style={{ fontWeight:'bold'}}>{this.state.condition}</Text>
       </View>
+
+      
 
 
 
