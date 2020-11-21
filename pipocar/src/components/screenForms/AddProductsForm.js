@@ -34,12 +34,14 @@ class  CreateGroupForm extends Component {
           imageID: this.uniqueId(),
           imageSelected: false,
           uploading: false,
-          caption: "",
           progress: 0,
           imageURI:'https://firebasestorage.googleapis.com/v0/b/pipocar-61cd8.appspot.com/o/groupCovers%2Fcef4c151ecd7c2fd46180b45fb5bc1a1.jpg?alt=media&token=8beea4de-e1fd-439d-8162-eb7bab61e41c',
+          title:'',
+          price:'',
           category:'Vehicles',
-          groupname:'',
           condition:'New',
+          location:'',
+
       };
   }
 
@@ -199,7 +201,7 @@ uploadImage = async (uri) => {
   const blob = await response.blob();
   var FilePath = imageID+'.'+that.state.currentFileType;
   console.log("FilePath!!!!!!!!!!", FilePath); 
-  const uploadTask =  storage().ref('POST/img').child(FilePath).put(blob);
+  const uploadTask =  storage().ref('Store/img').child(FilePath).put(blob);
   uploadTask.on('state_changed', snapshot => {
       var progress = (( snapshot.bytesTransferred / snapshot.totalBytes)*100).toFixed(0);
       console.log('Upload is ' + progress + "% complete");
@@ -226,36 +228,28 @@ uploadImage = async (uri) => {
 
 
 processUpload = (imageUrl) => {
-            
-  var groupObject = {
-      groupcover:imageUrl,
 
+    var Title = this.state.title;
+    var Categoty = this.state.category;
+    var Condition = this.state.category;
+    var Location = this.state.location;
+    var Images = this.state.imageURI;
+    
+    
+
+            
+  var storeDATA = {
+        title : Title,
+        category: Categoty,
+        condition: Condition,
+        location: Location,
+        image : Images
   }
 
-  //Group field
+  //Store field 
       
-      firestore()
-      .collection('MESSAGE_THREADS')
-      .add({
-          name: this.state.groupname,
-          groupcover: groupObject,
-          category: this.state.category,
-          latestMessage: {
-              text: `${this.state.groupname} created. Welcome!`,
-              createdAt: new Date().getTime(),
-          }
-      })
-      .then(docRef => { 
-          docRef
-          .collection('MESSAGES')
-          .add({
-              text:`${this.state.groupname} created. Welcome!`,
-              createdAt: new Date().getTime(),
-              system: true,
-              
-          })
-
-      })
+  database().ref(`/store/images`)
+  .set(storeDATA);
 
 
   this.setState({
