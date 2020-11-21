@@ -87,7 +87,9 @@ renderHeader()
        padding:10,
        borderColor:'#05c7fc'
      }}>
-       <Text>Add post</Text>
+       <Text style={{
+         
+       }}>Add post</Text>
      </TouchableOpacity>
    </View>
   )

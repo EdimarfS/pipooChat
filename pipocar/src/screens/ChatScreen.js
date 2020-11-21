@@ -205,8 +205,9 @@ renderHeader = () => {
         </Text>
         </View>
     <View style={{ 
-      justifyContent:'center',
-      alignContent:'center',
+
+      marginLeft:5,
+      marginRight:5
       }}>
       <SearchBar
       placeholder="search a group or business...."

@@ -34,7 +34,7 @@ const styles = {
     TextInputStyle:{
         fontSize:10,
         textAlignVertical: 'top',
-        width:'90%',
+        width:'100%',
         height:40,
         fontSize:15,
         backgroundColor:'#f7f7f7',
@@ -45,7 +45,7 @@ const styles = {
         borderBottomWidth:0.3,
         borderRadius:90,
         borderWidth:1,
-        alignSelf:'center'
+       // alignSelf:'center'
     
       //  borderRadius:10,
         

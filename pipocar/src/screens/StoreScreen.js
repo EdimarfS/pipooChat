@@ -7,7 +7,8 @@ import {
   Text,
   TouchableOpacity,
   FlatList,
-  Image
+  Image,
+  ImageBackground
 } from "react-native";
 import  { 
   SearchBar
@@ -33,9 +34,12 @@ class  StoreScreen extends Component {
       data:[],
       fullData:[],
       found:false,
-      category:'',
       onRefreshing:false,
       searchBarText:'',
+      //This is the state for modalize 
+      category:'',
+      title:'',
+       
 
     }
   }
@@ -55,11 +59,11 @@ UNSAFE_componentWillMount()
 //
 onOPEN()
     {
-        this.modalizeAccountRef.current?.open();
+        this.modalizeRef.current?.open();
     }
 onCLOSE()
     {
-        this.modalizeAccountRef.current?.close();
+        this.modalizeRef.current?.close();
     }
 
 
@@ -141,26 +145,29 @@ fetchCreateGroup = () => {
 
   data = [
     {
-        travel : 'Travel',
+       vehicles : 'Vehicles',
         key:1,
     
-        healthAndwellness : 'Education',
+        properties : 'Properties',
         key:2,
 
-        beauty : 'MeetMe',
+        apperel : 'Apperel',
         key:3,
         
-        food_And_drink : 'Food',
+        classifieds : 'Classifieds',
         key:4,
 
-        motivational_quotes: 'Drinks',
+        electronics: 'Electronics',
         key:5,
 
-        sport : 'Sport',
+        entertaiment : 'Entertaiment',
         key:6,
         
-        other : 'Other',
+        family : 'amily',
         key:7,
+
+        freestuffs : 'Free Stuffs',
+        key:8,
 
 
         
@@ -220,8 +227,11 @@ renderHeader = () => {
         </Text>
         </View>
     <View style={{ 
-      justifyContent:'center',
-      alignContent:'center',
+      flex:1,
+      marginLeft:5,
+      marginRight:5
+   //   justifyContent:'center',
+    //  alignContent:'center',
       }}>
       <SearchBar
       placeholder="search a group or business...."
@@ -245,64 +255,67 @@ renderHeader = () => {
         <View style={{ 
           flexDirection:'row', 
           marginTop:10,
-
-         
        //   backgroundColor:'blue'
           //backgroundColor:'red',
-      
-  
           }}>
-          <TouchableOpacity onPress={()=> this.handleSearch(item.travel)}>
+          <TouchableOpacity onPress={()=> this.handleSearch(item.vehicles)}>
           <View style={styles.categoryContainer1}>
-             <Text style={styles.categoryText1}>#{item.travel}</Text>
+             <Text style={styles.categoryText1}>#{item.vehicles}</Text>
           </View>
           </TouchableOpacity>
           
-          <TouchableOpacity onPress={()=> this.handleSearch(item.healthAndwellness)}>
+          <TouchableOpacity onPress={()=> this.handleSearch(item.properties)}>
           <View style={styles.categoryContainer2}>
-             <Text style={styles.categoryText2}>#{item.healthAndwellness}</Text>
+             <Text style={styles.categoryText2}>#{item.properties}</Text>
           </View>
           </TouchableOpacity>
           
-          <TouchableOpacity onPress={()=> this.handleSearch(item.beauty)}>
+          <TouchableOpacity onPress={()=> this.handleSearch(item.apperel)}>
           <View style={styles.categoryContainer3}>
-             <Text style={styles.categoryText3}>#{item.beauty}</Text>
+             <Text style={styles.categoryText3}>#{item.apperel}</Text>
           </View>
           </TouchableOpacity>
 
-          <TouchableOpacity onPress={()=> this.handleSearch(item.food_And_drink)}>
+          <TouchableOpacity onPress={()=> this.handleSearch(item.classifieds)}>
           <View style={styles.categoryContainer4}>
-             <Text style={styles.categoryText4}>#{item.food_And_drink}</Text>
+             <Text style={styles.categoryText4}>#{item.classifieds}</Text>
           </View>
           </TouchableOpacity>
 
-          <TouchableOpacity onPress={()=> this.handleSearch(item.motivational_quotes)}>
+          <TouchableOpacity onPress={()=> this.handleSearch(item.electronics)}>
           <View style={styles.categoryContainer5}>
-             <Text style={styles.categoryText5}>#{item.motivational_quotes}</Text>
+             <Text style={styles.categoryText5}>#{item.electronics}</Text>
           </View>
           </TouchableOpacity>
 
-          <TouchableOpacity onPress={()=> this.handleSearch(item.sport)}>
+          <TouchableOpacity onPress={()=> this.handleSearch(item.entertaiment)}>
           <View style={styles.categoryContainer7}>
-             <Text style={styles.categoryText7}>#{item.sport}</Text>
+             <Text style={styles.categoryText7}>#{item.entertaiment}</Text>
           </View>
           </TouchableOpacity>
           
-          <TouchableOpacity onPress={()=> this.handleSearch(item.other)}>
+          <TouchableOpacity onPress={()=> this.handleSearch(item.family)}>
           <View style={styles.categoryContainer6}>
-             <Text style={styles.categoryText6}>#{item.other}...</Text>
+             <Text style={styles.categoryText6}>#{item.family}</Text>
+          </View>
+          </TouchableOpacity>
+
+          <TouchableOpacity onPress={()=> this.handleSearch(item.freestuffs)}>
+          <View style={styles.categoryContainer6}>
+             <Text style={styles.categoryText6}>#{item.freestuffs}</Text>
           </View>
           </TouchableOpacity>
           
           
         </View>
+
       )
 
     }}
     
     
     />
-        <View style={{
+      <View style={{
       alignSelf:'center',
       marginTop:10,
       marginBottom:20,
@@ -312,29 +325,20 @@ renderHeader = () => {
      style={{
        borderWidth:1,
        padding:10,
-       borderColor:'#05c7fc'
+       borderColor:'#05c7fc',
+
+       
      }}>
-       <Text>New Product</Text>
+       <Text style={{
+         fontWeight:'bold'
+       }}>New Product</Text>
      </TouchableOpacity>
    </View>
     </View>
     
   )
+      
 }
-
-
-footerComponents = () => {
-
-  return(
-    <View style={{ flex:1,}}>
-      <Text>hello</Text>
-    </View>
-  )
-
-  
-}
-
-
 
 
 render(){ 
@@ -358,20 +362,38 @@ render(){
           keyExtractor={ item => item._id.toString()}
           renderItem={({item}) => {
             console.log(item);
+
+
+
+            
             return(
 
               <View style={{
                 flex:1/2, 
-
+                backgroundColor:'#ffffff',
+                alignSelf:'center',
+                justifyContent:'center',
+                borderRadius:10,
                 marginTop:20,
                 //borderWidth:0.3,
                 marginLeft:10,
                 marginRight:10,
-            
                // padding:10,
                 //borderColor:'#05c7fc',
               //  height:140,
                 marginBottom:10,
+                padding:10,
+                shadowColor: "#000",
+                shadowOffset: {
+                width: 0,
+                height: 1,
+              },
+              shadowOpacity: 0.10,
+              shadowRadius: 2.22,
+              elevation: 3,
+
+
+                
                 }}>
 
       
@@ -387,7 +409,7 @@ render(){
               <TouchableOpacity 
               
               style={{ flex:1/2}}
-              onPress={()=>{ Actions.messages({ title:item.name, thread:item}) }}>
+              onPress={item => this.onOPEN(item)}>
               <View>
               <Image
               source={{
@@ -397,8 +419,7 @@ render(){
                 width:150,
                 height:150,
                 borderRadius:10,
-                
-                //alignSelf:'center'
+                alignSelf:'center'
               }}
               />
               </View>
@@ -490,6 +511,9 @@ render(){
 
 
               </View>
+              
+              
+            
 
 
 
@@ -499,6 +523,26 @@ render(){
 
 
           }}/>
+
+
+                    <Modalize 
+                    ref={this.modalizeRef}
+                    snapPoint={500}
+                    modalHeight={500}
+                     // animationType='fade'
+                    >
+
+                        <View style={{                        
+                        justifyContent:'center',
+                        alignItems:'center'}}>
+                        <Text>{this.state.category}</Text>
+                        <Text>{this.state.title}</Text>
+                        <Text>Nothing</Text>
+                      </View>
+
+                  </Modalize>
+
+
           </View>
 
   
