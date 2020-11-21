@@ -8,6 +8,7 @@ import {
   FlatList,
   TouchableOpacity
 } from "react-native";
+import { Actions } from 'react-native-router-flux';
 import database from '@react-native-firebase/database';
 import firestore from '@react-native-firebase/firestore';
 import ImageBlurLoading from 'react-native-image-blur-loading';
@@ -80,6 +81,7 @@ renderHeader()
       marginBottom:20,
     }}>
      <TouchableOpacity 
+     onPress={()=>{ Actions.addpost()}}
      style={{
        borderWidth:1,
        padding:10,

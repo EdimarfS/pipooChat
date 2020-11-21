@@ -24,6 +24,7 @@ import {
    CreateGroupScreen,
    UserPersonalEditDataScreen,
    PostCommentsScreen,
+   StoreScreen
 
 } from '../screens/index';
 
@@ -306,9 +307,9 @@ return(
                 
                     />
                     <Scene
-                    key="chat"
+                    key="store"
                     hideNavBar
-                    component={ChatScreen}
+                    component={StoreScreen}
                     //iconName={"ios-chatboxes"}
                     //icon={TabIcon}
                     activeTintColor={tint_color}
