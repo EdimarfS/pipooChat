@@ -231,10 +231,15 @@ processUpload = (imageUrl) => {
 
     var Title = this.state.title;
     var Categoty = this.state.category;
+    var author = auth().currentUser.uid;
     var Condition = this.state.condition;
     var Location = this.state.location;
     var imageID = this.state.imageID;
+    var price = this.state.price;
+    var authorprofilepicture = auth().currentUser.photoURL;
+    var authorname = auth().currentUser.displayName;
     const userID = auth().currentUser.uid;
+    const date = new Date().getTime();
     
 
             
@@ -243,15 +248,23 @@ processUpload = (imageUrl) => {
         category: Categoty,
         condition: Condition,
         location: Location,
-        image : imageUrl
+        image : imageUrl,
+        date : date,
+        author:author,
+        authorprofilepicture :authorprofilepicture,
+        authorname: authorname,
+        price:price
+
   }
 
   //Store field 
       
 /*   database().ref(`/store/images`)
   .set(storeDATA); */
-  firestore().collection('STORE')
-  .add(storeDATA);
+
+  firestore().collection('STORE').add(storeDATA);
+ 
+
 
   database().ref(`/users/${userID}/products/${imageID}`)
   .set(storeDATA);

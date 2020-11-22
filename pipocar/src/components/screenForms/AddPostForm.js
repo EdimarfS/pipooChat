@@ -196,6 +196,7 @@ processUpload = (imageUrl) => {
   //set user photos object
   database().ref(`/users/${userID}/photos/${imageID}`)
   .set(photoObject);
+
                                         
                       
 

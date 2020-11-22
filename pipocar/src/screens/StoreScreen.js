@@ -49,10 +49,8 @@ class  StoreScreen extends Component {
 //This will run each time the App is called
 UNSAFE_componentWillMount()
 { 
-
     //we are calling here the funtion to get all the groups
-    this.fetchCreateGroup();
-  
+    this.fetchStore();
 
 }
 
@@ -113,38 +111,10 @@ handleSearch = (text) => {
 
 
 
-//This functions is fetching the group names that we created 
-fetchCreateGroup = () => {
-
-  console.log('Fetch Data Group!!!!!!!!!!!')
- firestore()
- .collection('MESSAGE_THREADS')
- .orderBy('latestMessage.createdAt', 'desc')
- .onSnapshot(querySnapshot => {
-     
-     var  thread  = querySnapshot.docs.map(doc => {
-
-         return {
-             _id : doc.id,
-             name: '',
-             color: '',
-             latestMessage: { text : '' },
-             ...doc.data()
-         }
-     })
-
-     this.setState({
-       data:thread,
-       fullData:thread,
-       onRefresh:false,
-     })
- }) 
-
-}
 
 
 
-  data = [
+  tags = [
     {
        vehicles : 'Vehicles',
         key:1,
@@ -180,29 +150,26 @@ fetchCreateGroup = () => {
 
 
 //Fecthing Groups
-fetchCreateGroup = () => {
+fetchStore = () => {
 
- firestore()
- .collection('MESSAGE_THREADS')
- .orderBy('latestMessage.createdAt', 'desc')
- .onSnapshot(querySnapshot => {
-     
-     var  thread  = querySnapshot.docs.map(doc => {
+  firestore()
+  .collection('STORE')
+  .onSnapshot(querySnapshot => {
+      
+      var  thread  = querySnapshot.docs.map(doc => {
 
-         return {
-             _id : doc.id,
-             name: '',
-             color: '',
-             latestMessage: { text : '' },
-             ...doc.data()
-         }
-     })
+          return {
+              _id : doc.id,
+              ...doc.data()
+          }
+      })
 
-     this.setState({
-       data:thread,
-       fullData:thread,
-     })
- }) 
+      this.setState({
+        data:thread,
+        refreshing:false,
+        loaded:true,
+      })
+  }, this.onError)
 
 }
 
@@ -245,10 +212,9 @@ renderHeader = () => {
 
 
     <FlatList
-    data={this.data}
+    data={this.tags}
     showsVerticalScrollIndicator ={false}
     showsHorizontalScrollIndicator={false}
-
     showsHorizontalScrollIndicator={false}
     keyExtractor={ item => item.key.toString()}
     //numColumns={3}
@@ -259,7 +225,7 @@ renderHeader = () => {
         <View style={{ 
           flexDirection:'row', 
           marginTop:10,
-       //   backgroundColor:'blue'
+          //backgroundColor:'blue'
           //backgroundColor:'red',
           }}>
           <TouchableOpacity onPress={()=> this.handleSearch(item.vehicles)}>
@@ -346,39 +312,37 @@ renderHeader = () => {
 
 
 render(){ 
-  console.log('ChatScreen');
+  console.log('StoreScreen');
   return (
         <View style={{ 
           flex:1, 
-          backgroundColor:'#fafafa'
+          backgroundColor:'#fafafa',
+          
           }}>
-        <FlatList
-          data={this.state.data}
-          refreshing={this.state.onRefreshing}
-          onRefresh={this.fetchCreateGroup}
-          showsVerticalScrollIndicator={false}
-          showsHorizontalScrollIndicator={false}
-          numColumns={2}
-         ListHeaderComponent={this.renderHeader}
-         
-         // ListEmptyComponent={this._listEmptyComponent}
-         ListFooterComponentStyle={this.footerComponents}
-          keyExtractor={ item => item._id.toString()}
-          renderItem={({item}) => {
-            console.log(item);
+           <FlatList
+        data={this.state.data}
+        refreshing={this.state.refreshing} 
+        onRefresh={this.onRefresh}
+        ListHeaderComponent={this.renderHeader}
+        showsVerticalScrollIndicator ={false}
+        numColumns={2}
+        showsHorizontalScrollIndicator={false}
+       // ListEmptyComponent={this._listEmptyComponent}
+        keyExtractor={ item => item._id.toString()}
+       // numColumns={3}
+     //   horizontal ={true}
 
+        renderItem={({item}) => {
 
-
-            
-            return(
-
-              <View style={{
+          console.log('ITEM!!!!!!!!', item);
+          return(
+           <View style={{
                 flex:1/2, 
                 backgroundColor:'#ffffff',
                 alignSelf:'center',
                 justifyContent:'center',
                 borderRadius:10,
-                marginTop:20,
+                //marginTop:20,
                 //borderWidth:0.3,
                 marginLeft:10,
                 marginRight:10,
@@ -400,6 +364,35 @@ render(){
                 
                 }}>
 
+
+              <View style={{
+                flexDirection:'row',
+                alignSelf:'center',
+                justifyContent:'center',
+                //marginTop:20,
+              }}>
+                <Image
+                style={{
+                  width:30,
+                  height:30,
+                  marginRight:10,
+                  borderRadius:50,
+                  alignSelf:'center',
+              
+                }}
+                source={{
+                  uri:item.authorprofilepicture
+                }}
+                
+                />
+                <Text style={{
+                      alignSelf:'center',
+                      fontWeight:'bold'
+                }}>
+                  {item.authorname}
+                </Text>
+                
+              </View>
       
               <View 
               
@@ -417,7 +410,7 @@ render(){
               <View>
               <Image
               source={{
-                uri:item.groupcover.groupcover
+                uri:item.image
               }}
               style={{
                 width:150,
@@ -445,8 +438,11 @@ render(){
               marginTop:10,
                 
                 fontSize:15
-              }}>{item.name.substring(0,14)+'...'}</Text>
+              }}>{item.title.substring(0,14)+'...'}</Text>
               </View>
+
+
+
 
 
               <View style={{ 
@@ -470,16 +466,16 @@ render(){
                // backgroundColor:'red'
                 }}>
               <Text style={{
-                fontSize:14,
+                fontSize:15,
                 color:'grey',
                // fontWeight:'bold',
                 marginTop:10,
                // alignSelf:'center'
-              }}>$11</Text>
+              }}>${item.price}</Text>
 
               <View>
                 <Text style={{
-                fontSize:14,
+                fontSize:15,
                 color:'grey',
                // fontWeight:'bold',
                 marginTop:10,
@@ -518,46 +514,19 @@ render(){
 
               </View>
 
-            )
-
-
-          }}/>
-
-
-                    <Modalize 
-                    ref={this.modalizeRef}
-                    snapPoint={500}
-                    modalHeight={500}
-                     // animationType='fade'
-                    >
-
-                        <View style={{                        
-                        justifyContent:'center',
-                        alignItems:'center'}}>
-                        <Text>{this.state.category}</Text>
-                        <Text>{this.state.title}</Text>
-                        <Text>Nothing</Text>
-                      </View>
-
-                  </Modalize>
-
-
-          </View>
-
-  
-
-        
-
-
-
-
-
+              
     
+          )
+        }}
+     
 
- 
-  );
-}
-}
+
+         
+
+
+/>
+</View>);
+}}
 
 
 

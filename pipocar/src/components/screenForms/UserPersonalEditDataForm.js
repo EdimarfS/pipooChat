@@ -208,7 +208,6 @@ uniqueId = () => {
 
 userAllInfo = () => {
         //fecthing the data first
-      
             const { currentUser } = auth();
             database().ref(`/users/${currentUser.uid}`)
             .on('value', snapshot => {
