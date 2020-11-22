@@ -233,8 +233,8 @@ processUpload = (imageUrl) => {
     var Categoty = this.state.category;
     var Condition = this.state.category;
     var Location = this.state.location;
-    var Images = this.state.imageURI;
-    
+    var imageID = this.state.imageID;
+    const userID = auth().currentUser.uid;
     
 
             
@@ -243,12 +243,15 @@ processUpload = (imageUrl) => {
         category: Categoty,
         condition: Condition,
         location: Location,
-        image : Images
+        image : imageUrl
   }
 
   //Store field 
       
-  database().ref(`/store/images`)
+/*   database().ref(`/store/images`)
+  .set(storeDATA); */
+
+  database().ref(`/users/${userID}/products/${imageID}`)
   .set(storeDATA);
 
 
@@ -510,7 +513,7 @@ render(){
         maxLength={20}
         value={this.state.groupname}
         onChangeText={(text) => this.setState({
-           groupname:text,
+           title:text,
         })} 
         />
       </View>
@@ -526,9 +529,9 @@ render(){
         autoCapitalize="none"
         autoCorrect={false}
         maxLength={20}
-        value={this.state.groupname}
+        value={this.state.price}
         onChangeText={(text) => this.setState({
-           groupname:text,
+           price:text,
         })} 
         />
       </View>
@@ -543,9 +546,9 @@ render(){
         autoCapitalize="none"
         autoCorrect={false}
         maxLength={20}
-        value={this.state.groupname}
+        value={this.state.category}
         onChangeText={(text) => this.setState({
-           groupname:text,
+           category:text,
         })} 
         />
       </View>
@@ -560,9 +563,9 @@ render(){
         autoCapitalize="none"
         autoCorrect={false}
         maxLength={20}
-        value={this.state.groupname}
+        value={this.state.location}
         onChangeText={(text) => this.setState({
-           groupname:text,
+           location:text,
         })} 
         />
       </View>
