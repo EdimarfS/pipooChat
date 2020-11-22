@@ -231,7 +231,7 @@ processUpload = (imageUrl) => {
 
     var Title = this.state.title;
     var Categoty = this.state.category;
-    var Condition = this.state.category;
+    var Condition = this.state.condition;
     var Location = this.state.location;
     var imageID = this.state.imageID;
     const userID = auth().currentUser.uid;
@@ -250,6 +250,8 @@ processUpload = (imageUrl) => {
       
 /*   database().ref(`/store/images`)
   .set(storeDATA); */
+  firestore().collection('STORE')
+  .add(storeDATA);
 
   database().ref(`/users/${userID}/products/${imageID}`)
   .set(storeDATA);
@@ -511,7 +513,7 @@ render(){
         autoCapitalize="none"
         autoCorrect={false}
         maxLength={20}
-        value={this.state.groupname}
+        value={this.state.title}
         onChangeText={(text) => this.setState({
            title:text,
         })} 
