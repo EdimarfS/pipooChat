@@ -70,7 +70,7 @@ render(){
          borderWidth:1,
          borderColor:'#05c7fc',
          padding:10,  
-         borderRadius:50,
+         borderRadius:90,
 
 
          
@@ -82,7 +82,7 @@ render(){
          style={{
            width:110,
            height:100,
-           borderRadius:50,
+           borderRadius:90,
 
          }}
          

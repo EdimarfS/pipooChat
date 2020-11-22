@@ -95,7 +95,9 @@ renderHeader()
    </View>
   )
 }
-
+onRefresh = () => {
+  this.fetchPost();
+}
 
 
 render(){ 

@@ -199,10 +199,11 @@ renderHeader = () => {
         style={{
           fontSize:50,
           fontWeight:'bold',
-          marginTop:40,
+          marginTop:10,
+          marginBottom:40
          // backgroundColor:'red'
         }}>
-          Rooms 
+          Chats 
         </Text>
         </View>
     <View style={{ 
@@ -221,7 +222,6 @@ renderHeader = () => {
     data={this.data}
     showsVerticalScrollIndicator ={false}
     showsHorizontalScrollIndicator={false}
-
     showsHorizontalScrollIndicator={false}
     keyExtractor={ item => item.key.toString()}
     //numColumns={3}
@@ -241,45 +241,47 @@ renderHeader = () => {
           }}>
           <TouchableOpacity onPress={()=> this.handleSearch(item.travel)}>
           <View style={styles.categoryContainer1}>
-             <Text style={styles.categoryText1}>#{item.travel}</Text>
+             <Text style={styles.categoryText1}>@{item.travel}</Text>
           </View>
           </TouchableOpacity>
           
           <TouchableOpacity onPress={()=> this.handleSearch(item.healthAndwellness)}>
           <View style={styles.categoryContainer2}>
-             <Text style={styles.categoryText2}>#{item.healthAndwellness}</Text>
+             <Text style={styles.categoryText2}>@{item.healthAndwellness}</Text>
           </View>
           </TouchableOpacity>
           
           <TouchableOpacity onPress={()=> this.handleSearch(item.beauty)}>
           <View style={styles.categoryContainer3}>
-             <Text style={styles.categoryText3}>#{item.beauty}</Text>
+             <Text style={styles.categoryText3}>@{item.beauty}</Text>
           </View>
           </TouchableOpacity>
 
           <TouchableOpacity onPress={()=> this.handleSearch(item.food_And_drink)}>
           <View style={styles.categoryContainer4}>
-             <Text style={styles.categoryText4}>#{item.food_And_drink}</Text>
+             <Text style={styles.categoryText4}>@{item.food_And_drink}</Text>
           </View>
           </TouchableOpacity>
 
           <TouchableOpacity onPress={()=> this.handleSearch(item.motivational_quotes)}>
           <View style={styles.categoryContainer5}>
-             <Text style={styles.categoryText5}>#{item.motivational_quotes}</Text>
+             <Text style={styles.categoryText5}>@{item.motivational_quotes}</Text>
           </View>
           </TouchableOpacity>
 
           <TouchableOpacity onPress={()=> this.handleSearch(item.sport)}>
           <View style={styles.categoryContainer7}>
-             <Text style={styles.categoryText7}>#{item.sport}</Text>
+             <Text style={styles.categoryText7}>@{item.sport}</Text>
           </View>
           </TouchableOpacity>
           
           <TouchableOpacity onPress={()=> this.handleSearch(item.other)}>
           <View style={styles.categoryContainer6}>
-             <Text style={styles.categoryText6}>#{item.other}...</Text>
+             <Text style={styles.categoryText6}>@{item.other}...</Text>
           </View>
           </TouchableOpacity>
+
+          
           
           
         </View>
@@ -328,6 +330,9 @@ render(){
           renderItem={({item}) => {
             console.log(item);
             return(
+
+              <View>
+
               <TouchableOpacity 
               
               style={{ flex:1}}
@@ -335,7 +340,8 @@ render(){
               <View style={{
                 flex:1, 
 
-                marginTop:20,
+
+                marginTop:10,
                 //borderWidth:0.3,
                 marginLeft:10,
                 marginRight:10,
@@ -352,8 +358,8 @@ render(){
               
               style={{ 
                 flex:1, 
-                marginTop:10, 
-              //  backgroundColor:'red',
+                marginTop:1, 
+               //backgroundColor:'red',
                 flexDirection:'row',
                 
               }}
@@ -364,9 +370,9 @@ render(){
                 uri:item.groupcover.groupcover
               }}
               style={{
-                width:80,
-                height:80,
-                borderRadius:50,
+                width:50,
+                height:50,
+                borderRadius:90,
                // borderWidth:2,
               //borderColor:'#05c7fc',
               //borderColor:'#00ff80',
@@ -402,7 +408,8 @@ render(){
               <View>
               <Text style={{
                 fontSize:14,
-                color:'#05c7fc',
+                //color:'#05c7fc',
+                color:'#e0e0e0',
                 marginTop:10,
               }}>{item.category}</Text>
               </View>
@@ -428,6 +435,7 @@ render(){
 
               </View>
               </TouchableOpacity>
+              </View>
             )
 
 

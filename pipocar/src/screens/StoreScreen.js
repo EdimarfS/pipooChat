@@ -35,7 +35,7 @@ class  StoreScreen extends Component {
       data:[],
       fullData:[],
       found:false,
-      onRefreshing:false,
+      refreshing:false,
       searchBarText:'',
       //This is the state for modalize 
       category:'',
@@ -72,7 +72,7 @@ handleSearch = (text) => {
   const formatQuery = text.toLowerCase();
   const data = _.filter(this.state.fullData, user => {
  
-          if(user.category.toLowerCase().includes(formatQuery) || user.name.toLowerCase().includes(formatQuery) )
+          if(user.category.toLowerCase().includes(formatQuery) || user.title.toLowerCase().includes(formatQuery) )
          {
            this.setState({
              found:true,
@@ -154,6 +154,7 @@ fetchStore = () => {
 
   firestore()
   .collection('STORE')
+  .orderBy('date', 'desc')
   .onSnapshot(querySnapshot => {
       
       var  thread  = querySnapshot.docs.map(doc => {
@@ -166,6 +167,7 @@ fetchStore = () => {
 
       this.setState({
         data:thread,
+        fullData:thread,
         refreshing:false,
         loaded:true,
       })
@@ -214,6 +216,8 @@ renderHeader = () => {
     <FlatList
     data={this.tags}
     showsVerticalScrollIndicator ={false}
+    refreshing={this.state.refreshing} 
+    onRefresh={this.onRefresh}
     showsHorizontalScrollIndicator={false}
     showsHorizontalScrollIndicator={false}
     keyExtractor={ item => item.key.toString()}
@@ -310,6 +314,13 @@ renderHeader = () => {
       
 }
 
+/* onRefresh=()=>{
+  this.fetchStore();
+} */
+
+onRefresh = () => {
+  this.fetchStore();
+}
 
 render(){ 
   console.log('StoreScreen');
