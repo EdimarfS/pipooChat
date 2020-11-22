@@ -88,9 +88,7 @@ renderHeader()
        padding:10,
        borderColor:'#05c7fc'
      }}>
-       <Text style={{
-         
-       }}>Add post</Text>
+       <Text style={{ fontWeight:'bold'}}>Add post</Text>
      </TouchableOpacity>
    </View>
   )
@@ -119,10 +117,8 @@ render(){
         renderItem={({item}) => {
           return (
             <View style={{
-              // flex:1,
-
                justifyContent:'center',
-               marginTop:2,
+               marginTop:1,
                marginBottom:0,
                padding:10,
              }}>

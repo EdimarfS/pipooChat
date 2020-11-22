@@ -409,7 +409,7 @@ render(){
               <Text style={{
                 fontSize:14,
                 //color:'#05c7fc',
-                color:'#e0e0e0',
+                color:'#b3b3b3',
                 marginTop:10,
               }}>{item.category}</Text>
               </View>

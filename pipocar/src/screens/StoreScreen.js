@@ -72,7 +72,13 @@ handleSearch = (text) => {
   const formatQuery = text.toLowerCase();
   const data = _.filter(this.state.fullData, user => {
  
-          if(user.category.toLowerCase().includes(formatQuery) || user.title.toLowerCase().includes(formatQuery) )
+          if(user.category.toLowerCase().includes(formatQuery) 
+          || user.title.toLowerCase().includes(formatQuery)  
+          || user.authorname.toLowerCase().includes(formatQuery)
+          || user.location.toLowerCase().includes(formatQuery)
+          || user.price.toLowerCase().includes(formatQuery)
+          
+          )
          {
            this.setState({
              found:true,
@@ -134,7 +140,7 @@ handleSearch = (text) => {
         entertaiment : 'Entertaiment',
         key:6,
         
-        family : 'amily',
+        family : 'Family',
         key:7,
 
         freestuffs : 'Free Stuffs',
@@ -193,7 +199,8 @@ renderHeader = () => {
         style={{
           fontSize:50,
           fontWeight:'bold',
-          marginBottom:10
+          marginBottom:10,
+          color:'grey'
          // backgroundColor:'red'
         }}>
           Store
@@ -234,49 +241,49 @@ renderHeader = () => {
           }}>
           <TouchableOpacity onPress={()=> this.handleSearch(item.vehicles)}>
           <View style={styles.categoryContainer1}>
-             <Text style={styles.categoryText1}>#{item.vehicles}</Text>
+             <Text style={styles.categoryText1}>@{item.vehicles}</Text>
           </View>
           </TouchableOpacity>
           
           <TouchableOpacity onPress={()=> this.handleSearch(item.properties)}>
           <View style={styles.categoryContainer2}>
-             <Text style={styles.categoryText2}>#{item.properties}</Text>
+             <Text style={styles.categoryText2}>@{item.properties}</Text>
           </View>
           </TouchableOpacity>
           
           <TouchableOpacity onPress={()=> this.handleSearch(item.apperel)}>
           <View style={styles.categoryContainer3}>
-             <Text style={styles.categoryText3}>#{item.apperel}</Text>
+             <Text style={styles.categoryText3}>@{item.apperel}</Text>
           </View>
           </TouchableOpacity>
 
           <TouchableOpacity onPress={()=> this.handleSearch(item.classifieds)}>
           <View style={styles.categoryContainer4}>
-             <Text style={styles.categoryText4}>#{item.classifieds}</Text>
+             <Text style={styles.categoryText4}>@{item.classifieds}</Text>
           </View>
           </TouchableOpacity>
 
           <TouchableOpacity onPress={()=> this.handleSearch(item.electronics)}>
           <View style={styles.categoryContainer5}>
-             <Text style={styles.categoryText5}>#{item.electronics}</Text>
+             <Text style={styles.categoryText5}>@{item.electronics}</Text>
           </View>
           </TouchableOpacity>
 
           <TouchableOpacity onPress={()=> this.handleSearch(item.entertaiment)}>
           <View style={styles.categoryContainer7}>
-             <Text style={styles.categoryText7}>#{item.entertaiment}</Text>
+             <Text style={styles.categoryText7}>@{item.entertaiment}</Text>
           </View>
           </TouchableOpacity>
           
           <TouchableOpacity onPress={()=> this.handleSearch(item.family)}>
           <View style={styles.categoryContainer6}>
-             <Text style={styles.categoryText6}>#{item.family}</Text>
+             <Text style={styles.categoryText6}>@{item.family}</Text>
           </View>
           </TouchableOpacity>
 
           <TouchableOpacity onPress={()=> this.handleSearch(item.freestuffs)}>
           <View style={styles.categoryContainer6}>
-             <Text style={styles.categoryText6}>#{item.freestuffs}</Text>
+             <Text style={styles.categoryText6}>@{item.freestuffs}</Text>
           </View>
           </TouchableOpacity>
           
@@ -293,6 +300,7 @@ renderHeader = () => {
       alignSelf:'center',
       marginTop:10,
       marginBottom:20,
+      marginTop:30
     }}>
      <TouchableOpacity 
      onPress={()=>{ Actions.products()}}
