@@ -6,7 +6,8 @@ package="com.pipocar">
 
   <uses-feature android:name="android.hardware.camera" android:required="false" />
   <uses-feature android:name="android.hardware.camera.front" android:required="false" />
-
+  <!-- Optional permissions -->
+  <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <application
       android:name=".MainApplication"
       uesCleartextTraffic="true"

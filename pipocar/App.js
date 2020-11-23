@@ -5,6 +5,7 @@ import {
   StatusBar
 } from 'react-native';
 import OneSignal from 'react-native-onesignal';
+import expo from 'expo-camera';
 import { 
   IntroductionScreen, 
   LoginScreen, 
