@@ -14,11 +14,12 @@ import {
   UserPersonalDataScreen,
   SettingScreen,
   ChatScreen,
-  AddPostScreen
+  AddPostScreen,
+  SplashScreen
 } from './src/screens';
 import './src/fixtimerbug';
 import SignForm from './src/components/screenForms/SignForm';
-//import SplashLoading from './src/screens/SplashLoadingCounter';
+import SplashLoading from './src/screens/SplashLoadingCounter';
 import Router from './src/router/Router';
 import auth from '@react-native-firebase/auth';
 import {createStore, applyMiddleware} from 'redux';
@@ -62,11 +63,11 @@ class  App extends Component{
     componentDidMount()
     {
       OneSignal.removeEventListener('opened', this.onOpened) 
-/*       if(!this.state.loading)
+      if(!this.state.loading)
       {    
         SplashLoading.load(app => this.setState({ loading: true}));
       }
- */
+
     }
 
 
@@ -84,7 +85,7 @@ class  App extends Component{
 
 
       <Provider store={store}>
-              <Router/>
+          {this.state.loading ? <SplashScreen/> : <SplashScreen/>}
       </Provider>
 
 

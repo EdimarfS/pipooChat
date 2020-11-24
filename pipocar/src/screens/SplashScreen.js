@@ -5,6 +5,7 @@ import React, { Component } from "react";
 import { 
   View, 
   Text, 
+  Image
 } from "react-native";
 
 class  SplashScreen extends Component {
@@ -15,10 +16,20 @@ class  SplashScreen extends Component {
 render(){ 
   console.log('SplashScreen');
   return (
-    <View>
+    <View style={{
+      flex:1,
+      justifyContent:'center',
+    }}>
+
+            <View 
+            style={{
+            alignSelf:'center'
+            
+            }}>
 
 
             <Text> SplashScreen </Text>
+            </View>
 
     </View>
 
