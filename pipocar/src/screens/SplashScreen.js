@@ -8,9 +8,11 @@ import {
   Image
 } from "react-native";
 
+
+
+
+
 class  SplashScreen extends Component {
-
-
 
 
 render(){ 
@@ -19,16 +21,15 @@ render(){
     <View style={{
       flex:1,
       justifyContent:'center',
+      backgroundColor:'#00ccff'
     }}>
-
             <View 
-            style={{
-            alignSelf:'center'
-            
-            }}>
-
-
-            <Text> SplashScreen </Text>
+            style={{ alignSelf:'center' }}>
+            <Text style={{
+              fontSize:50,
+              fontWeight:'bold',
+              color:'#ffffff'
+            }}> Pipooooca </Text>
             </View>
 
     </View>

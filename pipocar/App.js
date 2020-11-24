@@ -85,7 +85,7 @@ class  App extends Component{
 
 
       <Provider store={store}>
-          {this.state.loading ? <SplashScreen/> : <SplashScreen/>}
+          {this.state.loading ? <Router/> : <SplashScreen/>}
       </Provider>
 
 
