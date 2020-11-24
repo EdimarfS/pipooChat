@@ -7,7 +7,8 @@ import {
   Text, 
   TouchableOpacity,
   Image,
-  FlatList
+  FlatList,
+  Alert
 } from "react-native";
 import { 
 InputForPosts,
@@ -36,11 +37,11 @@ class  CreateGroupForm extends Component {
           uploading: false,
           progress: 0,
           imageURI:'https://firebasestorage.googleapis.com/v0/b/pipocar-61cd8.appspot.com/o/groupCovers%2Fcef4c151ecd7c2fd46180b45fb5bc1a1.jpg?alt=media&token=8beea4de-e1fd-439d-8162-eb7bab61e41c',
-          title:'',
-          price:'',
+          title:'My product',
+          price:'5',
           category:'Vehicles',
           condition:'New',
-          location:'',
+          location:'Angola',
 
       };
   }
@@ -289,7 +290,24 @@ processUpload = (imageUrl) => {
 onButtonPress()
 {
 
-     this.UploadPublish();
+  Alert.alert(
+    this.state.title,
+    `Make sure all the iformation is correct before create it`,
+    [
+      {
+        text: "Cancel",
+        onPress: () => console.log("Cancel Pressed"),
+        style: "cancel"
+      },
+      { text: "OK", onPress: () => { 
+            this.UploadPublish();
+
+       }}
+    ],
+    { cancelable: false }
+  );
+
+    // this.UploadPublish();
      
 
    
