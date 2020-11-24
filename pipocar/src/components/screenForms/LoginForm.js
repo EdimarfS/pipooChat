@@ -122,7 +122,8 @@ render(){
       <Text 
       style={{
       fontSize:20,
-      fontWeight:'bold'
+      fontWeight:'bold',
+      color:'#05c7fc'
 
       }}>Forget your accout</Text>
       </View>
@@ -142,7 +143,7 @@ render(){
       fontSize:20,
       textAlign:'center',
       fontWeight:'bold',
-      color:'#05c7fc'
+      color:'black'
 
       }}>Sign In</Text>
       </View>

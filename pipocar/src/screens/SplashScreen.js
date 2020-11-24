@@ -21,14 +21,14 @@ render(){
     <View style={{
       flex:1,
       justifyContent:'center',
-      backgroundColor:'#00ccff'
+      backgroundColor:'white'
     }}>
             <View 
             style={{ alignSelf:'center' }}>
             <Text style={{
               fontSize:50,
               fontWeight:'bold',
-              color:'#ffffff'
+              color:'#00ccff'
             }}> Pipooooca </Text>
             </View>
 
