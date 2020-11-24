@@ -161,6 +161,7 @@ android {
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
+        
     }
 
     defaultConfig {
@@ -170,7 +171,7 @@ android {
         versionCode 1
         versionName "1.0"
         multiDexEnabled true
-        vectorDrawables.useSupportLibrary = true
+        vectorDrawables.useSupportLibrary true
         missingDimensionStrategy 'react-native-camera', 'general'
 
 
@@ -227,6 +228,13 @@ dependencies {
 
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.0.0"
     addUnimodulesDependencies()
+    
+  // implementation 'androidx.multidex:multidex:2.0.1'
+    implementation 'com.android.support:multidex:1.0.3'
+
+    def multidex_version = "2.0.1"
+    implementation 'androidx.multidex:multidex:$multidex_version'
+
 
 
     debugImplementation("com.facebook.flipper:flipper:${FLIPPER_VERSION}") {
