@@ -10,7 +10,8 @@ package="com.pipocar">
   <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <application
       android:name=".MainApplication"
-      uesCleartextTraffic="true"
+      android:largeHeap="true"
+      usesCleartextTraffic="true"
       android:label="@string/app_name"
       android:icon="@mipmap/ic_launcher"
       android:roundIcon="@mipmap/ic_launcher_round"
