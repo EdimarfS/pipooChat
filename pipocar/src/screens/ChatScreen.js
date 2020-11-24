@@ -7,7 +7,8 @@ import {
   Text,
   TouchableOpacity,
   FlatList,
-  Image
+  Image,
+  Alert
 } from "react-native";
 import  { 
   SearchBar
@@ -15,9 +16,33 @@ import  {
 import firestore from '@react-native-firebase/firestore';
 import { Actions } from 'react-native-router-flux';
 import _ from 'lodash';
+import auth from '@react-native-firebase/auth';
 
 /*
-
+                if(item.author === auth().currentUser.uid){
+                  Alert.alert(
+                    item.userName,
+                    `Do you want to delete ${item.caption}`,
+                    [
+                      {
+                        text: "Cancel",
+                        onPress: () => console.log("Cancel Pressed"),
+                        style: "cancel"
+                      },
+                      { text: "OK", onPress: () => {
+                        firestore().collection('POST')
+                        .doc(item._id)
+                        .delete()
+                        .then(()=>{
+                          console.log('Document Successfully deleted');
+                        })
+                        .catch(()=>{
+                          console.log('Something went wrong, could not be deleted');
+                        })
+                      } }
+                    ],
+                    { cancelable: false }
+                  );}
 
 */
 
@@ -334,9 +359,37 @@ render(){
               <View>
 
               <TouchableOpacity 
-              
               style={{ flex:1}}
-              onPress={()=>{ Actions.messages({ title:item.name, thread:item}) }}>
+              onPress={()=>{ Actions.messages({ title:item.name, thread:item}) }}
+              onLongPress={()=>{
+                if(item.author === auth().currentUser.uid){
+                  Alert.alert(
+                    item.userName,
+                    `Do you want to delete ${item.caption}`,
+                    [
+                      {
+                        text: "Cancel",
+                        onPress: () => console.log("Cancel Pressed"),
+                        style: "cancel"
+                      },
+                      { text: "OK", onPress: () => {
+                        firestore().collection('MESSAGE_THREADS')
+                        .doc(item._id)
+                        .delete()
+                        .then(()=>{
+                          console.log('Document Successfully deleted');
+                        })
+                        .catch(()=>{
+                          console.log('Something went wrong, could not be deleted');
+                        })
+                      } }
+                    ],
+                    { cancelable: false }
+                  )}
+
+
+              }}
+              >
               <View style={{
                 flex:1, 
 
@@ -401,7 +454,7 @@ render(){
                 fontWeight:'bold',
                 textAlign:'center',
                 fontSize:15
-              }}>{item.name}</Text>
+              }}>{item.name.substring(0,14)+'...'}</Text>
               </View>
 
               
@@ -414,17 +467,6 @@ render(){
               }}>{item.category}</Text>
               </View>
               </View>
-
-
-
-
-
-
-
-
-
-
-
 
 
 
