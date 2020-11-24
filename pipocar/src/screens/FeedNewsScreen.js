@@ -6,7 +6,8 @@ import {
   View, 
   Text, 
   FlatList,
-  TouchableOpacity
+  TouchableOpacity,
+  Alert
 } from "react-native";
 import { Actions } from 'react-native-router-flux';
 import database from '@react-native-firebase/database';
@@ -14,7 +15,19 @@ import firestore from '@react-native-firebase/firestore';
 import ImageBlurLoading from 'react-native-image-blur-loading';
 import * as tf from '@tensorflow/tfjs';
 import * as mobilrnet from '@tensorflow-models/mobilenet';
+import auth from '@react-native-firebase/auth';
+/*
+                      firestore().collection('STORE')
+                      .doc(item._id)
+                      .delete()
+                      .then(()=>{
+                        console.log('Document Successfully deleted');
+                      })
+                      .catch(()=>{
+                        console.log('Something went wrong, could not be deleted');
+                      })
 
+*/
 
 
 class  FeedNewsScreen extends Component {
@@ -126,6 +139,34 @@ render(){
                <View>
               <TouchableOpacity
               onLongPress={() => { console.log(item.userName,item.caption) }}
+              onPress={()=>{
+                if(item.author === auth().currentUser.uid){
+                  Alert.alert(
+                    item.userName,
+                    `Do you want to delete ${item.caption}`,
+                    [
+                      {
+                        text: "Cancel",
+                        onPress: () => console.log("Cancel Pressed"),
+                        style: "cancel"
+                      },
+                      { text: "OK", onPress: () => {
+                        firestore().collection('POST')
+                        .doc(item._id)
+                        .delete()
+                        .then(()=>{
+                          console.log('Document Successfully deleted');
+                        })
+                        .catch(()=>{
+                          console.log('Something went wrong, could not be deleted');
+                        })
+                      } }
+                    ],
+                    { cancelable: false }
+                  );}
+              }}
+
+
               >
                <View>
                  <ImageBlurLoading
