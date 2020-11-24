@@ -8,7 +8,8 @@ import {
   TouchableOpacity,
   FlatList,
   Image,
-  Alert
+  Alert,
+  Modal
 } from "react-native";
 import  { 
   SearchBar
@@ -69,7 +70,7 @@ UNSAFE_componentWillMount()
 { 
 
     //we are calling here the funtion to get all the groups
-    this.fetchCreateGroup();
+    this.fetchCREATE_GROUP();
   
 
 }
@@ -119,7 +120,7 @@ handleSearch = (text) => {
 
 
 //This functions is fetching the group names that we created 
-fetchCreateGroup = () => {
+fetchCREATE_GROUP = () => {
 
   console.log('Fetch Data Group!!!!!!!!!!!')
  firestore()
@@ -208,6 +209,25 @@ fetchCreateGroup = () => {
 
 }
 
+
+emptyGROUP = () => {
+
+  return(
+    <View 
+    style={{
+      justifyContent:'center',
+      alignSelf:'center',
+      marginTop:'30%',
+    }}>
+      <Text 
+      style={{
+        fontWeight:'bold',
+        color:'#a6a6a6'
+      }}
+      >No item found, sorry</Text>
+    </View>
+  )
+}
 
 
 
@@ -344,7 +364,8 @@ render(){
         <FlatList
           data={this.state.data}
           refreshing={this.state.onRefreshing}
-          onRefresh={this.fetchCreateGroup}
+          onRefresh={this.fetchCREATE_GROUP}
+          ListEmptyComponent={this.emptyGROUP}
           showsVerticalScrollIndicator={false}
           showsHorizontalScrollIndicator={false}
          // numColumns={3}
@@ -361,7 +382,7 @@ render(){
               <TouchableOpacity 
               style={{ flex:1}}
               onPress={()=>{ Actions.messages({ title:item.name, thread:item}) }}
-              onLongPress={()=>{
+               onLongPress={()=>{
                 if(item.author === auth().currentUser.uid){
                   Alert.alert(
                     item.userName,
@@ -388,7 +409,8 @@ render(){
                   )}
 
 
-              }}
+              }} 
+              //onLongPress={()=>{ console.log(' GROUP LONG PRESS')}}
               >
               <View style={{
                 flex:1, 

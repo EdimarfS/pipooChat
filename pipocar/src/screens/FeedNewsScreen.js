@@ -138,8 +138,8 @@ render(){
  
                <View>
               <TouchableOpacity
-              onLongPress={() => { console.log(item.userName,item.caption) }}
-              onPress={()=>{
+              //onLongPress={() => { console.log(item.userName,item.caption) }}
+              onLongPress={()=>{
                 if(item.author === auth().currentUser.uid){
                   Alert.alert(
                     item.userName,
@@ -182,7 +182,7 @@ render(){
                </TouchableOpacity>
                <View style={{
                  top:10,
-                 marginBottom:'14%',
+                 marginBottom:'3%',
                  flexDirection:'row'
                }}>
                  <ImageBlurLoading

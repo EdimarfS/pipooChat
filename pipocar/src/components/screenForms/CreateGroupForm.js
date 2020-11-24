@@ -223,7 +223,7 @@ processUpload = (imageUrl) => {
           name: this.state.groupname,
           groupcover: groupObject,
           category: this.state.category,
-          author: auth().currentUser.displayName,
+          author: auth().currentUser.uid,
           latestMessage: {
               text: `${this.state.groupname} created. Welcome!`,
               createdAt: new Date().getTime(),
@@ -422,7 +422,7 @@ render(){
         <InputForPosts
         autoCapitalize="none"
         autoCorrect={false}
-        //maxLength={20}
+        maxLength={40}
         value={this.state.groupname}
         onChangeText={(text) => this.setState({
            groupname:text,
