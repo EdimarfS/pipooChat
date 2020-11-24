@@ -9,7 +9,8 @@ import {
   FlatList,
   Image,
   ImageBackground,
-  Linking
+  Linking,
+  Alert
 } from "react-native";
 import  { 
   SearchBar
@@ -17,6 +18,7 @@ import  {
 import firestore from '@react-native-firebase/firestore';
 import { Modalize } from 'react-native-modalize';
 import { Actions } from 'react-native-router-flux';
+import auth from '@react-native-firebase/auth';
 import _ from 'lodash';
 
 /*
@@ -40,6 +42,7 @@ class  StoreScreen extends Component {
       //This is the state for modalize 
       category:'',
       title:'',
+      item_to_be_deleted:'',
        
 
     }
@@ -107,6 +110,16 @@ handleSearch = (text) => {
  }
 
 
+
+ onDELETE = () => {
+
+
+
+
+
+
+
+ }
 
 
 
@@ -423,9 +436,57 @@ render(){
               }}
               >
               <TouchableOpacity 
-              
               style={{ flex:1/2}}
-              onPress={item => this.onOPEN(item)}>
+              onPress={()=>{
+                this.setState({
+                  item_to_be_deleted:item._id,
+                })
+                
+                //We will use alert here
+
+
+                if(item.author === auth().currentUser.uid){
+                Alert.alert(
+                  item.title,
+                  `Do you want to delete ${item.title}`,
+                  [
+                    {
+                      text: "Cancel",
+                      onPress: () => console.log("Cancel Pressed"),
+                      style: "cancel"
+                    },
+                    { text: "OK", onPress: () => {
+                      firestore().collection('STORE')
+                      .doc(item._id)
+                      .delete()
+                      .then(()=>{
+                        console.log('Document Successfully deleted');
+                      })
+                      .catch(()=>{
+                        console.log('Something went wrong, could not be deleted');
+                      })
+                    } }
+                  ],
+                  { cancelable: false }
+                );}
+
+
+
+
+
+
+                
+/*                 alert('Do you want to delete')
+                firestore().collection('STORE')
+                .doc(item._id)
+                .delete()
+                .then(()=>{
+                  console.log('Document Successfully deleted');
+                })
+                .catch(()=>{
+                  console.log('Something went wrong, could not be deleted');
+                }) */
+              }}>
               <View>
               <Image
               source={{
