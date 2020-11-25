@@ -7,6 +7,8 @@ import {
   Text, 
   FlatList,
   TouchableOpacity,
+  Image,
+  Alert
 } from "react-native";
 import { 
   Input,
@@ -201,9 +203,15 @@ renderHeaderGROUP = () => {
     >
     <View 
     style={{
-     alignSelf:'center'
+     alignSelf:'center',
+     marginTop:10,
     }}>
-      <Text style={{ fontWeight:'bold'}}>Groups</Text>
+      <Text 
+      style={{ 
+        fontWeight:'bold',
+        fontSize:20,
+        color:'grey'
+        }}>Groups</Text>
     </View>
     </TouchableOpacity>
   )
@@ -216,9 +224,16 @@ renderHeaderPOST = () => {
     >
     <View 
     style={{
-     alignSelf:'center'
+     alignSelf:'center',
+    marginTop:'20%'
     }}>
-      <Text style={{ fontWeight:'bold'}}>Posts</Text>
+      <Text 
+      style={{ 
+        fontWeight:'bold',
+        fontSize:20,
+        color:'grey'
+
+        }}>Posts</Text>
     </View>
     </TouchableOpacity>
   )
@@ -239,7 +254,7 @@ render(){
     showsHorizontalScrollIndicator={false}
     showsVerticalScrollIndicator={false}
     renderItem= {({item}) => {
-
+     
       return(
         <View 
         //style={{ marginLeft:10, marginRight:10}}
@@ -338,7 +353,7 @@ render(){
                     >
                       <View 
                       style={{
-                        flex:1,
+                        //flex:1,
                       }}
                       >
 
@@ -354,14 +369,82 @@ render(){
                             keyExtractor={ item => item._id.toString()}
                           // numColumns={3}
                         //   horizontal ={true}
+                            scrollEnabled={false}
 
                             renderItem={({item}) => {
-
+                              if(item.author === auth().currentUser.uid)
                               return(
-                                <View>
-                              {
-                               this.state.checkGroup === true ?  <Text>{item.groupname}111</Text> : <View></View>}
-                                </View>
+                                <TouchableOpacity
+                                onPress={()=>{
+                                  Alert.alert(
+                                    item.name,
+                                    `Do you want to save ${item.name}`,
+                                    [
+                                      {
+                                        text: "Cancel",
+                                        onPress: () => console.log("Cancel Pressed"),
+                                        style: "cancel"
+                                      },
+                                      { text: "OK", onPress: () => {
+                                        firestore()
+                                        .collection('SAVE_GROUP')
+                                        .doc(item._id)
+                                        .delete()
+                                        .then(()=>{
+                                          console.log('GROUP Successfully deleted');
+                                        })
+                                        .catch(()=>{
+                                          console.log('Something went wrong, could not be save');
+                                        })
+                                      } }
+                                    ],
+                                    { cancelable: false }
+                                  )
+                                }}
+                                style={{
+                                 // alignSelf:'center',
+                                  //flex:1,
+                                  marginLeft:10,
+                                }}
+                                >
+ 
+
+                                  <View style={{
+                                    flexDirection:'row'
+                                  }}>
+                                    <View style={{
+                                      flexDirection:'row'
+                                    }}>
+                                    <Image
+                                    source={{
+                                      uri : item.groupcover
+                                    }}
+                                    style={{
+                                      width:40,
+                                      height:40,
+                                      borderRadius:90,
+
+                                      marginTop:10,
+                                      backgroundColor:'red'
+                                    }}
+                                    
+                                    />
+                                    <View 
+                                    style={{
+                                      alignSelf:'center',
+                                      marginLeft:10
+                                    }}>
+                                    <Text style={{ fontWeight:'bold' }}>{item.groupname}</Text>
+                                    </View>
+
+
+                                    </View>
+                                  
+                                  </View>
+                                  
+                                  
+                                
+                                </TouchableOpacity>
                               )
 
 
@@ -379,16 +462,85 @@ render(){
                             showsVerticalScrollIndicator ={false}
                             showsHorizontalScrollIndicator={false}
                           // ListEmptyComponent={this._listEmptyComponent}
+                             numColumns={3}
                             keyExtractor={ item => item._id.toString()}
                           // numColumns={3}
                         //   horizontal ={true}
-
+                             scrollEnabled={false}
+                            
                             renderItem={({item}) => {
-
+                              
+                              if(item.author === auth().currentUser.uid)
                               return(
-                                <View>
-                                 { this.state.checkPost === true ?  <Text>{item.posted}111</Text> : <View></View>}
-                                </View>
+                                <TouchableOpacity 
+
+
+
+                                onPress={()=>{
+                                  Alert.alert(
+                                    item.name,
+                                    `Do you want to save ${item.name}`,
+                                    [
+                                      {
+                                        text: "Cancel",
+                                        onPress: () => console.log("Cancel Pressed"),
+                                        style: "cancel"
+                                      },
+                                      { text: "OK", onPress: () => {
+                                        firestore()
+                                        .collection('SAVE_POST')
+                                        .doc(item._id)
+                                        .delete()
+                                        .then(()=>{
+                                          console.log('POST Successfully deleted');
+                                        })
+                                        .catch(()=>{
+                                          console.log('Something went wrong, could not be save');
+                                        })
+                                      } }
+                                    ],
+                                    { cancelable: false }
+                                  )
+                                }}
+                                style={{
+                                 // alignSelf:'center',
+                                  flex:1/3,
+                                  marginLeft:10,
+                                }}
+                                >
+
+                                  <View style={{
+                                    flexDirection:'row'
+                                  }}>
+                                    <View>
+                                    <Image
+                                    source={{
+                                      uri : item.image
+                                    }}
+                                    style={{
+                                      width:100,
+                                      height:100,
+                                      //borderRadius:90,
+
+                                      marginTop:10,
+                                      backgroundColor:'red'
+                                    }}
+                                    
+                                    />
+                                    </View>
+
+
+
+                                    <View>
+                                    
+                                    
+                                    </View>
+                                    
+                                  
+                                  
+                                  </View>
+                               
+                                </TouchableOpacity>
                               )
 
 

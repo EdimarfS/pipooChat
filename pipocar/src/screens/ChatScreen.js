@@ -19,6 +19,7 @@ import { Actions } from 'react-native-router-flux';
 import _ from 'lodash';
 import auth from '@react-native-firebase/auth';
 
+
 /*
                 if(item.author === auth().currentUser.uid){
                   Alert.alert(
@@ -368,6 +369,8 @@ render(){
           ListEmptyComponent={this.emptyGROUP}
           showsVerticalScrollIndicator={false}
           showsHorizontalScrollIndicator={false}
+         
+
          // numColumns={3}
          ListHeaderComponent={this.renderHeader}
          // ListEmptyComponent={this._listEmptyComponent}
@@ -375,6 +378,8 @@ render(){
           keyExtractor={ item => item._id.toString()}
           renderItem={({item}) => {
             console.log(item);
+
+            
             return(
 
               <View style={{
@@ -384,7 +389,40 @@ render(){
               <TouchableOpacity 
               style={{ flex:1}}
 
+              onLongPress={()=>{
+                if(item.author === auth().currentUser.uid){
+                Alert.alert(
+                  'Delete group',
+                  `Do you want to save this group ?`,
+                  [
+                    {
+                      text: "Cancel",
+                      onPress: () => console.log("Cancel Pressed"),
+                      style: "cancel"
+                    },
+                    { text: "OK", onPress: () => {
+                     
+                      firestore()
+                      .collection('MESSAGE_THREADS')
+                      .doc(item._id)
+                      .delete()
+                      .then(()=>{
+                        console.log('Group Successfully deleted');
+                      })
+                      .catch(()=>{
+                        console.log('Something went wrong, could not be deleted');
+                      })
+                    
 
+                    } }
+                  ],
+                  { cancelable: false }
+                );}
+
+
+
+
+              }}
               onPress={()=>{ Actions.messages({ title:item.name, thread:item}) }}
 
               //onLongPress={()=>{ console.log(' GROUP LONG PRESS')}}
@@ -491,7 +529,7 @@ render(){
               
               onPress={()=>{
 
-                const author = item.author;
+                const author = auth().currentUser.uid;
                 const groupname = item.name;
                 const category = item.category;
                 const groupcover = item.groupcover.groupcover; 
@@ -518,7 +556,6 @@ render(){
                       { text: "OK", onPress: () => {
                         firestore()
                         .collection('SAVE_GROUP')
-                  
                         .add(grouDATA)
                         .then(()=>{
                           console.log('GROUP Successfully deleted');
@@ -526,6 +563,20 @@ render(){
                         .catch(()=>{
                           console.log('Something went wrong, could not be save');
                         })
+
+                      //Deleting from favorites 
+                      firestore()
+                      .collection('SAVE_GROUP')
+                      .doc(item._id)
+                      .delete()
+                      .then(()=>{
+                        console.log('GROUP Successfully deleted');
+                      })
+                      .catch(()=>{
+                        console.log('Something went wrong, could not be save');
+                      })
+
+
                       } }
                     ],
                     { cancelable: false }

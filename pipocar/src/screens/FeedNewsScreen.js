@@ -155,10 +155,10 @@ render(){
                         .doc(item._id)
                         .delete()
                         .then(()=>{
-                          console.log('Document Successfully Added');
+                          console.log('Document Successfully Deleted');
                         })
                         .catch(()=>{
-                          console.log('Something went wrong, could not be add');
+                          console.log('Something went wrong, could not be Deleted');
                         })
                       } }
                     ],
@@ -174,7 +174,7 @@ render(){
                           style: "cancel"
                         },
                         { text: "OK", onPress: () => {
-                          
+                        const author = auth().currentUser.uid;
                         const username = item.userName;
                         const caption  = item.caption;
                         const url = item.url;
@@ -187,7 +187,8 @@ render(){
                             userName : username,
                             caption: caption,
                             image: url,
-                            posted:posted
+                            posted:posted,
+                            author:author,
 
                           }
                           firestore()
