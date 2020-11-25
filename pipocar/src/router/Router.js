@@ -30,13 +30,14 @@ import {
 } from '../screens/index';
 
 import MessageScreen from '../screens/MessageScreen';
+import IconEvilIcons from 'react-native-vector-icons/EvilIcons';
 
 
 
            
 
 
-/*  class TabIcon extends Component {
+class TabIcon extends Component {
 
     render () {
 
@@ -53,16 +54,16 @@ import MessageScreen from '../screens/MessageScreen';
             alignItems: 'center', 
             alignSelf: 'center', 
             marginTop:7, 
-            //backgroundColor:'red'
+        //  backgroundColor:'red'
             }}>
 
-                <Ionicons  style={{color: color}} name={this.props.iconName} size={28} onLongPress={this.props.onLongPress} /> 
+                <IconEvilIcons  style={{color: color}} name={this.props.iconName} size={34} onLongPress={this.props.onLongPress} /> 
            
             </View>
 
         return componentBody;
     }
-} */
+} 
  
 const RouterComponent = () => { 
     let sizeicons = 28;
@@ -217,12 +218,13 @@ return(
               
             }}  
             hideNavBar
+            //showLabel={false}
             > 
                     <Scene
                     key="chat"
                     component={ChatScreen}
-                    //iconName={"ios-chatboxes"}
-                    //icon={TabIcon}
+                    iconName={"comment"}
+                    icon={TabIcon}
                     activeTintColor={tint_color}
                     inactiveTintColor={inactive_Color}
                     renderRightButton={
@@ -243,7 +245,7 @@ return(
 
             <Scene 
             
-            key="feedandbusinessscreen"
+            key="pipoca"
             renderTitle={()=>{
                 return(
                     <View style={{
@@ -258,79 +260,40 @@ return(
                     </View>
                 )
             }}
+            iconName={"refresh"}
+            icon={TabIcon}
+            activeTintColor={tint_color}
+            inactiveTintColor={inactive_Color}
             >
             <Scene 
+            
             key="feedandbusiness"
             legacy={true} 
             tabBarPosition="top"
             swipeEnabled={true}
             activeTintColor="#05c7fc"
             inactiveTintColor="#1f1f1f"
-
             tabs
-          //  showLabel={false}
-           // hideNavBar
+            //showLabel={false}
+            //hideNavBar
+           
             > 
                     <Scene
                     key="feednews"
-                    hideNavBar
+
                     component={FeedNewsScreen}
-                    iconName={"md-planet"}
-                   // icon={TabIcon}
                     activeTintColor={tint_color}
                     inactiveTintColor={inactive_Color}
-                    renderRightButton={
-                        <TouchableOpacity onPress={()=>{ Actions.addpost()}}>
-                            <Text style={{
-                                fontSize:20,
-                                marginRight:10,
-                            }}>Add</Text>
-                        </TouchableOpacity>
-                        }
-                        renderLeftButton={
-                            <TouchableOpacity onPress={()=>{
-                    
-                            }}>
-                                <Text style={{
-                                    fontSize:20,
-                                    marginLeft:10,
-                                }}>Add</Text>
-                            </TouchableOpacity>
-                    }
-                    renderTitle={()=>{
-                        return(
-                            <View style={{
-                                flex:1,
-                                justifyContent:'center',
-                                alignItems:'center',
-                                }}>
-                                <Text style={{fontWeight:'bold',fontSize:20}}>pipoca</Text>
-                          
-                                
-
-                            </View>
-                        )
-                    }}
-
-                
+                    hideNavBar
                     />
                     <Scene
                     key="store"
-                    hideNavBar
                     component={StoreScreen}
-                    //iconName={"ios-chatboxes"}
-                    //icon={TabIcon}
+                   // iconName={"refresh"}
+                   // icon={TabIcon}
                     activeTintColor={tint_color}
                     inactiveTintColor={inactive_Color}
-                    renderRightButton={
-                        <TouchableOpacity onPress={()=>{ Actions.creategroup()}}>
-                            <Text style={{
-                                fontSize:20,
-                                marginRight:10,
-                            }}>Add</Text>
-                        </TouchableOpacity>
-                        }
-                    
+                    hideNavBar
                     />
 
                     </Scene>
@@ -341,25 +304,13 @@ return(
                     <Scene
                     key="setting"
                     component={SettingScreen}
-                    iconName={"ios-settings"}
+                   // iconName={"ios-settings"}
                     //icon={TabIcon}
+                    iconName={"gear"}
+                    icon={TabIcon}
                     activeTintColor={tint_color}
                     inactiveTintColor={inactive_Color}
                     
-                    renderTitle={()=>{
-                        return(
-                            <View style={{
-                                flex:1,
-                                justifyContent:'center',
-                                alignItems:'center',
-                                }}>
-                                <Text style={{fontWeight:'bold',fontSize:20}}>settings</Text>
-                          
-                                
-
-                            </View>
-                        )
-                    }}
                     />
  
                     

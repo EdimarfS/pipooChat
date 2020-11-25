@@ -21,8 +21,7 @@ import { Modalize } from 'react-native-modalize';
 import auth from '@react-native-firebase/auth';
 import database from '@react-native-firebase/database';
 import firestore from '@react-native-firebase/firestore';
-
-
+import IconEvilIcons from 'react-native-vector-icons/EvilIcons';
 
 import { 
   emailCHANGED, 
@@ -181,10 +180,10 @@ data = [
     account : 'Accout',
     key:1,
 
-    favorite : 'Favorite',
+    saved : 'Save',
     key:2,
 
-    logout : 'Log Out',
+    logout : 'Log out',
     key:3,
 }
 
@@ -301,13 +300,19 @@ render(){
                   }}
                   >
                     <View style={styles.iconStyles}>
-                    <Text>Icon</Text>
+                    <View style={{
+                      marginLeft:10,
+                      marginTop:2,
+                    }}>
+                    <IconEvilIcons  name="gear" size={30}  />
+                    </View>
               
 
                     </View>
                     <Text 
                     style={{
                       fontSize:20,
+                      fontWeight:'bold'
                       //fontWeight:'bold'
                     }}>
                     {item.account}
@@ -326,13 +331,19 @@ render(){
 
                   }}>
                     <View style={styles.iconStyles}>
-                    <Text>Icon</Text>
+                    <View style={{
+                      marginLeft:10,
+                      marginTop:2,
+                    }}>
+                    <IconEvilIcons  name="archive" size={30}  />
+                    </View>
                     </View>
                     <Text
                     style={{
                       fontSize:20,
+                      fontWeight:'bold'
                      // fontWeight:'bold'
-                    }}>{item.favorite}</Text>  
+                    }}>{item.saved}</Text>  
                   </View>
                   </TouchableOpacity>
 
@@ -348,11 +359,17 @@ render(){
                   }}
                   >
                     <View style={styles.iconStyles}>
-                    <Text>Icon</Text>
+                    <View style={{
+                      marginLeft:10,
+                    }}>
+                    <IconEvilIcons  name="chevron-left" size={30}  />
+                    </View>
                     </View>
                     <Text 
                     style={{
                       fontSize:20,
+                      marginTop:2,
+                      fontWeight:'bold'
                      // fontWeight:'bold'
                     }}>{item.logout}</Text>
                     </View>
@@ -456,7 +473,7 @@ render(){
                                       alignSelf:'center',
                                       marginLeft:10
                                     }}>
-                                    <Text style={{ fontWeight:'bold' }}>{item.groupname}</Text>
+                                    <Text style={{ fontWeight:'bold' }}>{item.groupname} </Text>
                                     </View>
 
 
