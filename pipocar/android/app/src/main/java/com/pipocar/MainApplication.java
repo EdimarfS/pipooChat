@@ -1,6 +1,7 @@
 package com.pipocar;
 // com.myapp should be your package name
 import com.pipocar.generated.BasePackageList;
+import com.oblador.vectoricons.VectorIconsPackage;
 
 
 import android.app.Application;
@@ -39,6 +40,8 @@ new ReactModuleRegistryProvider(new BasePackageList().getPackageList(), null);
           List<ReactPackage> packages = new PackageList(this).getPackages();
           // Packages that cannot be autolinked yet can be added manually here, for example:
           // packages.add(new MyReactNativePackage());
+          new VectorIconsPackage();
+
 
           // Add unimodules
           List<ReactPackage> unimodules = Arrays.<ReactPackage>asList(
