@@ -214,7 +214,7 @@ renderHeaderGROUP = () => {
         fontWeight:'bold',
         fontSize:20,
         color:'black'
-        }}>Groups</Text>
+        }}>Group</Text>
         </View>
 
 
@@ -222,13 +222,13 @@ renderHeaderGROUP = () => {
         <Text 
         style={{
           textAlign:'center',
-          fontSize:10,
+          fontSize:13,
           marginBottom:20,
           marginTop:10,
           color:'grey'
         }}
         >
-        Here you can save names of the groups that you thing are intersting
+        Intersting  posts and groups that you have saved 
         </Text>
     </View>
     </TouchableOpacity>
@@ -254,20 +254,8 @@ renderHeaderPOST = () => {
         fontSize:20,
         color:'black'
 
-        }}>Posts</Text>
+        }}>Post</Text>
         </View>
-      
-      <Text 
-        style={{
-          textAlign:'center',
-          fontSize:10,
-          marginBottom:20,
-          marginTop:10,
-          color:'grey'
-        }}
-        >
-        Here you can save names of the groups that you thing are intersting
-        </Text>
     </View>
     </TouchableOpacity>
   )
@@ -409,10 +397,10 @@ render(){
                               if(item.author === auth().currentUser.uid)
                               return(
                                 <TouchableOpacity
-                                onPress={()=>{
+                                onLongPress={()=>{
                                   Alert.alert(
                                     item.name,
-                                    `Do you want to save ${item.name}`,
+                                    `Do you want to delete "${item.groupname}"`,
                                     [
                                       {
                                         text: "Cancel",
@@ -507,10 +495,10 @@ render(){
                               return(
                                 <TouchableOpacity 
                                 
-                                onPress={()=>{
+                                onLongPress={()=>{
                                   Alert.alert(
                                     item.name,
-                                    `Do you want to save ${item.name}`,
+                                    `Do you want to delete "${item.caption}"`,
                                     [
                                       {
                                         text: "Cancel",
@@ -541,7 +529,8 @@ render(){
                                 >
 
                                   <View style={{
-                                    flexDirection:'row',         
+                                    flexDirection:'row',
+                                    alignSelf:'center'     
                                   }}>
                                     <View>
                                     <Image
@@ -551,7 +540,7 @@ render(){
                                     style={{
                                       width:100,
                                       height:100,
-                                    //borderRadius:90,
+                                     borderRadius:10,
 
                                       marginTop:10,
                                       backgroundColor:'red'

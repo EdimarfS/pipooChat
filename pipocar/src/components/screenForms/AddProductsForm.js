@@ -36,9 +36,9 @@ class  CreateGroupForm extends Component {
           imageSelected: false,
           uploading: false,
           progress: 0,
-          imageURI:'https://firebasestorage.googleapis.com/v0/b/pipocar-61cd8.appspot.com/o/groupCovers%2Fcef4c151ecd7c2fd46180b45fb5bc1a1.jpg?alt=media&token=8beea4de-e1fd-439d-8162-eb7bab61e41c',
+          imageURI:'https://firebasestorage.googleapis.com/v0/b/pipocar-61cd8.appspot.com/o/groupCovers%2F2018_Tesla_Model_S_75D.jpg?alt=media&token=e97785c0-429f-45ea-affe-ac8773819160',
           title:'My product',
-          price:'5',
+          price:'0',
           category:'Vehicles',
           condition:'New',
           location:'Angola',
@@ -348,10 +348,12 @@ render(){
 
         
         <TouchableOpacity 
+      
         style={{
           borderWidth:1,
           borderColor:'#05c7fc',
           padding:10,
+          opacity:0.8
 
           
         }}
@@ -576,6 +578,7 @@ render(){
         }}>
         <InputForPosts
         placeholder="Category"
+        editable={false}
         autoCapitalize="none"
         autoCorrect={false}
         maxLength={20}

@@ -2,12 +2,13 @@ import React from 'react';
 import { TextInput,View, Text } from 'react-native';
 
 
-const InputForPosts = ({ value, onChangeText, label, placeholderTextColor, paddingRight , paddingLeft, placeholder, autoCapitalize, autoCorrect, secureTextEntry, multiline, numberOfLines, maxLength}) =>{
+const InputForPosts = ({ value, onChangeText, label, placeholderTextColor, paddingRight , paddingLeft, placeholder, autoCapitalize, autoCorrect, secureTextEntry, multiline, numberOfLines, maxLength, editable}) =>{
 
 const {container, TextInputStyle} = styles;
 
 return( <View style={{ flex:1 }}>
                 <TextInput   
+                   editable={editable}
                    style={TextInputStyle}
                    label={label}
                    value={value}
