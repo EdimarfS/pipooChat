@@ -304,7 +304,7 @@ render(){
                       marginLeft:10,
                       marginTop:2,
                     }}>
-                    <IconEvilIcons  name="gear" size={30}  />
+                    <IconEvilIcons name="gear" size={30}  />
                     </View>
               
 

@@ -109,6 +109,8 @@ render(){
     showUserAvatar
     showAvatarForEveryMessage
     renderUsernameOnMessage
+    minComposerHeight={40}
+    minInputToolbarHeight={60}
     messages={this.props.messages}
     onSend={this.onSendMessage.bind(this)}
     user = {{
@@ -119,10 +121,10 @@ render(){
     />
     {
       Platform.OS === 'android' && 
-      <KeyboardAvoidingView 
-      behavior="padding" 
-      keyboardVerticalOffset={-1000}
-      />
+(      <KeyboardAvoidingView 
+        behavior="padding" 
+        //keyboardVerticalOffset={-1000}
+      />)
     }
   </View>
 

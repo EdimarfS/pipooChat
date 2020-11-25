@@ -259,7 +259,7 @@ render(){
         marginTop:20,
       }}>
 
-        
+        <View>
         <TouchableOpacity 
         style={{
           borderWidth:1,
@@ -272,8 +272,8 @@ render(){
         thumbnailSource={{uri:this.state.imageURI}}
         source={{uri:this.state.imageURI}}
         style={{
-          width:106,
-          height:100,
+          width:40,
+          height:40,
           alignSelf:'center',
           justifyContent:'center'
 
@@ -281,6 +281,7 @@ render(){
         
         />
         </TouchableOpacity>
+        </View>
       </View>
       <View style={{ alignSelf:'center', marginTop:10}}>
       <Text style={{ fontWeight:'bold', color:'grey'}}>Share your picture with others</Text>

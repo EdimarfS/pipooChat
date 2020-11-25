@@ -343,7 +343,7 @@ render(){
             <TouchableOpacity 
             onPress={this.findNewImage}
             style={{
-                marginTop:'10%',
+                marginTop:'5%',
                 borderWidth:1,
                 borderColor:'#05c7fc',
                 padding:10,
@@ -351,7 +351,7 @@ render(){
                 backgroundColor:'white',
                
                 marginBottom:10,
-                borderRadius:90,
+        
 
             }}>
 { this.state.imageSelected === false ? 
@@ -359,17 +359,17 @@ render(){
                 thumbnailSource={{ uri: auth().currentUser.photoURL }}
                 source={{ uri: auth().currentUser.photoURL }}
                 style={{
-                    width:100,
-                    height:100,
-                    borderRadius:50,
+                    width:40,
+                    height:40,
+                    //borderRadius:50,
                 }}
                 />  : 
                 <ImageBlurLoading
                 thumbnailSource={{ uri: this.state.imageURI}}
                 source={{ uri: this.state.imageURI }}
                 style={{
-                    width:100,
-                    height:100,
+                    width:40,
+                    height:40,
                     borderRadius:50,
                 }}
                 /> 
@@ -378,9 +378,14 @@ render(){
                 }
 
             </TouchableOpacity>
+            <Text style={{
+              alignSelf:'center',
+              marginBottom:10,
+              fontWeight:'bold'
+            }}> Your personal data</Text>
         </View>
         <View style={styles.MarginBettwenFields}>
-            <Input
+            <InputDataEdit
             placeholder="userName"
             value={this.state.userName}
             onChangeText={text => this.setState({ userName:text})}
@@ -392,7 +397,7 @@ render(){
             />
         </View>
         <View style={styles.MarginBettwenFields}>
-            <Input
+            <InputDataEdit
             placeholder="userID"
             value={this.state.userID}
             onChangeText={text => this.setState({ userID:text})}
@@ -402,7 +407,7 @@ render(){
             />
         </View>
         <View style={styles.MarginBettwenFields}>
-            <Input
+            <InputDataEdit
             placeholder="userBio"
             value={this.state.userBio}
             onChangeText={text => this.setState({ userBio:text})}
@@ -425,9 +430,9 @@ render(){
                         alignSelf:'center',
                         backgroundColor:'#44e300',
                         width:'100%',
-                        height:60,
+                        height:50,
                         borderRadius:5,
-                        marginTop:10,
+                      
                       }}>  
                       <Text 
                       style={{
@@ -441,33 +446,7 @@ render(){
                 
                       </View>
             </TouchableOpacity>
-        <TouchableOpacity  
-        onPress={this.onDeleteAccount.bind(this)}
-        >
-                      <View  
-                          
-                      style={{
-                      //  marginBottom:30,
-                        justifyContent:'center',
-                        alignSelf:'center',
-                        backgroundColor:'red',
-                        width:'100%',
-                        height:60,
-                        borderRadius:5,
-                        marginTop:10,
-                      }}>  
-                      <Text 
-                      style={{
-                      fontSize:20,
-                      textAlign:'center',
-                      color:'white',
-                      fontWeight:'bold'
-                
-                      }}> Delete my account </Text>
-                
-                
-                      </View>
-            </TouchableOpacity>
+
         </View>
 
 
@@ -486,6 +465,6 @@ export default UserPersonalEditDataForm;
 const styles = {
 
     MarginBettwenFields : {
-        marginBottom:'20%',
+        marginBottom:'15%',
     }
 }

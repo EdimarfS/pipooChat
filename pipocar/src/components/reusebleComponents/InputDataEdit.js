@@ -42,7 +42,7 @@ const styles = {
         borderColor:'#f0f0f0',
         //borderWidth:1,
         borderBottomWidth:0.3,
-        backgroundColor:'red'
+       // backgroundColor:'red'
     
       //  borderRadius:10,
         

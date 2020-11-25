@@ -124,18 +124,15 @@ return(
             </Scene>
 
             
-
-            <Scene 
-            key="messages"
-            >
                 <Scene
-                key="messagesscreen"
+                key="messages"
                 component={MessageScreen}
+                
               //gesturesEnabled={false}
-                hideNavBar
+             //   hideNavBar
                 
                 />
-            </Scene>
+
 
             <Scene 
             key="products"
@@ -242,7 +239,7 @@ return(
 
 
 
-
+            
             <Scene 
             
             key="pipoca"
@@ -265,6 +262,9 @@ return(
             activeTintColor={tint_color}
             inactiveTintColor={inactive_Color}
             >
+
+
+
             <Scene 
             
             key="feedandbusiness"
