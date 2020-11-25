@@ -202,11 +202,12 @@ renderHeader = () => {
           flex:1,
          // alignSelf:'center'
          marginLeft:10,
-         flexDirection:'row'
+         flexDirection:'row',
+         backgroundColor:'white'
          
           
           }}>
-        <Text 
+{/*         <Text 
         style={{
           fontSize:50,
           fontWeight:'bold',
@@ -215,12 +216,13 @@ renderHeader = () => {
          // backgroundColor:'red'
         }}>
           Store
-        </Text>
+        </Text> */}
         </View>
     <View style={{ 
       flex:1,
       marginLeft:5,
-      marginRight:5
+      marginRight:5,
+      
    //   justifyContent:'center',
     //  alignContent:'center',
       }}>
@@ -247,7 +249,7 @@ renderHeader = () => {
         <View style={{ 
           flexDirection:'row', 
           marginTop:10,
-          //backgroundColor:'blue'
+          backgroundColor:'white'
           //backgroundColor:'red',
           }}>
           <TouchableOpacity onPress={()=> this.handleSearch(item.vehicles)}>
@@ -346,7 +348,8 @@ render(){
   return (
         <View style={{ 
           flex:1, 
-          backgroundColor:'#fafafa',
+         // backgroundColor:'#fafafa',
+          backgroundColor:'white'
           
           }}>
            <FlatList
@@ -548,7 +551,10 @@ render(){
                // alignSelf:'center'
               }}>${item.price}</Text>
 
-              <View>
+              <TouchableOpacity
+              
+              onPress={()=> { Linking.openURL(item.website);  }}
+              >
                 <Text style={{
                 fontSize:15,
                 color:'grey',
@@ -557,8 +563,8 @@ render(){
                // backgroundColor:'red',
       
                // alignSelf:'center'
-              }}>Web site</Text>
-              </View>
+                }}>Website</Text>
+              </TouchableOpacity>
 
 
 

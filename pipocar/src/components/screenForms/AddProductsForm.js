@@ -42,6 +42,7 @@ class  CreateGroupForm extends Component {
           category:'Vehicles',
           condition:'New',
           location:'Angola',
+          website: '',
 
       };
   }
@@ -239,6 +240,7 @@ processUpload = (imageUrl) => {
     var price = this.state.price;
     var authorprofilepicture = auth().currentUser.photoURL;
     var authorname = auth().currentUser.displayName;
+    var website = this.state.website;
     const userID = auth().currentUser.uid;
     const date = new Date().getTime();
     
@@ -254,7 +256,8 @@ processUpload = (imageUrl) => {
         author:author,
         authorprofilepicture :authorprofilepicture,
         authorname: authorname,
-        price:price
+        price:price,
+        website: 'https://'+website,
 
   }
 
@@ -605,6 +608,23 @@ render(){
         })} 
         />
       </View>
+
+      <View style={{ 
+      //  flex:1, 
+        marginBottom:10,
+        }}>
+        <InputForPosts
+        placeholder="www.mywebsite.com"
+        autoCapitalize="none"
+        autoCorrect={false}
+        maxLength={20}
+        value={this.state.website}
+        onChangeText={(text) => this.setState({
+           website:text,
+        })} 
+        />
+      </View>
+
 
       
 
