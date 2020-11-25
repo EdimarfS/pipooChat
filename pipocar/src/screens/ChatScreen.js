@@ -412,8 +412,6 @@ render(){
                       .catch(()=>{
                         console.log('Something went wrong, could not be deleted');
                       })
-                    
-
                     } }
                   ],
                   { cancelable: false }

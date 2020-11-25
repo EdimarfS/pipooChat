@@ -206,12 +206,30 @@ renderHeaderGROUP = () => {
      alignSelf:'center',
      marginTop:10,
     }}>
+      <View style={{
+        alignSelf:'center'
+      }}>
       <Text 
       style={{ 
         fontWeight:'bold',
         fontSize:20,
-        color:'grey'
+        color:'black'
         }}>Groups</Text>
+        </View>
+
+
+
+        <Text 
+        style={{
+          textAlign:'center',
+          fontSize:10,
+          marginBottom:20,
+          marginTop:10,
+          color:'grey'
+        }}
+        >
+        Here you can save names of the groups that you thing are intersting
+        </Text>
     </View>
     </TouchableOpacity>
   )
@@ -227,13 +245,29 @@ renderHeaderPOST = () => {
      alignSelf:'center',
     marginTop:'20%'
     }}>
+      <View style={{
+        alignSelf:'center'
+      }}>
       <Text 
       style={{ 
         fontWeight:'bold',
         fontSize:20,
-        color:'grey'
+        color:'black'
 
         }}>Posts</Text>
+        </View>
+      
+      <Text 
+        style={{
+          textAlign:'center',
+          fontSize:10,
+          marginBottom:20,
+          marginTop:10,
+          color:'grey'
+        }}
+        >
+        Here you can save names of the groups that you thing are intersting
+        </Text>
     </View>
     </TouchableOpacity>
   )
@@ -462,20 +496,17 @@ render(){
                             showsVerticalScrollIndicator ={false}
                             showsHorizontalScrollIndicator={false}
                           // ListEmptyComponent={this._listEmptyComponent}
-                             numColumns={3}
+                            numColumns={3}
                             keyExtractor={ item => item._id.toString()}
-                          // numColumns={3}
-                        //   horizontal ={true}
+                            //numColumns={3}
+                         //  horizontal ={true}
                              scrollEnabled={false}
-                            
                             renderItem={({item}) => {
                               
                               if(item.author === auth().currentUser.uid)
                               return(
                                 <TouchableOpacity 
-
-
-
+                                
                                 onPress={()=>{
                                   Alert.alert(
                                     item.name,
@@ -505,12 +536,12 @@ render(){
                                 style={{
                                  // alignSelf:'center',
                                   flex:1/3,
-                                  marginLeft:10,
+                                 // marginLeft:10,
                                 }}
                                 >
 
                                   <View style={{
-                                    flexDirection:'row'
+                                    flexDirection:'row',         
                                   }}>
                                     <View>
                                     <Image
@@ -520,7 +551,7 @@ render(){
                                     style={{
                                       width:100,
                                       height:100,
-                                      //borderRadius:90,
+                                    //borderRadius:90,
 
                                       marginTop:10,
                                       backgroundColor:'red'

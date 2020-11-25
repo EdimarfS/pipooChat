@@ -7,7 +7,8 @@ import {
   Text, 
   TouchableOpacity,
   Image,
-  FlatList
+  FlatList,
+  Alert
 } from "react-native";
 import { 
 InputForPosts,
@@ -260,8 +261,25 @@ processUpload = (imageUrl) => {
 
 onButtonPress()
 {
+  Alert.alert(
+    this.state.title,
+    `Make sure all the iformation is correct before create it`,
+    [
+      {
+        text: "Cancel",
+        onPress: () => console.log("Cancel Pressed"),
+        style: "cancel"
+      },
+      { text: "OK", onPress: () => { 
+            this.UploadPublish();
 
-     this.UploadPublish();
+       }}
+    ],
+    { cancelable: false }
+  );
+  
+
+   
      
 
    
@@ -421,6 +439,7 @@ render(){
         }}>
         <InputForPosts
         autoCapitalize="none"
+        placeholder="My group"
         autoCorrect={false}
         maxLength={40}
         value={this.state.groupname}
