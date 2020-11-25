@@ -41,9 +41,7 @@ class  StoreScreen extends Component {
       searchBarText:'',
       //This is the state for modalize 
       category:'',
-      title:'',
-      item_to_be_deleted:'',
-       
+      title:'',       
 
     }
   }
@@ -437,14 +435,7 @@ render(){
               >
               <TouchableOpacity 
               style={{ flex:1/2}}
-              onPress={()=>{
-                this.setState({
-                  item_to_be_deleted:item._id,
-                })
-                
-                //We will use alert here
-
-
+              onLongPress={()=>{
                 if(item.author === auth().currentUser.uid){
                 Alert.alert(
                   item.title,
@@ -468,7 +459,11 @@ render(){
                     } }
                   ],
                   { cancelable: false }
-                );}
+                );
+              }
+                else {
+                  console.log('Not your item!!')
+                }
 
 
 

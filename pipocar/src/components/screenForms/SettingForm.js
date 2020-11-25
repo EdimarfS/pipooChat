@@ -18,6 +18,10 @@ import { Actions } from 'react-native-router-flux';
 import { Modalize } from 'react-native-modalize';
 import auth from '@react-native-firebase/auth';
 import database from '@react-native-firebase/database';
+import firestore from '@react-native-firebase/firestore';
+
+
+
 import { 
   emailCHANGED, 
   passwordCHANGED, 
@@ -43,12 +47,77 @@ class  SettingForm extends Component {
       userLocation:'',
       userBio:'',
       loaded: false,
-      data:[],
+      dataGroup:[],
+      dataPost:[],
+      checkPost: false,
+      checkGroup: false,
     }
 
 
   }
 
+
+
+  UNSAFE_componentWillMount()
+  {
+
+
+    this.fetchSAVE_GROUP();
+    this.fetchSAVE_POST();
+
+  }
+
+
+  
+  
+  //Fetch SAVE_GROUPS 
+  fetchSAVE_GROUP = () => {
+
+    firestore()
+    .collection('SAVE_GROUP')
+    .orderBy('posted', 'desc')
+    .onSnapshot(querySnapshot => {
+        
+        var  thread  = querySnapshot.docs.map(doc => {
+  
+            return {
+                _id : doc.id,
+                ...doc.data()
+            }
+        })
+  
+        this.setState({
+          dataGroup:thread,
+          refreshing:false,
+          loaded:true,
+        })
+    }, this.onError)
+  
+  }
+
+  fetchSAVE_POST = () => {
+
+    firestore()
+    .collection('SAVE_POST')
+    .orderBy('posted', 'desc')
+    .onSnapshot(querySnapshot => {
+        
+        var  thread  = querySnapshot.docs.map(doc => {
+  
+            return {
+                _id : doc.id,
+                ...doc.data()
+            }
+        })
+  
+        this.setState({
+          dataPost:thread,
+          refreshing:false,
+          loaded:true,
+        })
+    }, this.onError)
+  
+  }
 
     
 
@@ -122,6 +191,37 @@ data = [
 
 onLogoutPRESSED = () =>{
     Actions.auth({type:'replace'});
+}
+
+
+renderHeaderGROUP = () => {
+  return(
+    <TouchableOpacity
+    onPress={()=> this.setState({ checkGroup:true })}
+    >
+    <View 
+    style={{
+     alignSelf:'center'
+    }}>
+      <Text style={{ fontWeight:'bold'}}>Groups</Text>
+    </View>
+    </TouchableOpacity>
+  )
+}
+
+renderHeaderPOST = () => {
+  return(
+    <TouchableOpacity
+    onPress={()=> this.setState({checkPost:true})}
+    >
+    <View 
+    style={{
+     alignSelf:'center'
+    }}>
+      <Text style={{ fontWeight:'bold'}}>Posts</Text>
+    </View>
+    </TouchableOpacity>
+  )
 }
 
 
@@ -228,33 +328,81 @@ render(){
         </View>
 
       )}}
-    
-    
-    
-    
     />
-     
+
                     <Modalize 
                     ref={this.modalizeFavoritetRef}
                     snapPoint={500}
                     modalHeight={500}
-                     // animationType='fade'
-                     HeaderComponent={
-                      <View style={{                        
-                        justifyContent:'center',
-                        alignItems:'center'}}>
-                        <Text>Favorite</Text>
-                      </View>
-                    }     
+                     // animationType='fade'    
                     >
-                      <View style={{
+                      <View 
+                      style={{
                         flex:1,
-                        justifyContent:'center',
-                        alignItems:'center'
-                      }}>
-                        <Text>Favorite</Text>
-                      </View>
+                      }}
+                      >
+
+
+                          <FlatList
+                            data={this.state.dataGroup}
+                          //  refreshing={this.state.refreshing} 
+                         //   onRefresh={this.onRefresh}
+                            ListHeaderComponent={this.renderHeaderGROUP}
+                            showsVerticalScrollIndicator ={false}
+                            showsHorizontalScrollIndicator={false}
+                          // ListEmptyComponent={this._listEmptyComponent}
+                            keyExtractor={ item => item._id.toString()}
+                          // numColumns={3}
+                        //   horizontal ={true}
+
+                            renderItem={({item}) => {
+
+                              return(
+                                <View>
+                              {
+                               this.state.checkGroup === true ?  <Text>{item.groupname}111</Text> : <View></View>}
+                                </View>
+                              )
+
+
+
+                            }}/>
+                
+
+
+                        
+                         <FlatList
+                            data={this.state.dataPost}
+                          //  refreshing={this.state.refreshing} 
+                         //   onRefresh={this.onRefresh}
+                            ListHeaderComponent={this.renderHeaderPOST}
+                            showsVerticalScrollIndicator ={false}
+                            showsHorizontalScrollIndicator={false}
+                          // ListEmptyComponent={this._listEmptyComponent}
+                            keyExtractor={ item => item._id.toString()}
+                          // numColumns={3}
+                        //   horizontal ={true}
+
+                            renderItem={({item}) => {
+
+                              return(
+                                <View>
+                                 { this.state.checkPost === true ?  <Text>{item.posted}111</Text> : <View></View>}
+                                </View>
+                              )
+
+
+
+                            }}/>
+                          </View>
+               
+
                     </Modalize>
+
+
+    
+     
+
 
 
 

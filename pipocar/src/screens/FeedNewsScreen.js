@@ -155,15 +155,58 @@ render(){
                         .doc(item._id)
                         .delete()
                         .then(()=>{
-                          console.log('Document Successfully deleted');
+                          console.log('Document Successfully Added');
                         })
                         .catch(()=>{
-                          console.log('Something went wrong, could not be deleted');
+                          console.log('Something went wrong, could not be add');
                         })
                       } }
                     ],
                     { cancelable: false }
-                  );}
+                  );} else{
+                    Alert.alert(
+                      'Save',
+                      `Do you want to save this post ?`,
+                      [
+                        {
+                          text: "Cancel",
+                          onPress: () => console.log("Cancel Pressed"),
+                          style: "cancel"
+                        },
+                        { text: "OK", onPress: () => {
+                          
+                        const username = item.userName;
+                        const caption  = item.caption;
+                        const url = item.url;
+                        const posted = new Date().getTime();
+
+
+
+                          const userReportData = {
+                            
+                            userName : username,
+                            caption: caption,
+                            image: url,
+                            posted:posted
+
+                          }
+                          firestore()
+                          .collection('SAVE_POST')
+                          //.doc(item._id)
+                          .add(userReportData)
+                          .then(()=>{
+                            console.log('Document Successfully deleted');
+                          })
+                          .catch(()=>{
+                            console.log('Something went wrong, could not be deleted');
+                          })
+
+                        } }
+                      ],
+                      { cancelable: false }
+                    );
+
+                  }
               }}
 
 

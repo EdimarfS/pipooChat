@@ -9,7 +9,7 @@ import {
   FlatList,
   Image,
   Alert,
-  Modal
+  Modal,
 } from "react-native";
 import  { 
   SearchBar
@@ -377,39 +377,16 @@ render(){
             console.log(item);
             return(
 
-              <View>
-
+              <View style={{
+                flexDirection:'row',
+              
+              }}>
               <TouchableOpacity 
               style={{ flex:1}}
+
+
               onPress={()=>{ Actions.messages({ title:item.name, thread:item}) }}
-               onLongPress={()=>{
-                if(item.author === auth().currentUser.uid){
-                  Alert.alert(
-                    item.userName,
-                    `Do you want to delete ${item.caption}`,
-                    [
-                      {
-                        text: "Cancel",
-                        onPress: () => console.log("Cancel Pressed"),
-                        style: "cancel"
-                      },
-                      { text: "OK", onPress: () => {
-                        firestore().collection('MESSAGE_THREADS')
-                        .doc(item._id)
-                        .delete()
-                        .then(()=>{
-                          console.log('Document Successfully deleted');
-                        })
-                        .catch(()=>{
-                          console.log('Something went wrong, could not be deleted');
-                        })
-                      } }
-                    ],
-                    { cancelable: false }
-                  )}
 
-
-              }} 
               //onLongPress={()=>{ console.log(' GROUP LONG PRESS')}}
               >
               <View style={{
@@ -435,11 +412,15 @@ render(){
                 flex:1, 
                 marginTop:1, 
                //backgroundColor:'red',
-                flexDirection:'row',
+            //    flexDirection:'row',
+                justifyContent:'space-between'
                 
               }}
               >
-              <View>
+              <View
+              style={{
+                flexDirection:'row'
+              }}>
               <Image
               source={{
                 uri:item.groupcover.groupcover
@@ -460,12 +441,7 @@ render(){
                 //alignSelf:'center'
               }}
               />
-              </View>
-              
-
-
-
-              <View style={{ 
+                            <View style={{ 
                 alignSelf:'center',
                 //marginBottom:3,
                // backgroundColor:'red',
@@ -494,11 +470,82 @@ render(){
 
 
               </View>
+              
+
+
+
+
+       
+
+
+
+
+              </View>
 
 
 
               </View>
               </TouchableOpacity>
+              
+              <TouchableOpacity 
+              
+              onPress={()=>{
+
+                const author = item.author;
+                const groupname = item.name;
+                const category = item.category;
+                const groupcover = item.groupcover.groupcover; 
+                const posted = new Date().getTime();
+
+                  const grouDATA = {
+                    author : author,
+                    category : category,
+                    groupcover: groupcover,
+                    groupname : groupname,
+                    posted : posted,
+
+                  }
+
+                  Alert.alert(
+                    item.name,
+                    `Do you want to save ${item.name}`,
+                    [
+                      {
+                        text: "Cancel",
+                        onPress: () => console.log("Cancel Pressed"),
+                        style: "cancel"
+                      },
+                      { text: "OK", onPress: () => {
+                        firestore()
+                        .collection('SAVE_GROUP')
+                  
+                        .add(grouDATA)
+                        .then(()=>{
+                          console.log('GROUP Successfully deleted');
+                        })
+                        .catch(()=>{
+                          console.log('Something went wrong, could not be save');
+                        })
+                      } }
+                    ],
+                    { cancelable: false }
+                  )
+
+
+              }} 
+              style={{
+              //  alignSelf:'center',
+                justifyContent:'center',
+                marginRight:10,
+
+              }}>
+              <Text 
+              style={{
+                fontWeight:'bold',
+  
+              }}>save</Text>
+              </TouchableOpacity>
+ 
               </View>
             )
 
