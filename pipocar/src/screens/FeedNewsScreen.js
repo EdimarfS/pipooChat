@@ -18,6 +18,7 @@ import * as mobilrnet from '@tensorflow-models/mobilenet';
 import auth from '@react-native-firebase/auth';
 import AntDesign from 'react-native-vector-icons/AntDesign'
 import EvilIcons from 'react-native-vector-icons/EvilIcons'
+import Share from 'react-native-share';
 
 /*
                       firestore().collection('STORE')
@@ -31,6 +32,9 @@ import EvilIcons from 'react-native-vector-icons/EvilIcons'
                       })
 
 */
+
+
+
 
 
 class  FeedNewsScreen extends Component {
@@ -121,6 +125,16 @@ renderHeader()
 }
 onRefresh = () => {
   this.fetchPost();
+}
+
+
+
+//Share
+
+shareCONTENT = () => {
+
+
+
 }
 
 
@@ -279,14 +293,38 @@ render(){
                   borderWidth:1,
                   padding:10,
                   borderRadius:10,
-                  borderColor:'#cfcfcf'
+                  borderColor:'#e0e0e0'
 
                 }}>
-                    <TouchableOpacity>
+                    <TouchableOpacity 
+                    onPress={()=>{
+                      const shareOptions = {
+                        title:'Share Post',
+                        message:item.caption,
+                        url: item.url,
+                        subject:'Hey',
+                      }
+
+                      try { 
+                        
+                        const ShareResponse =  Share.open(shareOptions)
+                        .then((res) => { console.log(res) })
+                        .catch((err) => { err && console.log(err); });
+                        
+                      
+
+                      }catch(error){ 
+
+                        console.log(error)
+
+
+                      }
+                    }}
+                    >
                     <EvilIcons name="link" size={30} color="black" />
                     </TouchableOpacity>
                     <TouchableOpacity>
-                    <Text>comments</Text>
+                    <Text style={{ fontWeight:'bold', color:'grey'}}>comments</Text>
                     </TouchableOpacity>
                     <TouchableOpacity>
                     <EvilIcons name="heart" size={30} color="black" />
