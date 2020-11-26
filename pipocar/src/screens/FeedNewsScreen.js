@@ -16,8 +16,9 @@ import ImageBlurLoading from 'react-native-image-blur-loading';
 import * as tf from '@tensorflow/tfjs';
 import * as mobilrnet from '@tensorflow-models/mobilenet';
 import auth from '@react-native-firebase/auth';
-
 import AntDesign from 'react-native-vector-icons/AntDesign'
+import EvilIcons from 'react-native-vector-icons/EvilIcons'
+
 /*
                       firestore().collection('STORE')
                       .doc(item._id)
@@ -267,7 +268,32 @@ render(){
                  </View>
 
                   
-                  </View>
+                </View>
+                
+
+                <View 
+                style={{
+                  marginTop:20,
+                  flexDirection:'row',
+                  justifyContent:'space-between',
+                  borderWidth:1,
+                  padding:10,
+                  borderRadius:10,
+                  borderColor:'#cfcfcf'
+
+                }}>
+                    <TouchableOpacity>
+                    <EvilIcons name="link" size={30} color="black" />
+                    </TouchableOpacity>
+                    <TouchableOpacity>
+                    <Text>comments</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity>
+                    <EvilIcons name="heart" size={30} color="black" />
+                    </TouchableOpacity>
+
+
+                </View>
 
                </View>
 
