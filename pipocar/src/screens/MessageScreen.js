@@ -122,8 +122,9 @@ render(){
     {
       Platform.OS === 'android' && 
 (      <KeyboardAvoidingView 
+
         behavior="padding" 
-        //keyboardVerticalOffset={-1000}
+      keyboardVerticalOffset={100}
       />)
     }
   </View>

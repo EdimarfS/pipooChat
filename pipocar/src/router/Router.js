@@ -30,7 +30,8 @@ import {
 } from '../screens/index';
 
 import MessageScreen from '../screens/MessageScreen';
-import IconEvilIcons from 'react-native-vector-icons/EvilIcons';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 
 
@@ -57,7 +58,7 @@ class TabIcon extends Component {
         //  backgroundColor:'red'
             }}>
 
-                <IconEvilIcons  style={{color: color}} name={this.props.iconName} size={34} onLongPress={this.props.onLongPress} /> 
+                <Ionicons  style={{color: color}} name={this.props.iconName} size={24} onLongPress={this.props.onLongPress} /> 
            
             </View>
 
@@ -220,7 +221,7 @@ return(
                     <Scene
                     key="chat"
                     component={ChatScreen}
-                    iconName={"comment"}
+                    iconName={"ios-chatbubbles"}
                     icon={TabIcon}
                     activeTintColor={tint_color}
                     inactiveTintColor={inactive_Color}
@@ -258,7 +259,9 @@ return(
                 )
             }}
             iconName={"refresh"}
-            icon={TabIcon}
+            icon={()=>{
+                return(<MaterialCommunityIcons name="popcorn" size={28} color="black" />)
+            }}
             activeTintColor={tint_color}
             inactiveTintColor={inactive_Color}
             >
@@ -306,7 +309,7 @@ return(
                     component={SettingScreen}
                    // iconName={"ios-settings"}
                     //icon={TabIcon}
-                    iconName={"gear"}
+                    iconName={"md-settings"}
                     icon={TabIcon}
                     activeTintColor={tint_color}
                     inactiveTintColor={inactive_Color}
