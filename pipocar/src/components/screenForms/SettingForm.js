@@ -22,6 +22,7 @@ import auth from '@react-native-firebase/auth';
 import database from '@react-native-firebase/database';
 import firestore from '@react-native-firebase/firestore';
 import IconEvilIcons from 'react-native-vector-icons/EvilIcons';
+//import IconEvilIcons from 'react-native-vector-icons/EvilIcons';
 
 import { 
   emailCHANGED, 
@@ -206,14 +207,20 @@ renderHeaderGROUP = () => {
      marginTop:10,
     }}>
       <View style={{
-        alignSelf:'center'
+        alignSelf:'center',
+        flexDirection:'row'
       }}>
+        <IconEvilIcons
+         name="comment" size={38} color="black" />
       <Text 
       style={{ 
+        //fontWeight:'bold',
+        fontSize:10,
+        color:'grey',
+        alignSelf:'center',
         fontWeight:'bold',
-        fontSize:20,
-        color:'black'
-        }}>Group</Text>
+
+        }}>(Rooms)</Text>
         </View>
 
 
@@ -245,15 +252,20 @@ renderHeaderPOST = () => {
     marginTop:'20%'
     }}>
       <View style={{
-        alignSelf:'center'
+        alignSelf:'center',
+        flexDirection:'row'
       }}>
+        <IconEvilIcons
+         name="image" size={38} color="black" />
       <Text 
       style={{ 
-        fontWeight:'bold',
-        fontSize:20,
-        color:'black'
+        //fontWeight:'bold',
+        fontSize:10,
+        color:'grey',
+        alignSelf:'center',
+        fontWeight:'bold'
 
-        }}>Post</Text>
+        }}>(Post)</Text>
         </View>
     </View>
     </TouchableOpacity>
