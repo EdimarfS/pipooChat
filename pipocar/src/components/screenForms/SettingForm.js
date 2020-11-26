@@ -256,7 +256,10 @@ renderHeaderPOST = () => {
         flexDirection:'row'
       }}>
         <IconEvilIcons
-         name="image" size={38} color="grey" />
+         name="image" 
+         size={38} 
+         color="grey" 
+         />
       <Text 
       style={{ 
         //fontWeight:'bold',

@@ -330,7 +330,7 @@ return(
                     component={SettingScreen}
                    // iconName={"ios-settings"}
                     //icon={TabIcon}
-                    iconName={"md-settings"}
+                    iconName={"ios-settings"}
                     icon={TabIcon}
                     activeTintColor={tint_color}
                     inactiveTintColor={inactive_Color}
