@@ -211,7 +211,7 @@ renderHeaderGROUP = () => {
         flexDirection:'row'
       }}>
         <IconEvilIcons
-         name="comment" size={38} color="black" />
+         name="comment" size={38} color="grey" />
       <Text 
       style={{ 
         //fontWeight:'bold',
@@ -256,7 +256,7 @@ renderHeaderPOST = () => {
         flexDirection:'row'
       }}>
         <IconEvilIcons
-         name="image" size={38} color="black" />
+         name="image" size={38} color="grey" />
       <Text 
       style={{ 
         //fontWeight:'bold',
@@ -476,7 +476,7 @@ render(){
                                       borderRadius:90,
 
                                       marginTop:10,
-                                      backgroundColor:'red'
+                                      backgroundColor:'lightgrey'
                                     }}
                                     
                                     />
@@ -572,7 +572,7 @@ render(){
                                      borderRadius:10,
 
                                       marginTop:10,
-                                      backgroundColor:'red'
+                                      backgroundColor:'lightgrey'
                                     }}
                                     
                                     />

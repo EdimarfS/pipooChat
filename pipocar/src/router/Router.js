@@ -334,6 +334,18 @@ return(
                     icon={TabIcon}
                     activeTintColor={tint_color}
                     inactiveTintColor={inactive_Color}
+                    renderTitle={()=>{
+                        return(
+                            <View style={{
+                                flex:1,
+                                justifyContent:'center',
+                                alignItems:'center',
+                                }}>
+                                <Text style={{fontWeight:'bold',fontSize:20}}>Settings</Text>
+                            </View>
+                        )
+                    }}
+                  //  hideNavBar
                     
                     />
  

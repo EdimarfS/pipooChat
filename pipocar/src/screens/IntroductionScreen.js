@@ -34,9 +34,11 @@ render(){
         marginTop:'40%',
       }}>
         <Text style={{
-          fontSize:40,
-          marginBottom:'30%',
-        }}> welcome</Text>
+          fontSize:50,
+          marginBottom:'20%',
+          fontWeight:'bold',
+          color:'#05c7fc'
+        }}> pipoca</Text>
 
       </View>
       <View 

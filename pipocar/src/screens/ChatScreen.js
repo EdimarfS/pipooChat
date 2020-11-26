@@ -246,7 +246,8 @@ renderHeader = () => {
           fontSize:50,
           fontWeight:'bold',
           marginTop:10,
-          marginBottom:40
+          marginBottom:40,
+          color:'grey'
          // backgroundColor:'red'
         }}>
           Chats 

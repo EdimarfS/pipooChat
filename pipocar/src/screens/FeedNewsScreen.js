@@ -7,7 +7,8 @@ import {
   Text, 
   FlatList,
   TouchableOpacity,
-  Alert
+  Alert,
+  Image
 } from "react-native";
 import { Actions } from 'react-native-router-flux';
 import database from '@react-native-firebase/database';
@@ -19,6 +20,8 @@ import auth from '@react-native-firebase/auth';
 import AntDesign from 'react-native-vector-icons/AntDesign'
 import EvilIcons from 'react-native-vector-icons/EvilIcons'
 import Share from 'react-native-share';
+import ViewShot from "react-native-view-shot";
+
 
 /*
                       firestore().collection('STORE')
@@ -44,6 +47,7 @@ class  FeedNewsScreen extends Component {
   {
     super(props)
 
+    this.viewShot = React.createRef(null);
     this.state={ 
       query:"",
       data:[],
@@ -53,6 +57,8 @@ class  FeedNewsScreen extends Component {
       loaded:false,
       comment:'',
       photoId:'',
+      screenshot:null,
+      
     }
 
 
@@ -61,6 +67,7 @@ class  FeedNewsScreen extends Component {
 UNSAFE_componentWillMount()
 {
   this.fetchPost();
+  
 }
 
 fetchPost = () => {
@@ -137,6 +144,11 @@ shareCONTENT = () => {
 
 }
 
+onCapture = (uri) => {
+  console.log("do something with ", uri);
+}
+
+
 
 render(){ 
   console.log('FeedNewsScreen');
@@ -156,16 +168,34 @@ render(){
 
         renderItem={({item}) => {
           return (
+
+
             <View style={{
                justifyContent:'center',
                marginTop:1,
                marginBottom:0,
                padding:10,
              }}>
+
+              <TouchableOpacity
+                style={{ 
+                alignItems:'flex-end',
+                justifyContent:'flex-end',
+                marginBottom:10
+
+                }}>
+              <Text 
+                style={{ 
+                fontSize:30, 
+                fontWeight:'bold',
+                color:'grey'
  
+              }}
+                >...</Text>
+             </TouchableOpacity>
+
                <View>
               <TouchableOpacity
-              //onLongPress={() => { console.log(item.userName,item.caption) }}
               onLongPress={()=>{
                 if(item.author === auth().currentUser.uid){
                   Alert.alert(
@@ -206,9 +236,7 @@ render(){
                         const caption  = item.caption;
                         const url = item.url;
                         const posted = new Date().getTime();
-
-
-
+                        
                           const userReportData = {
                             
                             userName : username,
@@ -253,7 +281,7 @@ render(){
                </TouchableOpacity>
                <View style={{
                  top:10,
-                 marginBottom:'3%',
+                 marginBottom:'1%',
                  flexDirection:'row'
                }}>
                  <ImageBlurLoading
@@ -334,8 +362,7 @@ render(){
                 </View>
 
                </View>
-
-
+       
   
             
              </View>
