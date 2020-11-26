@@ -181,7 +181,7 @@ data = [
     account : 'Accout',
     key:1,
 
-    saved : 'Save',
+    saved : 'Saved',
     key:2,
 
     logout : 'Log out',

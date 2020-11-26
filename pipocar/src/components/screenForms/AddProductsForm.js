@@ -12,7 +12,8 @@ import {
 } from "react-native";
 import { 
 InputForPosts,
-Button
+Button,
+InputDataEdit
 } from '../reusebleComponents/index';
 import ImagePicker from 'react-native-image-crop-picker';
 import {check, PERMISSIONS, RESULTS} from 'react-native-permissions';
@@ -36,10 +37,10 @@ class  CreateGroupForm extends Component {
           imageSelected: false,
           uploading: false,
           progress: 0,
-          imageURI:'https://firebasestorage.googleapis.com/v0/b/pipocar-61cd8.appspot.com/o/groupCovers%2F2018_Tesla_Model_S_75D.jpg?alt=media&token=e97785c0-429f-45ea-affe-ac8773819160',
+          imageURI:'https://firebasestorage.googleapis.com/v0/b/pipocar-61cd8.appspot.com/o/groupCovers%2F5ab004b8cf67d4d4b8b2b7242f8225af.jpg?alt=media&token=305afb7e-f573-4b80-9bd1-be697628c5fc',
           title:'My product',
           price:'0',
-          category:'Vehicles',
+          category:'Apperel',
           condition:'New',
           location:'Angola',
           website: '',
@@ -365,8 +366,8 @@ render(){
         thumbnailSource={{uri:this.state.imageURI}}
         source={{uri:this.state.imageURI}}
         style={{
-          width:106,
-          height:100,
+          width:40,
+          height:40,
           alignSelf:'center',
           justifyContent:'center'
 
@@ -544,7 +545,7 @@ render(){
       //  flex:1, 
         marginBottom:50,
         }}>
-        <InputForPosts
+        <InputDataEdit
         placeholder="Title"
         autoCapitalize="none"
         autoCorrect={false}
@@ -562,7 +563,7 @@ render(){
       marginBottom:50,
 
         }}>
-        <InputForPosts
+        <InputDataEdit
         placeholder="Price"
         autoCapitalize="none"
         autoCorrect={false}
@@ -579,7 +580,7 @@ render(){
       marginBottom:50,
 
         }}>
-        <InputForPosts
+        <InputDataEdit
         placeholder="Category"
         editable={false}
         autoCapitalize="none"
@@ -597,7 +598,7 @@ render(){
       //marginBottom:50,
 
         }}>
-        <InputForPosts
+        <InputDataEdit
         placeholder="Location"
         autoCapitalize="none"
         autoCorrect={false}

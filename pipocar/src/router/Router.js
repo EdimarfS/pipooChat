@@ -32,6 +32,7 @@ import {
 import MessageScreen from '../screens/MessageScreen';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import AntDesign from 'react-native-vector-icons/AntDesign';
 
 
 
@@ -226,13 +227,34 @@ return(
                     activeTintColor={tint_color}
                     inactiveTintColor={inactive_Color}
                     renderRightButton={
-                        <TouchableOpacity onPress={()=>{ Actions.creategroup()}}>
-                            <Text style={{
-                                fontSize:20,
-                                marginRight:10,
-                            }}>Add</Text>
+                        <TouchableOpacity 
+                        style={{
+                            marginRight:10,
+                            flexDirection:'row'
+                        }}
+                        onPress={()=>{ Actions.creategroup()}}>
+                            <AntDesign name="team" size={24} color="black" />
+                            <Text>+</Text>
                         </TouchableOpacity>
                         }
+                        renderTitle={()=>{
+                            return(
+                                <View style={{
+                                    flex:1,
+                                    justifyContent:'center',
+                                    alignItems:'center',
+                                    }}> 
+                                    <Text style={{fontWeight:'bold',fontSize:20}}>chat</Text>
+                              
+                                    
+            
+                                </View>
+                            )
+                        }}
+
+
+                    
+                    
                     />
 
 
@@ -244,6 +266,8 @@ return(
             <Scene 
             
             key="pipoca"
+            activeTintColor={tint_color}
+            inactiveTintColor={inactive_Color}
             renderTitle={()=>{
                 return(
                     <View style={{
@@ -252,9 +276,6 @@ return(
                         alignItems:'center',
                         }}>
                         <Text style={{fontWeight:'bold',fontSize:20}}>pipoca</Text>
-                  
-                        
-
                     </View>
                 )
             }}
@@ -262,8 +283,8 @@ return(
             icon={()=>{
                 return(<MaterialCommunityIcons name="popcorn" size={28} color="black" />)
             }}
-            activeTintColor={tint_color}
-            inactiveTintColor={inactive_Color}
+
+        
             >
 
 
@@ -274,15 +295,15 @@ return(
             legacy={true} 
             tabBarPosition="top"
             swipeEnabled={true}
-            activeTintColor="#05c7fc"
-            inactiveTintColor="#1f1f1f"
+
             tabs
+
             //showLabel={false}
             //hideNavBar
            
             > 
                     <Scene
-                    key="feednews"
+                    key="News"
 
                     component={FeedNewsScreen}
                     activeTintColor={tint_color}

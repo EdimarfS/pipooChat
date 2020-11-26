@@ -557,8 +557,8 @@ render(){
               >
                 <Text style={{
                 fontSize:15,
-                color:'grey',
-               // fontWeight:'bold',
+                color:'#05c7fc',
+                fontWeight:'bold',
                 marginTop:10,
                // backgroundColor:'red',
       

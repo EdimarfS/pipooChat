@@ -16,6 +16,8 @@ import ImageBlurLoading from 'react-native-image-blur-loading';
 import * as tf from '@tensorflow/tfjs';
 import * as mobilrnet from '@tensorflow-models/mobilenet';
 import auth from '@react-native-firebase/auth';
+
+import AntDesign from 'react-native-vector-icons/AntDesign'
 /*
                       firestore().collection('STORE')
                       .doc(item._id)
@@ -99,10 +101,20 @@ renderHeader()
      style={{
        borderWidth:1,
        padding:10,
-       borderColor:'#05c7fc'
+       borderColor:'#05c7fc',
+       flexDirection:'row',
+    
      }}>
-       <Text style={{ fontWeight:'bold'}}>Add post</Text>
+       <AntDesign 
+       name="picture" size={20} color="grey" />
+       <AntDesign 
+      style={{ marginLeft:10}}
+       name="videocamera" size={20} color="grey" />
+       <AntDesign
+       style={{ marginLeft:10}} 
+       name="smileo" size={20} color="grey" />
      </TouchableOpacity>
+
    </View>
   )
 }

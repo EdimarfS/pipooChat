@@ -332,8 +332,8 @@ render(){
         thumbnailSource={{uri:this.state.imageURI}}
         source={{uri:this.state.imageURI}}
         style={{
-          width:106,
-          height:100,
+          width:40,
+          height:40,
           alignSelf:'center',
           justifyContent:'center'
 
@@ -370,19 +370,19 @@ render(){
               }}>
               <TouchableOpacity onPress={()=> this.setState({ category: item.travel})}>
               <View style={styles.categoryContainer1}>
-                 <Text style={styles.categoryText1}>#{item.travel}</Text>
+                 <Text style={styles.categoryText1}>@{item.travel}</Text>
               </View>
               </TouchableOpacity>
               
               <TouchableOpacity onPress={()=> this.setState({ category: item.healthAndwellness})}>
               <View style={styles.categoryContainer2}>
-                 <Text style={styles.categoryText2}>#{item.healthAndwellness}</Text>
+                 <Text style={styles.categoryText2}>@{item.healthAndwellness}</Text>
               </View>
               </TouchableOpacity>
               
               <TouchableOpacity onPress={()=> this.setState({ category: item.beauty})}>
               <View style={styles.categoryContainer3}>
-                 <Text style={styles.categoryText3}>#{item.beauty}</Text>
+                 <Text style={styles.categoryText3}>@{item.beauty}</Text>
               </View>
               </TouchableOpacity>
 
