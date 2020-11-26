@@ -20,8 +20,6 @@ import auth from '@react-native-firebase/auth';
 import AntDesign from 'react-native-vector-icons/AntDesign'
 import EvilIcons from 'react-native-vector-icons/EvilIcons'
 import Share from 'react-native-share';
-import ViewShot from "react-native-view-shot";
-
 
 /*
                       firestore().collection('STORE')

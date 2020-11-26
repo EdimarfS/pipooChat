@@ -29,9 +29,6 @@ target 'pipocar' do
   pod 'Permission-StoreKit', :path => "#{permissions_path}/StoreKit.podspec"
   
   use_react_native!(:path => config["reactNativePath"])
-
-  pod 'react-native-view-shot', :path => '../node_modules/react-native-view-shot'
-
   target 'pipocarTests' do
     inherit! :complete
     # Pods for testing
