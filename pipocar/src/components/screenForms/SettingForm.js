@@ -620,7 +620,7 @@ render(){
                                                 <ImageModal
                                                   resizeMode="contain"
                                                 
-                                                  imageBackgroundColor="lightgrey"
+                                                  imageBackgroundColor="white"
                                                   style={{
                                                     width:100,
                                                     height:100,

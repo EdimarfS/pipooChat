@@ -363,18 +363,25 @@ name="sticker-emoji" size={27} color="black" />
 
 renderMessageImage = (props) => {
   return (
+      <View style={{
+        alignSelf:'center',
+        marginTop:10,
+      }}>
       <ImageModal
         resizeMode="contain"
+      
+        imageBackgroundColor="white"
         style={{
-          width: 200,
-          height: 200,
-          padding: 6,
-          borderRadius: 15,
-          padding: 2,
-          resizeMode: "cover",
+          width:150,
+          height:150,
+          //borderRadius:10,
+          alignSelf:'center',
+  
         }}
+
         source={{ uri: props.currentMessage.image }}
       />
+      </View>
   );
 };
 
