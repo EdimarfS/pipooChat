@@ -36,6 +36,8 @@ import {
   updateUSER
  } from '../../actions/index'; 
 import { connect } from 'react-redux';
+import ImageModal from 'react-native-image-modal';
+
 
 class  SettingForm extends Component {
   
@@ -539,6 +541,7 @@ render(){
 
 
                                     </View>
+                                    
                                   
                                   </View>
                                   
@@ -611,19 +614,19 @@ render(){
                                     alignSelf:'center'     
                                   }}>
                                     <View>
-                                    <Image
-                                    source={{
-                                      uri : item.image
-                                    }}
-                                    style={{
-                                      width:100,
-                                      height:100,
-                                     borderRadius:10,
-
-                                      marginTop:10,
-                                      backgroundColor:'lightgrey'
-                                    }}
-                                    
+                                      <ImageModal
+                                      resizeMode="contain"
+                                     // imageBackgroundColor="#000000"
+                                      style={{
+                                        width: 100,
+                                        height: 100,
+                                        marginTop:10,
+                                        borderRadius:10,
+                                        backgroundColor:'lightgrey'
+                                      }}
+                                      source={{
+                                        uri : item.image
+                                      }}
                                     />
                                     </View>
 

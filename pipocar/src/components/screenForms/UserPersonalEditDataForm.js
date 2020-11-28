@@ -344,11 +344,11 @@ render(){
             onPress={this.findNewImage}
             style={{
                 marginTop:'5%',
-                borderWidth:1,
+              //  borderWidth:1,
                 borderColor:'#05c7fc',
-                padding:10,
+            //    padding:10,
                 alignSelf:'center',
-                backgroundColor:'white',
+              //  backgroundColor:'white',
                
                 marginBottom:10,
         
@@ -359,9 +359,9 @@ render(){
                 thumbnailSource={{ uri: auth().currentUser.photoURL }}
                 source={{ uri: auth().currentUser.photoURL }}
                 style={{
-                    width:40,
-                    height:40,
-                    //borderRadius:50,
+                    width:100,
+                    height:100,
+                    borderRadius:50,
                 }}
                 />  : 
                 <ImageBlurLoading
@@ -381,7 +381,8 @@ render(){
             <Text style={{
               alignSelf:'center',
               marginBottom:10,
-              fontWeight:'bold'
+              fontWeight:'bold',
+              color:'#2e2e2e'
             }}> Your personal data</Text>
         </View>
         <View style={styles.MarginBettwenFields}>

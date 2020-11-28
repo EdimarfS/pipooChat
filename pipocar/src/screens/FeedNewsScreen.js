@@ -264,14 +264,20 @@ onPress={()=>{
 
                  <View style={{
                    marginLeft:'10%',
+                   marginRight:'10%'
                  }}>
                     <View>
                      <Text style={{
                        fontWeight:'bold'
                      }}>{item.userName}</Text>
                     </View>
-                    <View style={{ marginTop:5}}>
-                     <Text>{item.caption}</Text>
+                    <View style={{ 
+                      marginTop:5,
+                     // alignSelf:'center'
+                      }}>
+                     <Text style={{
+                       color:'grey'
+                     }}>{item.caption}</Text>
                     </View>
 
 

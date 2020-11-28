@@ -20,6 +20,7 @@ import { Modalize } from 'react-native-modalize';
 import { Actions } from 'react-native-router-flux';
 import auth from '@react-native-firebase/auth';
 import _ from 'lodash';
+import ImageModal from 'react-native-image-modal';
 
 /*
 
@@ -488,16 +489,18 @@ render(){
                 }) */
               }}>
               <View>
-              <Image
-              source={{
-                uri:item.image
-              }}
-              style={{
-                width:150,
-                height:150,
-                borderRadius:10,
-                alignSelf:'center'
-              }}
+              <ImageModal
+                resizeMode="contain"
+              
+                imageBackgroundColor="lightgrey"
+                style={{
+                  width:150,
+                  height:150,
+                  borderRadius:10,
+                  alignSelf:'center'
+                }}
+
+                source={{ uri: item.image}}
               />
               </View>
               </TouchableOpacity>

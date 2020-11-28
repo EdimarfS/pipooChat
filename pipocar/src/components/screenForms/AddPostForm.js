@@ -290,7 +290,7 @@ render(){
         <InputForPosts
         autoCapitalize="none"
         autoCorrect={false}
-        maxLength={10}
+        //maxLength={10}
         value={this.state.caption}
         onChangeText={(text) => this.setState({
            caption:text,

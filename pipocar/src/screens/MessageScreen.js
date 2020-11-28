@@ -290,7 +290,7 @@ renderSend = (props) => {
   
   <View>
       <TouchableOpacity 
-      onPress={this.findNewImage}
+    //  onPress={this.findNewImage}
       >
       <Image
       source={{
