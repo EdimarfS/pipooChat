@@ -29,6 +29,7 @@ target 'pipocar' do
   pod 'Permission-StoreKit', :path => "#{permissions_path}/StoreKit.podspec"
   
   use_react_native!(:path => config["reactNativePath"])
+
   target 'pipocarTests' do
     inherit! :complete
     # Pods for testing

@@ -13,6 +13,11 @@ import  { addMessages, messageFETCH} from '../actions/ChatActions';
 import { connect } from 'react-redux';
 import firestore from '@react-native-firebase/firestore';
 import auth from '@react-native-firebase/auth';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import EvilIcons from 'react-native-vector-icons/EvilIcons';
+import MaterialCommunityIcons  from 'react-native-vector-icons/MaterialCommunityIcons'
+
+import Send from '../../node_modules/react-native-gifted-chat/lib/Send';
 class  MessageScreen extends Component {
 
 
@@ -98,6 +103,90 @@ onSendMessage(messages=[])
 
 
 
+renderSend = (props) => {
+  return(
+
+  <View style={{
+     marginRight:10,
+     marginLeft:5,
+     marginBottom:10,
+     flexDirection:'row'
+  }}>
+  
+{ this.state.imageSelected === true  ?
+  (
+  
+  <View>
+      <TouchableOpacity 
+      onPress={this.findNewImage}
+      >
+      <Image
+      source={{
+          uri:this.state.uri,
+      
+      }}
+      style={{
+          width:30,
+          height:30,
+          backgroundColor:'red',
+          marginTop:'15%',
+          marginRight:55,
+          borderRadius:5,
+      }}
+      />
+      </TouchableOpacity>
+  </View>)   : 
+  <View style={{
+    flexDirection:'row',
+    alignSelf:'center'
+  }}> 
+
+  <EvilIcons 
+  //onPress={this.findNewImage}
+  style={{
+  marginTop:'22%',
+  marginRight:10,
+  }}
+  name="image" 
+  size={36} 
+  color="black" 
+  /> 
+<MaterialCommunityIcons 
+  style={{
+    marginTop:'22%',
+    marginRight:10,
+  }}
+
+name="sticker-emoji" size={27} color="black" />
+</View>
+  
+  
+  }
+
+
+
+
+  <Send {...props}>
+  <View style={styles.sendingContainer}>
+  <FontAwesome 
+  name="send" 
+  size={25} 
+  color={'#00bbff'} 
+  />
+
+  
+  </View>
+  </Send>
+
+
+  </View>
+
+  );
+
+}
+
+
+
 render(){ 
   console.log('MessageScreen');
   return (
@@ -112,6 +201,7 @@ render(){
     minComposerHeight={40}
     minInputToolbarHeight={60}
     messages={this.props.messages}
+    renderSend={this.renderSend}
     onSend={this.onSendMessage.bind(this)}
     user = {{
       _id: auth().currentUser.uid,
@@ -154,3 +244,19 @@ export default connect(mapStateToProps,{
 
 
 })(MessageScreen);
+
+
+
+const styles = {
+  sendingContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection:'row',
+    justifyContent:'space-between',
+    marginRight:20
+
+    //backgroundColor:'red'
+  
+ 
+  }
+};

@@ -215,7 +215,7 @@ renderHeaderGROUP = () => {
         alignSelf:'center',
         flexDirection:'row'
       }}>
-        <IconEvilIcons
+        <EvilIcons
          name="comment" size={38} color="grey" />
       <Text 
       style={{ 
@@ -261,7 +261,7 @@ renderHeaderPOST = () => {
         alignSelf:'center',
         flexDirection:'row'
       }}>
-        <IconEvilIcons
+        <EvilIcons
          name="image" 
          size={38} 
          color="grey" 

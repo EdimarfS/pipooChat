@@ -20,6 +20,7 @@ import _ from 'lodash';
 import auth from '@react-native-firebase/auth';
 
 
+
 /*
                 if(item.author === auth().currentUser.uid){
                   Alert.alert(
