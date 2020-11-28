@@ -21,6 +21,7 @@ import { Actions } from 'react-native-router-flux';
 import auth from '@react-native-firebase/auth';
 import _ from 'lodash';
 import ImageModal from 'react-native-image-modal';
+import EvilIcons from 'react-native-vector-icons/EvilIcons'
 
 /*
 
@@ -346,6 +347,32 @@ onRefresh = () => {
   this.fetchStore();
 }
 
+renderEmpty = () => {
+  
+  return(
+    <View style={{
+      width:'100%',
+      height:350,
+      backgroundColor:'#f5f5f5',
+      justifyContent:'center',
+ 
+    }}>
+      <EvilIcons 
+      style={{
+        alignSelf:'center'
+      }}
+      name="image" size={100} color="grey" />
+      <Text
+      style={{
+        alignSelf:'center',
+        color:'black',
+        //fontWeight:'bold'
+      }}
+      >No post yet, be the first one posting</Text>
+    </View>
+  )
+}
+
 render(){ 
   console.log('StoreScreen');
   return (
@@ -360,6 +387,7 @@ render(){
         refreshing={this.state.refreshing} 
         onRefresh={this.onRefresh}
         ListHeaderComponent={this.renderHeader}
+        ListEmptyComponent={this.renderEmpty}
         showsVerticalScrollIndicator ={false}
         numColumns={2}
         showsHorizontalScrollIndicator={false}

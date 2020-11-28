@@ -363,12 +363,6 @@ name="sticker-emoji" size={27} color="black" />
 
 renderMessageImage = (props) => {
   return (
-    <View
-      style={{
-        borderRadius: 15,
-        padding: 2,
-      }}
-    >
       <ImageModal
         resizeMode="contain"
         style={{
@@ -376,11 +370,11 @@ renderMessageImage = (props) => {
           height: 200,
           padding: 6,
           borderRadius: 15,
+          padding: 2,
           resizeMode: "cover",
         }}
         source={{ uri: props.currentMessage.image }}
       />
-    </View>
   );
 };
 
@@ -414,7 +408,7 @@ render(){
 (      <KeyboardAvoidingView 
 
         behavior="padding" 
-      keyboardVerticalOffset={100}
+      keyboardVerticalOffset={-10000}
       />)
     }
   </View>

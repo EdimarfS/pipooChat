@@ -9,6 +9,7 @@ import {
 import { 
   Input,
   Button,
+  InputDataEdit
 } from '../reusebleComponents/index';
 import { 
   emailCHANGED, 
@@ -54,8 +55,11 @@ render(){
   return (
     <View 
     style={{
+      flex:1,
       marginLeft:10,
       marginRight:10,
+      //backgroundColor:'#f2f2f2',
+  //    backgroundColor:'lightgrey'
 
     }}>  
     
@@ -67,7 +71,7 @@ render(){
          marginTop:10,
          padding:10,
          backgroundColor:'white',
-         borderWidth:1,
+       //  borderWidth:1,
          borderColor:'#05c7fc',
          padding:10,  
          borderRadius:90,
@@ -80,8 +84,8 @@ render(){
            uri: 'https://firebasestorage.googleapis.com/v0/b/pipocar-61cd8.appspot.com/o/groupCovers%2Fcef4c151ecd7c2fd46180b45fb5bc1a1.jpg?alt=media&token=8beea4de-e1fd-439d-8162-eb7bab61e41c'
          }}
          style={{
-           width:110,
-           height:100,
+           width:50,
+           height:50,
            borderRadius:90,
 
          }}
@@ -94,7 +98,8 @@ render(){
       style={{
         marginBottom:70,
       }}>  
-        <Input
+        <InputDataEdit
+        placeholderTextColor="grey"
         placeholder="Username"
         autoCapitalize='none'
         autoCorrect={false}
@@ -109,7 +114,8 @@ render(){
       style={{
         marginBottom:70,
       }}>  
-        <Input
+        <InputDataEdit
+        placeholderTextColor="grey"
         placeholder="ID"
         autoCapitalize='none'
         autoCorrect={false}
@@ -124,7 +130,8 @@ render(){
       style={{
         marginBottom:70,
       }}>  
-        <Input
+        <InputDataEdit
+        placeholderTextColor="grey"
         placeholder="Location"
         multiline={true}
         maxLength={40}
@@ -141,7 +148,8 @@ render(){
       style={{
         marginBottom:70,
       }}>  
-        <Input
+        <InputDataEdit
+        placeholderTextColor="grey"
         placeholder="Bio"
         multiline={true}
         maxLength={40}

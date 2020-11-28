@@ -574,7 +574,7 @@ render(){
                               
                               if(item.author === auth().currentUser.uid)
                               return(
-                                <TouchableOpacity 
+                                <View 
                                 
                                 onLongPress={()=>{
                                   Alert.alert(
@@ -609,6 +609,8 @@ render(){
                                 }}
                                 >
 
+
+
                                   <View style={{
                                     flexDirection:'row',
                                     alignSelf:'center'     
@@ -632,6 +634,7 @@ render(){
 
 
 
+
                                     <View>
                                     
                                     
@@ -640,8 +643,39 @@ render(){
                                   
                                   
                                   </View>
+                                  <TouchableOpacity
+                                  onPress={()=>{
+                                    Alert.alert(
+                                      item.name,
+                                      `Do you want to delete "${item.caption}"`,
+                                      [
+                                        {
+                                          text: "Cancel",
+                                          onPress: () => console.log("Cancel Pressed"),
+                                          style: "cancel"
+                                        },
+                                        { text: "OK", onPress: () => {
+                                          firestore()
+                                          .collection('SAVE_POST')
+                                          .doc(item._id)
+                                          .delete()
+                                          .then(()=>{
+                                            console.log('POST Successfully deleted');
+                                          })
+                                          .catch(()=>{
+                                            console.log('Something went wrong, could not be save');
+                                          })
+                                        } }
+                                      ],
+                                      { cancelable: false }
+                                    )
+                                  }}
+                                  
+                                  >
+                                      <Text style={{ alignSelf:'center', fontWeight:'bold'}}>Remove</Text>
+                                  </TouchableOpacity>
                                
-                                </TouchableOpacity>
+                                </View>
                               )
 
 

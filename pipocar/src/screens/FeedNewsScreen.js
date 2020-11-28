@@ -148,6 +148,31 @@ onCapture = (uri) => {
   console.log("do something with ", uri);
 }
 
+renderEmpty = () => {
+  
+  return(
+    <View style={{
+      width:'100%',
+      height:350,
+      backgroundColor:'#f5f5f5',
+      justifyContent:'center',
+ 
+    }}>
+      <EvilIcons 
+      style={{
+        alignSelf:'center'
+      }}
+      name="image" size={100} color="grey" />
+      <Text
+      style={{
+        alignSelf:'center',
+        color:'black',
+        //fontWeight:'bold'
+      }}
+      >No post yet, be the first one posting</Text>
+    </View>
+  )
+}
 
 
 render(){ 
@@ -159,6 +184,7 @@ render(){
         refreshing={this.state.refreshing} 
         onRefresh={this.onRefresh}
         ListHeaderComponent={this.renderHeader}
+        ListEmptyComponent={this.renderEmpty}
         showsVerticalScrollIndicator ={false}
         showsHorizontalScrollIndicator={false}
        // ListEmptyComponent={this._listEmptyComponent}
