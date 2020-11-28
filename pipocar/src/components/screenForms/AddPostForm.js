@@ -6,7 +6,6 @@ import {
   View, 
   Text, 
   TouchableOpacity,
-  Image
 } from "react-native";
 import { 
 InputForPosts,
@@ -73,12 +72,19 @@ console.log('Unknown Error', error);
 });
 } 
       
-          //S4
+//S4
 s4 = () => {
       return Math.floor((1 + Math.random()) * 0x10000)
         .toString(16)
         .substring(1);
     };
+
+  //Unique ID
+uniqueId = () => {
+    return (
+      this.s4() + this.s4() + "-" + this.s4() + "-" + this.s4() + "-" + this.s4() + "-" + this.s4() + "-" + this.s4() + "-" + this.s4()
+    );
+  };
 
   //UploadPublish
 UploadPublish = () => {
@@ -86,12 +92,6 @@ UploadPublish = () => {
         this.uploadImage(this.state.imageURI);
   }
   
-  //Unique ID
-  uniqueId = () => {
-      return (
-        this.s4() + this.s4() + "-" + this.s4() + "-" + this.s4() + "-" + this.s4() + "-" + this.s4() + "-" + this.s4() + "-" + this.s4()
-      );
-    };
 
 
   //ImagePicker
