@@ -17,7 +17,8 @@ import firestore from '@react-native-firebase/firestore';
 import auth from '@react-native-firebase/auth';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
-import MaterialCommunityIcons  from 'react-native-vector-icons/MaterialCommunityIcons'
+import MaterialCommunityIcons  from 'react-native-vector-icons/MaterialCommunityIcons';
+import Ionicons  from 'react-native-vector-icons/Ionicons';
 import ImagePicker from 'react-native-image-crop-picker';
 import {check, PERMISSIONS, RESULTS} from 'react-native-permissions';
 import Send from '../../node_modules/react-native-gifted-chat/lib/Send';
@@ -337,11 +338,13 @@ name="sticker-emoji" size={27} color="black" />
 
   <Send {...props}>
   <View style={styles.sendingContainer}>
-  <FontAwesome 
-  name="send" 
-  size={24} 
-  color={'#00bbff'} 
-  />
+    <Text
+    style={{
+      fontWeight:'bold',
+      fontSize:16,
+      color:'#05c7fc'
+    }}
+    >Send</Text>
 
   
   </View>
