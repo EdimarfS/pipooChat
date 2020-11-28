@@ -106,8 +106,8 @@ render(){
       flex:1
     }}>
     <GiftedChat
-    showUserAvatar
-    showAvatarForEveryMessage
+   // showUserAvatar
+    //showAvatarForEveryMessage
     renderUsernameOnMessage
     minComposerHeight={40}
     minInputToolbarHeight={60}

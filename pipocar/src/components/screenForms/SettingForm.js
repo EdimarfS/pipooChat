@@ -21,7 +21,11 @@ import { Modalize } from 'react-native-modalize';
 import auth from '@react-native-firebase/auth';
 import database from '@react-native-firebase/database';
 import firestore from '@react-native-firebase/firestore';
-import IconEvilIcons from 'react-native-vector-icons/EvilIcons';
+import EvilIcons from 'react-native-vector-icons/EvilIcons';
+import AntDesign from 'react-native-vector-icons/AntDesign';
+import  Fontisto from 'react-native-vector-icons/Fontisto';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+//AntDesign
 //import IconEvilIcons from 'react-native-vector-icons/EvilIcons';
 
 import { 
@@ -168,7 +172,7 @@ onCloseFavorite()
     }
 
 
-onFavoriteOPEN()
+onSaveOPEN()
     {
         this.modalizeFavoritetRef.current?.open();
     }
@@ -198,6 +202,7 @@ onLogoutPRESSED = () =>{
 
 renderHeaderGROUP = () => {
   return(
+    <View>
     <TouchableOpacity
     onPress={()=> this.setState({ checkGroup:true })}
     >
@@ -238,6 +243,7 @@ renderHeaderGROUP = () => {
         </Text>
     </View>
     </TouchableOpacity>
+    </View>
   )
 }
 
@@ -275,18 +281,54 @@ renderHeaderPOST = () => {
   )
 }
 
+renderHeaderSettings = () => {
+  return(
+    <View style={{ alignSelf:'center'}}>
+    <Image
+    
+    source={{
+      uri: auth().currentUser.photoURL
+    }}
+    style={{
+      width:100,
+      height:100,
+      borderRadius:90,
+      marginTop:20,
+      marginLeft:10
 
+    }}
+    />
+
+
+      <View style={{ 
+        marginTop:30,
+        alignSelf:'center'
+        }}>
+      <Text style={{ 
+        fontWeight:'bold',
+        color:'#05c7fc' 
+        }}>{auth().currentUser.displayName}</Text>
+      </View>
+  </View>
+
+  )
+}
 render(){ 
   console.log('SettingScreen');
   return (
     <View style={{
       flex:1,
-      backgroundColor:'#f2f2f2'
+      backgroundColor:'white'
     }}>
+
+
+
+
     <FlatList
     style={{ width:'100%', }}
     data={this.data}
     keyExtractor={(item) => item.key.toString()}
+    ListHeaderComponent={this.renderHeaderSettings}
     showsHorizontalScrollIndicator={false}
     showsVerticalScrollIndicator={false}
     renderItem= {({item}) => {
@@ -297,7 +339,7 @@ render(){
         >
           <View
           style={{
-            marginTop:'40%',
+            marginTop:'20%',
           }}
           > 
                   <TouchableOpacity 
@@ -319,7 +361,7 @@ render(){
                       marginLeft:10,
                       marginTop:2,
                     }}>
-                    <IconEvilIcons name="gear" size={30}  />
+                    <EvilIcons name="user" size={30} color="black" />
                     </View>
               
 
@@ -327,7 +369,7 @@ render(){
                     <Text 
                     style={{
                       fontSize:20,
-                      fontWeight:'bold'
+                     // fontWeight:'bold'
                       //fontWeight:'bold'
                     }}>
                     {item.account}
@@ -335,7 +377,7 @@ render(){
                   </View>
                   </TouchableOpacity>
 
-                  <TouchableOpacity onPress={this.onFavoriteOPEN.bind(this)}>
+                  <TouchableOpacity onPress={this.onSaveOPEN.bind(this)}>
                   <View 
                     style={{
                    // marginBottom:30,
@@ -347,16 +389,18 @@ render(){
                   }}>
                     <View style={styles.iconStyles}>
                     <View style={{
-                      marginLeft:10,
+                      marginLeft:15,
                       marginTop:2,
+                      
                     }}>
-                    <IconEvilIcons  name="archive" size={30}  />
+                    <Fontisto  name="favorite" size={25} />
                     </View>
                     </View>
                     <Text
                     style={{
                       fontSize:20,
-                      fontWeight:'bold'
+                      marginLeft:10
+                     // fontWeight:'bold'
                      // fontWeight:'bold'
                     }}>{item.saved}</Text>  
                   </View>
@@ -376,15 +420,17 @@ render(){
                     <View style={styles.iconStyles}>
                     <View style={{
                       marginLeft:10,
+                      marginTop:3
                     }}>
-                    <IconEvilIcons  name="chevron-left" size={30}  />
+                    <Ionicons name="ios-exit" size={30} color="black" />
                     </View>
                     </View>
                     <Text 
                     style={{
                       fontSize:20,
                       marginTop:2,
-                      fontWeight:'bold'
+                      marginLeft:10
+                     // fontWeight:'bold'
                      // fontWeight:'bold'
                     }}>{item.logout}</Text>
                     </View>

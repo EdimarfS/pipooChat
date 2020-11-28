@@ -61,6 +61,7 @@ class  ChatScreen extends Component {
       category:'',
       onRefreshing:false,
       searchBarText:'',
+      backColor:'red',
 
     }
   }
@@ -103,6 +104,7 @@ handleSearch = (text) => {
            data : data, 
            query:formatQuery,
            found:true,
+           backColor:'red'
          }) 
  
      
@@ -247,7 +249,7 @@ renderHeader = () => {
           fontWeight:'bold',
           marginTop:10,
           marginBottom:40,
-          color:'grey'
+          color:'black'
          // backgroundColor:'red'
         }}>
           Chats 
@@ -278,7 +280,10 @@ renderHeader = () => {
       return(
         <View style={{ 
           flexDirection:'row', 
-          marginTop:10,
+          marginTop:30,
+          marginBottom:20,
+
+
 
          
        //   backgroundColor:'blue'
@@ -288,45 +293,46 @@ renderHeader = () => {
           }}>
           <TouchableOpacity onPress={()=> this.handleSearch(item.travel)}>
           <View style={styles.categoryContainer1}>
-             <Text style={styles.categoryText1}>@{item.travel}</Text>
+             <Text style={styles.categoryText1}>{item.travel}</Text>
           </View>
           </TouchableOpacity>
           
           <TouchableOpacity onPress={()=> this.handleSearch(item.healthAndwellness)}>
           <View style={styles.categoryContainer2}>
-             <Text style={styles.categoryText2}>@{item.healthAndwellness}</Text>
+             <Text style={styles.categoryText2}>{item.healthAndwellness}</Text>
           </View>
           </TouchableOpacity>
           
           <TouchableOpacity onPress={()=> this.handleSearch(item.beauty)}>
           <View style={styles.categoryContainer3}>
-             <Text style={styles.categoryText3}>@{item.beauty}</Text>
+             <Text style={styles.categoryText3}>{item.beauty}</Text>
           </View>
           </TouchableOpacity>
 
           <TouchableOpacity onPress={()=> this.handleSearch(item.food_And_drink)}>
           <View style={styles.categoryContainer4}>
-             <Text style={styles.categoryText4}>@{item.food_And_drink}</Text>
+             <Text style={styles.categoryText4}>{item.food_And_drink}</Text>
           </View>
           </TouchableOpacity>
 
           <TouchableOpacity onPress={()=> this.handleSearch(item.motivational_quotes)}>
           <View style={styles.categoryContainer5}>
-             <Text style={styles.categoryText5}>@{item.motivational_quotes}</Text>
+             <Text style={styles.categoryText5}>{item.motivational_quotes}</Text>
           </View>
           </TouchableOpacity>
 
           <TouchableOpacity onPress={()=> this.handleSearch(item.sport)}>
           <View style={styles.categoryContainer7}>
-             <Text style={styles.categoryText7}>@{item.sport}</Text>
+             <Text style={styles.categoryText7}>{item.sport}</Text>
           </View>
           </TouchableOpacity>
           
           <TouchableOpacity onPress={()=> this.handleSearch(item.other)}>
           <View style={styles.categoryContainer6}>
-             <Text style={styles.categoryText6}>@{item.other}...</Text>
+             <Text style={styles.categoryText6}>{item.other}</Text>
           </View>
           </TouchableOpacity>
+          
 
           
           
@@ -361,7 +367,7 @@ render(){
   return (
         <View style={{ 
           flex:1, 
-          backgroundColor:'#fafafa'
+          backgroundColor:'#fafafa',
           }}>
         <FlatList
           data={this.state.data}
@@ -385,6 +391,9 @@ render(){
 
               <View style={{
                 flexDirection:'row',
+                borderBottomColor:'#f0f0f0',
+                borderBottomWidth:1,
+                
               
               }}>
               <TouchableOpacity 
@@ -488,7 +497,8 @@ render(){
               <Text style={{
                 fontWeight:'bold',
                 textAlign:'center',
-                fontSize:15
+                fontSize:15,
+                color:'#00baed'
               }}>{item.name.substring(0,14)+'...'}</Text>
               </View>
 
@@ -592,6 +602,7 @@ render(){
               <Text 
               style={{
                 fontWeight:'bold',
+                color:'grey'
   
               }}>save</Text>
               </TouchableOpacity>
@@ -636,51 +647,57 @@ const styles = {
     fontWeight:'bold',
     justifyContent:'center',
     alignSelf:'center',
-    color:'#05c7fc'
+    color:'grey'
   },
   categoryText2:{
     fontWeight:'bold',
     justifyContent:'center',
     alignSelf:'center',
-    color:'#05c7fc'
+    color:'grey'
 
   },
   categoryText3:{
     fontWeight:'bold',
     justifyContent:'center',
     alignSelf:'center',
-    color:'#05c7fc'
+    color:'grey'
   },
   categoryText4:{
     fontWeight:'bold',
     justifyContent:'center',
     alignSelf:'center',
-    color:'#05c7fc'
+    color:'grey'
   },
   categoryText5:{
     fontWeight:'bold',
     justifyContent:'center',
     alignSelf:'center',
-    color:'#05c7fc'
+    color:'grey'
   },  
   categoryText6:{
     fontWeight:'bold',
     justifyContent:'center',
     alignSelf:'center',
-    color:'#05c7fc'
+    color:'grey'
   },  
   categoryText7:{
     fontWeight:'bold',
     justifyContent:'center',
     alignSelf:'center',
-    color:'#05c7fc'
+    color:'grey'
   },
+
   categoryContainer1:{
    // backgroundColor:'#00d9ff',
     width:100,
     height:30,
    //borderRadius:90,
     justifyContent:'center',
+    borderWidth:1,
+    borderRadius:90,
+    borderColor:'lightgrey',
+    marginLeft:5,
+    
 
 
 
@@ -692,6 +709,10 @@ const styles = {
    // borderRadius:90,
     justifyContent:'center',
     marginLeft:10,
+    borderWidth:1,
+    borderRadius:90,
+    borderColor:'lightgrey',
+    marginLeft:5,
 
   },
   categoryContainer3:{
@@ -701,6 +722,10 @@ const styles = {
    // borderRadius:90,
     justifyContent:'center',
     marginLeft:10,
+    borderWidth:1,
+    borderRadius:90,
+    borderColor:'lightgrey',
+    marginLeft:5,
 
   },
   categoryContainer4:{
@@ -710,6 +735,10 @@ const styles = {
    // borderRadius:90,
     justifyContent:'center',
     marginLeft:10,
+    borderWidth:1,
+    borderRadius:90,
+    borderColor:'lightgrey',
+    marginLeft:5,
 
   },
   categoryContainer5:{
@@ -719,6 +748,10 @@ const styles = {
   //  borderRadius:90,
     justifyContent:'center',
     marginLeft:10,
+    borderWidth:1,
+    borderRadius:90,
+    borderColor:'lightgrey',
+    marginLeft:5,
 
   },
   categoryContainer6:{
@@ -728,6 +761,10 @@ const styles = {
    // borderRadius:90,
     justifyContent:'center',
     marginLeft:10,
+    borderWidth:1,
+    borderRadius:90,
+    borderColor:'lightgrey',
+    marginLeft:5,
 
   },
   categoryContainer7:{
@@ -737,6 +774,10 @@ const styles = {
    // borderRadius:90,
     justifyContent:'center',
     marginLeft:10,
+    borderWidth:1,
+    borderRadius:90,
+    borderColor:'lightgrey',
+    marginLeft:5,
 
   },
 

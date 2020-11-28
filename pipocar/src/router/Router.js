@@ -59,7 +59,7 @@ class TabIcon extends Component {
         //  backgroundColor:'red'
             }}>
 
-                <Ionicons  style={{color: color}} name={this.props.iconName} size={24} onLongPress={this.props.onLongPress} /> 
+                <AntDesign  style={{color: color}} name={this.props.iconName} size={28} onLongPress={this.props.onLongPress} /> 
            
             </View>
 
@@ -70,7 +70,7 @@ class TabIcon extends Component {
 const RouterComponent = () => { 
     let sizeicons = 28;
     let tint_color = "#00c6e8";
-    let inactive_Color = "#2b2b2b";
+    let inactive_Color = "grey";
 
 
 
@@ -201,6 +201,7 @@ return(
 
             <Scene 
             key="main"
+            showLabel={false}
             legacy={true} 
             tabBarPosition="bottom"
             swipeEnabled={true}
@@ -221,11 +222,11 @@ return(
             > 
                     <Scene
                     key="chat"
-                    component={ChatScreen}
-                    iconName={"ios-chatbubbles"}
+                    iconName={"message1"}
                     icon={TabIcon}
                     activeTintColor={tint_color}
                     inactiveTintColor={inactive_Color}
+                    component={ChatScreen}
                     renderRightButton={
                         <TouchableOpacity 
                         style={{
@@ -268,6 +269,12 @@ return(
             key="pipoca"
             activeTintColor={tint_color}
             inactiveTintColor={inactive_Color}
+            iconName={"message1"}
+            icon={TabIcon}
+            activeTintColor={tint_color}
+            inactiveTintColor={inactive_Color}
+            activeTintColor={tint_color}
+            showLabel={true}
             renderTitle={()=>{
                 return(
                     <View style={{
@@ -275,14 +282,29 @@ return(
                         justifyContent:'center',
                         alignItems:'center',
                         }}>
-                        <Text style={{fontWeight:'bold',fontSize:20}}>pipoca</Text>
+                        <Text style={{fontWeight:'bold',fontSize:27}}>pipoca</Text>
                     </View>
                 )
             }}
             iconName={"refresh"}
             icon={()=>{
-                return(<MaterialCommunityIcons name="popcorn" size={28} color="black" />)
-            }}
+                return(
+                <View  style={{
+                    borderWidth:3,
+                    padding:7,
+                    borderRadius:50,
+                    backgroundColor:'black',
+                    borderColor:'black',
+
+
+                   // marginTop:5,
+                    //marginBottom:5,
+                }}>
+                <MaterialCommunityIcons name="popcorn" size={20} color="white" />
+                </View>
+                
+                )
+            }} 
 
         
             >
@@ -290,24 +312,18 @@ return(
 
 
             <Scene 
-            
             key="feedandbusiness"
-            legacy={true} 
+           // legacy={true} 
             tabBarPosition="top"
-            swipeEnabled={true}
-
+            //swipeEnabled={true}
             tabs
-
-            //showLabel={false}
+           // showLabel={false}
             //hideNavBar
-           
+            iconName={"message1"}
             > 
                     <Scene
                     key="News"
-
                     component={FeedNewsScreen}
-                    activeTintColor={tint_color}
-                    inactiveTintColor={inactive_Color}
                     hideNavBar
                     />
                     <Scene
@@ -330,7 +346,7 @@ return(
                     component={SettingScreen}
                    // iconName={"ios-settings"}
                     //icon={TabIcon}
-                    iconName={"ios-settings"}
+                    iconName={"setting"}
                     icon={TabIcon}
                     activeTintColor={tint_color}
                     inactiveTintColor={inactive_Color}
