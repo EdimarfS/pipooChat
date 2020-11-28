@@ -247,11 +247,7 @@ onPress={()=>{
              </TouchableOpacity>
 
                <View>
-              <TouchableOpacity
 
-
-
-              >
 
                <View style={{  alignSelf:'center'}}>
                <ImageModal
@@ -272,7 +268,6 @@ onPress={()=>{
 
 
                </View>
-               </TouchableOpacity>
                <View style={{
                  top:10,
                  marginBottom:'1%',

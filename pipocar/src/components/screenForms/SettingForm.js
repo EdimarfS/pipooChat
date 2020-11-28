@@ -615,22 +615,27 @@ render(){
                                     flexDirection:'row',
                                     alignSelf:'center'     
                                   }}>
-                                    <View>
-                                      <ImageModal
-                                      resizeMode="contain"
-                                     // imageBackgroundColor="#000000"
-                                      style={{
-                                        width: 100,
-                                        height: 100,
-                                        marginTop:10,
-                                        borderRadius:10,
-                                        backgroundColor:'lightgrey'
-                                      }}
-                                      source={{
-                                        uri : item.image
-                                      }}
-                                    />
-                                    </View>
+
+                                  <View style={{  alignSelf:'center', borderRadius:10}}>
+                                                <ImageModal
+                                                  resizeMode="contain"
+                                                
+                                                  imageBackgroundColor="lightgrey"
+                                                  style={{
+                                                    width:100,
+                                                    height:100,
+                                                    alignSelf:'center',
+                                                    borderRadius:10
+                                                  }}
+
+                                                  source={{ uri: item.image}}
+                                                />
+                                                  
+
+
+
+
+                                              </View>
 
 
 
