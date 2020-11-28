@@ -22,6 +22,10 @@ import ImagePicker from 'react-native-image-crop-picker';
 import {check, PERMISSIONS, RESULTS} from 'react-native-permissions';
 import Send from '../../node_modules/react-native-gifted-chat/lib/Send';
 import storage from '@react-native-firebase/storage';
+import 
+{ 
+Spinner
+} from '../components/reusebleComponents/index';
 class  MessageScreen extends Component {
 
 
@@ -119,6 +123,7 @@ return (
         imageSelected: true,
         imageId: this.uniqueId(),
         imageFromChat: image.path,
+        loading: true,
         
     })
 
@@ -358,6 +363,8 @@ render(){
     style={{
       flex:1
     }}>
+
+{ this.state.loading === false ? 
     <GiftedChat
    // showUserAvatar
     //showAvatarForEveryMessage
@@ -372,7 +379,7 @@ render(){
 
     }}
 
-    />
+    />: <Spinner/>}
     {
       Platform.OS === 'android' && 
 (      <KeyboardAvoidingView 
