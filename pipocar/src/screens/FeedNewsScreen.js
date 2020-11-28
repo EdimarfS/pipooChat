@@ -20,6 +20,8 @@ import auth from '@react-native-firebase/auth';
 import AntDesign from 'react-native-vector-icons/AntDesign'
 import EvilIcons from 'react-native-vector-icons/EvilIcons'
 import Share from 'react-native-share';
+import ImageModal from 'react-native-image-modal';
+
 
 /*
                       firestore().collection('STORE')
@@ -176,6 +178,32 @@ render(){
              }}>
 
               <TouchableOpacity
+
+onPress={()=>{
+  if(item.author === auth().currentUser.uid){
+    Alert.alert(
+      item.userName,
+      `Do you want to delete ${item.caption}`,
+      [
+        {
+          text: "Cancel",
+          onPress: () => console.log("Cancel Pressed"),
+          style: "cancel"
+        },
+        { text: "OK", onPress: () => {
+          firestore().collection('POST')
+          .doc(item._id)
+          .delete()
+          .then(()=>{
+            console.log('Document Successfully Deleted');
+          })
+          .catch(()=>{
+            console.log('Something went wrong, could not be Deleted');
+          })
+        } }
+      ],
+      { cancelable: false }
+    );} }}
                 style={{ 
                 alignItems:'flex-end',
                 justifyContent:'flex-end',
@@ -194,87 +222,29 @@ render(){
 
                <View>
               <TouchableOpacity
-              onLongPress={()=>{
-                if(item.author === auth().currentUser.uid){
-                  Alert.alert(
-                    item.userName,
-                    `Do you want to delete ${item.caption}`,
-                    [
-                      {
-                        text: "Cancel",
-                        onPress: () => console.log("Cancel Pressed"),
-                        style: "cancel"
-                      },
-                      { text: "OK", onPress: () => {
-                        firestore().collection('POST')
-                        .doc(item._id)
-                        .delete()
-                        .then(()=>{
-                          console.log('Document Successfully Deleted');
-                        })
-                        .catch(()=>{
-                          console.log('Something went wrong, could not be Deleted');
-                        })
-                      } }
-                    ],
-                    { cancelable: false }
-                  );} else{
-                    Alert.alert(
-                      'Save',
-                      `Do you want to save this post ?`,
-                      [
-                        {
-                          text: "Cancel",
-                          onPress: () => console.log("Cancel Pressed"),
-                          style: "cancel"
-                        },
-                        { text: "OK", onPress: () => {
-                        const author = auth().currentUser.uid;
-                        const username = item.userName;
-                        const caption  = item.caption;
-                        const url = item.url;
-                        const posted = new Date().getTime();
-                        
-                          const userReportData = {
-                            
-                            userName : username,
-                            caption: caption,
-                            image: url,
-                            posted:posted,
-                            author:author,
 
-                          }
-                          firestore()
-                          .collection('SAVE_POST')
-                          //.doc(item._id)
-                          .add(userReportData)
-                          .then(()=>{
-                            console.log('Document Successfully deleted');
-                          })
-                          .catch(()=>{
-                            console.log('Something went wrong, could not be deleted');
-                          })
-
-                        } }
-                      ],
-                      { cancelable: false }
-                    );
-
-                  }
-              }}
 
 
               >
-               <View>
-                 <ImageBlurLoading
-                 style={{
-                   width:'100%',
-                   height:330,
+
+               <View style={{  alignSelf:'center'}}>
+               <ImageModal
+                resizeMode="contain"
               
-                 }}
-                 thumbnailSource={{ uri: item.url}}
-                 source={{ uri: item.url}}
-                 />
+                imageBackgroundColor="lightgrey"
+                style={{
+                  width:400,
+                  height:400,
+                  alignSelf:'center'
+                }}
+
+                source={{ uri: item.url}}
+              />
+                 
+
+
+
+
                </View>
                </TouchableOpacity>
                <View style={{
@@ -352,7 +322,51 @@ render(){
                     <TouchableOpacity>
                     <Text style={{ fontWeight:'bold', color:'grey'}}>comments</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity>
+                    <TouchableOpacity
+                    onPress={()=>{
+                      Alert.alert(
+                        'Save',
+                        `Do you want to save this post ?`,
+                        [
+                          {
+                            text: "Cancel",
+                            onPress: () => console.log("Cancel Pressed"),
+                            style: "cancel"
+                          },
+                          { text: "OK", onPress: () => {
+                          const author = auth().currentUser.uid;
+                          const username = item.userName;
+                          const caption  = item.caption;
+                          const url = item.url;
+                          const posted = new Date().getTime();
+                          
+                                    const userReportData = {
+                                      
+                                      userName : username,
+                                      caption: caption,
+                                      image: url,
+                                      posted:posted,
+                                      author:author,
+                
+                                    }
+                                    firestore()
+                                    .collection('SAVE_POST')
+                                    //.doc(item._id)
+                                    .add(userReportData)
+                                    .then(()=>{
+                                      console.log('Document Successfully deleted');
+                                    })
+                                    .catch(()=>{
+                                      console.log('Something went wrong, could not be deleted');
+                                    })
+                
+                                  } }
+                                ],
+                                { cancelable: false }
+                              );
+                    }}
+                    
+                    >
                     <EvilIcons name="heart" size={30} color="black" />
                     </TouchableOpacity>
 
