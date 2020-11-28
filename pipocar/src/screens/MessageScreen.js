@@ -27,6 +27,8 @@ import
 { 
 Spinner
 } from '../components/reusebleComponents/index';
+import ImageModal from 'react-native-image-modal';
+
 class  MessageScreen extends Component {
 
 
@@ -357,7 +359,30 @@ name="sticker-emoji" size={27} color="black" />
 
 }
 
+//RenderImage 
 
+renderMessageImage = (props) => {
+  return (
+    <View
+      style={{
+        borderRadius: 15,
+        padding: 2,
+      }}
+    >
+      <ImageModal
+        resizeMode="contain"
+        style={{
+          width: 200,
+          height: 200,
+          padding: 6,
+          borderRadius: 15,
+          resizeMode: "cover",
+        }}
+        source={{ uri: props.currentMessage.image }}
+      />
+    </View>
+  );
+};
 
 render(){ 
   console.log('MessageScreen');
@@ -371,6 +396,7 @@ render(){
     <GiftedChat
    // showUserAvatar
     //showAvatarForEveryMessage
+    renderMessageImage={this.renderMessageImage}
     renderUsernameOnMessage
     minComposerHeight={40}
     minInputToolbarHeight={60}
