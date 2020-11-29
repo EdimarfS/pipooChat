@@ -12,7 +12,8 @@ import {
 } from "react-native";
 import { 
 InputForPosts,
-Button
+Button,
+Spinner
 } from '../reusebleComponents/index';
 import ImagePicker from 'react-native-image-crop-picker';
 import {check, PERMISSIONS, RESULTS} from 'react-native-permissions';
@@ -39,7 +40,8 @@ class  CreateGroupForm extends Component {
           progress: 0,
           imageURI:'https://firebasestorage.googleapis.com/v0/b/pipocar-61cd8.appspot.com/o/groupCovers%2Fcef4c151ecd7c2fd46180b45fb5bc1a1.jpg?alt=media&token=8beea4de-e1fd-439d-8162-eb7bab61e41c',
           category:'Travel',
-          groupname:''
+          groupname:'',
+          finishStep:false
       };
   }
 
@@ -271,6 +273,9 @@ onButtonPress()
         style: "cancel"
       },
       { text: "OK", onPress: () => { 
+          this.setState({
+            finishStep:true
+          })
             this.UploadPublish();
 
        }}
@@ -370,19 +375,19 @@ render(){
               }}>
               <TouchableOpacity onPress={()=> this.setState({ category: item.travel})}>
               <View style={styles.categoryContainer1}>
-                 <Text style={styles.categoryText1}>@{item.travel}</Text>
+                 <Text style={styles.categoryText1}>{item.travel}</Text>
               </View>
               </TouchableOpacity>
               
               <TouchableOpacity onPress={()=> this.setState({ category: item.healthAndwellness})}>
               <View style={styles.categoryContainer2}>
-                 <Text style={styles.categoryText2}>@{item.healthAndwellness}</Text>
+                 <Text style={styles.categoryText2}>{item.healthAndwellness}</Text>
               </View>
               </TouchableOpacity>
               
               <TouchableOpacity onPress={()=> this.setState({ category: item.beauty})}>
               <View style={styles.categoryContainer3}>
-                 <Text style={styles.categoryText3}>@{item.beauty}</Text>
+                 <Text style={styles.categoryText3}>{item.beauty}</Text>
               </View>
               </TouchableOpacity>
 
@@ -394,19 +399,19 @@ render(){
 
               <TouchableOpacity onPress={()=> this.setState({ category: item.motivational_quotes})}>
               <View style={styles.categoryContainer5}>
-                 <Text style={styles.categoryText5}>#{item.motivational_quotes}</Text>
+                 <Text style={styles.categoryText5}>{item.motivational_quotes}</Text>
               </View>
               </TouchableOpacity>
 
               <TouchableOpacity onPress={()=> this.setState({ category: item.sport})}>
               <View style={styles.categoryContainer7}>
-                 <Text style={styles.categoryText7}>#{item.sport}</Text>
+                 <Text style={styles.categoryText7}>{item.sport}</Text>
               </View>
               </TouchableOpacity>
               
               <TouchableOpacity onPress={()=> this.setState({ category: item.other})}>
               <View style={styles.categoryContainer6}>
-                 <Text style={styles.categoryText6}>#{item.other}...</Text>
+                 <Text style={styles.categoryText6}>{item.other}</Text>
               </View>
               </TouchableOpacity>
               
@@ -434,12 +439,13 @@ render(){
 
 
       <View style={{ 
-      //  flex:1, 
+      //  flex:1,
+      marginTop:10 
 
         }}>
         <InputForPosts
         autoCapitalize="none"
-        placeholder="My group"
+        placeholder="Group or Business name..."
         autoCorrect={false}
         maxLength={40}
         value={this.state.groupname}
@@ -454,14 +460,22 @@ render(){
 
 
       </View>
-      <View style={{
+
+{ this.state.finishStep === false ? (      <View style={{
         marginTop:60,
       }}>
         <Button
         onPress={this.onButtonPress.bind(this)}
         label="Post"
         />
-      </View>
+      </View>):
+      <View
+      style={{
+        marginTop:85
+      }}
+      >
+        <Spinner/>
+      </View>}
       
 
 

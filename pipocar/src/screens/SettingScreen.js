@@ -22,7 +22,6 @@ import SettingForm from '../components/screenForms/SettingForm';
 
 class  SettingScreen extends Component {
 
-
 render(){ 
   console.log('SettingScreen');
   return (<SettingForm/>)

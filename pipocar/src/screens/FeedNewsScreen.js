@@ -37,6 +37,8 @@ import {Spinner} from '../components/reusebleComponents/index';
 
 */
 
+
+
 class  FeedNewsScreen extends Component {
 
   //Constructor 
@@ -241,38 +243,19 @@ onPress={()=>{
                 style={{ 
                 fontSize:30, 
                 fontWeight:'bold',
-                color:'grey'
- 
+                color:'grey',
               }}
                 >...</Text>
              </TouchableOpacity>
 
-               <View>
 
 
-               <View style={{  alignSelf:'center'}}>
-               <ImageModal
-                resizeMode="contain"
-              
-                imageBackgroundColor="lightgrey"
-                style={{
-                  width:400,
-                  height:400,
-                  alignSelf:'center'
-                }}
+             <View style={{
+                 top:5,
+                 marginBottom:'6%',
+                 flexDirection:'row',
+                // backgroundColor:'red',           
 
-                source={{ uri: item.url}}
-              />
-                 
-
-
-
-
-               </View>
-               <View style={{
-                 top:10,
-                 marginBottom:'1%',
-                 flexDirection:'row'
                }}>
                  <ImageBlurLoading
                  style={{
@@ -307,7 +290,35 @@ onPress={()=>{
 
                   
                 </View>
+
+
+
+
                 
+
+               <View>
+
+
+               <View style={{  alignSelf:'center'}}>
+               <ImageModal
+                resizeMode="contain"
+              
+                imageBackgroundColor="lightgrey"
+                style={{
+                  width:400,
+                  height:400,
+                  alignSelf:'center'
+                }}
+
+                source={{ uri: item.url}}
+              />
+                 
+
+
+
+
+               </View>
+
 
                 <View 
                 style={{
@@ -351,48 +362,36 @@ onPress={()=>{
                     <Text style={{ fontWeight:'bold', color:'grey'}}>comments</Text>
                     </TouchableOpacity>
                     <TouchableOpacity
-                    onPress={()=>{
-                      Alert.alert(
-                        'Save',
-                        `Do you want to save this post ?`,
-                        [
-                          {
-                            text: "Cancel",
-                            onPress: () => console.log("Cancel Pressed"),
-                            style: "cancel"
-                          },
-                          { text: "OK", onPress: () => {
-                          const author = auth().currentUser.uid;
-                          const username = item.userName;
-                          const caption  = item.caption;
-                          const url = item.url;
-                          const posted = new Date().getTime();
-                          
-                                    const userReportData = {
-                                      
-                                      userName : username,
-                                      caption: caption,
-                                      image: url,
-                                      posted:posted,
-                                      author:author,
-                
-                                    }
-                                    firestore()
-                                    .collection('SAVE_POST')
-                                    //.doc(item._id)
-                                    .add(userReportData)
-                                    .then(()=>{
-                                      console.log('Document Successfully deleted');
-                                    })
-                                    .catch(()=>{
-                                      console.log('Something went wrong, could not be deleted');
-                                    })
-                
-                                  } }
-                                ],
-                                { cancelable: false }
-                              );
-                    }}
+                    onPress={() => {
+                      const author = auth().currentUser.uid;
+                      const username = item.userName;
+                      const caption  = item.caption;
+                      const url = item.url;
+                      const posted = new Date().getTime();
+                      
+                                const userReportData = {
+                                  
+                                  userName : username,
+                                  caption: caption,
+                                  image: url,
+                                  posted:posted,
+                                  author:author,
+            
+                                }
+                                firestore()
+                                .collection('SAVE_POST')
+                                //.doc(item._id)
+                                .add(userReportData)
+                                .then(()=>{
+                                  console.log('Document Successfully deleted');
+                                })
+                                .catch(()=>{
+                                  console.log('Something went wrong, could not be deleted');
+                                })
+            
+                              } }
+                 
+            
                     
                     >
                     <EvilIcons name="heart" size={30} color="black" />

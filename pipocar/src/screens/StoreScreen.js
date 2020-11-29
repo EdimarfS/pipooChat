@@ -398,7 +398,7 @@ renderEmpty = () => {
         marginTop:10,
         fontWeight:'bold'
       }}
-      > No products to buy. Then sell one</Text>
+      > No products to buy ? Then sell one</Text>
     </View>
   )
 }
