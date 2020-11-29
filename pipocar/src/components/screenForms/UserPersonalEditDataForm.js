@@ -159,9 +159,7 @@ uniqueId = () => {
 
 
 
-
-
-  processUpload = (imageUrl) => {
+processUpload = (imageUrl) => {
 
     var userID = auth().currentUser.uid;
     var userName = auth().currentUser.displayName;

@@ -72,6 +72,7 @@ class  SettingForm extends Component {
 
     this.fetchSAVE_GROUP();
     this.fetchSAVE_POST();
+    Actions.refresh();
 
   }
 
