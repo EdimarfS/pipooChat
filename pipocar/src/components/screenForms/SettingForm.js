@@ -80,6 +80,7 @@ class  SettingForm extends Component {
 
 
   
+
   //Fetch SAVE_GROUPS 
   fetchSAVE_GROUP = () => {
 
@@ -128,7 +129,6 @@ class  SettingForm extends Component {
     }, this.onError)
   
   }
-
     
 
 
@@ -493,7 +493,7 @@ render(){
                             showsVerticalScrollIndicator ={false}
                             showsHorizontalScrollIndicator={false}
                           // ListEmptyComponent={this._listEmptyComponent}
-                            keyExtractor={ item => item._id.toString()}
+                            keyExtractor={ item => item.image.toString()}
                           // numColumns={3}
                         //   horizontal ={true}
                             scrollEnabled={false}

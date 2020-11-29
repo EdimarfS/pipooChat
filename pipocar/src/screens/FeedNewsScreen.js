@@ -22,7 +22,7 @@ import EvilIcons from 'react-native-vector-icons/EvilIcons'
 import Share from 'react-native-share';
 import ImageModal from 'react-native-image-modal';
 import {Spinner} from '../components/reusebleComponents/index';
-
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 /*
                       firestore().collection('STORE')
@@ -57,7 +57,8 @@ class  FeedNewsScreen extends Component {
       comment:'',
       photoId:'',
       screenshot:null,
-      dataloaded:false 
+      dataloaded:false,
+      saved:false,
       
     }
 
@@ -229,6 +230,9 @@ onPress={()=>{
           .catch(()=>{
             console.log('Something went wrong, could not be Deleted');
           })
+
+          //RealTime Database
+
         } }
       ],
       { cancelable: false }
@@ -361,8 +365,12 @@ onPress={()=>{
                     <TouchableOpacity>
                     <Text style={{ fontWeight:'bold', color:'grey'}}>comments</Text>
                     </TouchableOpacity>
+{ this.state.saved === false ? (                    
                     <TouchableOpacity
                     onPress={() => {
+                      this.setState({
+                        saved:true,
+                      })
                       const author = auth().currentUser.uid;
                       const username = item.userName;
                       const caption  = item.caption;
@@ -378,16 +386,24 @@ onPress={()=>{
                                   author:author,
             
                                 }
-                                firestore()
+                                 firestore()
                                 .collection('SAVE_POST')
                                 //.doc(item._id)
                                 .add(userReportData)
                                 .then(()=>{
                                   console.log('Document Successfully deleted');
+                                  this.setState({
+                                    saved:false,
+                                  })
                                 })
                                 .catch(()=>{
                                   console.log('Something went wrong, could not be deleted');
                                 })
+
+                                //RealTime Database
+/*                                 database().ref(`/users/${author}/save/${item._id}`)
+                                .set(userReportData); */
+
             
                               } }
                  
@@ -395,7 +411,10 @@ onPress={()=>{
                     
                     >
                     <EvilIcons name="heart" size={30} color="black" />
-                    </TouchableOpacity>
+                    </TouchableOpacity>) : 
+                    <View>
+                      <AntDesign name="checkcircle" size={24} color="#00cf37" />
+                    </View>}
 
 
                 </View>
