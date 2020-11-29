@@ -64,7 +64,8 @@ class  UserPersonalEditDataForm extends Component {
         imageURL:'https://firebasestorage.googleapis.com/v0/b/pipocar-61cd8.appspot.com/o/groupCovers%2Fcrowd.png?alt=media&token=0f2ecb98-b3d7-40b6-af96-5e6eaeed6370',
         data:[],
         imageSelected:false,
-        dataloaded:false
+        dataloaded:false,
+        publish:false,
       }
   
   
@@ -192,8 +193,8 @@ processUpload = (imageUrl) => {
   
     this.setState({
         uploading: false,
-        imageURI:'https://firebasestorage.googleapis.com/v0/b/pipocar-61cd8.appspot.com/o/groupCovers%2Fcef4c151ecd7c2fd46180b45fb5bc1a1.jpg?alt=media&token=8beea4de-e1fd-439d-8162-eb7bab61e41c'
-
+        imageURI:'https://firebasestorage.googleapis.com/v0/b/pipocar-61cd8.appspot.com/o/groupCovers%2Fcef4c151ecd7c2fd46180b45fb5bc1a1.jpg?alt=media&token=8beea4de-e1fd-439d-8162-eb7bab61e41c',
+        publish:true,
       }) 
 
       
@@ -421,7 +422,7 @@ render(){
         </View>
 
         <View>
-        <TouchableOpacity  
+{ this.state.publish === false ? (        <TouchableOpacity  
         onPress={this.onButtonPress.bind(this)}
         >
                       <View  
@@ -448,7 +449,10 @@ render(){
                 
                       </View>
             </TouchableOpacity>
-
+):
+<View>
+  <Spinner/>
+</View>}
         </View>
 
 

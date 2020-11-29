@@ -125,6 +125,7 @@ class  SettingForm extends Component {
           dataPost:thread,
           refreshing:false,
           loaded:true,
+          imageLoaded:true,
         })
     }, this.onError)
   
@@ -493,7 +494,7 @@ render(){
                             showsVerticalScrollIndicator ={false}
                             showsHorizontalScrollIndicator={false}
                           // ListEmptyComponent={this._listEmptyComponent}
-                            keyExtractor={ item => item.image.toString()}
+                            keyExtractor={ item => item._id.toString()}
                           // numColumns={3}
                         //   horizontal ={true}
                             scrollEnabled={false}
@@ -542,7 +543,10 @@ render(){
                                     <View style={{
                                       flexDirection:'row'
                                     }}>
-                                    <Image
+
+                                      
+{ this.state.imageLoaded === true ? (                                   
+                                  <Image
                                     source={{
                                       uri : item.groupcover
                                     }}
@@ -554,8 +558,14 @@ render(){
                                       marginTop:10,
                                       backgroundColor:'lightgrey'
                                     }}
-                                    
-                                    />
+                                    />) : 
+                                    <View>
+                                      <Spinner/>
+                                    </View>
+                                    }
+
+
+
                                     <View 
                                     style={{
                                       alignSelf:'center',
@@ -639,23 +649,30 @@ render(){
 
                                   <View style={{
                                     flexDirection:'row',
-                                    alignSelf:'center'     
+                                    alignSelf:'center',
+                                    marginTop:10,     
                                   }}>
 
                                   <View style={{  alignSelf:'center', borderRadius:10}}>
-                                                <ImageModal
-                                                  resizeMode="contain"
-                                                
-                                                  imageBackgroundColor="white"
-                                                  style={{
-                                                    width:100,
-                                                    height:100,
-                                                    alignSelf:'center',
-                                                    borderRadius:10
-                                                  }}
 
-                                                  source={{ uri: item.image}}
-                                                />
+{ this.state.imageLoaded === true ? (                                   
+                                  <ImageModal
+                                  resizeMode="contain"
+                                  imageBackgroundColor="lightgrey"
+                                  source={{ uri: item.image}}
+                                    style={{
+                                      width:100,
+                                      height:100,
+                                      //borderRadius:90,
+
+                                     
+                                      backgroundColor:'lightgrey'
+                                    }}
+                                    />) : 
+                                    <View>
+                                      <Spinner/>
+                                    </View>
+                                    }
                                                   
 
 
@@ -703,7 +720,7 @@ render(){
                                   }}
                                   
                                   >
-                                      <Text style={{ alignSelf:'center', fontWeight:'bold'}}>Remove</Text>
+                                      <Text style={{ alignSelf:'center', fontWeight:'bold', color:'grey'}}>Remove</Text>
                                   </TouchableOpacity>
                                
                                 </View>
