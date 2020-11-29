@@ -20,7 +20,7 @@ import {
 
   } from '../../actions/index';
 import {connect } from 'react-redux';
-
+import { Spinner } from '../reusebleComponents/index';
 
 class  ForgetPasswordForm extends Component {
 
@@ -96,6 +96,7 @@ render(){
         marginBottom:70,
       }}>  
         <Input  
+        clearButtonMode="always"
         autoCapitalize="none"
         autoCorrect={false}
         placeholder="email"
@@ -110,7 +111,8 @@ render(){
       <Text style={{color:'red'}}>{this.props.requestNEW_PASSWORD_ERROR}</Text>
       </View>
 
-
+{ this.props.loading === false ? 
+    (<View>
       <View       
       style={{
         marginBottom:100,
@@ -145,6 +147,18 @@ render(){
 
       </View>
       </TouchableOpacity>
+      </View>) :
+
+      <View 
+      style={{
+
+        margin:30,
+        marginBottom:30
+
+      }}>
+        <Spinner/>
+      </View>
+      }
 
 
 

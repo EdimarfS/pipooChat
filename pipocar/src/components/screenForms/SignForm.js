@@ -20,6 +20,7 @@ import {
     createUserACCOUNT
   } from '../../actions/index';
 import { connect } from 'react-redux';
+import { Spinner } from '../reusebleComponents/index';
 
 class  SignForm extends Component {
   
@@ -98,6 +99,8 @@ render(){
       <Text style={{color:'red'}}>{this.props.errorCREATE_ACCOUNT}</Text>
       </View>
       
+{ this.props.loading === false ? ( 
+      <View>     
       <View       
       style={{
         marginBottom:80,
@@ -107,7 +110,6 @@ render(){
         onPress={this.onButtonPress.bind(this)}
         />
       </View>
-
       <TouchableOpacity 
       onPress={()=>{ Actions.login({type:'replace'})}}
       >
@@ -133,6 +135,20 @@ render(){
 
       </View>
       </TouchableOpacity>
+      </View>
+      
+      
+      
+      ):
+      <View style={{
+        marginTop:40,
+        marginBottom:30,
+      }}>
+        <Spinner/>
+      </View>
+      }
+
+
 
 
 

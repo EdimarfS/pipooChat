@@ -14,20 +14,18 @@ class Spinner extends Component {
   render(){
   return (
     <View style={styles.container}>
-        <View style={{
-         // backgroundColor:'#f5f5f5',
+
+        <Lottie
+        style={{
           width:50,
           height:50,
-          justifyContent:'center',
-          borderRadius:10
-        }}>
-        <Lottie
+        }}
         ref={animation => {
           this.animation = animation;
         }}
         source={spinner}
       />
-        </View>
+
     </View>
   );
 }
@@ -36,7 +34,7 @@ class Spinner extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: 'red',
     alignItems: 'center',
     justifyContent: 'center',
 

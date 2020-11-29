@@ -100,7 +100,8 @@ render(){
       <View style={{ justifyContent:'center', alignItems:'center'}}>
       <Text style={{color:'red'}}>{this.props.error}</Text>
       </View>
-      <View       
+{ this.props.loading==false ? 
+(      <View       
       style={{
         marginBottom:100,
       }}>  
@@ -108,7 +109,15 @@ render(){
         onPress={this.onButtonPress.bind(this)}
         label="Login"
         />
-      </View>
+      </View>):
+      <View
+      style={{
+        marginTop:20,
+        marginBottom:30,
+      }}
+      >
+      <Spinner/>
+      </View>}
 
       <TouchableOpacity
       onPress={()=>{ Actions.forgetpassword({type:'replace'})}}
@@ -131,7 +140,7 @@ render(){
 
 
       <TouchableOpacity
-      onPress={()=>{ Actions.sign({type:'replace'})}}
+      onPress={()=>{Actions.sign({type:'replace'})}}
       >
       <View 
       style={{

@@ -61,7 +61,7 @@ class  App extends Component{
     {
         StatusBar.setHidden(true);
         OneSignal.init('9f18c05f-885a-4168-bd3f-bae752dfe31c');
-        OneSignal.addEventListener('opened', this.onOpened) 
+        OneSignal.addEventListener('opened', this.onOpened);
     }
 
     onOpened = (result) =>

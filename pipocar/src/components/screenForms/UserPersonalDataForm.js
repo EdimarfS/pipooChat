@@ -20,7 +20,7 @@ import {
 import { connect } from 'react-redux';
 import auth from '@react-native-firebase/auth';
 import ImageBlurLoading from 'react-native-image-blur-loading';
-
+import { Spinner } from '../reusebleComponents/Spinner';
 class  UserPersonalDataForm extends Component {
 
   constructor(props)
@@ -33,7 +33,14 @@ class  UserPersonalDataForm extends Component {
       userBio:'',
       loaded: false,
       data:[],
+      dataloaded:false
     }
+  }
+
+
+  UNSAFE_componentWillMount()
+  {
+    console.log('LOADING STATE!!!!!!', this.props.loading);
   }
 
   onButtonPress()
@@ -164,7 +171,8 @@ render(){
         />
       </View>
       
-      <TouchableOpacity onPress={this.onButtonPress.bind(this)}>
+{ this.props.loading === false ? (      
+  <TouchableOpacity onPress={this.onButtonPress.bind(this)}>
       <View       
       style={{
         marginBottom:30,
@@ -186,7 +194,15 @@ render(){
 
 
       </View>
-      </TouchableOpacity>
+      </TouchableOpacity>) : 
+      <View 
+      style={{
+        marginTop:30,
+        marginBottom:30
+      }}>
+        <Spinner/>
+      </View>
+      }
 
 
    
