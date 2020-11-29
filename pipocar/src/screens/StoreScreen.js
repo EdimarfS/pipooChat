@@ -23,6 +23,10 @@ import _ from 'lodash';
 import ImageModal from 'react-native-image-modal';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
 import { Spinner } from '../components/reusebleComponents/index'; 
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import AntDesign from 'react-native-vector-icons/AntDesign';
+import Fontisto from 'react-native-vector-icons/Fontisto';
+//Fontisto
 
 /*
 
@@ -255,7 +259,8 @@ renderHeader = () => {
       return(
         <View style={{ 
           flexDirection:'row', 
-          marginTop:20,
+          marginTop:5,
+          marginBottom:20,
           backgroundColor:'white'
           //backgroundColor:'red',
           }}>
@@ -318,9 +323,8 @@ renderHeader = () => {
     />
       <View style={{
       alignSelf:'center',
-      marginTop:10,
       marginBottom:20,
-      marginTop:30
+      marginTop:10
     }}>
      <TouchableOpacity 
      onPress={()=>{ Actions.products()}}
@@ -332,7 +336,7 @@ renderHeader = () => {
        
      }}>
        <Text style={{
-         fontWeight:'bold'
+         fontWeight:'bold',
        }}>New Product</Text>
      </TouchableOpacity>
    </View>
@@ -355,23 +359,46 @@ renderEmpty = () => {
   return(
     <View style={{
       width:'100%',
-      height:350,
+      height:266,
       backgroundColor:'#f5f5f5',
       justifyContent:'center',
  
     }}>
-      <EvilIcons 
+      <View
+      
       style={{
-        alignSelf:'center'
+        flexDirection:'row',
+        justifyContent:'center'
       }}
-      name="image" size={100} color="grey" />
+      >
+    <MaterialCommunityIcons 
+    style={{ marginLeft:10}}
+    name="tshirt-v" size={40} color="lightgrey" />
+    
+    <MaterialCommunityIcons 
+    style={{ marginLeft:10}}
+    name="food" size={40} color="lightgrey" /> 
+
+    <AntDesign 
+    style={{ marginLeft:10}}
+    name="car" size={40} color="lightgrey" /> 
+
+    <Fontisto 
+    style={{ marginLeft:10}}
+    name="dollar" size={40} color="lightgrey" />
+
+
+
+    </View>
+
       <Text
       style={{
         alignSelf:'center',
-        color:'black',
-        //fontWeight:'bold'
+        color:'grey',
+        marginTop:10,
+        fontWeight:'bold'
       }}
-      >No post yet, be the first one posting</Text>
+      > No products to buy. Then sell one</Text>
     </View>
   )
 }
@@ -421,7 +448,7 @@ render(){
                // padding:10,
                 //borderColor:'#05c7fc',
               //  height:140,
-                marginBottom:10,
+                marginBottom:20,
                 padding:10,
                 shadowColor: "#000",
                 shadowOffset: {
@@ -430,11 +457,58 @@ render(){
               },
               shadowOpacity: 0.10,
               shadowRadius: 2.22,
-              elevation: 3,
-
-
-                
+              elevation: 3,   
                 }}>
+
+                  <TouchableOpacity
+                                onPress={()=>{
+                                  if(item.author === auth().currentUser.uid){
+                                  Alert.alert(
+                                    item.title,
+                                    `Do you want to delete ${item.title}`,
+                                    [
+                                      {
+                                        text: "Cancel",
+                                        onPress: () => console.log("Cancel Pressed"),
+                                        style: "cancel"
+                                      },
+                                      { text: "OK", onPress: () => {
+                                        firestore().collection('STORE')
+                                        .doc(item._id)
+                                        .delete()
+                                        .then(()=>{
+                                          console.log('Document Successfully deleted');
+                                        })
+                                        .catch(()=>{
+                                          console.log('Something went wrong, could not be deleted');
+                                        })
+                                      } }
+                                    ],
+                                    { cancelable: false }
+                                  );
+                                }
+                                  else {
+                                    console.log('Not your item!!')
+                                  }
+                  
+                  /*                 alert('Do you want to delete')
+                                  firestore().collection('STORE')
+                                  .doc(item._id)
+                                  .delete()
+                                  .then(()=>{
+                                    console.log('Document Successfully deleted');
+                                  })
+                                  .catch(()=>{
+                                    console.log('Something went wrong, could not be deleted');
+                                  }) */
+                                }}
+
+                  style={{
+                    alignSelf:'flex-end'
+                  }}
+                  >
+                  <Text style={{ fontSize:30, color:'grey'}}>...</Text>
+                  </TouchableOpacity>
 
 
               <View style={{
@@ -463,6 +537,7 @@ render(){
                 }}>
                   {item.authorname}
                 </Text>
+
                 
               </View>
       
@@ -477,53 +552,7 @@ render(){
               >
               <TouchableOpacity 
               style={{ flex:1/2}}
-              onLongPress={()=>{
-                if(item.author === auth().currentUser.uid){
-                Alert.alert(
-                  item.title,
-                  `Do you want to delete ${item.title}`,
-                  [
-                    {
-                      text: "Cancel",
-                      onPress: () => console.log("Cancel Pressed"),
-                      style: "cancel"
-                    },
-                    { text: "OK", onPress: () => {
-                      firestore().collection('STORE')
-                      .doc(item._id)
-                      .delete()
-                      .then(()=>{
-                        console.log('Document Successfully deleted');
-                      })
-                      .catch(()=>{
-                        console.log('Something went wrong, could not be deleted');
-                      })
-                    } }
-                  ],
-                  { cancelable: false }
-                );
-              }
-                else {
-                  console.log('Not your item!!')
-                }
-
-
-
-
-
-
-                
-/*                 alert('Do you want to delete')
-                firestore().collection('STORE')
-                .doc(item._id)
-                .delete()
-                .then(()=>{
-                  console.log('Document Successfully deleted');
-                })
-                .catch(()=>{
-                  console.log('Something went wrong, could not be deleted');
-                }) */
-              }}>
+              >
               <View>
               <ImageModal
                 resizeMode="contain"

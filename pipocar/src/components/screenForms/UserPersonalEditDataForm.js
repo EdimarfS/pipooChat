@@ -24,6 +24,7 @@ import ImagePicker from 'react-native-image-crop-picker';
 import style from "react-native-image-blur-loading/src/style";
 import { Actions } from 'react-native-router-flux';
 import storage from '@react-native-firebase/storage';
+import { Spinner } from '../reusebleComponents/index';
 /* 
 
 <InputDataEdit
@@ -62,7 +63,8 @@ class  UserPersonalEditDataForm extends Component {
         loaded: false,
         imageURL:'https://firebasestorage.googleapis.com/v0/b/pipocar-61cd8.appspot.com/o/groupCovers%2Fcrowd.png?alt=media&token=0f2ecb98-b3d7-40b6-af96-5e6eaeed6370',
         data:[],
-        imageSelected:false
+        imageSelected:false,
+        dataloaded:false
       }
   
   
@@ -219,6 +221,7 @@ userAllInfo = () => {
                     userLocation: data.userLocation,
                     userBio: data.userBio,
                     loaded: true,
+                    dataloaded: true
       
                 })
                      
@@ -265,7 +268,7 @@ userAllInfo = () => {
                     userID: data.userID,
                     userLocation: data.userLocation,
                     userBio: data.userBio,
-                    loaded: true,
+                    dataloaded: true,
                   
       
                 })
@@ -329,14 +332,14 @@ onDeleteAccount(){
 render(){ 
   console.log('UserPersonEditScreen');
   return (  
-    <SafeAreaView style={{ 
+    <View style={{ 
         //alignSelf:'center'
-        backgroundColor:'#f5f5f5',
-      // flex:1,
+        //backgroundColor:'#f5f5f5',
+       flex:1,
         }}>
             
         
-        <View style={{ marginLeft:10, marginRight:10,}}>
+{ this.state.dataloaded === true ? (       <View style={{ marginLeft:10, marginRight:10,}}>
         <View>
             <TouchableOpacity 
             onPress={this.findNewImage}
@@ -450,7 +453,22 @@ render(){
 
 
     </View>
-    </SafeAreaView>
+
+):
+<View style={{
+  flex:1,
+
+}}>
+<Spinner/>  
+</View>}
+
+
+
+
+
+
+
+    </View>
  
   );
 }

@@ -230,7 +230,7 @@ emptyGROUP = () => {
         fontWeight:'bold',
         color:'#a6a6a6'
       }}
-      >No item found, sorry</Text>
+      >No group on the list, Then create one...</Text>
     </View>
   )
 }
@@ -521,19 +521,7 @@ render(){
               </View>
               </View>
 
-
-
-
               </View>
-              
-
-
-
-
-       
-
-
-
 
               </View>
 

@@ -46,9 +46,11 @@ class  UserPersonalDataForm extends Component {
   onButtonPress()
   {
       console.log("UserPersonalData");
-      const { userName, userID, userLocation, userBio, ImageDefault} = this.props;
-      this.props.createUSER({userName,userID,userLocation, userBio, ImageDefault});
+      const { userName, userID, userLocation, userBio, ImageDefault } = this.props;
 
+      if(this.props.userName != '' && this.props.userID!='' && this.props.userLocation!='' && this.props.userBio!=''){
+      this.props.createUSER({userName,userID,userLocation, userBio, ImageDefault});
+      }
 
   }
 
@@ -197,8 +199,8 @@ render(){
       </TouchableOpacity>) : 
       <View 
       style={{
-        marginTop:30,
-        marginBottom:30
+        marginTop:20,
+        marginBottom:30,
       }}>
         <Spinner/>
       </View>

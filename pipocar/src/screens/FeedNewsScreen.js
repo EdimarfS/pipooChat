@@ -37,10 +37,6 @@ import {Spinner} from '../components/reusebleComponents/index';
 
 */
 
-
-
-
-
 class  FeedNewsScreen extends Component {
 
   //Constructor 
@@ -165,12 +161,12 @@ renderEmpty = () => {
       style={{
         alignSelf:'center'
       }}
-      name="image" size={100} color="grey" />
+      name="image" size={100} color="lightgrey" />
       <Text
       style={{
         alignSelf:'center',
-        color:'black',
-        //fontWeight:'bold'
+        color:'grey',
+        fontWeight:'bold'
       }}
       >No post yet, be the first one posting</Text>
     </View>

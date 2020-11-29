@@ -49,7 +49,7 @@ class  SettingForm extends Component {
 
     this.modalizeAccountRef = React.createRef();
 
-    this.modalizeFavoritetRef = React.createRef();
+    this.modalizeSavedtRef = React.createRef();
     this.state = {
       userName:'',
       userID:'',
@@ -165,20 +165,17 @@ onCloseAccount()
     {
         this.modalizeAccountRef.current?.close();
     }
-onOverlayPress = () => { 
-      this.onCloseAccount();
-    }
 
 
 onCloseFavorite()
     {
-      this.modalizeFavoritetRef.current?.close();
+      this.modalizeSavedtRef.current?.close();
     }
 
 
 onSaveOPEN()
     {
-        this.modalizeFavoritetRef.current?.open();
+        this.modalizeSavedtRef.current?.open();
     }
 
 
@@ -234,17 +231,7 @@ renderHeaderGROUP = () => {
 
 
 
-        <Text 
-        style={{
-          textAlign:'center',
-          fontSize:13,
-          marginBottom:20,
-          marginTop:10,
-          color:'grey'
-        }}
-        >
-        Intersting  posts and groups that you have saved 
-        </Text>
+
     </View>
     </TouchableOpacity>
     </View>
@@ -282,6 +269,22 @@ renderHeaderPOST = () => {
         </View>
     </View>
     </TouchableOpacity>
+  )
+}
+
+
+renderEMPTY = () => {
+
+  return(
+    <View style={{
+      alignSelf:'center',
+    }}>
+      <Text style={{
+            fontSize:10,
+            marginTop:10,
+            color:'grey'
+      }}>no post or groups saved yet. save one</Text>
+    </View>
   )
 }
 
@@ -452,11 +455,28 @@ render(){
     />
 
                     <Modalize 
-                    ref={this.modalizeFavoritetRef}
+                    ref={this.modalizeSavedtRef}
                     snapPoint={500}
                     modalHeight={500}
+                    HeaderComponent={()=>{
+                      return(
+                        <Text 
+                        style={{
+                          textAlign:'center',
+                          fontSize:13,
+                          marginBottom:20,
+                          marginTop:10,
+                          fontWeight:'bold'
+                      
+                        }}
+                        >
+                        List of Groups and Posts saved
+                        </Text>
+                      )
+                    }}
                      // animationType='fade'    
                     >
+
                       <View 
                       style={{
                         //flex:1,
@@ -469,6 +489,7 @@ render(){
                           //  refreshing={this.state.refreshing} 
                          //   onRefresh={this.onRefresh}
                             ListHeaderComponent={this.renderHeaderGROUP}
+                            ListEmptyComponent={this.renderEMPTY}
                             showsVerticalScrollIndicator ={false}
                             showsHorizontalScrollIndicator={false}
                           // ListEmptyComponent={this._listEmptyComponent}
@@ -566,6 +587,7 @@ render(){
                           //  refreshing={this.state.refreshing} 
                          //   onRefresh={this.onRefresh}
                             ListHeaderComponent={this.renderHeaderPOST}
+                            ListEmptyComponent={this.renderEMPTY}
                             showsVerticalScrollIndicator ={false}
                             showsHorizontalScrollIndicator={false}
                           // ListEmptyComponent={this._listEmptyComponent}

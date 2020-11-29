@@ -9,7 +9,8 @@ import {
 } from "react-native";
 import { 
 InputForPosts,
-Button
+Button,
+Spinner
 } from '../reusebleComponents/index';
 import ImagePicker from 'react-native-image-crop-picker';
 import {check, PERMISSIONS, RESULTS} from 'react-native-permissions';
@@ -32,7 +33,8 @@ class  AddPostForm extends Component {
           uploading: false,
           caption: "",
           progress: 0,
-          imageURI:'https://firebasestorage.googleapis.com/v0/b/pipocar-61cd8.appspot.com/o/groupCovers%2Fcef4c151ecd7c2fd46180b45fb5bc1a1.jpg?alt=media&token=8beea4de-e1fd-439d-8162-eb7bab61e41c'
+          imageURI:'https://firebasestorage.googleapis.com/v0/b/pipocar-61cd8.appspot.com/o/groupCovers%2Fcef4c151ecd7c2fd46180b45fb5bc1a1.jpg?alt=media&token=8beea4de-e1fd-439d-8162-eb7bab61e41c',
+          finishStep:false,
       };
   }
 
@@ -219,7 +221,11 @@ Actions.refresh({});
 
 
 onButtonPress()
-{
+{ 
+    this.setState({
+      finishStep:true,
+
+    })
 
      this.UploadPublish();
 
@@ -298,14 +304,22 @@ render(){
         
         />
       </View>
-      <View style={{
+      
+{ this.state.finishStep === false ?
+     (      <View style={{
         marginTop:60,
       }}>
         <Button
         onPress={this.onButtonPress.bind(this)}
         label="Post"
         />
+      </View>):
+      <View style={{
+        marginTop:100,
+      }}>
+        <Spinner/>
       </View>
+      }
       
 
 

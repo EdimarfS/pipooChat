@@ -13,7 +13,8 @@ import {
 import { 
 InputForPosts,
 Button,
-InputDataEdit
+InputDataEdit,
+Spinner
 } from '../reusebleComponents/index';
 import ImagePicker from 'react-native-image-crop-picker';
 import {check, PERMISSIONS, RESULTS} from 'react-native-permissions';
@@ -44,6 +45,9 @@ class  CreateGroupForm extends Component {
           condition:'New',
           location:'Angola',
           website: '',
+          nextStep:false,
+          finishStep:false,
+          dataloaded:false
 
       };
   }
@@ -140,6 +144,7 @@ class  CreateGroupForm extends Component {
     UploadPublish = () => {
          
                     this.uploadImage(this.state.imageURI);
+                    
           
      
 
@@ -166,6 +171,7 @@ class  CreateGroupForm extends Component {
                       width: 400,
                       height: 400,
                       cropping: true,
+                      nextStep:true
   
                       
                   }).then(image => {
@@ -173,8 +179,10 @@ class  CreateGroupForm extends Component {
                       imageSelected: true,
                       imageId: this.uniqueId(),
                       imageURI: image.path,
+                      nextStep:true
                       
                   })
+
                   }).catch(error => {
                     console.log(error)
                     this.setState({
@@ -293,7 +301,6 @@ processUpload = (imageUrl) => {
 
 onButtonPress()
 {
-
   Alert.alert(
     this.state.title,
     `Make sure all the iformation is correct before create it`,
@@ -304,6 +311,9 @@ onButtonPress()
         style: "cancel"
       },
       { text: "OK", onPress: () => { 
+                this.setState({
+                  dataloaded:true,
+                })
             this.UploadPublish();
 
        }}
@@ -344,32 +354,33 @@ onButtonPress()
 render(){ 
   console.log('AddPostForm');
   return (
-    <View style={{ marginLeft:10, marginRight:10}}>
+    <View>
+{ this.state.finishStep === false ? (    
+<View style={{ marginLeft:10, marginRight:10}}>
       <View style={{
-        alignSelf:'center',
+       // alignSelf:'center',
         marginTop:10,
       }}>
 
-        
         <TouchableOpacity 
       
         style={{
-          borderWidth:1,
-          borderColor:'#05c7fc',
           padding:10,
           opacity:0.8
 
           
         }}
         onPress={this.findNewImage}>
-        <ImageBlurLoading
+        <Image
         thumbnailSource={{uri:this.state.imageURI}}
         source={{uri:this.state.imageURI}}
         style={{
-          width:40,
-          height:40,
+          width:300,
+          height:300,
           alignSelf:'center',
-          justifyContent:'center'
+          justifyContent:'center',
+          borderWidth:1,
+          borderColor:'#05c7fc',
 
         }}
         
@@ -405,49 +416,49 @@ render(){
           }}>
           <TouchableOpacity onPress={()=> this.setState({ category: item.vehicles})}>
           <View style={styles.categoryContainer1}>
-             <Text style={styles.categoryText1}>#{item.vehicles}</Text>
+             <Text style={styles.categoryText1}>{item.vehicles}</Text>
           </View>
           </TouchableOpacity>
           
           <TouchableOpacity onPress={()=> this.setState({ category: item.properties})}>
           <View style={styles.categoryContainer2}>
-             <Text style={styles.categoryText2}>#{item.properties}</Text>
+             <Text style={styles.categoryText2}>{item.properties}</Text>
           </View>
           </TouchableOpacity>
           
           <TouchableOpacity onPress={()=> this.setState({ category: item.apperel})}>
           <View style={styles.categoryContainer3}>
-             <Text style={styles.categoryText3}>#{item.apperel}</Text>
+             <Text style={styles.categoryText3}>{item.apperel}</Text>
           </View>
           </TouchableOpacity>
 
           <TouchableOpacity onPress={()=> this.setState({ category: item.classifieds})}>
           <View style={styles.categoryContainer4}>
-             <Text style={styles.categoryText4}>#{item.classifieds}</Text>
+             <Text style={styles.categoryText4}>{item.classifieds}</Text>
           </View>
           </TouchableOpacity>
 
           <TouchableOpacity onPress={()=> this.setState({ category: item.electronics})}>
           <View style={styles.categoryContainer5}>
-             <Text style={styles.categoryText5}>#{item.electronics}</Text>
+             <Text style={styles.categoryText5}>{item.electronics}</Text>
           </View>
           </TouchableOpacity>
 
           <TouchableOpacity onPress={()=> this.setState({ category: item.entertaiment})}>
           <View style={styles.categoryContainer7}>
-             <Text style={styles.categoryText7}>#{item.entertaiment}</Text>
+             <Text style={styles.categoryText7}>{item.entertaiment}</Text>
           </View>
           </TouchableOpacity>
           
           <TouchableOpacity onPress={()=> this.setState({ category: item.family})}>
           <View style={styles.categoryContainer6}>
-             <Text style={styles.categoryText6}>#{item.family}</Text>
+             <Text style={styles.categoryText6}>{item.family}</Text>
           </View>
           </TouchableOpacity>
 
           <TouchableOpacity onPress={()=> this.setState({ category: item.freestuffs})}>
           <View style={styles.categoryContainer6}>
-             <Text style={styles.categoryText6}>#{item.freestuffs}</Text>
+             <Text style={styles.categoryText6}>{item.freestuffs}</Text>
           </View>
           </TouchableOpacity>
           
@@ -478,7 +489,7 @@ render(){
       </View>
 
 
-      <FlatList
+    <FlatList
     data={this.condition_data}
     showsVerticalScrollIndicator ={false}
     showsHorizontalScrollIndicator={false}
@@ -513,17 +524,11 @@ render(){
              <Text style={styles.categoryText3}>#{item.used_fair}</Text>
           </View>
           </TouchableOpacity>
-          
-          
+      
         </View>
-
       )
-
     }}
-    
-    
     />
-
 
       <View style={{ 
         alignSelf:'center',
@@ -533,16 +538,30 @@ render(){
       <Text>Condition : </Text>
       <Text style={{ fontWeight:'bold'}}>{this.state.condition}</Text>
       </View>
+{ this.state.nextStep === true ? (
+      <View style={{
+        marginTop:10,
+      }}>
+        <Button
+        onPress={()=> this.setState({ finishStep:true})}
+        label="Next Step"
+        />
+      </View>):<View></View>}
 
       
 
 
+    </View>):
 
-
-
-
-      <View style={{ 
-      //  flex:1, 
+    <View 
+    style={{
+      marginLeft:10,
+      marginRight:10,
+      marginTop:10,
+    }}>
+    
+    <View style={{ 
+       flex:1, 
         marginBottom:50,
         }}>
         <InputDataEdit
@@ -574,28 +593,30 @@ render(){
         })} 
         />
       </View>
+      <View style={{ 
+      //  flex:1, 
+      marginBottom:10,
+      padding:10
+    
+
+        }}>
+          <Text style={{ fontWeight:'bold'}}>{this.state.condition}</Text>
+      </View>
+
 
       <View style={{ 
       //  flex:1, 
-      marginBottom:50,
+      marginBottom:10,
+      padding:10
+    
 
         }}>
-        <InputDataEdit
-        placeholder="Category"
-        editable={false}
-        autoCapitalize="none"
-        autoCorrect={false}
-        maxLength={20}
-        value={this.state.category}
-        onChangeText={(text) => this.setState({
-           category:text,
-        })} 
-        />
+          <Text style={{ fontWeight:'bold'}}>{this.state.category}</Text>
       </View>
 
       <View style={{ 
       //  flex:1, 
-      //marginBottom:50,
+      marginBottom:50,
 
         }}>
         <InputDataEdit
@@ -625,33 +646,27 @@ render(){
         })} 
         />
       </View>
-
-
-      
-
-
-
-
-
-
-
-
-
-      <View>
-
-
-
-
-      </View>
-      <View style={{
-        marginTop:60,
+{ this.state.dataloaded === false?
+    ( <View 
+      style={{
+        marginTop:20,
       }}>
         <Button
         onPress={this.onButtonPress.bind(this)}
         label="Post"
         />
-      </View>
-      
+      </View>):
+      <View
+      style={{
+        marginTop:80,
+      }}
+      >
+        <Spinner/>
+      </View>}
+
+
+        
+    </View>}
 
 
     </View>
