@@ -15,6 +15,7 @@ import com.facebook.soloader.SoLoader;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 import java.util.Arrays;
+import com.airbnb.android.react.lottie.LottiePackage;
 
 import org.unimodules.adapters.react.ModuleRegistryAdapter;
 import org.unimodules.adapters.react.ReactModuleRegistryProvider;
@@ -23,6 +24,8 @@ import org.unimodules.core.interfaces.SingletonModule;
 
 
 public class MainApplication extends Application implements ReactApplication {
+
+  
 
 private final ReactModuleRegistryProvider mModuleRegistryProvider = 
 new ReactModuleRegistryProvider(new BasePackageList().getPackageList(), null);
@@ -41,6 +44,8 @@ new ReactModuleRegistryProvider(new BasePackageList().getPackageList(), null);
           // Packages that cannot be autolinked yet can be added manually here, for example:
           // packages.add(new MyReactNativePackage());
           new VectorIconsPackage();
+          new LottiePackage();
+  
 
 
           // Add unimodules

@@ -18,6 +18,7 @@ import firestore from '@react-native-firebase/firestore';
 import { Actions } from 'react-native-router-flux';
 import _ from 'lodash';
 import auth from '@react-native-firebase/auth';
+import { Spinner } from '../components/reusebleComponents/index';
 
 
 
@@ -63,6 +64,7 @@ class  ChatScreen extends Component {
       onRefreshing:false,
       searchBarText:'',
       backColor:'red',
+      dataloaded:true
 
     }
   }
@@ -366,7 +368,12 @@ footerComponents = () => {
 render(){ 
   console.log('ChatScreen');
   return (
-        <View style={{ 
+        <View
+        style={{
+          flex:1,
+        }}
+        >
+{ this.state.dataloaded ? (        <View style={{ 
           flex:1, 
           backgroundColor:'#fafafa',
           }}>
@@ -613,6 +620,10 @@ render(){
 
 
           }}/>
+          </View>) : <Spinner/>}
+
+
+
           </View>
 
   

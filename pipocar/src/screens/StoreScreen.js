@@ -21,7 +21,8 @@ import { Actions } from 'react-native-router-flux';
 import auth from '@react-native-firebase/auth';
 import _ from 'lodash';
 import ImageModal from 'react-native-image-modal';
-import EvilIcons from 'react-native-vector-icons/EvilIcons'
+import EvilIcons from 'react-native-vector-icons/EvilIcons';
+import { Spinner } from '../components/reusebleComponents/index'; 
 
 /*
 
@@ -44,6 +45,7 @@ class  StoreScreen extends Component {
       //This is the state for modalize 
       category:'',
       title:'',       
+      dataloaded:false
 
     }
   }
@@ -53,7 +55,7 @@ class  StoreScreen extends Component {
 UNSAFE_componentWillMount()
 { 
     //we are calling here the funtion to get all the groups
-    this.fetchStore();
+    this.fetchSTORE();
 
 }
 
@@ -169,7 +171,7 @@ handleSearch = (text) => {
 
 
 //Fecthing Groups
-fetchStore = () => {
+fetchSTORE = () => {
 
   firestore()
   .collection('STORE')
@@ -189,6 +191,7 @@ fetchStore = () => {
         fullData:thread,
         refreshing:false,
         loaded:true,
+        dataloaded:true
       })
   }, this.onError)
 
@@ -344,7 +347,7 @@ renderHeader = () => {
 } */
 
 onRefresh = () => {
-  this.fetchStore();
+  this.fetchSTORE();
 }
 
 renderEmpty = () => {
@@ -376,6 +379,11 @@ renderEmpty = () => {
 render(){ 
   console.log('StoreScreen');
   return (
+        <View 
+        style={{
+          flex:1,
+        }}>
+{ this.state.dataloaded ? (
         <View style={{ 
           flex:1, 
          // backgroundColor:'#fafafa',
@@ -639,7 +647,21 @@ render(){
 
 
 />
-</View>);
+</View>) :
+
+<View 
+style={{
+  flex:1
+}}
+>
+<Spinner/>
+</View>
+
+}
+
+</View>
+
+);
 }}
 
 

@@ -13,7 +13,8 @@ import {
 import { 
   Input,
   Button,
-  InputDataEdit
+  InputDataEdit,
+  Spinner
 
 } from '../reusebleComponents/index';
 import { Actions } from 'react-native-router-flux';
@@ -59,11 +60,12 @@ class  SettingForm extends Component {
       dataPost:[],
       checkPost: false,
       checkGroup: false,
+      dataloaded:false
+      
     }
 
 
   }
-
 
 
   UNSAFE_componentWillMount()
@@ -72,12 +74,11 @@ class  SettingForm extends Component {
 
     this.fetchSAVE_GROUP();
     this.fetchSAVE_POST();
-    Actions.refresh();
+
 
   }
 
 
-  
   
   //Fetch SAVE_GROUPS 
   fetchSAVE_GROUP = () => {
@@ -319,7 +320,9 @@ renderHeaderSettings = () => {
 render(){ 
   console.log('SettingScreen');
   return (
-    <View style={{
+
+    <View style={{ flex:1,}}>
+{ this.state.dataloaded === false ? (    <View style={{
       flex:1,
       backgroundColor:'white'
     }}>
@@ -692,14 +695,12 @@ render(){
 
                     </Modalize>
 
+    </View>
+): <Spinner/>
+}
+
 
     
-     
-
-
-
-
-
     </View>
 
  

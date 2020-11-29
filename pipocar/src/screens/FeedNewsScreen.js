@@ -21,6 +21,7 @@ import AntDesign from 'react-native-vector-icons/AntDesign'
 import EvilIcons from 'react-native-vector-icons/EvilIcons'
 import Share from 'react-native-share';
 import ImageModal from 'react-native-image-modal';
+import {Spinner} from '../components/reusebleComponents/index';
 
 
 /*
@@ -58,6 +59,7 @@ class  FeedNewsScreen extends Component {
       comment:'',
       photoId:'',
       screenshot:null,
+      dataloaded:false 
       
     }
 
@@ -89,6 +91,7 @@ fetchPost = () => {
         data:thread,
         refreshing:false,
         loaded:true,
+        dataloaded:true
       })
   }, this.onError)
 
@@ -178,7 +181,9 @@ renderEmpty = () => {
 render(){ 
   console.log('FeedNewsScreen');
   return (
+
     <View>
+{ this.state.dataloaded === true ? (    <View>
       <FlatList
         data={this.state.data}
         refreshing={this.state.refreshing} 
@@ -415,6 +420,15 @@ onPress={()=>{
 
         }}/>
 
+    </View>) : 
+    
+    <View
+    style={{
+      marginTop:'50%'
+    
+    }}>
+      <Spinner/>
+    </View>}
     </View>
 
  
