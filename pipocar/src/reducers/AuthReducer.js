@@ -60,7 +60,7 @@ export default (state = INITIAL_STATE, action) => {
        case USER_UPDATE_DATA :
            return { ...state, [action.payload.prop]: action.payload.value,}
        case USER_CREATED : 
-           return { ...state, loading:true }
+           return { ...state, loading:false }
         case USER_CREATED_SUCCESS : 
            return { ...state, ...INITIAL_STATE }
        case USER_UPDATED : 
