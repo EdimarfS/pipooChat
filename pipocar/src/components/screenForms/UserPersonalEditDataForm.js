@@ -25,6 +25,9 @@ import style from "react-native-image-blur-loading/src/style";
 import { Actions } from 'react-native-router-flux';
 import storage from '@react-native-firebase/storage';
 import { Spinner } from '../reusebleComponents/index';
+import { updateUSER } from  '../../actions/index';
+import { connect } from 'react-redux';
+
 /* 
 
 <InputDataEdit
@@ -202,8 +205,8 @@ processUpload = (imageUrl) => {
   
   
   //Actions Here
-  Actions.pop();
-  Actions.refresh({});
+ // Actions.pop();
+ // Actions.refresh({});
   }
 
 
@@ -236,7 +239,16 @@ userAllInfo = () => {
 onButtonPress()
     { 
         console.log('UPLOAD PUBLISH!!!')
-         this.UploadPublish();  
+        const { userName, userID, userLocation, userBio } = this.state;
+
+        if(userName!='' && userID!='' && userLocation!='' && userBio!=''){
+        
+        this.props.updateUSER(userName, userID, userLocation,userBio);
+        this.UploadPublish();  
+        }else{
+          console.log('Information not changed!')
+        //  Actions.pop();
+        }
     
     }
 UploadPublish = () => {
@@ -478,9 +490,19 @@ render(){
 }
 }
 
+const mapStateToProps = ({ auth }) => {
+  
+  const { loading, errorOncreateAccount, userName, userID, userLocation, userQuote, userDateOfRegistration} = auth;
+
+  return{ loading, errorOncreateAccount, userName, userID, userLocation, userQuote, userDateOfRegistration }
+}
 
 
-export default UserPersonalEditDataForm;
+
+export default connect(mapStateToProps,{
+updateUSER
+
+})(UserPersonalEditDataForm);
 
 
 const styles = {

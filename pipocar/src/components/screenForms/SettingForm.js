@@ -26,6 +26,8 @@ import EvilIcons from 'react-native-vector-icons/EvilIcons';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import  Fontisto from 'react-native-vector-icons/Fontisto';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import ImageBlurLoading from 'react-native-image-blur-loading';
+
 //AntDesign
 //import IconEvilIcons from 'react-native-vector-icons/EvilIcons';
 
@@ -292,21 +294,17 @@ renderEMPTY = () => {
 renderHeaderSettings = () => {
   return(
     <View style={{ alignSelf:'center'}}>
-    <Image
-    
-    source={{
-      uri: auth().currentUser.photoURL
-    }}
+  
+    <ImageBlurLoading
+    thumbnailSource={{ uri: auth().currentUser.photoURL }}
+    source={{ uri: auth().currentUser.photoURL }}
     style={{
-      width:100,
-      height:100,
-      borderRadius:90,
-      marginTop:20,
-      marginLeft:10
-
+        width:100,
+        height:100,
+        borderRadius:50,
+        marginTop:10,
     }}
-    />
-
+    /> 
 
       <View style={{ 
         marginTop:30,

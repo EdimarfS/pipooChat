@@ -110,8 +110,8 @@ export const userUPDATE_DATA= ({prop, value}) => {
             })
         .then(()=>{
             dispatch({type: USER_CREATED_SUCCESS})
-            Actions.main({type:'replace'});
-            Actions.refresh({});
+          //  Actions.main({type:'replace'});
+          //  Actions.refresh({});
         })
     
 
@@ -160,8 +160,7 @@ export const updateUSER = (userName, userID, userLocation, userBio) => {
                     type: USER_CREATED
                 }
             )
-            Actions.pop();
-            Actions.refresh({});
+            Actions.pop() 
 
         }) 
         

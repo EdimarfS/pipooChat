@@ -311,7 +311,7 @@ onPress={()=>{
                 style={{
                   width:400,
                   height:400,
-                  alignSelf:'center'
+                 // alignSelf:'center'
                 }}
 
                 source={{ uri: item.url}}
@@ -322,8 +322,6 @@ onPress={()=>{
 
 
                </View>
-
-
                 <View 
                 style={{
                   marginTop:20,
