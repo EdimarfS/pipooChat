@@ -77,6 +77,7 @@ class  UserPersonalEditDataForm extends Component {
     UNSAFE_componentWillMount()
     {
         this.userAllInfo();
+        
     }
 
 //Image Picker 
@@ -130,12 +131,13 @@ _checkPermissions = () => {
 
         
     }).then(image => {
+
       this.setState({
         imageSelected: true,
         imageId: this.uniqueId(),
         imageURI: image.path,
+        })
         
-    })
     }).catch(error => {
       console.log(error)
       this.setState({
@@ -236,15 +238,20 @@ userAllInfo = () => {
 
 
     
-onButtonPress()
-    { 
+onButtonPress = () => { 
         console.log('UPLOAD PUBLISH!!!')
-        const { userName, userID, userLocation, userBio } = this.state;
+        const { userName, userID, userLocation, userBio, imageSelected} = this.state;
 
-        if(userName!='' && userID!='' && userLocation!='' && userBio!=''){
+        if(imageSelected === true && userName!='' && userID!='' && userLocation!='' && userBio!='') {
         
         this.props.updateUSER(userName, userID, userLocation,userBio);
         this.UploadPublish();  
+        
+        }else if(userName!='' && userID!='' && userLocation!='' && userBio!='') 
+        {
+
+          this.props.updateUSER(userName, userID, userLocation,userBio);
+        
         }else{
           console.log('Information not changed!')
         //  Actions.pop();
@@ -403,7 +410,7 @@ render(){
             <InputDataEdit
             placeholder="userName"
             value={this.state.userName}
-            onChangeText={text => this.setState({ userName:text})}
+            onChangeText={text => {this.setState({ userName:text})}}
             autoCorrect={false}
             autoCapitalize="none"
 
@@ -415,7 +422,7 @@ render(){
             <InputDataEdit
             placeholder="userID"
             value={this.state.userID}
-            onChangeText={text => this.setState({ userID:text})}
+            onChangeText={text => {this.setState({ userID:text})}}
             autoCorrect={false}
             autoCapitalize="none"
             
@@ -425,7 +432,7 @@ render(){
             <InputDataEdit
             placeholder="userBio"
             value={this.state.userBio}
-            onChangeText={text => this.setState({ userBio:text})}
+            onChangeText={text => {this.setState({ userBio:text})}}
             autoCorrect={false}
             autoCapitalize="none"
             
@@ -435,14 +442,14 @@ render(){
 
         <View>
 { this.state.publish === false ? (        <TouchableOpacity  
-        onPress={this.onButtonPress.bind(this)}
+        onPress={this.onButtonPress}
         >
                       <View  
                           
                       style={{
                       //  marginBottom:30,
                         justifyContent:'center',
-                        alignSelf:'center',
+                        alsignSelf:'center',
                         backgroundColor:'#44e300',
                         width:'100%',
                         height:50,

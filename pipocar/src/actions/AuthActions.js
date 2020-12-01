@@ -157,10 +157,11 @@ export const updateUSER = (userName, userID, userLocation, userBio) => {
             
            dispatch(
                 {
-                    type: USER_CREATED
+                    type: USER_UPDATED
                 }
             )
-            Actions.pop() 
+            Actions.pop();
+            Actions.refresh({});
 
         }) 
         
