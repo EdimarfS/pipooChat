@@ -480,8 +480,8 @@ render(){
                 uri:item.groupcover.groupcover
               }}
               style={{
-                width:50,
-                height:50,
+                width:70,
+                height:70,
                 borderRadius:90,
                // borderWidth:2,
               //borderColor:'#05c7fc',

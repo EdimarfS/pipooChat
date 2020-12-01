@@ -293,26 +293,35 @@ renderEMPTY = () => {
 
 renderHeaderSettings = () => {
   return(
-    <View style={{ alignSelf:'center'}}>
+    <View style={{ 
+      alignSelf:'center',
+     // backgroundColor:'red',
+      }}>
   
-    <ImageBlurLoading
-    thumbnailSource={{ uri: auth().currentUser.photoURL }}
+    <Image
+  //  thumbnailSource={{ uri: auth().currentUser.photoURL }}
     source={{ uri: auth().currentUser.photoURL }}
     style={{
         width:100,
         height:100,
         borderRadius:50,
         marginTop:10,
+        alignSelf:'center',
+        justifyContent:'center',
+        backgroundColor:'lightgrey',
+   
     }}
     /> 
 
       <View style={{ 
         marginTop:30,
-        alignSelf:'center'
+        alignSelf:'center',
+      
         }}>
       <Text style={{ 
         fontWeight:'bold',
-        color:'#05c7fc' 
+        color:'#05c7fc',
+        textAlign:'center'
         }}>{auth().currentUser.displayName}</Text>
       </View>
   </View>
