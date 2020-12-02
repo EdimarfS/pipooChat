@@ -10,7 +10,7 @@ import {
   TouchableOpacity,
   Image
 } from "react-native";
-import { GiftedChat, GiftedAvatar} from 'react-native-gifted-chat'
+import { GiftedChat } from 'react-native-gifted-chat'
 import  { addMessages, messageFETCH} from '../actions/ChatActions';
 import { connect } from 'react-redux';
 import firestore from '@react-native-firebase/firestore';
@@ -267,6 +267,7 @@ onSendMessage(messages=[])
 
     this.setState({
         imageSelected:'',
+        imageFromChat:'',
     })
 
 
@@ -369,12 +370,11 @@ renderMessageImage = (props) => {
       }}>
       <ImageModal
         resizeMode="contain"
-      
         imageBackgroundColor="white"
         style={{
           width:150,
           height:150,
-          //borderRadius:10,
+          borderRadius:10,
           alignSelf:'center',
   
         }}

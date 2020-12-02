@@ -1,4 +1,4 @@
-  
+
 //Essa é a aplicação Ngambwe, todos os direitos estão reservados para empresa @Uajiza
 // Uajiza - 2020
 import React, { Component } from "react";
@@ -47,7 +47,6 @@ import { Spinner } from '../components/reusebleComponents/index';
                     ],
                     { cancelable: false }
                   );}
-
 */
 
 class  ChatScreen extends Component {
@@ -476,9 +475,7 @@ render(){
                 flexDirection:'row'
               }}>
               <Image
-              source={{
-                uri:item.groupcover.groupcover
-              }}
+              source={{ uri:item.groupcover.groupcover }}
               style={{
                 width:70,
                 height:70,
@@ -487,11 +484,6 @@ render(){
               //borderColor:'#05c7fc',
               //borderColor:'#00ff80',
                 padding:10,
-          
-
-
-          
-                
                 //alignSelf:'center'
               }}
               />

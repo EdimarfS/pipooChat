@@ -222,12 +222,15 @@ Actions.refresh({});
 
 onButtonPress()
 { 
+
+    if(this.state.imageSelected)
+  {
     this.setState({
       finishStep:true,
 
     })
-
      this.UploadPublish();
+  }
 
    
 }

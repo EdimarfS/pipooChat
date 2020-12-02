@@ -21,6 +21,7 @@ import { connect } from 'react-redux';
 import auth from '@react-native-firebase/auth';
 import ImageBlurLoading from 'react-native-image-blur-loading';
 import { Spinner } from '../reusebleComponents/Spinner';
+import { Actions } from "react-native-gifted-chat";
 class  UserPersonalDataForm extends Component {
 
   constructor(props)

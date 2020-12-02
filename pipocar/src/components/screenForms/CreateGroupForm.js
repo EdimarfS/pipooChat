@@ -40,7 +40,7 @@ class  CreateGroupForm extends Component {
           progress: 0,
           imageURI:'https://firebasestorage.googleapis.com/v0/b/pipocar-61cd8.appspot.com/o/groupCovers%2Fcef4c151ecd7c2fd46180b45fb5bc1a1.jpg?alt=media&token=8beea4de-e1fd-439d-8162-eb7bab61e41c',
           category:'Travel',
-          groupname:'',
+          groupname:'My group',
           finishStep:false
       };
   }
@@ -263,6 +263,11 @@ processUpload = (imageUrl) => {
 
 onButtonPress()
 {
+  const { groupname } = this.props;
+
+
+
+
   Alert.alert(
     this.state.title,
     `Make sure all the iformation is correct before create it`,
@@ -276,7 +281,9 @@ onButtonPress()
           this.setState({
             finishStep:true
           })
+         
             this.UploadPublish();
+          
 
        }}
     ],
