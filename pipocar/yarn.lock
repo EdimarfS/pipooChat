@@ -8057,12 +8057,6 @@ react-native-tab-view@^2.15.2:
   resolved "https://registry.yarnpkg.com/react-native-tab-view/-/react-native-tab-view-2.15.2.tgz#4bc7832d33a119306614efee667509672a7ee64e"
   integrity sha512-2hxLkBnZtEKFDyfvNO5EUywhy3f/EiLOBO8SWqKj4BMBTO0QwnybaPE5MVF00Fhz+VA4+h/iI40Dkrrtq70dGg==
 
-"react-native-twilio-video-webrtc@https://github.com/blackuy/react-native-twilio-video-webrtc":
-  version "1.0.2-1"
-  resolved "https://github.com/blackuy/react-native-twilio-video-webrtc#8ef225ffa827dfc946abf73b936d2f05a013c34b"
-  dependencies:
-    prop-types "^15.5.10"
-
 react-native-typing-animation@^0.1.7:
   version "0.1.7"
   resolved "https://registry.yarnpkg.com/react-native-typing-animation/-/react-native-typing-animation-0.1.7.tgz#8f2cf08d9400ae543a110292eb7d71523dda5528"

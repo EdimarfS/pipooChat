@@ -2,7 +2,6 @@ package com.pipocar;
 // com.myapp should be your package name
 import com.pipocar.generated.BasePackageList;
 import com.oblador.vectoricons.VectorIconsPackage;
-import com.twiliorn.library.TwilioPackage;
 
 
 
@@ -52,8 +51,6 @@ new ReactModuleRegistryProvider(new BasePackageList().getPackageList(), null);
           new VectorIconsPackage();
           new LottiePackage();
           new LottiePackage();
-          new TwilioPackage();
-
           
           
           // Add unimodules

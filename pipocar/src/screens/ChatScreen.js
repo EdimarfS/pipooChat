@@ -346,6 +346,7 @@ renderHeader = () => {
     
     
     />
+
     </View>
     
   )
@@ -522,7 +523,7 @@ render(){
               
               <TouchableOpacity 
               
-              onPress={()=>{
+/*               onPress={()=>{
 
                 const author = auth().currentUser.uid;
                 const groupname = item.name;
@@ -578,7 +579,7 @@ render(){
                   )
 
 
-              }} 
+              }}  */
               style={{
               //  alignSelf:'center',
                 justifyContent:'center',
@@ -588,9 +589,9 @@ render(){
               <Text 
               style={{
                 fontWeight:'bold',
-                color:'grey'
+                color:'blue'
   
-              }}>save</Text>
+              }}>call</Text>
               </TouchableOpacity>
  
               </View>
