@@ -2,6 +2,8 @@ package com.pipocar;
 // com.myapp should be your package name
 import com.pipocar.generated.BasePackageList;
 import com.oblador.vectoricons.VectorIconsPackage;
+import com.twiliorn.library.TwilioPackage;
+
 
 
 import android.app.Application;
@@ -20,7 +22,8 @@ import com.airbnb.android.react.lottie.LottiePackage;
 import org.unimodules.adapters.react.ModuleRegistryAdapter;
 import org.unimodules.adapters.react.ReactModuleRegistryProvider;
 import org.unimodules.core.interfaces.SingletonModule;
- 
+
+
 
 
 public class MainApplication extends Application implements ReactApplication {
@@ -39,20 +42,30 @@ new ReactModuleRegistryProvider(new BasePackageList().getPackageList(), null);
 
         @Override
         protected List<ReactPackage> getPackages() {
+
           @SuppressWarnings("UnnecessaryLocalVariable")
+
           List<ReactPackage> packages = new PackageList(this).getPackages();
           // Packages that cannot be autolinked yet can be added manually here, for example:
           // packages.add(new MyReactNativePackage());
+   
           new VectorIconsPackage();
           new LottiePackage();
-  
+          new LottiePackage();
+          new TwilioPackage();
 
-
+          
+          
           // Add unimodules
           List<ReactPackage> unimodules = Arrays.<ReactPackage>asList(
             new ModuleRegistryAdapter(mModuleRegistryProvider)
           );
+
+
           packages.addAll(unimodules);
+
+         
+
           return packages;
         }
 

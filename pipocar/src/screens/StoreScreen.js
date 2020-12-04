@@ -85,7 +85,7 @@ handleSearch = (text) => {
           || user.title.toLowerCase().includes(formatQuery)  
           || user.authorname.toLowerCase().includes(formatQuery)
           || user.location.toLowerCase().includes(formatQuery)
-          || user.price.toLowerCase().includes(formatQuery)
+
           
           )
          {
@@ -141,31 +141,23 @@ handleSearch = (text) => {
 
   tags = [
     {
-       vehicles : 'Vehicles',
+       gala : 'Gala',
         key:1,
     
-        properties : 'Properties',
+        nightparty : 'Night Party',
         key:2,
 
-        apperel : 'Apperel',
+        opera : 'Opera',
         key:3,
         
-        classifieds : 'Classifieds',
+        urbanmusic : 'Urban Music',
         key:4,
 
-        electronics: 'Electronics',
+        bbq: 'BBQ',
         key:5,
 
-        entertaiment : 'Entertaiment',
+        other : 'Other',
         key:6,
-        
-        family : 'Family',
-        key:7,
-
-        freestuffs : 'Free Stuffs',
-        key:8,
-
-
         
     }
     
@@ -178,7 +170,7 @@ handleSearch = (text) => {
 fetchSTORE = () => {
 
   firestore()
-  .collection('STORE')
+  .collection('EVENT')
   .orderBy('date', 'desc')
   .onSnapshot(querySnapshot => {
       
@@ -231,7 +223,7 @@ renderHeader = () => {
       flex:1,
       marginLeft:5,
       marginRight:5,
-      marginTop:30,
+      marginTop:0,
       marginBottom:20
       
    //   justifyContent:'center',
@@ -259,58 +251,47 @@ renderHeader = () => {
       return(
         <View style={{ 
           flexDirection:'row', 
-          marginTop:5,
+         // marginTop:5,
           marginBottom:20,
           backgroundColor:'white'
           //backgroundColor:'red',
           }}>
-          <TouchableOpacity onPress={()=> this.handleSearch(item.vehicles)}>
+          <TouchableOpacity onPress={()=> this.handleSearch(item.gala)}>
           <View style={styles.categoryContainer1}>
-             <Text style={styles.categoryText1}>{item.vehicles}</Text>
+             <Text style={styles.categoryText1}>{item.gala}</Text>
           </View>
           </TouchableOpacity>
           
-          <TouchableOpacity onPress={()=> this.handleSearch(item.properties)}>
+          <TouchableOpacity onPress={()=> this.handleSearch(item.nightparty)}>
           <View style={styles.categoryContainer2}>
-             <Text style={styles.categoryText2}>{item.properties}</Text>
+             <Text style={styles.categoryText2}>{item.nightparty}</Text>
           </View>
           </TouchableOpacity>
           
-          <TouchableOpacity onPress={()=> this.handleSearch(item.apperel)}>
+          <TouchableOpacity onPress={()=> this.handleSearch(item.opera)}>
           <View style={styles.categoryContainer3}>
-             <Text style={styles.categoryText3}>{item.apperel}</Text>
+             <Text style={styles.categoryText3}>{item.opera}</Text>
           </View>
           </TouchableOpacity>
 
-          <TouchableOpacity onPress={()=> this.handleSearch(item.classifieds)}>
+          <TouchableOpacity onPress={()=> this.handleSearch(item.urbanmusic)}>
           <View style={styles.categoryContainer4}>
-             <Text style={styles.categoryText4}>{item.classifieds}</Text>
+             <Text style={styles.categoryText4}>{item.urbanmusic}</Text>
           </View>
           </TouchableOpacity>
 
-          <TouchableOpacity onPress={()=> this.handleSearch(item.electronics)}>
+          <TouchableOpacity onPress={()=> this.handleSearch(item.bbq)}>
           <View style={styles.categoryContainer5}>
-             <Text style={styles.categoryText5}>{item.electronics}</Text>
+             <Text style={styles.categoryText5}>{item.bbq}</Text>
           </View>
           </TouchableOpacity>
 
-          <TouchableOpacity onPress={()=> this.handleSearch(item.entertaiment)}>
+          <TouchableOpacity onPress={()=> this.handleSearch(item.other)}>
           <View style={styles.categoryContainer7}>
-             <Text style={styles.categoryText7}>{item.entertaiment}</Text>
-          </View>
-          </TouchableOpacity>
-          
-          <TouchableOpacity onPress={()=> this.handleSearch(item.family)}>
-          <View style={styles.categoryContainer6}>
-             <Text style={styles.categoryText6}>{item.family}</Text>
+             <Text style={styles.categoryText7}>{item.other}</Text>
           </View>
           </TouchableOpacity>
 
-          <TouchableOpacity onPress={()=> this.handleSearch(item.freestuffs)}>
-          <View style={styles.categoryContainer6}>
-             <Text style={styles.categoryText6}>{item.freestuffs}</Text>
-          </View>
-          </TouchableOpacity>
           
           
         </View>
@@ -324,7 +305,7 @@ renderHeader = () => {
       <View style={{
       alignSelf:'center',
       marginBottom:20,
-      marginTop:10
+     // marginTop:10
     }}>
      <TouchableOpacity 
      onPress={()=>{ Actions.products()}}
@@ -337,7 +318,7 @@ renderHeader = () => {
      }}>
        <Text style={{
          fontWeight:'bold',
-       }}>New Product</Text>
+       }}>New Event</Text>
      </TouchableOpacity>
    </View>
     </View>
@@ -373,11 +354,11 @@ renderEmpty = () => {
       >
     <MaterialCommunityIcons 
     style={{ marginLeft:10}}
-    name="tshirt-v" size={40} color="lightgrey" />
+    name="food-fork-drink" size={40} color="lightgrey" />
     
     <MaterialCommunityIcons 
     style={{ marginLeft:10}}
-    name="food" size={40} color="lightgrey" /> 
+    name="music-note-eighth" size={40} color="lightgrey" /> 
 
     <AntDesign 
     style={{ marginLeft:10}}
@@ -398,7 +379,7 @@ renderEmpty = () => {
         marginTop:10,
         fontWeight:'bold'
       }}
-      > No products to buy ? Then sell one</Text>
+      > Look for some good events...</Text>
     </View>
   )
 }
@@ -473,7 +454,7 @@ render(){
                                         style: "cancel"
                                       },
                                       { text: "OK", onPress: () => {
-                                        firestore().collection('STORE')
+                                        firestore().collection('EVENT')
                                         .doc(item._id)
                                         .delete()
                                         .then(()=>{
@@ -535,7 +516,7 @@ render(){
                       alignSelf:'center',
                       fontWeight:'bold'
                 }}>
-                  {item.authorname}
+                  {item.authorname.substring(0,10)+'...'}
                 </Text>
 
                 
@@ -553,15 +534,17 @@ render(){
               <TouchableOpacity 
               style={{ flex:1/2}}
               >
-              <View>
+              <View style={{
+                  alignSelf:'center'
+              }}>
               <ImageModal
                 resizeMode="contain"
               
                 imageBackgroundColor="white"
                 style={{
-                  width:150,
-                  height:150,
-                  borderRadius:10,
+                  width:120,
+                  height:120,
+                  borderRadius:2,
                   alignSelf:'center'
                 }}
 
@@ -606,20 +589,24 @@ render(){
 
               
               <View style={{ 
-                flexDirection:'row', 
-                justifyContent:'space-between',
+                flexDirection:'column', 
                 marginLeft:10,
                 marginRight:10,
+                alignSelf:'center'
        
                // backgroundColor:'red'
                 }}>
+
+              <View>
               <Text style={{
-                fontSize:15,
-                color:'grey',
-               // fontWeight:'bold',
-                marginTop:10,
-               // alignSelf:'center'
-              }}>${item.price}</Text>
+              textAlign:'center',
+              marginTop:10,
+              color:'grey',
+              fontSize:15,
+              alignSelf:'center',
+              }}>{item.location.substring(0,14)}
+              </Text>
+              </View>
 
               <TouchableOpacity
               
@@ -630,10 +617,11 @@ render(){
                 color:'#05c7fc',
                 fontWeight:'bold',
                 marginTop:10,
+                alignSelf:'center'
                // backgroundColor:'red',
       
                // alignSelf:'center'
-                }}>Website</Text>
+                }}>read more</Text>
               </TouchableOpacity>
 
 

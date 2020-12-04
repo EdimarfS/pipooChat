@@ -491,25 +491,23 @@ render(){
                 alignSelf:'center',
                 //marginBottom:3,
                // backgroundColor:'red',
-                marginLeft:20,
+                marginLeft:10,
                 }}>
               <View>
               <Text style={{
                 fontWeight:'bold',
-                textAlign:'center',
+              //  textAlign:'center',
                 fontSize:15,
-                color:'#00baed'
               }}>{item.name.substring(0,14)+'...'}</Text>
               </View>
 
-              
               <View>
               <Text style={{
                 fontSize:14,
                 //color:'#05c7fc',
-                color:'#b3b3b3',
+                color:'grey',
                 marginTop:10,
-              }}>{item.category}</Text>
+              }}>{item.latestMessage.text}</Text>
               </View>
               </View>
 

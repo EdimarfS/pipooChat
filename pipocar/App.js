@@ -15,7 +15,6 @@ import {
   StatusBar
 } from 'react-native';
 import OneSignal from 'react-native-onesignal';
-import expo from 'expo-camera';
 import { 
   IntroductionScreen, 
   LoginScreen, 
@@ -36,7 +35,7 @@ import {createStore, applyMiddleware} from 'redux';
 import ReduxThunk from 'redux-thunk';
 import {Provider} from 'react-redux';
 import Reducers from './src/reducers/index';
-
+//import Example from '../pipocar/src/screens/Example';
 //import { Router } from 'react-native-router-flux';
 //import { IntroductionScreen } from './src/screens';
 //import Router from './src/router/Router';

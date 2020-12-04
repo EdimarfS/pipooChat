@@ -327,7 +327,7 @@ return(
                     hideNavBar
                     />
                     <Scene
-                    key="store"
+                    key="events"
                     component={StoreScreen}
                    // iconName={"refresh"}
                    // icon={TabIcon}

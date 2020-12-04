@@ -278,7 +278,7 @@ onPress={()=>{
                     <View>
                      <Text style={{
                        fontWeight:'bold'
-                     }}>{item.userName}</Text>
+                     }}>{item.userName.substring(0,14)+'...'}</Text>
                     </View>
                     <View style={{ 
                       marginTop:5,

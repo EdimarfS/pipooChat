@@ -96,7 +96,7 @@ apply plugin: 'com.onesignal.androidsdk.onesignal-gradle-plugin'
 
 
 
-
+ 
 
 
 
@@ -162,6 +162,9 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
         
+    }
+    dexOptions {
+    jumboMode true
     }
 
     defaultConfig {
@@ -230,9 +233,11 @@ dependencies {
 
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.0.0"
     addUnimodulesDependencies()
+
     
   // implementation 'androidx.multidex:multidex:2.0.1'
     implementation 'com.android.support:multidex:1.0.3'
+    compile project(':react-native-twilio-video-webrtc')
 
 
     compile project(':react-native-vector-icons')

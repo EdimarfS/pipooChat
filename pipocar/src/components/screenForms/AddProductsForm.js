@@ -38,16 +38,17 @@ class  CreateGroupForm extends Component {
           imageSelected: false,
           uploading: false,
           progress: 0,
-          imageURI:'https://firebasestorage.googleapis.com/v0/b/pipocar-61cd8.appspot.com/o/groupCovers%2F5ab004b8cf67d4d4b8b2b7242f8225af.jpg?alt=media&token=305afb7e-f573-4b80-9bd1-be697628c5fc',
-          title:'My product',
+          imageURI:'https://firebasestorage.googleapis.com/v0/b/pipocar-61cd8.appspot.com/o/groupCovers%2FPSD-Valentine-Day-Music-Party-Flyer.jpg?alt=media&token=83c64e58-6774-4f39-80f4-57ee11cdc2cb',
+          title:'My event',
           price:'0',
-          category:'Apperel',
+          category:'Night Party',
           condition:'New',
           location:'Angola',
           website: '',
           nextStep:false,
           finishStep:false,
-          dataloaded:false
+          dataloaded:false,
+          
 
       };
   }
@@ -56,49 +57,29 @@ class  CreateGroupForm extends Component {
 
   data = [
     {
-       vehicles : 'Vehicles',
-        key:1,
-    
-        properties : 'Properties',
-        key:2,
+      gala : 'Gala',
+       key:1,
+   
+       nightparty : 'Night Party',
+       key:2,
 
-        apperel : 'Apperel',
-        key:3,
-        
-        classifieds : 'Classifieds',
-        key:4,
+       opera : 'Opera',
+       key:3,
+       
+       urbanmusic : 'Urban Music',
+       key:4,
 
-        electronics: 'Electronics',
-        key:5,
+       bbq: 'BBQ',
+       key:5,
 
-        entertaiment : 'Entertaiment',
-        key:6,
-        
-        family : 'Family',
-        key:7,
-
-        freestuffs : 'Free Stuffs',
-        key:8,
-    }
+       other : 'Other',
+       key:6,
+       
+   }
 
     ];
 
 
-
-    condition_data = [
-        {
-            new: 'New',
-            key:1,
-        
-            used_good : 'Used Good',
-            key:2,
-    
-            used_fair : 'Used Fair',
-            key:3,
-        }
-    
-        ]
-    
 
 
 
@@ -243,10 +224,8 @@ processUpload = (imageUrl) => {
     var Title = this.state.title;
     var Categoty = this.state.category;
     var author = auth().currentUser.uid;
-    var Condition = this.state.condition;
     var Location = this.state.location;
     var imageID = this.state.imageID;
-    var price = this.state.price;
     var authorprofilepicture = auth().currentUser.photoURL;
     var authorname = auth().currentUser.displayName;
     var website = this.state.website;
@@ -258,15 +237,14 @@ processUpload = (imageUrl) => {
   var storeDATA = {
         title : Title,
         category: Categoty,
-        condition: Condition,
         location: Location,
         image : imageUrl,
         date : date,
         author:author,
         authorprofilepicture :authorprofilepicture,
         authorname: authorname,
-        price:price,
         website: 'https://'+website,
+
 
   }
 
@@ -275,11 +253,11 @@ processUpload = (imageUrl) => {
 /*   database().ref(`/store/images`)
   .set(storeDATA); */
 
-  firestore().collection('STORE').add(storeDATA);
+  firestore().collection('EVENT').add(storeDATA);
  
 
 
-  database().ref(`/users/${userID}/products/${imageID}`)
+  database().ref(`/users/${userID}/event/${imageID}`)
   .set(storeDATA);
 
 
@@ -389,11 +367,7 @@ render(){
  
 
       </View>
-      <View style={{ 
-        alignSelf:'center', 
-        marginTop:10}}>
-      <Text style={{ fontWeight:'bold', color:'grey'}}>Create a product</Text>
-      </View>
+
       
       <View>
       <FlatList
@@ -414,53 +388,41 @@ render(){
        //   backgroundColor:'blue'
           //backgroundColor:'red',
           }}>
-          <TouchableOpacity onPress={()=> this.setState({ category: item.vehicles})}>
+          <TouchableOpacity onPress={()=> this.setState({ category: item.gala})}>
           <View style={styles.categoryContainer1}>
-             <Text style={styles.categoryText1}>{item.vehicles}</Text>
+             <Text style={styles.categoryText1}>{item.gala}</Text>
           </View>
           </TouchableOpacity>
           
-          <TouchableOpacity onPress={()=> this.setState({ category: item.properties})}>
+          <TouchableOpacity onPress={()=> this.setState({ category: item.nightparty})}>
           <View style={styles.categoryContainer2}>
-             <Text style={styles.categoryText2}>{item.properties}</Text>
+             <Text style={styles.categoryText2}>{item.nightparty}</Text>
           </View>
           </TouchableOpacity>
-          
-          <TouchableOpacity onPress={()=> this.setState({ category: item.apperel})}>
-          <View style={styles.categoryContainer3}>
-             <Text style={styles.categoryText3}>{item.apperel}</Text>
-          </View>
-          </TouchableOpacity>
-
-          <TouchableOpacity onPress={()=> this.setState({ category: item.classifieds})}>
-          <View style={styles.categoryContainer4}>
-             <Text style={styles.categoryText4}>{item.classifieds}</Text>
-          </View>
-          </TouchableOpacity>
-
-          <TouchableOpacity onPress={()=> this.setState({ category: item.electronics})}>
-          <View style={styles.categoryContainer5}>
-             <Text style={styles.categoryText5}>{item.electronics}</Text>
-          </View>
-          </TouchableOpacity>
-
-          <TouchableOpacity onPress={()=> this.setState({ category: item.entertaiment})}>
+                    <TouchableOpacity onPress={()=> this.setState({ category: item.opera})}>
           <View style={styles.categoryContainer7}>
-             <Text style={styles.categoryText7}>{item.entertaiment}</Text>
+             <Text style={styles.categoryText7}>{item.opera}</Text>
           </View>
           </TouchableOpacity>
           
-          <TouchableOpacity onPress={()=> this.setState({ category: item.family})}>
-          <View style={styles.categoryContainer6}>
-             <Text style={styles.categoryText6}>{item.family}</Text>
+          <TouchableOpacity onPress={()=> this.setState({ category: item.urbanmusic})}>
+          <View style={styles.categoryContainer3}>
+             <Text style={styles.categoryText3}>{item.urbanmusic}</Text>
           </View>
           </TouchableOpacity>
 
-          <TouchableOpacity onPress={()=> this.setState({ category: item.freestuffs})}>
-          <View style={styles.categoryContainer6}>
-             <Text style={styles.categoryText6}>{item.freestuffs}</Text>
+          <TouchableOpacity onPress={()=> this.setState({ category: item.bbq})}>
+          <View style={styles.categoryContainer4}>
+             <Text style={styles.categoryText4}>{item.bbq}</Text>
           </View>
           </TouchableOpacity>
+
+          <TouchableOpacity onPress={()=> this.setState({ category: item.other})}>
+          <View style={styles.categoryContainer5}>
+             <Text style={styles.categoryText5}>{item.other}</Text>
+          </View>
+          </TouchableOpacity>
+
           
           
         </View>
@@ -489,55 +451,6 @@ render(){
       </View>
 
 
-    <FlatList
-    data={this.condition_data}
-    showsVerticalScrollIndicator ={false}
-    showsHorizontalScrollIndicator={false}
-
-    showsHorizontalScrollIndicator={false}
-    keyExtractor={ item => item.key.toString()}
-    //numColumns={3}
-    horizontal 
-    renderItem={({item}) => {
-
-      return(
-        <View style={{ 
-          flexDirection:'row', 
-          marginTop:10,
-       //   backgroundColor:'blue'
-          //backgroundColor:'red',
-          }}>
-          <TouchableOpacity onPress={()=> this.setState({ condition: item.new})}>
-          <View style={styles.categoryContainer1}>
-             <Text style={styles.categoryText1}>#{item.new}</Text>
-          </View>
-          </TouchableOpacity>
-          
-          <TouchableOpacity onPress={()=> this.setState({ condition: item.used_good})}>
-          <View style={styles.categoryContainer2}>
-             <Text style={styles.categoryText2}>#{item.used_good}</Text>
-          </View>
-          </TouchableOpacity>
-          
-          <TouchableOpacity onPress={()=> this.setState({ condition: item.used_fair})}>
-          <View style={styles.categoryContainer3}>
-             <Text style={styles.categoryText3}>#{item.used_fair}</Text>
-          </View>
-          </TouchableOpacity>
-      
-        </View>
-      )
-    }}
-    />
-
-      <View style={{ 
-        alignSelf:'center',
-        marginTop:10,
-        flexDirection:'row'
-        }}>
-      <Text>Condition : </Text>
-      <Text style={{ fontWeight:'bold'}}>{this.state.condition}</Text>
-      </View>
 { this.state.nextStep === true ? (
       <View style={{
         marginTop:10,
@@ -577,31 +490,6 @@ render(){
       </View>
 
 
-      <View style={{ 
-      //  flex:1, 
-      marginBottom:50,
-
-        }}>
-        <InputDataEdit
-        placeholder="Price"
-        autoCapitalize="none"
-        autoCorrect={false}
-        maxLength={20}
-        value={this.state.price}
-        onChangeText={(text) => this.setState({
-           price:text,
-        })} 
-        />
-      </View>
-      <View style={{ 
-      //  flex:1, 
-      marginBottom:10,
-      padding:10
-    
-
-        }}>
-          <Text style={{ fontWeight:'bold'}}>{this.state.condition}</Text>
-      </View>
 
 
       <View style={{ 
