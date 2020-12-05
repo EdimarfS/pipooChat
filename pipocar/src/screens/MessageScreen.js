@@ -43,6 +43,7 @@ constructor(props)
               progress: 0,
               imageFromChat:'',
               loading:false,
+              messageFetched:false,
               imageID: this.uniqueId(),
              // imageURI:'https://firebasestorage.googleapis.com/v0/b/pipocar-61cd8.appspot.com/o/groupCovers%2Fcef4c151ecd7c2fd46180b45fb5bc1a1.jpg?alt=media&token=8beea4de-e1fd-439d-8162-eb7bab61e41c'
     
@@ -377,19 +378,35 @@ renderMessageImage = (props) => {
         alignSelf:'center',
         marginTop:10,
       }}>
-      <ImageModal
+{ this.props.messageFetch === true ? (      <ImageModal
         resizeMode="contain"
-        imageBackgroundColor="white"
+      //  imageBackgroundColor="white"
         style={{
           width:150,
           height:150,
-          borderRadius:10,
+          marginLeft:10,
+          marginRight:10,
+         // borderRadius:10,
           alignSelf:'center',
   
         }}
 
         source={{ uri: props.currentMessage.image }}
-      />
+      />):
+      <View
+      style={{
+        backgroundColor:'white',
+        marginLeft:10,
+        marginRight:10,
+        width:150,
+        height:150,
+        alignSelf:'center',
+        justifyContent:'center',
+        alignItems:'center'
+      }}> 
+      <Spinner/>
+        
+      </View>}
       </View>
   );
 };
@@ -440,9 +457,9 @@ const mapStateToProps = ({chat}) => {
 
 
 
-  const { messages }  = chat;
+  const { messages, messageFetch }  = chat;
 
-  return{ messages  };
+  return{ messages, messageFetch  };
 }
 
 

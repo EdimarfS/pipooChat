@@ -9,7 +9,8 @@ import { GiftedChat } from "react-native-gifted-chat";
 const INITIAL_STATE = { 
     messages:[],
     fullData:[],
-    query:''
+    query:'',
+    messageFetch:false,
 }
 
 
@@ -20,7 +21,7 @@ export default chatReducer = (state = INITIAL_STATE , action) => {
         return {messages : GiftedChat.append(state.messages, action.messages)}
 
         case MESSAGE_GROUP_FETCH: //Must be checked 
-        return {  ...state, messages: action.payload, fullData: action.payload, query:''}
+        return {  ...state, messages: action.payload, fullData: action.payload, query:'', messageFetch:true}
       default:
         return state;
     }
