@@ -19,6 +19,7 @@ import { Actions } from 'react-native-router-flux';
 import _ from 'lodash';
 import auth from '@react-native-firebase/auth';
 import { Spinner } from '../components/reusebleComponents/index';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 
 
@@ -447,7 +448,7 @@ render(){
                 flex:1, 
 
 
-                marginTop:10,
+                marginTop:1,
                 //borderWidth:0.3,
                 marginLeft:10,
                 marginRight:10,
@@ -456,7 +457,7 @@ render(){
 
               
               //  height:140,
-                marginBottom:10,
+                marginBottom:1,
                 }}>
 
       
@@ -478,8 +479,8 @@ render(){
               <Image
               source={{ uri:item.groupcover.groupcover }}
               style={{
-                width:70,
-                height:70,
+                width:60,
+                height:60,
                 borderRadius:90,
                // borderWidth:2,
               //borderColor:'#05c7fc',
@@ -488,7 +489,7 @@ render(){
                 //alignSelf:'center'
               }}
               />
-                            <View style={{ 
+                <View style={{ 
                 alignSelf:'center',
                 //marginBottom:3,
                // backgroundColor:'red',
@@ -508,7 +509,7 @@ render(){
                 //color:'#05c7fc',
                 color:'grey',
                 marginTop:10,
-              }}>{item.latestMessage.text}</Text>
+              }}>{item.latestMessage.text.substring(0,20)+'...'}</Text>
               </View>
               </View>
 
@@ -586,12 +587,7 @@ render(){
                 marginRight:10,
 
               }}>
-              <Text 
-              style={{
-                fontWeight:'bold',
-                color:'blue'
-  
-              }}>call</Text>
+              <MaterialIcons name="videocam" size={24} color="#00c0f5" />
               </TouchableOpacity>
  
               </View>

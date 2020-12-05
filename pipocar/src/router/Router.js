@@ -70,7 +70,7 @@ class TabIcon extends Component {
 const RouterComponent = () => { 
     let sizeicons = 28;
     let tint_color = "#00c6e8";
-    let inactive_Color = "grey";
+    let inactive_Color = "black";
 
 
 
@@ -267,13 +267,10 @@ return(
             <Scene 
             
             key="pipoca"
-            activeTintColor={tint_color}
-            inactiveTintColor={inactive_Color}
-            iconName={"message1"}
+            iconName={"smile-circle"}
             icon={TabIcon}
             activeTintColor={tint_color}
             inactiveTintColor={inactive_Color}
-            activeTintColor={tint_color}
             showLabel={true}
             renderTitle={()=>{
                 return(
@@ -286,8 +283,7 @@ return(
                     </View>
                 )
             }}
-            iconName={"refresh"}
-            icon={()=>{
+/*             icon={()=>{
                 return(
                 <View  style={{
                     borderWidth:3,
@@ -304,7 +300,7 @@ return(
                 </View>
                 
                 )
-            }} 
+            }}  */
 
         
             >
@@ -313,6 +309,7 @@ return(
 
             <Scene 
             key="feedandbusiness"
+            
            // legacy={true} 
             tabBarPosition="top"
             //swipeEnabled={true}

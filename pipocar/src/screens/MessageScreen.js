@@ -314,7 +314,7 @@ renderSend = (props) => {
           backgroundColor:'red',
           marginTop:'15%',
           marginRight:55,
-          borderRadius:5,
+         // borderRadius:5,
       }}
       />
       </TouchableOpacity>

@@ -26,6 +26,9 @@ import { Spinner } from '../components/reusebleComponents/index';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Fontisto from 'react-native-vector-icons/Fontisto';
+import Feather from 'react-native-vector-icons/Feather'
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import Entypo from 'react-native-vector-icons/Entypo';
 //Fontisto
 
 /*
@@ -305,6 +308,7 @@ renderHeader = () => {
       <View style={{
       alignSelf:'center',
       marginBottom:20,
+      
      // marginTop:10
     }}>
      <TouchableOpacity 
@@ -318,7 +322,7 @@ renderHeader = () => {
      }}>
        <Text style={{
          fontWeight:'bold',
-       }}>New Event</Text>
+       }}>Create Event</Text>
      </TouchableOpacity>
    </View>
     </View>
@@ -360,13 +364,6 @@ renderEmpty = () => {
     style={{ marginLeft:10}}
     name="music-note-eighth" size={40} color="lightgrey" /> 
 
-    <AntDesign 
-    style={{ marginLeft:10}}
-    name="car" size={40} color="lightgrey" /> 
-
-    <Fontisto 
-    style={{ marginLeft:10}}
-    name="dollar" size={40} color="lightgrey" />
 
 
 
@@ -439,12 +436,27 @@ render(){
                 //borderColor:'#05c7fc',
               //  height:140,
                 marginBottom:20,
-                padding:10,
+                //padding:10,
                 backgroundColor:'#fafafa'
   
                 }}>
 
-                  <TouchableOpacity
+
+
+
+              <View style={{
+                flexDirection:'row',
+              //  alignSelf:'center',
+               justifyContent:'space-between',
+               alignItems:'flex-end',
+               justifyContent:'flex-end',
+               marginTop:10,
+
+                //marginTop:20,
+              }}>
+
+                <View>
+                <TouchableOpacity
                                 onPress={()=>{
                                   if(item.author === auth().currentUser.uid){
                                   Alert.alert(
@@ -488,39 +500,16 @@ render(){
                                 }}
 
                   style={{
-                    alignSelf:'flex-end'
+                    alignSelf:'flex-end',
+                    marginRight:10,
+
                   }}
                   >
-                  <Text style={{ fontSize:30, color:'grey'}}>...</Text>
+                  <Feather 
+                  name="more-horizontal" size={24} color="black" />
                   </TouchableOpacity>
-
-
-              <View style={{
-                flexDirection:'row',
-              //  alignSelf:'center',
-              //  justifyContent:'center',
-                //marginTop:20,
-              }}>
-                <Image
-                style={{
-                  width:30,
-                  height:30,
-                  marginRight:10,
-                  borderRadius:50,
-                //  alignSelf:'center',
-              
-                }}
-                source={{
-                  uri:item.authorprofilepicture
-                }}
+                  </View>
                 
-                />
-                <Text style={{
-                      alignSelf:'center',
-                      fontWeight:'bold'
-                }}>
-                  {item.authorname.substring(0,10)+'...'}
-                </Text>
 
                 
               </View>
@@ -555,6 +544,37 @@ render(){
               />
               </View>
               </TouchableOpacity>
+
+
+{/*               <View style={{
+                  flexDirection:'row',
+                  alignSelf:'center',
+                  marginTop:10,
+                }}>
+                <Image
+                style={{
+                  width:20,
+                  height:20,
+                  marginRight:10,
+                  borderRadius:50,
+                  marginLeft:10,
+           
+                //  alignSelf:'center',
+              
+                }}
+                source={{
+                  uri:item.authorprofilepicture
+                }}
+                
+                />
+                <Text style={{
+                      alignSelf:'center',
+                      fontWeight:'bold',
+                      color:'grey'
+                }}>
+                  {item.authorname.substring(0,10)+'...'}
+                </Text>
+                </View> */}
               
 
 
@@ -574,26 +594,24 @@ render(){
                 fontSize:15
               }}>{item.title.substring(0,14)+'...'}</Text>
               </View>
+              
 
 
-
-
-
-              <View style={{ 
-                flexDirection:'column', 
-                justifyContent:'space-between',
-           
-                alignSelf:'center'
-               // backgroundColor:'red'
-                }}>
-
-
-              </View>
-              <View>
+              <View style={{
+                flexDirection:'row',
+                alignSelf:'center',
+                justifyContent:'center'
+              }}>
+              <Entypo 
+              style={{
+                marginTop:7,
+              }}
+              name="location-pin" size={18} color="grey" />
               <Text style={{
               textAlign:'center',
               marginTop:10,
               color:'grey',
+              alignSelf:'center',
               fontSize:15,
              // alignSelf:'center',
               }}>{item.location.substring(0,14)}
@@ -606,22 +624,15 @@ render(){
                 flexDirection:'row', 
                 marginLeft:10,
                 marginRight:10,
-                justifyContent:'space-between'
+                justifyContent:'space-between',
+                marginBottom:10,
                 //alignSelf:'center'
        
                // backgroundColor:'red'
                 }}>
 
               <View>
-              <Text style={{
-              textAlign:'center',
-              marginTop:10,
-              color:'#ff0044',
-              fontWeight:'bold',
-              fontSize:15,
-             // alignSelf:'center',
-              }}>Event
-              </Text>
+              <MaterialIcons name="event" size={24} color="#ff003c" />
               </View>
 
 
