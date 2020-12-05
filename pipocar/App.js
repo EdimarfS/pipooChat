@@ -9,6 +9,12 @@ LogBox.ignoreLogs([
 ])
 import React, { Component } from 'react';
 import {
+  RTCView,
+  RTCPeerConnection,
+  RTCIceCandidate,
+  mediaDevices,
+} from 'react-native-webrtc';
+import {
   View,
   Text,
   LogBox,

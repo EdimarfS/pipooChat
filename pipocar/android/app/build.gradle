@@ -234,6 +234,9 @@ dependencies {
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.0.0"
     addUnimodulesDependencies()
 
+    compile project(':WebRTCModule')
+
+
     
   // implementation 'androidx.multidex:multidex:2.0.1'
     implementation 'com.android.support:multidex:1.0.3'
