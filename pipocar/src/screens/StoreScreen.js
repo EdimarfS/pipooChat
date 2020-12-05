@@ -418,7 +418,7 @@ render(){
           return(
            <View style={{
                 flex:1, 
-                backgroundColor:'#ffffff',
+                backgroundColor:'white',
                 alignSelf:'center',
                 justifyContent:'center',
                // borderRadius:5,
@@ -426,6 +426,15 @@ render(){
                 //borderWidth:0.3,
                 marginLeft:10,
                 marginRight:10,
+                shadowColor: "#000",
+                shadowOffset: {
+                  width: 0,
+                  height: 1,
+                },
+                shadowOpacity: 0.18,
+                shadowRadius: 1.00,
+
+                elevation: 1,
                // padding:10,
                 //borderColor:'#05c7fc',
               //  height:140,
@@ -580,13 +589,25 @@ render(){
 
 
               </View>
+              <View>
+              <Text style={{
+              textAlign:'center',
+              marginTop:10,
+              color:'grey',
+              fontSize:15,
+             // alignSelf:'center',
+              }}>{item.location.substring(0,14)}
+              </Text>
+              </View>
+
 
               
               <View style={{ 
-                flexDirection:'column', 
+                flexDirection:'row', 
                 marginLeft:10,
                 marginRight:10,
-                alignSelf:'center'
+                justifyContent:'space-between'
+                //alignSelf:'center'
        
                // backgroundColor:'red'
                 }}>
@@ -595,12 +616,17 @@ render(){
               <Text style={{
               textAlign:'center',
               marginTop:10,
-              color:'grey',
+              color:'#ff0044',
+              fontWeight:'bold',
               fontSize:15,
-              alignSelf:'center',
-              }}>{item.location.substring(0,14)}
+             // alignSelf:'center',
+              }}>Event
               </Text>
               </View>
+
+
+
+              
 
               <TouchableOpacity
               
@@ -611,7 +637,7 @@ render(){
                 color:'#05c7fc',
                 fontWeight:'bold',
                 marginTop:10,
-                alignSelf:'center'
+               // alignSelf:'center'
                // backgroundColor:'red',
       
                // alignSelf:'center'
