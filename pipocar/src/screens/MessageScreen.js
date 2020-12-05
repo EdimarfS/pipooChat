@@ -111,6 +111,11 @@ return (
   //ImagePicker
   findNewImage = async () => {
     this._checkPermissions();
+    this.setState({
+      imageSelected: false,
+
+      
+  })
 
 
     //Here we open the camera
@@ -133,11 +138,10 @@ return (
 
     this.uploadImage(this.state.imageFromChat);
     
-    }).catch(error => {
+    })
+    .catch(error => {
       console.log(error)
-      this.setState({
-      imageSelected: false
-    });
+
 
   })
 }
@@ -179,13 +183,13 @@ uploadImage = async (uri) => {
       console.log('error with upload - '+error);
 
   }, function(){
-      that.setState({props:100});
+      that.setState({progress:100});
       uploadTask.snapshot.ref.getDownloadURL().then(function(downloadURL){
          // that.processUpload(downloadURL)
-          that.setState({
+            that.setState({
             imageFromChat:downloadURL,
             loading:false,
-        })
+        }) 
       })
   }
   )
@@ -208,7 +212,7 @@ processUpload = (imageUrl) => {
   }
   //Group field --> FIRESTORE
   firestore().collection('MESSAGE_CHAT')
-  .add(photoObject);
+  .add(messageObject);
                                         
                       
   this.setState({
@@ -231,6 +235,10 @@ onSendMessage(messages=[])
     const text = messages[0].text;
     const  currentUser = auth().currentUser.toJSON();
     const { thread } = this.props;
+
+
+    this.props.addMessages(messages);
+
 
     firestore()
     .collection('MESSAGE_THREADS')
@@ -261,14 +269,15 @@ onSendMessage(messages=[])
         }
         },
         { merge: true }
-    )
-
-    this.props.addMessages(messages);
-
-    this.setState({
+    ).then(()=>{
+      this.setState({
         imageSelected:'',
         imageFromChat:'',
     })
+    })
+
+
+  
 
 
    

@@ -28,6 +28,7 @@ target 'pipocar' do
   pod 'Permission-SpeechRecognition', :path => "#{permissions_path}/SpeechRecognition.podspec"
   pod 'Permission-StoreKit', :path => "#{permissions_path}/StoreKit.podspec"
 
+
   use_react_native!(:path => config["reactNativePath"])
 
   target 'pipocarTests' do
