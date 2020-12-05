@@ -405,7 +405,7 @@ render(){
         ListHeaderComponent={this.renderHeader}
         ListEmptyComponent={this.renderEmpty}
         showsVerticalScrollIndicator ={false}
-        numColumns={2}
+        numColumns={1}
         showsHorizontalScrollIndicator={false}
        // ListEmptyComponent={this._listEmptyComponent}
         keyExtractor={ item => item._id.toString()}
@@ -417,11 +417,11 @@ render(){
           console.log('ITEM!!!!!!!!', item);
           return(
            <View style={{
-                flex:1/2, 
+                flex:1, 
                 backgroundColor:'#ffffff',
                 alignSelf:'center',
                 justifyContent:'center',
-                borderRadius:10,
+               // borderRadius:5,
                 //marginTop:20,
                 //borderWidth:0.3,
                 marginLeft:10,
@@ -431,14 +431,8 @@ render(){
               //  height:140,
                 marginBottom:20,
                 padding:10,
-                shadowColor: "#000",
-                shadowOffset: {
-                width: 0,
-                height: 1,
-              },
-              shadowOpacity: 0.10,
-              shadowRadius: 2.22,
-              elevation: 3,   
+                backgroundColor:'#fafafa'
+  
                 }}>
 
                   <TouchableOpacity
@@ -494,8 +488,8 @@ render(){
 
               <View style={{
                 flexDirection:'row',
-                alignSelf:'center',
-                justifyContent:'center',
+              //  alignSelf:'center',
+              //  justifyContent:'center',
                 //marginTop:20,
               }}>
                 <Image
@@ -504,7 +498,7 @@ render(){
                   height:30,
                   marginRight:10,
                   borderRadius:50,
-                  alignSelf:'center',
+                //  alignSelf:'center',
               
                 }}
                 source={{
@@ -542,9 +536,9 @@ render(){
               
                 imageBackgroundColor="white"
                 style={{
-                  width:120,
-                  height:120,
-                  borderRadius:2,
+                  width:320,
+                  height:250,
+                 // borderRadius:1,
                   alignSelf:'center'
                 }}
 
