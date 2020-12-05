@@ -64,7 +64,8 @@ class  ChatScreen extends Component {
       onRefreshing:false,
       searchBarText:'',
       backColor:'red',
-      dataloaded:true
+      dataloaded:true,
+      videoloading:false
 
     }
   }
@@ -347,6 +348,39 @@ renderHeader = () => {
     
     
     />
+  <TouchableOpacity
+    onPress={()=>{
+      
+      this.setState({
+        videoloading:true
+      })
+    Actions.videocall({})}}
+    style={{
+      alignSelf:'flex-end',
+     // borderWidth:0.2,
+      borderColor:'grey',
+      width:60,
+      marginRight:5,
+      justifyContent:'center',
+      alignItems:'center',
+      borderRadius:2
+    }}
+    >
+      
+   <View
+    style={{
+      flex:1,
+      
+    }}
+    >
+    <MaterialIcons name="videocam" size={40} color="#00c0f5" />
+    </View>
+    
+
+
+
+
+    </TouchableOpacity>
 
     </View>
     
@@ -440,7 +474,7 @@ render(){
 
 
               }}
-              onPress={()=>{ Actions.messages({ title:item.name, thread:item}) }}
+              onPress={()=>{ Actions.messages({ title:item.name.substring(0,20)+'...', thread:item}) }}
 
               //onLongPress={()=>{ console.log(' GROUP LONG PRESS')}}
               >
@@ -448,7 +482,7 @@ render(){
                 flex:1, 
 
 
-                marginTop:1,
+                marginTop:20,
                 //borderWidth:0.3,
                 marginLeft:10,
                 marginRight:10,
@@ -587,7 +621,7 @@ render(){
                 marginRight:10,
 
               }}>
-              <MaterialIcons name="videocam" size={24} color="#00c0f5" />
+                <Text>save</Text>
               </TouchableOpacity>
  
               </View>
@@ -595,6 +629,8 @@ render(){
 
 
           }}/>
+
+          
           </View>) : <Spinner/>}
 
 

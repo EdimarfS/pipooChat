@@ -25,7 +25,8 @@ import {
    UserPersonalEditDataScreen,
    PostCommentsScreen,
    StoreScreen,
-   AddProductsScreen
+   AddProductsScreen,
+   VideoCall,
 
 } from '../screens/index';
 
@@ -143,6 +144,33 @@ return(
                 key="addproductsscreen"
                 component={AddProductsScreen}
               //gesturesEnabled={false}
+                hideNavBar
+                
+                />
+            </Scene>
+
+            <Scene 
+            key="videocall"
+            >
+                <Scene
+                key="videocallscreen"
+                component={VideoCall}
+              //gesturesEnabled={false}
+              renderTitle={()=>{
+                return(
+                    <View style={{
+                        flex:1,
+                        justifyContent:'center',
+                        alignItems:'center',
+                        }}> 
+                        <Text style={{fontWeight:'bold',fontSize:20}}>chat</Text>
+                  
+                        
+
+                    </View>
+                )
+            }}
+
                 hideNavBar
                 
                 />

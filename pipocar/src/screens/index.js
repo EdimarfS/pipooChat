@@ -14,3 +14,4 @@ export * from './SettingScreen';
 export * from './SplashScreen';
 export * from './StoreScreen';
 export * from './AddProductsScreen';
+export * from './VideoCall';

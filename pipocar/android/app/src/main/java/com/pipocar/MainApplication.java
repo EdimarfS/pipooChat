@@ -51,6 +51,8 @@ new ReactModuleRegistryProvider(new BasePackageList().getPackageList(), null);
           new VectorIconsPackage();
           new LottiePackage();
           new LottiePackage();
+          new com.oney.WebRTCModule.WebRTCModulePackage(); // <-- Add this line
+
           
           
           // Add unimodules

@@ -30,7 +30,9 @@ import {
   SettingScreen,
   ChatScreen,
   AddPostScreen,
-  SplashScreen
+  SplashScreen,
+  VideoCall
+
 } from './src/screens';
 import './src/fixtimerbug';
 import SignForm from './src/components/screenForms/SignForm';
@@ -100,7 +102,7 @@ class  App extends Component{
 
 
       <Provider store={store}>
-          {this.state.loading ? <Router/> : <SplashScreen/>}
+          {this.state.loading ? <VideoCall/> : <VideoCall/>}
       </Provider>
 
 

@@ -235,6 +235,7 @@ dependencies {
     addUnimodulesDependencies()
 
     compile project(':WebRTCModule')
+    compile project(':react-native-incall-manager')
 
 
     
