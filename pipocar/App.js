@@ -102,7 +102,7 @@ class  App extends Component{
 
 
       <Provider store={store}>
-          {this.state.loading ? <VideoCall/> : <VideoCall/>}
+          {this.state.loading ? <Router/> : <SplashScreen/>}
       </Provider>
 
 

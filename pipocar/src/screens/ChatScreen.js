@@ -19,7 +19,7 @@ import { Actions } from 'react-native-router-flux';
 import _ from 'lodash';
 import auth from '@react-native-firebase/auth';
 import { Spinner } from '../components/reusebleComponents/index';
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 
 
@@ -349,32 +349,56 @@ renderHeader = () => {
     
     />
   <TouchableOpacity
-    onPress={()=>{
+/*     onPress={()=>{
       
       this.setState({
         videoloading:true
       })
-    Actions.videocall({})}}
+    Actions.videocall({})}} */
     style={{
-      alignSelf:'flex-end',
+     // alignSelf:'flex-end',
      // borderWidth:0.2,
       borderColor:'grey',
-      width:60,
+      width:'100%',
       marginRight:5,
-      justifyContent:'center',
+      flexDirection:'row',
       alignItems:'center',
-      borderRadius:2
+      borderRadius:2,
+      //backgroundColor:'red',
+      
     }}
     >
       
    <View
     style={{
-      flex:1,
+      //flex:1,
+      borderWidth:1,
+      borderColor:'#cccccc',
+      width:60,
+      height:60,
+      marginLeft:10,
+      marginRighft:30,
+      borderRadius:90,
+      alignItems:'center',
+      justifyContent:'center'
+  
       
     }}
     >
-    <MaterialIcons name="videocam" size={40} color="#00c0f5" />
+  <MaterialCommunityIcons name="video-plus" size={34} color="black" />   
+
+
     </View>
+
+    <View 
+    style={{
+      marginLeft:10
+    }}>
+      <Text
+      style={{
+        fontWeight:'bold'
+      }}> Broadcast </Text>
+    </View> 
     
 
 

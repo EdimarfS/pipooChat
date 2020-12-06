@@ -34,10 +34,7 @@ import MessageScreen from '../screens/MessageScreen';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import AntDesign from 'react-native-vector-icons/AntDesign';
-
-
-
-           
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons'; 
 
 
 class TabIcon extends Component {
@@ -60,14 +57,44 @@ class TabIcon extends Component {
         //  backgroundColor:'red'
             }}>
 
-                <AntDesign  style={{color: color}} name={this.props.iconName} size={28} onLongPress={this.props.onLongPress} /> 
+                <AntDesign  style={{color: color}} name={this.props.iconName} size={27} onLongPress={this.props.onLongPress} /> 
            
             </View>
 
         return componentBody;
     }
 } 
+
+class ExtraTabIcon extends Component {
+
+    render () {
+
+        var color = this.props.focused
+            ? this.props.activeTintColor //'#3b5998'
+            : this.props.inactiveTintColor//'#93a8d5'
+
+
  
+        let componentBody =
+            <View style={{
+            flex: 1, 
+            flexDirection: 'column',
+            alignItems: 'center', 
+            alignSelf: 'center', 
+            marginTop:7, 
+        //  backgroundColor:'red'
+            }}>
+
+                <MaterialIcons  style={{color: color}} name={this.props.iconName} size={30} onLongPress={this.props.onLongPress} /> 
+           
+            </View>
+
+        return componentBody;
+    }
+} 
+
+
+
 const RouterComponent = () => { 
     let sizeicons = 28;
     let tint_color = "#00c6e8";
@@ -248,55 +275,12 @@ return(
             hideNavBar
             //showLabel={false}
             > 
-                    <Scene
-                    key="chat"
-                    iconName={"message1"}
-                    icon={TabIcon}
-                    activeTintColor={tint_color}
-                    inactiveTintColor={inactive_Color}
-                    component={ChatScreen}
-                    renderRightButton={
-                        <TouchableOpacity 
-                        style={{
-                            marginRight:10,
-                            flexDirection:'row'
-                        }}
-                        onPress={()=>{ Actions.creategroup()}}>
-                            <AntDesign name="team" size={24} color="black" />
-                            <Text>+</Text>
-                        </TouchableOpacity>
-                        }
-                        renderTitle={()=>{
-                            return(
-                                <View style={{
-                                    flex:1,
-                                    justifyContent:'center',
-                                    alignItems:'center',
-                                    }}> 
-                                    <Text style={{fontWeight:'bold',fontSize:20}}>chat</Text>
-                              
-                                    
-            
-                                </View>
-                            )
-                        }}
 
-
-                    
-                    
-                    />
-
-
-
-
-
-
-            
-            <Scene 
+<Scene 
             
             key="pipoca"
-            iconName={"smile-circle"}
-            icon={TabIcon}
+            iconName={"house"}
+            icon={ExtraTabIcon}
             activeTintColor={tint_color}
             inactiveTintColor={inactive_Color}
             showLabel={true}
@@ -363,6 +347,54 @@ return(
 
                     </Scene>
                     </Scene>
+
+
+
+                    <Scene
+                    key="chat"
+                    iconName={"message1"}
+                    icon={TabIcon}
+                    activeTintColor={tint_color}
+                    inactiveTintColor={inactive_Color}
+                    component={ChatScreen}
+                    renderRightButton={
+                        <TouchableOpacity 
+                        style={{
+                            marginRight:10,
+                            flexDirection:'row'
+                        }}
+                        onPress={()=>{ Actions.creategroup()}}>
+                            <AntDesign name="team" size={24} color="black" />
+                            <Text>+</Text>
+                        </TouchableOpacity>
+                        }
+                        renderTitle={()=>{
+                            return(
+                                <View style={{
+                                    flex:1,
+                                    justifyContent:'center',
+                                    alignItems:'center',
+                                    }}> 
+                                    <Text style={{fontWeight:'bold',fontSize:20}}>chat</Text>
+                              
+                                    
+            
+                                </View>
+                            )
+                        }}
+
+
+                    
+                    
+                    />
+
+
+
+
+
+
+            
+
 
 
 
