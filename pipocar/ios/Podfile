@@ -27,8 +27,10 @@ target 'pipocar' do
   pod 'Permission-Siri', :path => "#{permissions_path}/Siri.podspec"
   pod 'Permission-SpeechRecognition', :path => "#{permissions_path}/SpeechRecognition.podspec"
   pod 'Permission-StoreKit', :path => "#{permissions_path}/StoreKit.podspec"
-  
+  pod 'OpenTok', '2.17.0'
+
   use_react_native!(:path => config["reactNativePath"])
+
 
   target 'pipocarTests' do
     inherit! :complete

@@ -20,6 +20,7 @@
 		7D7F3627C99AD6AD73AAB3F2 /* libPods-pipocar-pipocarTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DA4B6761A0CE0B36FD4AAF0 /* libPods-pipocar-pipocarTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		892467282562246A00F32781 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 892467272562246900F32781 /* GoogleService-Info.plist */; };
+		8933F69F257F4AB200BD612A /* OTInstall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8933F69E257F4AB200BD612A /* OTInstall.swift */; };
 		FE57E83B9D68E90A04C773DA /* libPods-pipocar.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7487BF33636EE7034734ED7A /* libPods-pipocar.a */; };
 /* End PBXBuildFile section */
 
@@ -61,6 +62,8 @@
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = pipocar/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		84620F5BE6119E95B4731FEB /* Pods-pipocar-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-pipocar-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-pipocar-tvOSTests/Pods-pipocar-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		892467272562246900F32781 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		8933F69D257F4AB200BD612A /* pipocar-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "pipocar-Bridging-Header.h"; sourceTree = "<group>"; };
+		8933F69E257F4AB200BD612A /* OTInstall.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTInstall.swift; sourceTree = "<group>"; };
 		89A240ED25638B7800D2B68F /* EvilIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = EvilIcons.ttf; sourceTree = "<group>"; };
 		89A240EE25638B7800D2B68F /* Foundation.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Foundation.ttf; sourceTree = "<group>"; };
 		89A240EF25638B7800D2B68F /* FontAwesome.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome.ttf; sourceTree = "<group>"; };
@@ -178,6 +181,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				8933F69E257F4AB200BD612A /* OTInstall.swift */,
 				892467272562246900F32781 /* GoogleService-Info.plist */,
 				13B07FAE1A68108700A75B9A /* pipocar */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
@@ -185,6 +189,7 @@
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				FE5A740BA0A1C5813AB9F15B /* Pods */,
+				8933F69D257F4AB200BD612A /* pipocar-Bridging-Header.h */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -340,7 +345,7 @@
 					};
 					13B07F861A680F5B00A75B9A = {
 						DevelopmentTeam = WLK32W8TM9;
-						LastSwiftMigration = 1120;
+						LastSwiftMigration = 1210;
 					};
 					2D02E47A1E0B4A5D006451C7 = {
 						CreatedOnToolsVersion = 8.2.1;
@@ -743,6 +748,7 @@
 			files = (
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
+				8933F69F257F4AB200BD612A /* OTInstall.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -783,6 +789,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E3D9A654AB57042072AEB228 /* Pods-pipocar-pipocarTests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -806,6 +813,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 775C704C8F8CCEEFE854F1FA /* Pods-pipocar-pipocarTests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
 				INFOPLIST_FILE = pipocarTests/Info.plist;
@@ -840,6 +848,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.pipocar;
 				PRODUCT_NAME = pipocar;
+				SWIFT_OBJC_BRIDGING_HEADER = "pipocar-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -863,6 +872,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.pipocar;
 				PRODUCT_NAME = pipocar;
+				SWIFT_OBJC_BRIDGING_HEADER = "pipocar-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};

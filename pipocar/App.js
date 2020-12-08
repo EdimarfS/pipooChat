@@ -43,6 +43,13 @@ import {createStore, applyMiddleware} from 'redux';
 import ReduxThunk from 'redux-thunk';
 import {Provider} from 'react-redux';
 import Reducers from './src/reducers/index';
+import {
+  OT,
+  OTSession,
+  OTPublisher,
+  OTSubscriber,
+  OTSubscriberView,
+} from 'opentok-react-native';
 //import Example from '../pipocar/src/screens/Example';
 //import { Router } from 'react-native-router-flux';
 //import { IntroductionScreen } from './src/screens';
