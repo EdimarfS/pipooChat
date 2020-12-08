@@ -23,6 +23,8 @@ import Share from 'react-native-share';
 import ImageModal from 'react-native-image-modal';
 import {Spinner} from '../components/reusebleComponents/index';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import Fontisto from 'react-native-vector-icons/Fontisto';
+
 
 /*
                       firestore().collection('STORE')
@@ -408,7 +410,7 @@ onPress={()=>{
             
                     
                     >
-                    <EvilIcons name="heart" size={30} color="black" />
+                    <Fontisto  name="favorite" size={22} />
                     </TouchableOpacity>) : 
                     <View>
                       <AntDesign name="checkcircle" size={24} color="#00cf37" />

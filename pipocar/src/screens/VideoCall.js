@@ -8,6 +8,7 @@ import {
   Dimensions,
   Button,
   TouchableOpacity,
+  Platform
 } from 'react-native';
 import {
   OT,
@@ -21,6 +22,7 @@ import * as credentials from '../../config';
 import { Actions } from 'react-native-router-flux';
 
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 const dimensions = {
   width: Dimensions.get('window').width,
@@ -258,7 +260,21 @@ class VideoCall extends Component {
           style={{ width: '100%', height: '100%' }}
         />
       </TouchableOpacity>
-    ) : (<Text>No one connected</Text>)
+    ) : (
+    
+    <View style={{
+      flex:1,
+      alignItems:'center',
+      justifyContent:'center',
+    }}>
+      <Text
+      style={{
+        fontWeight:'bold',
+        color:'grey',
+        fontSize:17
+      }}
+      >Waiting for users to connected</Text>
+    </View>)
   };
 
   videoView = () => {
@@ -285,21 +301,21 @@ class VideoCall extends Component {
         </View>
 
         <View style={styles.buttonView}>
-          <Icon.Button
+          <MaterialIcons
             color="#05c7fc"
             style={styles.iconStyle}
             backgroundColor="#131415"
             name={this.state.localPublishAudio ? 'mic' : 'mic-off'}
             onPress={this.toggleAudio}
           />
-          <Icon.Button
+          <MaterialIcons
             color="#05c7fc"
             style={styles.iconStyle}
             backgroundColor="#131415"
             name="call-end"
             onPress={this.endCall}
           />
-          <Icon.Button
+          <MaterialIcons
             color="#05c7fc"
             style={styles.iconStyle}
             backgroundColor="#131415"
@@ -345,8 +361,8 @@ class VideoCall extends Component {
 
 const styles = StyleSheet.create({
   buttonView: {
-    height: 50,
-    backgroundColor: '#fff', //'#131415' Vonage Black
+    height:Platform.OS === 'ios'? 50 :  65,
+  //  backgroundColor: '#fff', //'#131415' Vonage Black
     display: 'flex',
     width: '100%',
     position: 'absolute',
