@@ -65,7 +65,8 @@ class  ChatScreen extends Component {
       searchBarText:'',
       backColor:'red',
       dataloaded:true,
-      videoloading:false
+      videoloading:false,
+      broadCastloading:false,
 
     }
   }
@@ -349,6 +350,8 @@ renderHeader = () => {
     
     />
   <TouchableOpacity
+  
+  onPress={()=>{ this.setState({ broadCastloading: true})}}
 /*     onPress={()=>{
       
       this.setState({
@@ -432,7 +435,12 @@ render(){
           flex:1,
         }}
         >
-{ this.state.dataloaded ? (        <View style={{ 
+{ this.state.broadCastloading === false ? (          
+          <View
+          style={{
+            flex:1,
+          }}>
+          { this.state.dataloaded ? (        <View style={{ 
           flex:1, 
           backgroundColor:'#fafafa',
           }}>
@@ -658,6 +666,13 @@ render(){
           </View>) : <Spinner/>}
 
 
+          </View>):
+          <View style={{
+            justifyContent:'center',
+            alignSelf:'center',
+          }}>
+          <Text>Broadcast</Text>
+          </View>}
 
           </View>
 

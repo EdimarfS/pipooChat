@@ -57,7 +57,7 @@ class TabIcon extends Component {
         //  backgroundColor:'red'
             }}>
 
-                <AntDesign  style={{color: color}} name={this.props.iconName} size={27} onLongPress={this.props.onLongPress} /> 
+                <AntDesign  style={{color: color}} name={this.props.iconName} size={24} onLongPress={this.props.onLongPress} /> 
            
             </View>
 
