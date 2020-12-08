@@ -15,6 +15,7 @@ buildscript {
         google()
         jcenter()
         maven { url 'https://plugins.gradle.org/m2/' } // Gradle Plugin Portal 
+        maven { url 'http://tokbox.bintray.com/maven'}
 
     }
     dependencies {
@@ -47,6 +48,9 @@ allprojects {
 
         // ADD THIS
         maven { url 'https://maven.google.com' }
+
+        maven { url 'http://tokbox.bintray.com/maven'}
+
 
         // ADD THIS
         maven { url "https://www.jitpack.io" }
