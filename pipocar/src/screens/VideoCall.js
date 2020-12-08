@@ -285,21 +285,21 @@ class VideoCall extends Component {
         </View>
 
         <View style={styles.buttonView}>
-          <Icon
+          <Icon.Button
             color="#05c7fc"
             style={styles.iconStyle}
             backgroundColor="#131415"
             name={this.state.localPublishAudio ? 'mic' : 'mic-off'}
             onPress={this.toggleAudio}
           />
-          <Icon
+          <Icon.Button
             color="#05c7fc"
             style={styles.iconStyle}
             backgroundColor="#131415"
             name="call-end"
             onPress={this.endCall}
           />
-          <Icon
+          <Icon.Button
             color="#05c7fc"
             style={styles.iconStyle}
             backgroundColor="#131415"
