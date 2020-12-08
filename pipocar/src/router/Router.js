@@ -176,8 +176,10 @@ return(
                 />
             </Scene>
 
+
             <Scene 
             key="videocall"
+            hideNavBar
             >
                 <Scene
                 key="videocallscreen"

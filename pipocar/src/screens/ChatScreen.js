@@ -351,7 +351,7 @@ renderHeader = () => {
     />
   <TouchableOpacity
   
-  onPress={()=>{ this.setState({ broadCastloading: true})}}
+  onPress={()=>{ Actions.videocall({ type:'replace'})}}
 /*     onPress={()=>{
       
       this.setState({
@@ -435,7 +435,7 @@ render(){
           flex:1,
         }}
         >
-{ this.state.broadCastloading === false ? (          
+      
           <View
           style={{
             flex:1,
@@ -666,13 +666,7 @@ render(){
           </View>) : <Spinner/>}
 
 
-          </View>):
-          <View style={{
-            justifyContent:'center',
-            alignSelf:'center',
-          }}>
-          <Text>Broadcast</Text>
-          </View>}
+          </View>
 
           </View>
 
