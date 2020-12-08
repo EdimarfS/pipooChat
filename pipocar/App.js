@@ -43,13 +43,7 @@ import {createStore, applyMiddleware} from 'redux';
 import ReduxThunk from 'redux-thunk';
 import {Provider} from 'react-redux';
 import Reducers from './src/reducers/index';
-import {
-  OT,
-  OTSession,
-  OTPublisher,
-  OTSubscriber,
-  OTSubscriberView,
-} from 'opentok-react-native';
+import Test from './src/screens/Test';
 //import Example from '../pipocar/src/screens/Example';
 //import { Router } from 'react-native-router-flux';
 //import { IntroductionScreen } from './src/screens';
@@ -109,7 +103,7 @@ class  App extends Component{
 
 
       <Provider store={store}>
-          {this.state.loading ? <Router/> : <SplashScreen/>}
+          {this.state.loading ? <Test/> : <Test/>}
       </Provider>
 
 
