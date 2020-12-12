@@ -211,22 +211,22 @@ renderHeader = () => {
          
           
           }}>
-{/*         <Text 
+       <Text 
         style={{
           fontSize:50,
-          fontWeight:'bold',
-          marginBottom:10,
-          color:'grey'
+        //  fontWeight:'bold',
+          marginBottom:6,
+         // color:'grey'
          // backgroundColor:'red'
         }}>
-          Store
-        </Text> */}
+          Events
+        </Text>
         </View>
     <View style={{ 
       flex:1,
       marginLeft:5,
       marginRight:5,
-      marginTop:0,
+      marginTop:10,
       marginBottom:20
       
    //   justifyContent:'center',
@@ -631,8 +631,24 @@ render(){
                // backgroundColor:'red'
                 }}>
 
-              <View>
+              <View style={{ 
+                flexDirection:'row', 
+                alignSelf:'center',
+                justifyContent:'center'
+                }}>
               <MaterialIcons name="event" size={24} color="#ff003c" />
+              <Text
+              style={{
+                alignSelf:'center',
+                justifyContent:'center',
+                marginLeft:5,
+                color:'grey'
+
+              }}
+              >Event</Text>
+              </View>
+              <View>
+            
               </View>
 
 
