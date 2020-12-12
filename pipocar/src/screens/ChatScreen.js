@@ -367,6 +367,10 @@ renderHeader = () => {
       flexDirection:'row',
       alignItems:'center',
       borderRadius:2,
+      borderBottomColor:'#f0f0f0',
+      borderBottomWidth:1,
+      padding:10,
+    
       //backgroundColor:'red',
       
     }}
@@ -383,7 +387,9 @@ renderHeader = () => {
       marginRighft:30,
       borderRadius:90,
       alignItems:'center',
-      justifyContent:'center'
+      justifyContent:'center',
+      
+      
   
       
     }}
@@ -395,7 +401,8 @@ renderHeader = () => {
 
     <View 
     style={{
-      marginLeft:10
+      marginLeft:10,
+      
     }}>
       <Text
       style={{
@@ -468,6 +475,8 @@ render(){
                 flexDirection:'row',
                 borderBottomColor:'#f0f0f0',
                 borderBottomWidth:1,
+                padding:10,
+              
                 
               
               }}>

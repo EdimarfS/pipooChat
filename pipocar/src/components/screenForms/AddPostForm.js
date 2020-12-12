@@ -277,7 +277,7 @@ render(){
           
         }}
         onPress={this.findNewImage}>
-        <ImageBlurLoading
+        <Image
         thumbnailSource={{uri:this.state.imageURI}}
         source={{uri:this.state.imageURI}}
         style={{

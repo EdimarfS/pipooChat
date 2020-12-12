@@ -1,12 +1,27 @@
 import React from 'react';
 import { TextInput,View, Text } from 'react-native';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 
 const SearchBar = ({ value, onChangeText, label, placeholderTextColor, paddingRight , paddingLeft, placeholder, autoCapitalize, autoCorrect, secureTextEntry, multiline, numberOfLines, maxLength}) =>{
 
 const {container, TextInputStyle} = styles;
 
-return( <View style={{ flex:1, alignItems:'center' }}>
+return( <View style={{ 
+  flex:1, 
+  alignItems:'center',
+  flexDirection:'row',
+  backgroundColor:'#f7f7f7',
+  //backgroundColor:'red',
+  borderRadius:10,
+  height:40,
+  }}>
+
+              <MaterialIcons 
+              style={{
+                marginLeft:4,
+              }}
+              name="search" size={24} color="grey" />
                 <TextInput   
                    style={TextInputStyle}
                    label={label}
@@ -34,7 +49,7 @@ const styles = {
     TextInputStyle:{
         fontSize:10,
         textAlignVertical: 'top',
-        width:'100%',
+        width:'90%',
         height:40,
         fontSize:15,
         backgroundColor:'#f7f7f7',
@@ -43,8 +58,8 @@ const styles = {
         borderColor:'#e8e8e8',
         //borderWidth:1,
         borderBottomWidth:0.3,
-        borderRadius:90,
-        borderWidth:1,
+       // borderRadius:90,
+     //   borderWidth:1,
        // alignSelf:'center'
     
       //  borderRadius:10,

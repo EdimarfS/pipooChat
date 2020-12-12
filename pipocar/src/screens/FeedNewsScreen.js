@@ -306,7 +306,7 @@ onPress={()=>{
 
 
                <View style={{  alignSelf:'center'}}>
-               <ImageModal
+               <Image
                 resizeMode="contain"
               
                 imageBackgroundColor="lightgrey"

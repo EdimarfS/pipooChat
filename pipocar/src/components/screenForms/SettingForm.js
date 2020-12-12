@@ -300,7 +300,6 @@ renderHeaderSettings = () => {
       }}>
   
     <Image
-  //  thumbnailSource={{ uri: auth().currentUser.photoURL }}
     source={{ uri: auth().currentUser.photoURL }}
     style={{
         width:100,

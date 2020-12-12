@@ -305,6 +305,17 @@ renderHeader = () => {
     
     
     />
+          <Text
+      style={{
+        color:'grey',
+        marginTop:5,
+        marginBottom:15,
+        marginLeft:10,
+        marginRight:10,
+        fontSize:10,
+        textAlign:'center'
+      }}
+      >Look for some intersting events around your city and the world, if you want to know more click to check the website</Text>
       <View style={{
       alignSelf:'center',
       marginBottom:20,
@@ -523,16 +534,14 @@ render(){
                 flexDirection:'column'
               }}
               >
-              <TouchableOpacity 
+              <View 
               style={{ flex:1/2}}
               >
               <View style={{
                   alignSelf:'center'
               }}>
-              <ImageModal
+              <Image
                 resizeMode="contain"
-              
-                imageBackgroundColor="white"
                 style={{
                   width:320,
                   height:250,
@@ -543,7 +552,7 @@ render(){
                 source={{ uri: item.image}}
               />
               </View>
-              </TouchableOpacity>
+              </View>
 
 
 {/*               <View style={{
