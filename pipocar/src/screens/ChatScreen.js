@@ -590,7 +590,7 @@ render(){
               
               <TouchableOpacity 
               
-/*               onPress={()=>{
+               onPress={()=>{
 
                 const author = auth().currentUser.uid;
                 const groupname = item.name;
@@ -646,14 +646,18 @@ render(){
                   )
 
 
-              }}  */
+              }}  
               style={{
               //  alignSelf:'center',
                 justifyContent:'center',
                 marginRight:10,
 
               }}>
-                <Text>save</Text>
+                <Text
+                style={{
+                  fontWeight:'bold'
+                }}
+                >save</Text>
               </TouchableOpacity>
  
               </View>

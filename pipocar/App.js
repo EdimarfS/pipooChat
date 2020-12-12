@@ -31,7 +31,8 @@ import {
   ChatScreen,
   AddPostScreen,
   SplashScreen,
-  VideoCall
+  VideoCall,
+  CommentsScreen
 
 } from './src/screens';
 import './src/fixtimerbug';

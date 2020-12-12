@@ -27,6 +27,7 @@ import {
    StoreScreen,
    AddProductsScreen,
    VideoCall,
+   CommentsScreen
 
 } from '../screens/index';
 
@@ -154,7 +155,7 @@ return(
             </Scene>
 
             
-                <Scene
+            <Scene
                 key="messages"
                 component={MessageScreen}
                 
@@ -204,6 +205,29 @@ return(
                 
                 />
             </Scene>
+
+
+
+            <Scene 
+            key="comments"
+            >
+                <Scene
+                key="commentsscreen"
+                component={CommentsScreen}
+                hideNavBar
+                
+            />
+
+            </Scene>
+
+
+
+
+
+
+
+
+
 
             <Scene key="userpersonaldata">
                 <Scene
@@ -278,7 +302,45 @@ return(
             //showLabel={false}
             > 
 
-<Scene 
+
+                    <Scene
+                    key="chat"
+                    iconName={"message1"}
+                    icon={TabIcon}
+                    activeTintColor={tint_color}
+                    inactiveTintColor={inactive_Color}
+                    component={ChatScreen}
+                    renderRightButton={
+                        <TouchableOpacity 
+                        style={{
+                            marginRight:10,
+                            flexDirection:'row'
+                        }}
+                        onPress={()=>{ Actions.creategroup()}}>
+                            <AntDesign name="team" size={24} color="black" />
+                            <Text>+</Text>
+                        </TouchableOpacity>
+                        }
+                        renderTitle={()=>{
+                            return(
+                                <View style={{
+                                    flex:1,
+                                    justifyContent:'center',
+                                    alignItems:'center',
+                                    }}> 
+                                    <Text style={{fontWeight:'bold',fontSize:20}}>chat</Text>
+                              
+                                    
+            
+                                </View>
+                            )
+                        }}
+
+
+                    
+                    
+                    />
+                                <Scene 
             
             key="pipoca"
             iconName={"house"}
@@ -349,46 +411,6 @@ return(
 
                     </Scene>
                     </Scene>
-
-
-
-                    <Scene
-                    key="chat"
-                    iconName={"message1"}
-                    icon={TabIcon}
-                    activeTintColor={tint_color}
-                    inactiveTintColor={inactive_Color}
-                    component={ChatScreen}
-                    renderRightButton={
-                        <TouchableOpacity 
-                        style={{
-                            marginRight:10,
-                            flexDirection:'row'
-                        }}
-                        onPress={()=>{ Actions.creategroup()}}>
-                            <AntDesign name="team" size={24} color="black" />
-                            <Text>+</Text>
-                        </TouchableOpacity>
-                        }
-                        renderTitle={()=>{
-                            return(
-                                <View style={{
-                                    flex:1,
-                                    justifyContent:'center',
-                                    alignItems:'center',
-                                    }}> 
-                                    <Text style={{fontWeight:'bold',fontSize:20}}>chat</Text>
-                              
-                                    
-            
-                                </View>
-                            )
-                        }}
-
-
-                    
-                    
-                    />
 
 
 

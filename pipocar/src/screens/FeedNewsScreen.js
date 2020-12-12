@@ -280,7 +280,7 @@ onPress={()=>{
                     <View>
                      <Text style={{
                        fontWeight:'bold'
-                     }}>{item.userName.substring(0,14)+'...'}</Text>
+                     }}>{item.userName.substring(0,17)}</Text>
                     </View>
                     <View style={{ 
                       marginTop:5,
@@ -362,7 +362,9 @@ onPress={()=>{
                     >
                     <EvilIcons name="link" size={30} color="black" />
                     </TouchableOpacity>
-                    <TouchableOpacity>
+                    <TouchableOpacity
+                    onPress={()=>{Actions.comments({ data: item})}}
+                    >
                     <Text style={{ fontWeight:'bold', color:'grey'}}>comments</Text>
                     </TouchableOpacity>
 { this.state.saved === false ? (                    

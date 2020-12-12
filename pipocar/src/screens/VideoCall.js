@@ -4,7 +4,7 @@ import {
   StyleSheet,
   ScrollView,
   View,
-  Text,
+  Text, 
   Dimensions,
   Button,
   TouchableOpacity,
@@ -23,7 +23,10 @@ import { Actions } from 'react-native-router-flux';
 
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import Lottie from 'lottie-react-native';
+import videocall from '../assets/videocall.json';
+import {Spinner} from '../components/reusebleComponents/index';
 const dimensions = {
   width: Dimensions.get('window').width,
   height: Dimensions.get('window').height,
@@ -46,6 +49,7 @@ class VideoCall extends Component {
       streamProperties: {}, // Handle individual stream properties,
       mainSubscriberStreamId: null
     };
+
 
     this.sessionEventHandlers = {
       streamCreated: (event) => {
@@ -129,12 +133,18 @@ class VideoCall extends Component {
     console.log('Video toggle', this.publisherProperties);
   };
 
-  joinCall = () => {
-    const { joinCall } = this.state;
-    if (!joinCall) {
-      this.setState({ joinCall: true });
-    }
-  };
+  componentDidMount() {
+    this.animation.play();
+    // Or set a specific startFrame and endFrame with:
+    this.animation.play(1, 120);
+     setTimeout(
+      function() {
+        this.setState({ joinCall: true });
+      }
+      .bind(this),
+      1800
+    ); 
+  }
 
   endCall = () => {
     const { joinCall } = this.state;
@@ -267,13 +277,8 @@ class VideoCall extends Component {
       alignItems:'center',
       justifyContent:'center',
     }}>
-      <Text
-      style={{
-        fontWeight:'bold',
-        color:'grey',
-        fontSize:17
-      }}
-      >Waiting for users to connected</Text>
+      <Spinner/>
+
     </View>)
   };
 
@@ -335,18 +340,36 @@ class VideoCall extends Component {
           style={{
             flex:1,
             justifyContent:'center',
-            alignSelf:'center'
+            alignSelf:'center',
+            
           }}
-          onPress={this.joinCall}
           title="JoinCall"
           color="#841584"
+        //  onPress={this.joinCall}
           accessibilityLabel="Join call">
-          <Text
+
+          <View
           style={{
-            fontWeight:'bold',
-            color:'#05c7fc',
-            fontSize:40,
-          }}> Join call</Text>
+           // flexDirection:'row',
+            justifyContent:'center',
+            alignSelf:'center',
+            alignItems:'center'
+          }}>
+
+           <Lottie
+                style={{
+                  width:900,
+                  height:900,
+                  backgroundColor:'white'
+                }}
+                
+                ref={animation => {
+                  this.animation = animation;
+                }}
+                source={videocall}
+              />
+            </View>
+
         </TouchableOpacity>
       </SafeAreaView>
     );
