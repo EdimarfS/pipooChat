@@ -61,7 +61,7 @@ render(){
       }}>
         <Text 
         style={{
-          fontWeight:'bold',
+        //  fontWeight:'bold',
           fontSize:30,
         }}>
           create an account

@@ -24,13 +24,47 @@ import { Spinner} from '../reusebleComponents/index';
 
 
 class LoginForm extends Component {
+
+constructor(props)
+{ 
+  super(props);
+  this.state = {
+    fieldEmpty:false
+  }
+
+}
+
+
 onEmailChange(text){
+
     this.props.emailCHANGED(text);
+    if(text!=''){
+    this.setState({
+      fieldEmpty:true,
+    });
+  }else{
+    this.setState({
+      fieldEmpty:false,
+    });
+
+  }
+  
 }
 
 onPasswordChange(text)
 {
     this.props.passwordCHANGED(text);
+
+    if(text!=''){
+      this.setState({
+        fieldEmpty:true,
+      });
+    }else{
+      this.setState({
+        fieldEmpty:false,
+      });
+  
+    }
 }
 
 onButtonPress()
@@ -63,10 +97,10 @@ render(){
       }}>
         <Text 
         style={{
-          fontWeight:'bold',
+          //fontWeight:'bold',
           fontSize:30,
         }}>
-          log to your account
+         Welcome to Pipoca 
         </Text>
 
       </View>
@@ -104,7 +138,7 @@ render(){
 (      
       <View>
 
-      <View       
+{ this.state.fieldEmpty === true ? ( <View       
       style={{
         marginBottom:80,
       }}>  
@@ -112,7 +146,31 @@ render(){
         onPress={this.onButtonPress.bind(this)}
         label="Login"
         />
+      </View>):
+      <View style={{ flex:1, marginBottom:80 }}>
+        <View style={{
+                  backgroundColor:'lightgrey',
+                  width:'100%',
+                  height:60,
+                  marginTop:10,
+                  borderRadius:5,
+                  justifyContent:'center',
+                  alignItems:'center',
+          
+
+        }}>
+          <Text style={{
+            fontWeight:'bold',
+            fontSize:20,
+            color:'white'
+          }}>Login</Text>
+
+        </View>
+        
       </View>
+      
+      
+      }
       <TouchableOpacity
       onPress={()=>{ Actions.forgetpassword({type:'replace'})}}
       >
