@@ -24,8 +24,8 @@ import {
    CreateGroupScreen,
    UserPersonalEditDataScreen,
    PostCommentsScreen,
-   StoreScreen,
-   AddProductsScreen,
+   EventScreen,
+   AddEventsScreen,
    VideoCall,
    CommentsScreen
 
@@ -170,7 +170,7 @@ return(
             >
                 <Scene
                 key="addproductsscreen"
-                component={AddProductsScreen}
+                component={AddEventsScreen}
               //gesturesEnabled={false}
                 hideNavBar
                 
@@ -401,7 +401,7 @@ return(
                     />
                     <Scene
                     key="events"
-                    component={StoreScreen}
+                    component={EventScreen}
                    // iconName={"refresh"}
                    // icon={TabIcon}
                     activeTintColor={tint_color}

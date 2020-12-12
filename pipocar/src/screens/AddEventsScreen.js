@@ -6,15 +6,15 @@ import {
   View, 
   Text, 
 } from "react-native";
-import AddProductsForm from '../components/screenForms/AddProductsForm';
-class  AddProductsScreen extends Component {
+import AddEventsForm from '../components/screenForms/AddEventsForm';
+class  AddEventsScreen extends Component {
 
 render(){ 
   console.log('AddProducts');
-  return (<AddProductsForm/>);
+  return (<AddEventsForm/>);
 }
 }
 
 
 
-export  {AddProductsScreen};
+export  {AddEventsScreen};

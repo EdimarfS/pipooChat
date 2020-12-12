@@ -28,7 +28,7 @@ import { Picker} from '@react-native-community/picker';
 import { 
   Actions
   } from 'react-native-router-flux';
-class  CreateGroupForm extends Component {
+class  AddEventsForm extends Component {
   constructor(props)
   {
       super(props);
@@ -566,7 +566,7 @@ render(){
 
 
 
-export  default CreateGroupForm;
+export  default AddEventsForm;
 
 
 const styles = { 

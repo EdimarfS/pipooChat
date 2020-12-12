@@ -36,7 +36,7 @@ import Entypo from 'react-native-vector-icons/Entypo';
 
 */
 
-class  StoreScreen extends Component {
+class  EventScreen extends Component {
 
   constructor(props)
   {
@@ -739,7 +739,7 @@ style={{
 
 
 
-export  {StoreScreen};
+export  {EventScreen};
 
 
 
