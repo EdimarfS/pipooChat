@@ -62,11 +62,16 @@ class  FeedNewsScreen extends Component {
       found:false,
       refreshing:true,
       loaded:false,
-      comment:'',
+      userComment:'',
+      userProfilePicture:'',
+      commentDocID:'',
+      commentPhotoURL:'',
+      userName:'',
       photoId:'',
       screenshot:null,
       dataloaded:false,
       saved:false,
+      
       
     }
 
@@ -110,9 +115,23 @@ onError = (error) => {
 
 
 //Open Modal
-onOpen()
+onOpen(item)
 {
     this.modalizeRef.current?.open();
+
+/*     userComment:'',
+    userProfilePicture:'',
+    userName:'', */
+
+    this.setState({
+      userComment:item.caption,
+      userProfilePicture: auth().currentUser.photoURL,
+      userName:auth().currentUser.displayName,
+      commentDocID:item._id,
+      commentPhotoURL:item.url,
+    })
+
+    console.log('ITEMSSSS', item);
 }
 //Close Modal
 onClose()
@@ -166,9 +185,32 @@ shareCONTENT = () => {
 
 }
 
-onCapture = (uri) => {
-  console.log("do something with ", uri);
+onCommentPress = () => {
+
+
+  const { userComment, userProfilePicture, commentDocID, userName } = this.state;
+  if(userComment!='')
+  {
+    var commentObj = { 
+      userComment: userComment,
+      userProfilePicture: userProfilePicture,
+      doc: commentDocID,
+      userName: userName,
+    }
+
+    //Comments
+    firestore()
+    .collection('COMMENTS')
+    .doc(commentDocID)
+    .collection('comments')
+    .add(commentObj);
+    this.onClose();
+  }
+
+    
+
 }
+
 
 renderEmpty = () => {
   
@@ -323,7 +365,9 @@ onPress={()=>{
                <View>
 
 
-               <View style={{  alignSelf:'center'}}>
+               <TouchableOpacity 
+               onPress={()=>{ Actions.comments()}}
+               style={{  alignSelf:'center'}}>
                <Image
                 resizeMode="contain"
               
@@ -341,7 +385,7 @@ onPress={()=>{
 
 
 
-               </View>
+               </TouchableOpacity>
                 <View 
                 style={{
                   marginTop:20,
@@ -381,7 +425,9 @@ onPress={()=>{
                     <EvilIcons name="link" size={30} color="black" />
                     </TouchableOpacity>
                     <TouchableOpacity
-                    onPress={this.onOpen.bind(this)}
+                    onPress={()=> { 
+                      this.onOpen(item);
+                    }}
                     >
                     <Text style={{ fontWeight:'bold', color:'grey'}}>comments</Text>
                     </TouchableOpacity>
@@ -479,24 +525,84 @@ onPress={()=>{
     animationType="slide"
     visible={false}
 
-    modalHeight={450}
-    snapPoint={450}
+    modalHeight={500}
+    snapPoint={500}
             
     > 
     <View
     style={{
       flex:1,
+
     }}
     >
+      <View
+      style={{
+        alignSelf:'center',
+        marginTop:5,
+      }}
+      >
+        <Image
+        source={{
+          uri:this.state.commentPhotoURL,
+        }}
+        style={{
+          width:30,
+          height:30,
+        }}
+        />
+      </View>
+      <View 
+      style={{
+        marginTop:10,
+        marginLeft:10,
+        marginRight:10,
 
-
+      }}>
       <TextInput
+      placeholder="write an comment"
+      value={this.userComment}
+      onChangeText={text => { this.setState({
+        userComment:text,
+      })}}
       multiline
       style={{
-        backgroundColor:'red'
+        backgroundColor:'lightgrey',
+        width:'100%',
+        height:100,
+
       }}
       
       />
+      </View>
+      <View
+      style={{
+        marginLeft:10,
+        marginRight:10,
+      }}
+      >
+      <TouchableOpacity
+      onPress={this.onCommentPress.bind(this)}
+      style={{
+        justifyContent:'center',
+        alignSelf:'center',
+        marginTop:10,
+        backgroundColor:'#05c7fc',
+        width:'100%',
+        height:60,
+        borderRadius:5,
+        justifyContent:'center',
+        alignItems:'center',
+      }}
+      >
+        <Text
+        style={{
+          fontWeight:'bold',
+          color:'white',
+          fontSize:20
+        }}
+        >Comment</Text>
+      </TouchableOpacity>
+      </View>
 
 
 
