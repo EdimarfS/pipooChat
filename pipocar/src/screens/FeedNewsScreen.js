@@ -196,13 +196,14 @@ onCommentPress = () => {
       userProfilePicture: userProfilePicture,
       doc: commentDocID,
       userName: userName,
+      posted: new Date().getTime(),
     }
 
     //Comments
     firestore()
     .collection('COMMENTS')
     .doc(commentDocID)
-    .collection('comments')
+    .collection('all')
     .add(commentObj);
     this.onClose();
   }
@@ -366,7 +367,7 @@ onPress={()=>{
 
 
                <TouchableOpacity 
-               onPress={()=>{ Actions.comments()}}
+               onPress={()=>{ Actions.comments({ postDetails: item })}}
                style={{  alignSelf:'center'}}>
                <Image
                 resizeMode="contain"
