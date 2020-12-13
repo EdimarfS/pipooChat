@@ -8,7 +8,9 @@ import {
   FlatList,
   TouchableOpacity,
   Alert,
-  Image
+  Image,
+  TextInput,
+  Animated
 } from "react-native";
 import { Actions } from 'react-native-router-flux';
 import database from '@react-native-firebase/database';
@@ -24,6 +26,7 @@ import ImageModal from 'react-native-image-modal';
 import {Spinner} from '../components/reusebleComponents/index';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Fontisto from 'react-native-vector-icons/Fontisto';
+import { Modalize } from 'react-native-modalize';
 
 
 /*
@@ -46,9 +49,12 @@ class  FeedNewsScreen extends Component {
   //Constructor 
   constructor(props)
   {
-    super(props)
+    super(props);
 
-    this.viewShot = React.createRef(null);
+    this.modalizeRef = React.createRef();
+    this.animated =  React.createRef(new Animated.Value(0)).current;
+
+    
     this.state={ 
       query:"",
       data:[],
@@ -100,6 +106,18 @@ fetchPost = () => {
 
 onError = (error) => {
   console.error("Error in Upload", error);
+}
+
+
+//Open Modal
+onOpen()
+{
+    this.modalizeRef.current?.open();
+}
+//Close Modal
+onClose()
+{
+    this.modalizeRef.current?.close();
 }
 
 
@@ -363,7 +381,7 @@ onPress={()=>{
                     <EvilIcons name="link" size={30} color="black" />
                     </TouchableOpacity>
                     <TouchableOpacity
-                    onPress={()=>{Actions.comments({ data: item})}}
+                    onPress={this.onOpen.bind(this)}
                     >
                     <Text style={{ fontWeight:'bold', color:'grey'}}>comments</Text>
                     </TouchableOpacity>
@@ -445,6 +463,50 @@ onPress={()=>{
     }}>
       <Spinner/>
     </View>}
+
+
+    <Modalize
+    style={{
+        flex:1,
+    }}
+    modalStyle={{
+    // backgroundColor:'trasparent'
+    }}
+    panGestureAnimatedValue={this.refs.animated}
+    scrollViewProps={{ showsVerticalScrollIndicator: false }}
+    withHandle={true}
+    ref={this.modalizeRef}
+    animationType="slide"
+    visible={false}
+
+    modalHeight={450}
+    snapPoint={450}
+            
+    > 
+    <View
+    style={{
+      flex:1,
+    }}
+    >
+
+
+      <TextInput
+      multiline
+      style={{
+        backgroundColor:'red'
+      }}
+      
+      />
+
+
+
+    </View>
+
+
+            
+      </Modalize>
+
+
     </View>
 
  

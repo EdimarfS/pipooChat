@@ -9,7 +9,6 @@ import {
   FlatList,
   Image,
   Alert,
-  Modal,
 } from "react-native";
 import  { 
   SearchBar
