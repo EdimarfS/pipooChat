@@ -6,12 +6,14 @@ import {
     TouchableOpacity,
     Text,
     KeyboardAvoidingView,
-    TextInput
+    TextInput,
+    Image,
+    Alert
 
 } from 'react-native';
 
 import firestore from '@react-native-firebase/firestore';
-
+import auth from '@react-native-firebase/auth';
 
 class CommentsScreen extends Component { 
 
@@ -66,7 +68,8 @@ render()
     return(
         <View
         style={{
-            flex:1
+            flex:1,
+            marginTop:15,
         }}
         >
 
@@ -84,16 +87,81 @@ render()
      //   horizontal ={true}
 
         renderItem={({item}) => {
+            const { postDetails } = this.props;
             return(
                 <View
                 style={{
                     flex:1,
                 }}
                 >
-                    <Text>
-                    {item.userName}
+                    <TouchableOpacity
+/*                     onPress={()=>{
+                        if(item.author === auth().currentUser.uid){
+                            Alert.alert(
+                              item.userName,
+                              `Do you want to delete ${item.userComment}`,
+                              [
+                                {
+                                  text: "Cancel",
+                                  onPress: () => console.log("Cancel Pressed"),
+                                  style: "cancel"
+                                },
+                                { text: "OK", onPress: () => {
 
-                    </Text>
+                                  firestore()
+                                  .collection('COMMENTS')
+                                  .doc(postDetails._id)
+                                  .delete()
+                                  .then(()=>{
+                                    console.log('Document Successfully Deleted');
+                                  })
+                                  .catch(()=>{
+                                    console.log('Something went wrong, could not be Deleted');
+                                  })
+                        
+                                  //RealTime Database
+                        
+                                } }
+                              ],
+                              { cancelable: false }
+                            );}
+
+                    }} */
+                    style={{
+                        flexDirection:'row',
+                        marginLeft:10,
+                        marginRight:10,
+                    }}>
+                        <Image
+                        source={{
+                            uri:item.userProfilePicture,
+                        }}
+                        style={{
+                            width:40,
+                            height:40,
+                            borderRadius:90,
+                            marginTop:10,
+                        }}
+                        />
+                        
+                        <View
+                        
+                        style={{
+                            flexDirection:'column',
+                            marginLeft:10,
+                        }}>
+                        <Text
+                        style={{
+                            fontWeight:'bold'
+                        }}
+                        >{item.userName}</Text>
+                        <Text
+                        style={{
+                            color:'grey'
+                        }}
+                        >{item.userComment}</Text>
+                        </View>
+                    </TouchableOpacity>
                  
                 </View>
             )

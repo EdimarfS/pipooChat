@@ -67,10 +67,12 @@ class  FeedNewsScreen extends Component {
       commentDocID:'',
       commentPhotoURL:'',
       userName:'',
+      author:'',
       photoId:'',
       screenshot:null,
       dataloaded:false,
       saved:false,
+      
       
       
     }
@@ -124,11 +126,11 @@ onOpen(item)
     userName:'', */
 
     this.setState({
-      userComment:item.caption,
       userProfilePicture: auth().currentUser.photoURL,
       userName:auth().currentUser.displayName,
       commentDocID:item._id,
       commentPhotoURL:item.url,
+      author:item.author,
     })
 
     console.log('ITEMSSSS', item);
@@ -188,7 +190,7 @@ shareCONTENT = () => {
 onCommentPress = () => {
 
 
-  const { userComment, userProfilePicture, commentDocID, userName } = this.state;
+  const { userComment, userProfilePicture, commentDocID, userName, author } = this.state;
   if(userComment!='')
   {
     var commentObj = { 
@@ -196,6 +198,7 @@ onCommentPress = () => {
       userProfilePicture: userProfilePicture,
       doc: commentDocID,
       userName: userName,
+      author: author,
       posted: new Date().getTime(),
     }
 
@@ -458,13 +461,13 @@ onPress={()=>{
                                 //.doc(item._id)
                                 .add(userReportData)
                                 .then(()=>{
-                                  console.log('Document Successfully deleted');
+                                  console.log('Document Successfully saved');
                                   this.setState({
                                     saved:false,
                                   })
                                 })
                                 .catch(()=>{
-                                  console.log('Something went wrong, could not be deleted');
+                                  console.log('Something went wrong, could not be saved');
                                 })
 
                                 //RealTime Database
