@@ -248,7 +248,14 @@ onSendMessage(messages=[])
     .add({
         text,
         createdAt: new Date().getTime(),
-        image:this.state.imageFromChat,
+         image:this.state.imageFromChat,
+      //   image:'https://media.giphy.com/media/8X0djS009EUv600mkv/giphy.gif',
+        sent: true,
+        // Mark the message as received, using two tick
+        received: true,
+        // Mark the message as pending with a clock loader
+      //  penfing: true,
+        // Any additional custom parameters are passed through
         user : {
             _id: currentUser.uid,
             name: auth().currentUser.displayName,
@@ -276,11 +283,6 @@ onSendMessage(messages=[])
         imageFromChat:'',
     })
     })
-
-
-  
-
-
    
 }
 
@@ -345,8 +347,6 @@ name="sticker-emoji" size={27} color="black" />
   
   
   }
-
-
 
 
   <Send {...props}>
@@ -420,6 +420,7 @@ render(){
     }}>
 
 { this.state.loading === false ? 
+
     <GiftedChat
    // showUserAvatar
     //showAvatarForEveryMessage
@@ -435,7 +436,8 @@ render(){
 
     }}
 
-    />: <Spinner/>}
+    />
+    : <Spinner/>}
     {
       Platform.OS === 'android' && 
 (      <KeyboardAvoidingView 
@@ -457,7 +459,7 @@ const mapStateToProps = ({chat}) => {
 
 
 
-  const { messages, messageFetch }  = chat;
+ const { messages, messageFetch }  = chat;
 
   return{ messages, messageFetch  };
 }

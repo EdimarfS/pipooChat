@@ -336,7 +336,7 @@ class VideoCall extends Component {
     return (
       <SafeAreaView style={styles.fullView}>
         
-        <TouchableOpacity
+        <View
           style={{
             flex:1,
             justifyContent:'center',
@@ -370,7 +370,7 @@ class VideoCall extends Component {
               />
             </View>
 
-        </TouchableOpacity>
+        </View>
       </SafeAreaView>
     );
   };
