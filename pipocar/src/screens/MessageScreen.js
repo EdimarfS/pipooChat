@@ -56,7 +56,7 @@ constructor(props)
               messageFetched:false,
               imageID: this.uniqueId(),
               gifs:[],
-              term:'',
+              term:'love',
 
              // imageURI:'https://firebasestorage.googleapis.com/v0/b/pipocar-61cd8.appspot.com/o/groupCovers%2Fcef4c151ecd7c2fd46180b45fb5bc1a1.jpg?alt=media&token=8beea4de-e1fd-439d-8162-eb7bab61e41c'
     
@@ -380,7 +380,7 @@ renderSend = (props) => {
   
   <View>
       <TouchableOpacity 
-    //  onPress={this.findNewImage}
+      onPress={this.findNewImage}
       >
       <Image
       source={{
@@ -411,7 +411,7 @@ renderSend = (props) => {
   }}
   name="image" 
   size={36} 
-  color="black" fetchGifs
+  color="black" 
   /> 
 
 <MaterialCommunityIcons 
@@ -585,7 +585,6 @@ render(){
               imageFromChat:item.images.original.url,
               imageSelected:true
             })
-
           this.onClose();
           }}
           >

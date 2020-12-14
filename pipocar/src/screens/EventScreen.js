@@ -651,10 +651,11 @@ render(){
                 alignSelf:'center',
                 justifyContent:'center',
                 marginLeft:5,
-                color:'grey'
+                color:'grey',
+               // fontWeight:'bold'
 
               }}
-              >Event</Text>
+              >{item.eventdate}</Text>
               </View>
               <View>
             

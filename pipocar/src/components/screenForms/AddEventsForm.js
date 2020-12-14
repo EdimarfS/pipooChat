@@ -8,7 +8,8 @@ import {
   TouchableOpacity,
   Image,
   FlatList,
-  Alert
+  Alert,
+  TextInput
 } from "react-native";
 import { 
 InputForPosts,
@@ -38,7 +39,7 @@ class  AddEventsForm extends Component {
           imageSelected: false,
           uploading: false,
           progress: 0,
-          imageURI:'https://firebasestorage.googleapis.com/v0/b/pipocar-61cd8.appspot.com/o/groupCovers%2FPSD-Valentine-Day-Music-Party-Flyer.jpg?alt=media&token=83c64e58-6774-4f39-80f4-57ee11cdc2cb',
+          imageURI:'https://firebasestorage.googleapis.com/v0/b/pipocar-61cd8.appspot.com/o/groupCovers%2Fparty.jpg?alt=media&token=faa0df66-56f4-4e85-9bc4-93c2d6fa070f',
           title:'My event',
           price:'0',
           category:'Night Party',
@@ -48,6 +49,9 @@ class  AddEventsForm extends Component {
           nextStep:false,
           finishStep:false,
           dataloaded:false,
+          day:'',
+          month:'',
+          year:'',
           
 
       };
@@ -244,6 +248,7 @@ processUpload = (imageUrl) => {
         authorprofilepicture :authorprofilepicture,
         authorname: authorname,
         website: 'https://'+website,
+        eventdate:this.state.day +'/'+this.state.month +'/'+this.state.year,
 
 
   }
@@ -288,11 +293,21 @@ onButtonPress()
         onPress: () => console.log("Cancel Pressed"),
         style: "cancel"
       },
-      { text: "OK", onPress: () => { 
-                this.setState({
-                  dataloaded:true,
-                })
-            this.UploadPublish();
+      { text: "OK", onPress: () => {
+        const {title,location, website,day, month, year} = this.state;
+
+
+        if(title!='' && location!='' && day!='' && month!='' && year!='')
+        {
+
+          this.setState({
+            dataloaded:true,
+          })
+
+          this.UploadPublish();
+
+        }
+
 
        }}
     ],
@@ -521,7 +536,8 @@ render(){
 
       <View style={{ 
       //  flex:1, 
-        marginBottom:10,
+        marginBottom:50,
+        
         }}>
         <InputForPosts
         placeholder="www.mywebsite.com"
@@ -534,10 +550,61 @@ render(){
         })} 
         />
       </View>
+      <View style={{ 
+      //  flex:1, 
+        marginBottom:10,
+        flexDirection:'row',
+        justifyContent:'space-between',
+        alignSelf:'center',
+        alignItems:'center',
+        marginTop:10,
+        marginLeft:'20%',
+        }}>
+          <TextInput
+          keyboardType="numeric"
+          style={{
+            flex:1,
+            //marginLeft:20,
+          }}
+          value={this.state.day}
+          onChangeText={(text) => this.setState({
+             day:text,
+          })} 
+          maxLength={2}
+          placeholder="DD"
+          />
+          <TextInput
+          keyboardType="numeric"
+          value={this.state.month}
+          onChangeText={(text) => this.setState({
+             month:text,
+          })} 
+          style={{
+            flex:1,
+           // marginLeft:20,
+          }}
+          maxLength={2}
+          placeholder="MM"
+          />
+          <TextInput
+          value={this.state.year}
+          onChangeText={(text) => this.setState({
+            year:text,
+          })} 
+          keyboardType="numeric"
+          style={{
+            flex:1,
+            //marginLeft:20,
+          }}
+          maxLength={4}
+          placeholder="YY"
+          />
+      </View>
 { this.state.dataloaded === false?
     ( <View 
       style={{
         marginTop:20,
+        marginBottom:20,
       }}>
         <Button
         onPress={this.onButtonPress.bind(this)}
