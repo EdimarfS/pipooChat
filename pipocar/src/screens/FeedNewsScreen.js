@@ -72,6 +72,7 @@ class  FeedNewsScreen extends Component {
       screenshot:null,
       dataloaded:false,
       saved:false,
+      commentsTransaction:false
       
       
       
@@ -370,7 +371,21 @@ onPress={()=>{
 
 
                <TouchableOpacity 
-               onPress={()=>{ Actions.comments({ postDetails: item })}}
+               onPress={()=>{ 
+
+                this.setState({
+                  commentsTransaction: true,
+                })
+                if(this.state.commentsTransaction)
+                {
+                  this.setState({
+                    commentsTransaction: false,
+                  })
+                Actions.comments({ postDetails: item })
+                }
+
+              
+              }}
                style={{  alignSelf:'center'}}>
                <Image
                 resizeMode="contain"

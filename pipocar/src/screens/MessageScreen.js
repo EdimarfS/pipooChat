@@ -500,7 +500,6 @@ renderHeader = () => {
     }}
     >
       <TextInput
-      defaultValue="Dog"
       autoCapitalize="none"
       placeholder="Search Giphy"
       style={{
