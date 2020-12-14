@@ -8064,6 +8064,11 @@ react-native-gifted-chat@^0.16.3:
     react-native-typing-animation "^0.1.7"
     uuid "3.4.0"
 
+react-native-giphy-ui@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/react-native-giphy-ui/-/react-native-giphy-ui-0.2.0.tgz#f8d80a2b0b4f0039cecedce90f65d4e05d6e4b1a"
+  integrity sha512-0shny9jRROMb4j7V93SXK0VoOpgVWnKpXdI0fNN3YjrVAOLMiWbMwKyUFWflx48JfttzLt8UywNo6TQ4KC8icg==
+
 react-native-image-blur-loading@^1.1.4:
   version "1.1.4"
   resolved "https://registry.yarnpkg.com/react-native-image-blur-loading/-/react-native-image-blur-loading-1.1.4.tgz#45bf14ac131aa2ee5a741dca9590c9ca9a58a71a"

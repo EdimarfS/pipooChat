@@ -8,7 +8,9 @@ import {
   Platform,
   KeyboardAvoidingView,
   TouchableOpacity,
-  Image
+  Image,
+  FlatList,
+  TextInput
 } from "react-native";
 import { GiftedChat } from 'react-native-gifted-chat'
 import  { addMessages, messageFETCH} from '../actions/ChatActions';
@@ -28,6 +30,11 @@ import
 Spinner
 } from '../components/reusebleComponents/index';
 import ImageModal from 'react-native-image-modal';
+import { Modalize } from 'react-native-modalize';
+
+
+
+
 
 class  MessageScreen extends Component {
 
@@ -35,6 +42,9 @@ class  MessageScreen extends Component {
 constructor(props)
   {
           super(props);
+
+
+          this.modalizeRef = React.createRef();
           this.state = {
               loggedin: false,
               imageSelected: false,
@@ -45,6 +55,9 @@ constructor(props)
               loading:false,
               messageFetched:false,
               imageID: this.uniqueId(),
+              gifs:[],
+              term:'',
+
              // imageURI:'https://firebasestorage.googleapis.com/v0/b/pipocar-61cd8.appspot.com/o/groupCovers%2Fcef4c151ecd7c2fd46180b45fb5bc1a1.jpg?alt=media&token=8beea4de-e1fd-439d-8162-eb7bab61e41c'
     
            
@@ -60,7 +73,68 @@ UNSAFE_componentWillMount()
   const { thread } = this.props;
   console.log('Thread!!!!!!',thread);
   this.props.messageFETCH(thread);
+  this.fetchGifs();
 
+}
+
+
+//Open Modal
+onOpen()
+{
+    this.modalizeRef.current?.open();
+}
+//Close Modal
+onClose()
+{
+    this.modalizeRef.current?.close();
+}
+
+
+renderItem = (item) => (
+  <View
+  style={{
+    flex:1,
+  }}>
+      <Image
+      resizeMode='contain'
+      style={{
+        width:100,
+        height:100,
+        backgroundColor:'red'
+      }}
+      source={{uri: item.images.original.url}}
+    />
+
+
+
+  </View>
+);
+
+
+//Fetching Giffs 
+
+fetchGifs =  async () => {
+  try { 
+    const API_KEY ='fS3Y7BGjQUiHjxsnJaT147eECTrHayeV';
+    const BASE_URL = 'http://api.giphy.com/v1/gifs/search';
+    const resJson = await fetch(`${BASE_URL}?api_key=${API_KEY}&q=${this.state.term}`);
+    const res = await resJson.json();
+    this.setState({
+      gifs: res.data,
+    })
+    console.log('GIPHY, ', this.state.gifs);
+
+
+  }catch(error) { 
+    console.log(error);
+  }
+}
+
+onEdit = (newTerm) =>  {
+  this.setState({
+    term:newTerm
+  });
+  this.fetchGifs();
 }
 
 
@@ -288,6 +362,9 @@ onSendMessage(messages=[])
 
 
 
+
+
+
 renderSend = (props) => {
   return(
 
@@ -334,9 +411,11 @@ renderSend = (props) => {
   }}
   name="image" 
   size={36} 
-  color="black" 
+  color="black" fetchGifs
   /> 
+
 <MaterialCommunityIcons 
+  onPress={this.onOpen.bind(this)}
   style={{
     marginTop:'22%',
     marginRight:10,
@@ -411,6 +490,32 @@ renderMessageImage = (props) => {
   );
 };
 
+
+
+renderHeader = () => {
+  return(
+    <View
+    style={{
+      flex:1,
+    }}
+    >
+      <TextInput
+      placeholder="Search Giphy"
+      style={{
+        backgroundColor:'lightgrey',
+        width:'100%',
+        height:40,
+      }}
+      placeholderTextColor='black'
+      value={this.state.term}
+      onChangeText={this.onEdit.bind(this)}
+/>
+      
+
+    </View>
+  )
+}
+
 render(){ 
   console.log('MessageScreen');
   return (
@@ -446,6 +551,64 @@ render(){
       keyboardVerticalOffset={-10000}
       />)
     }
+
+
+
+<Modalize
+    style={{
+        flex:1,
+    }}
+    modalStyle={{
+    // backgroundColor:'trasparent'
+    }}
+    ref={this.modalizeRef}
+    modalHeight={500}
+    snapPoint={500}
+            
+    >
+ <FlatList
+        data={this.state.gifs}
+        ListHeaderComponent={this.renderHeader}
+        numColumns={3}
+        renderItem={({item}) => (
+          <View
+          style={{
+            flex:1/3,
+          }}>
+          <TouchableOpacity 
+          onPress={()=>{
+            this.setState({
+              imageFromChat:item.images.original.url,
+            })
+
+          this.onClose();
+          }}
+          >
+          <Image
+            resizeMode='contain'
+            style={{
+              width:100,
+              height:100,
+             // backgroundColor:'red'
+            }}
+            source={{uri: item.images.original.url}}
+          />
+          </TouchableOpacity>
+          </View>
+          
+        )}
+      /> 
+      
+    </Modalize> 
+
+
+
+
+
+
+
+
+
   </View>
 
  
