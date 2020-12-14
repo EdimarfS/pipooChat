@@ -500,11 +500,15 @@ renderHeader = () => {
     }}
     >
       <TextInput
+      defaultValue="Dog"
+      autoCapitalize="none"
       placeholder="Search Giphy"
       style={{
         backgroundColor:'lightgrey',
         width:'100%',
         height:40,
+        borderRadius:5,
+        padding:10,
       }}
       placeholderTextColor='black'
       value={this.state.term}
@@ -579,6 +583,7 @@ render(){
           onPress={()=>{
             this.setState({
               imageFromChat:item.images.original.url,
+              imageSelected:true
             })
 
           this.onClose();
