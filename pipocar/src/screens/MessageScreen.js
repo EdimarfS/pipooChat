@@ -65,6 +65,8 @@ constructor(props)
               longitude: 105.8701,
               chatMessagesLoaded:false,
               timePassed:false,
+              composerText:'',
+              otherOptionClicked:false,
              // imageURI:'https://firebasestorage.googleapis.com/v0/b/pipocar-61cd8.appspot.com/o/groupCovers%2Fcef4c151ecd7c2fd46180b45fb5bc1a1.jpg?alt=media&token=8beea4de-e1fd-439d-8162-eb7bab61e41c'
     
            
@@ -84,13 +86,7 @@ UNSAFE_componentWillMount()
 
 //Render Buble
 renderBubble = (props) => {
-  const { loadedMessages } = this.props;
-
-
-  
-
-  console.log('BOOLEAN PROPS', loadedMessages);
-  const { currentMessage } = props;
+const { currentMessage } = props;
   
   if (currentMessage.location) {
   //MapViews are so heavy and slow the App --> This is a better performance of the App
@@ -384,6 +380,8 @@ onSendMessage(messages=[])
         imageFromChat:'',
         locationSeleted:false,
         showSend:false,
+        otherOptionClicked:false,
+        
     })
     })
  }else{
@@ -427,6 +425,8 @@ onSendMessage(messages=[])
       this.setState({
         imageSelected:'',
         imageFromChat:'',
+        otherOptionClicked:false,
+
     })
     }) 
 
@@ -445,13 +445,21 @@ renderSend = (props) => {
   <View style={{
      marginRight:10,
      marginLeft:5,
-     marginBottom:10,
+     marginBottom:5,
      flexDirection:'row'
   }}>
   
 { this.state.imageSelected === true  ?
   (
-  <View>
+  <View
+  style={{
+    marginTop:'15%',
+    alignSelf:'center',
+    justifyContent:'center',
+    alignItems:'center',
+
+  }}
+  >
       <TouchableOpacity 
       onPress={this.findNewImage}
       >
@@ -464,9 +472,8 @@ renderSend = (props) => {
           width:30,
           height:30,
           backgroundColor:'red',
-          marginTop:'15%',
-          marginRight:55,
-         // borderRadius:5,
+          marginRight:10,
+           borderRadius:5,
       }}
       />
       </TouchableOpacity>
@@ -495,6 +502,9 @@ renderSend = (props) => {
     this.setState({
       locationSeleted:false,
       showSend:false,
+      findNewImage:true,
+      otherOptionClicked:false,
+
     })
 
   }}
@@ -524,6 +534,8 @@ renderSend = (props) => {
             this.setState({
               locationSeleted:true,
               showSend:true,
+              otherOptionClicked:true,
+              
             })
   
   
@@ -558,13 +570,12 @@ name="sticker-emoji" size={28} color="grey" />
   
 }
 
-
-{ this.state.locationSeleted === true ? (  
+{ this.state.locationSeleted === true || this.state.imageSelected === true ? (  
 <Send 
   {...props}
   alwaysShowSend={this.state.showSend}
-  text={(this.state.showSend  === true && this.state.locationSeleted === true) ? 'location' : this.props.text}
-
+  text={(this.state.showSend  === true && this.state.locationSeleted === true || this.state.imageSelected ===true) ? 'image' : this.props.text}
+  //text="hello"
   >
   <View style={styles.sendingContainer}>
     <Text
@@ -680,25 +691,41 @@ renderHeader = () => {
 
 
 
-renderComposer = (props) =>{
+renderComposer = (props) => {
 
-return(
-  <Composer
-  {...props}
-  textInputStyle={{
-    textAlignVertical: 'top',
-  //  backgroundColor: 'red',
-    overflow: 'hidden',
-    borderRadius: 10,
-    padding: 10
-  }}
+  return(
+  <View
+  style={{
+    flex:1,
+  }}>
+{this.state.otherOptionClicked === false ? (   <Composer
+   {...props}
+   onTextChanged={(text) => {
+  this.setState({ composerText: text });
+  props.onTextChanged(text); 
 
-/>
-   
-)
+}}
 
+   text={this.state.composerText}
+   multiline={true} 
+   />):
+   <View
+   style={{
+     flex:1,
+     justifyContent:'center',
+     alignSelf:'center',
 
+   }}
+   >
+    <Text style={{ 
+      fontWeight:'bold',
+      color:'grey',
+      fontSize:18,
+    }}>...</Text>
+  </View>}
 
+</View>
+ )
 }
 
 
@@ -728,11 +755,13 @@ render(){
     minInputToolbarHeight={60}
     messages={this.props.messages}
     renderSend={this.renderSend}
+    renderComposer = {this.renderComposer}
     onSend={this.onSendMessage.bind(this)}
     user = {{
       _id: auth().currentUser.uid,
 
     }}
+    
 
     />
     : <Spinner/>}
@@ -772,7 +801,10 @@ render(){
           onPress={()=>{
             this.setState({
               imageFromChat:item.images.original.url,
-              imageSelected:true
+              imageSelected:true,
+              showSend:true,
+              otherOptionClicked:true
+
             })
           this.onClose();
           }}
