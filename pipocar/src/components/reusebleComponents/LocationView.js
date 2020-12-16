@@ -1,37 +1,15 @@
 import React from "react";
-import MapView from 'react-native-maps';
-import { TouchableOpacity, Linking, Platform } from 'react-native';
+import { TouchableOpacity, Linking, Platform, View, Text } from 'react-native';
+import MapView, { PROVIDER_GOOGLE, Marker, Callout } from "react-native-maps";
 
-/*
-          latitude: location.latitude,
-          longitude: location.longitude,*/
 
 export const LocationView = ({ location }) => {
-
-
-    function openMaps () {
-    console.log('Open Maps!!!!!!!');
-    const url = Platform.select({
-      ios: `http://maps.apple.com/?ll=${location.latitude},${location.longitude}`,
-      android: `http://maps.google.com/?q=${location.latitude},${location.longitude}`,
-    });
-    Linking.canOpenURL(url)
-      .then((supported) => {
-        if (supported) {
-          return Linking.openURL(url);
-        }
-      })
-      .catch((err) => {
-        console.error('An error occurred', err);
-      });
-  };
   return (
     <TouchableOpacity
-      onPress={openMaps}
       style={{ backgroundColor: 'white', width: 250, height: 250 }}>
       <MapView
-      //  provider={PROVIDER_GOOGLE}
-        style={{ height: 250, width: 250 }}
+       provider={PROVIDER_GOOGLE}
+        style={{ height: 250, width: 250, borderRadius:10 }}
         
         region={{
           latitude: location.latitude,
@@ -46,9 +24,43 @@ export const LocationView = ({ location }) => {
 
           },
         ]}
-        scrollEnabled={false}
-        zoomEnabled={false}
-      />
+        scrollEnabled={true}
+        zoomEnabled={true}
+      >
+        <Marker
+         tracksViewChanges={false}
+        coordinate={{
+        latitude: location.latitude,
+        longitude: location.longitude,
+      }}>
+        <Callout tooltip>
+        <View>
+            <View
+            style={{
+              flexDirection:'column',
+              alignSelf:'flex-start',
+              borderRadius:6,
+              backgroundColor:'white',
+              borderColor:'black'
+            }}
+            >
+              <Text
+              style={{
+                fontWeight:'bold',
+                fontSize:20,
+              }}
+              >I am here</Text>
+
+
+            </View>
+
+        </View>
+      </Callout>
+
+
+      </Marker>
+
+      </MapView>
     </TouchableOpacity>
   );
 };

@@ -514,7 +514,12 @@ render(){
 
 
               }}
-              onPress={()=>{ Actions.messages({ title:item.name.substring(0,20)+'...', thread:item}) }}
+              onPress={()=>{ Actions.messages({ 
+                title:item.name.substring(0,20)+'...',
+                thread:item, 
+                loadedMessages:false
+              }) 
+            }}
 
               //onLongPress={()=>{ console.log(' GROUP LONG PRESS')}}
               >

@@ -1,4 +1,3 @@
-  
 //Essa é a aplicação Ngambwe, todos os direitos estão reservados para empresa @Uajiza
 // Uajiza - 2020
 import React, { Component, useCallback } from "react";
@@ -11,7 +10,8 @@ import {
   Image,
   FlatList,
   TextInput,
-  Alert
+  Alert,
+  Linking,
 } from "react-native";
 import { GiftedChat, Bubble, InputToolbar,Composer } from 'react-native-gifted-chat'
 import  { addMessages, messageFETCH} from '../actions/ChatActions';
@@ -61,18 +61,17 @@ constructor(props)
               term:'love',
               locationSeleted:false,
               showSend:false,
-              latitude: 25.819672,
-              longitude: -100.580521,
-
+              latitude: 34.5199,
+              longitude: 105.8701,
+              chatMessagesLoaded:false,
+              timePassed:false,
              // imageURI:'https://firebasestorage.googleapis.com/v0/b/pipocar-61cd8.appspot.com/o/groupCovers%2Fcef4c151ecd7c2fd46180b45fb5bc1a1.jpg?alt=media&token=8beea4de-e1fd-439d-8162-eb7bab61e41c'
     
            
-          };
-
-      
+          };      
   }
 
-
+  
 
 UNSAFE_componentWillMount()
 {
@@ -82,12 +81,20 @@ UNSAFE_componentWillMount()
 
 }
 
- //Render Buble
+
+//Render Buble
 renderBubble = (props) => {
-  const { currentMessage } = props;
-  if (currentMessage.location) {
+  const { loadedMessages } = this.props;
+
+
   
-    return <LocationView location={currentMessage.location} />
+
+  console.log('BOOLEAN PROPS', loadedMessages);
+  const { currentMessage } = props;
+  
+  if (currentMessage.location) {
+  //MapViews are so heavy and slow the App --> This is a better performance of the App
+    return(<LocationView location={currentMessage.location} />)
   
   }
   return <Bubble {...props} />;
@@ -338,8 +345,10 @@ onSendMessage(messages=[])
         createdAt: new Date().getTime(),
          image:this.state.imageFromChat,
           location: {
-            latitude: 25.819672,
-            longitude: -100.580521,
+          //  latitude: this.state.latitude,
+          //  longitude: this.state.longitude,
+          latitude: 37.78825,
+          longitude: -122.4324,
         }, 
       //   image:'https://media.giphy.com/media/8X0djS009EUv600mkv/giphy.gif',
         sent: true,
@@ -500,6 +509,8 @@ renderSend = (props) => {
   ): (
   <Entypo 
     onPress={()=>{
+    //  Linking.canOpenURL('https://www.google.com/');
+   // Linking.openURL('https://www.google.com/');
       Alert.alert(
         'Do  you want to share your location ?',
         'Clicking ok you will allow to share your location',
@@ -520,7 +531,7 @@ renderSend = (props) => {
           } }
         ],
         { cancelable: false }
-      );
+      ); 
   
     }}
     style={{
@@ -604,7 +615,8 @@ renderMessageImage = (props) => {
         alignSelf:'center',
         marginTop:10,
       }}>
-{ this.props.messageFetch === true ? (      <ImageModal
+{ this.props.messageFetch === true ? (
+      <ImageModal
         resizeMode="contain"
       //  imageBackgroundColor="white"
         style={{
@@ -693,11 +705,15 @@ return(
 
 render(){ 
   console.log('MessageScreen');
+  const { loadedMessages } = this.props;
+
+
   return (
     <View 
     style={{
       flex:1
     }}>
+
 
 { this.state.loading === false ? 
 
