@@ -10,6 +10,9 @@
 #import <UMReactNativeAdapter/UMNativeModulesProxy.h>
 #import <UMReactNativeAdapter/UMModuleRegistryAdapter.h>
 
+//GoogleMaps
+#import <GoogleMaps/GoogleMaps.h>
+
 
 
 
@@ -44,6 +47,9 @@ static void InitializeFlipper(UIApplication *application) {
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+
+ [GMSServices provideAPIKey:@"AIzaSyBEWr3TAeeAhJb_DLE88sRIJjKVNwmwE64"]; // add this line using the api key obtained from Google Console
+
     if ([FIRApp defaultApp] == nil) {
     [FIRApp configure];
   }

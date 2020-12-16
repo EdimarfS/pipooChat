@@ -33,6 +33,7 @@ Spinner
 } from '../components/reusebleComponents/index';
 import ImageModal from 'react-native-image-modal';
 import { Modalize } from 'react-native-modalize';
+import {LocationView} from '../components/reusebleComponents/LocationView';
 
 
 
@@ -59,7 +60,9 @@ constructor(props)
               gifs:[],
               term:'love',
               locationSeleted:false,
-              showSend:false
+              showSend:false,
+              latitude: 25.819672,
+              longitude: -100.580521,
 
              // imageURI:'https://firebasestorage.googleapis.com/v0/b/pipocar-61cd8.appspot.com/o/groupCovers%2Fcef4c151ecd7c2fd46180b45fb5bc1a1.jpg?alt=media&token=8beea4de-e1fd-439d-8162-eb7bab61e41c'
     
@@ -74,11 +77,22 @@ constructor(props)
 UNSAFE_componentWillMount()
 {
   const { thread } = this.props;
-  console.log('Thread!!!!!!',thread);
   this.props.messageFETCH(thread);
   this.fetchGifs();
 
 }
+
+ //Render Buble
+renderBubble = (props) => {
+  const { currentMessage } = props;
+  if (currentMessage.location) {
+  
+    return <LocationView location={currentMessage.location} />
+  
+  }
+  return <Bubble {...props} />;
+}; 
+
 
 //Open Modal
 onOpen()
@@ -189,8 +203,6 @@ return (
     this._checkPermissions();
     this.setState({
       imageSelected: false,
-
-      
   })
 
 
@@ -326,8 +338,8 @@ onSendMessage(messages=[])
         createdAt: new Date().getTime(),
          image:this.state.imageFromChat,
           location: {
-              latitude: 37.78825,
-              longitude: -122.4324,
+            latitude: 25.819672,
+            longitude: -100.580521,
         }, 
       //   image:'https://media.giphy.com/media/8X0djS009EUv600mkv/giphy.gif',
         sent: true,
@@ -692,6 +704,7 @@ render(){
     <GiftedChat
    // showUserAvatar
     //showAvatarForEveryMessage
+    renderBubble={this.renderBubble}
     renderMessageImage={this.renderMessageImage}
     renderComposer={this.renderComposer}
     renderUsernameOnMessage
