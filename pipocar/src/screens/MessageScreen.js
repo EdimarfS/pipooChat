@@ -1,7 +1,7 @@
   
 //Essa é a aplicação Ngambwe, todos os direitos estão reservados para empresa @Uajiza
 // Uajiza - 2020
-import React, { Component } from "react";
+import React, { Component, useCallback } from "react";
 import { 
   View, 
   Text, 
@@ -10,9 +10,10 @@ import {
   TouchableOpacity,
   Image,
   FlatList,
-  TextInput
+  TextInput,
+  Alert
 } from "react-native";
-import { GiftedChat } from 'react-native-gifted-chat'
+import { GiftedChat, Bubble, InputToolbar,Composer } from 'react-native-gifted-chat'
 import  { addMessages, messageFETCH} from '../actions/ChatActions';
 import { connect } from 'react-redux';
 import firestore from '@react-native-firebase/firestore';
@@ -20,6 +21,7 @@ import auth from '@react-native-firebase/auth';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
 import MaterialCommunityIcons  from 'react-native-vector-icons/MaterialCommunityIcons';
+import Entypo from 'react-native-vector-icons/Entypo';
 import Ionicons  from 'react-native-vector-icons/Ionicons';
 import ImagePicker from 'react-native-image-crop-picker';
 import {check, PERMISSIONS, RESULTS} from 'react-native-permissions';
@@ -31,7 +33,6 @@ Spinner
 } from '../components/reusebleComponents/index';
 import ImageModal from 'react-native-image-modal';
 import { Modalize } from 'react-native-modalize';
-
 
 
 
@@ -57,6 +58,8 @@ constructor(props)
               imageID: this.uniqueId(),
               gifs:[],
               term:'love',
+              locationSeleted:false,
+              showSend:false
 
              // imageURI:'https://firebasestorage.googleapis.com/v0/b/pipocar-61cd8.appspot.com/o/groupCovers%2Fcef4c151ecd7c2fd46180b45fb5bc1a1.jpg?alt=media&token=8beea4de-e1fd-439d-8162-eb7bab61e41c'
     
@@ -76,7 +79,6 @@ UNSAFE_componentWillMount()
   this.fetchGifs();
 
 }
-
 
 //Open Modal
 onOpen()
@@ -122,7 +124,6 @@ fetchGifs =  async () => {
     this.setState({
       gifs: res.data,
     })
-    console.log('GIPHY, ', this.state.gifs);
 
 
   }catch(error) { 
@@ -314,8 +315,58 @@ onSendMessage(messages=[])
 
     this.props.addMessages(messages);
 
+ if(this.state.locationSeleted){
 
     firestore()
+    .collection('MESSAGE_THREADS')
+    .doc(thread._id)
+    .collection('MESSAGES')
+    .add({
+        text:'location',
+        createdAt: new Date().getTime(),
+         image:this.state.imageFromChat,
+          location: {
+              latitude: 37.78825,
+              longitude: -122.4324,
+        }, 
+      //   image:'https://media.giphy.com/media/8X0djS009EUv600mkv/giphy.gif',
+        sent: true,
+        // Mark the message as received, using two tick
+        received: true,
+        // Mark the message as pending with a clock loader
+      //  penfing: true,
+        // Any additional custom parameters are passed through
+        user : {
+            _id: currentUser.uid,
+            name: auth().currentUser.displayName,
+            avatar: auth().currentUser.photoURL,//this.createUserAvatarUrl(), 
+        },
+        
+    })
+
+
+    firestore()
+    .collection('MESSAGE_THREADS')
+    .doc(thread._id)
+    .set(
+        {
+        latestMessage: {
+            text:'location',
+            image:this.state.imageFromChat,
+            createdAt: new Date().getTime()
+        }
+        },
+        { merge: true }
+    ).then(()=>{
+      this.setState({
+        imageSelected:'',
+        imageFromChat:'',
+        locationSeleted:false,
+        showSend:false,
+    })
+    })
+ }else{
+     firestore()
     .collection('MESSAGE_THREADS')
     .doc(thread._id)
     .collection('MESSAGES')
@@ -356,7 +407,9 @@ onSendMessage(messages=[])
         imageSelected:'',
         imageFromChat:'',
     })
-    })
+    }) 
+
+  }
    
 }
 
@@ -377,7 +430,6 @@ renderSend = (props) => {
   
 { this.state.imageSelected === true  ?
   (
-  
   <View>
       <TouchableOpacity 
       onPress={this.findNewImage}
@@ -406,29 +458,91 @@ renderSend = (props) => {
   <EvilIcons 
   onPress={this.findNewImage}
   style={{
-  marginTop:'22%',
+  marginTop:'15%',
   marginRight:10,
   }}
   name="image" 
   size={36} 
-  color="black" 
+  color="grey" 
   /> 
+    
+  { 
+  this.state.locationSeleted === true ? 
+  (
+  <Entypo 
+  onPress={()=>{
+    this.setState({
+      locationSeleted:false,
+      showSend:false,
+    })
+
+  }}
+  style={{
+  marginTop:'15%',
+  marginRight:10,
+  }}
+  name="location-pin" 
+  size={27} 
+  color="red" 
+  /> 
+  ): (
+  <Entypo 
+    onPress={()=>{
+      Alert.alert(
+        'Do  you want to share your location ?',
+        'Clicking ok you will allow to share your location',
+        [
+          {
+            text: "Cancel",
+            onPress: () => console.log("Cancel Pressed"),
+            style: "cancel"
+          },
+          { text: "OK", onPress: () => {
+            this.setState({
+              locationSeleted:true,
+              showSend:true,
+            })
+  
+  
+  
+          } }
+        ],
+        { cancelable: false }
+      );
+  
+    }}
+    style={{
+    marginTop:'15%',
+    marginRight:10,
+    }}
+    name="location-pin" 
+    size={28} 
+    color="grey" 
+    /> )}
+
 
 <MaterialCommunityIcons 
   onPress={this.onOpen.bind(this)}
   style={{
-    marginTop:'22%',
+    marginTop:'15.98%',
     marginRight:10,
   }}
+name="sticker-emoji" size={28} color="grey" />
 
-name="sticker-emoji" size={27} color="black" />
+
+
 </View>
   
-  
-  }
+}
 
 
-  <Send {...props}>
+{ this.state.locationSeleted === true ? (  
+<Send 
+  {...props}
+  alwaysShowSend={this.state.showSend}
+  text={(this.state.showSend  === true && this.state.locationSeleted === true) ? 'location' : this.props.text}
+
+  >
   <View style={styles.sendingContainer}>
     <Text
     style={{
@@ -440,7 +554,28 @@ name="sticker-emoji" size={27} color="black" />
 
   
   </View>
-  </Send>
+  </Send>):(
+    <Send 
+    {...props}
+    alwaysShowSend={this.state.showSend}
+  //  text={(this.state.showSend  === true && this.state.locationSeleted === true) ? 'my location' : this.props.text}
+  
+    >
+    <View style={styles.sendingContainer}>
+      <Text
+      style={{
+        fontWeight:'bold',
+        fontSize:16,
+        color:'#05c7fc'
+      }}
+      >Send</Text>
+  
+    
+    </View>
+    </Send>
+    
+
+  )}
 
 
   </View>
@@ -519,6 +654,31 @@ renderHeader = () => {
   )
 }
 
+
+
+renderComposer = (props) =>{
+
+return(
+  <Composer
+  {...props}
+  textInputStyle={{
+    textAlignVertical: 'top',
+  //  backgroundColor: 'red',
+    overflow: 'hidden',
+    borderRadius: 10,
+    padding: 10
+  }}
+
+/>
+   
+)
+
+
+
+}
+
+
+
 render(){ 
   console.log('MessageScreen');
   return (
@@ -533,6 +693,7 @@ render(){
    // showUserAvatar
     //showAvatarForEveryMessage
     renderMessageImage={this.renderMessageImage}
+    renderComposer={this.renderComposer}
     renderUsernameOnMessage
     minComposerHeight={40}
     minInputToolbarHeight={60}

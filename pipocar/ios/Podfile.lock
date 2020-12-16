@@ -238,8 +238,6 @@ PODS:
   - EXFont (8.3.0):
     - UMCore
     - UMFontInterface
-  - EXGL_CPP (9.1.2):
-    - React-jsi
   - EXImageLoader (1.2.0):
     - React-Core
     - UMCore
@@ -642,6 +640,8 @@ PODS:
     - React-Core
   - react-native-camera/RN (3.40.0):
     - React-Core
+  - react-native-maps (0.27.1):
+    - React
   - react-native-onesignal (3.9.2):
     - OneSignal (= 2.15.4)
     - React (< 1.0.0, >= 0.13.0)
@@ -786,7 +786,6 @@ DEPENDENCIES:
   - EXConstants (from `../node_modules/expo-constants/ios`)
   - EXFileSystem (from `../node_modules/expo-file-system/ios`)
   - EXFont (from `../node_modules/expo-font/ios`)
-  - EXGL_CPP (from `../node_modules/expo-gl-cpp/cpp`)
   - EXImageLoader (from `../node_modules/expo-image-loader/ios`)
   - EXPermissions (from `../node_modules/expo-permissions/ios`)
   - FBLazyVector (from `../node_modules/react-native/Libraries/FBLazyVector`)
@@ -846,6 +845,7 @@ DEPENDENCIES:
   - React-jsiexecutor (from `../node_modules/react-native/ReactCommon/jsiexecutor`)
   - React-jsinspector (from `../node_modules/react-native/ReactCommon/jsinspector`)
   - react-native-camera (from `../node_modules/react-native-camera`)
+  - react-native-maps (from `../node_modules/react-native-maps`)
   - react-native-onesignal (from `../node_modules/react-native-onesignal`)
   - react-native-webrtc (from `../node_modules/react-native-webrtc`)
   - React-RCTActionSheet (from `../node_modules/react-native/Libraries/ActionSheetIOS`)
@@ -939,8 +939,6 @@ EXTERNAL SOURCES:
     :path: "../node_modules/expo-file-system/ios"
   EXFont:
     :path: "../node_modules/expo-font/ios"
-  EXGL_CPP:
-    :path: "../node_modules/expo-gl-cpp/cpp"
   EXImageLoader:
     :path: "../node_modules/expo-image-loader/ios"
   EXPermissions:
@@ -1015,6 +1013,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/jsinspector"
   react-native-camera:
     :path: "../node_modules/react-native-camera"
+  react-native-maps:
+    :path: "../node_modules/react-native-maps"
   react-native-onesignal:
     :path: "../node_modules/react-native-onesignal"
   react-native-webrtc:
@@ -1111,7 +1111,6 @@ SPEC CHECKSUMS:
   EXConstants: 6ec1ea4a13ec734c7e2274bc9e5b7408d73007a1
   EXFileSystem: efd6c0225f90c8b2c85131d578a09e13197e8b70
   EXFont: 91111ccdce7c739ff51c5fcb484f2dd9a9a4ce45
-  EXGL_CPP: 6c219ce70247a7dde4bc90eff339ef743bf2fddb
   EXImageLoader: 0b33400e65955c5510a09afc2f9bb369a81e1c6e
   EXPermissions: 5797c6c72efb411b2bbf502cd5acd841e3ffeefa
   FBLazyVector: 878b59e31113e289e275165efbe4b54fa614d43d
@@ -1178,6 +1177,7 @@ SPEC CHECKSUMS:
   React-jsiexecutor: b56c03e61c0dd5f5801255f2160a815f4a53d451
   React-jsinspector: 8e68ffbfe23880d3ee9bafa8be2777f60b25cbe2
   react-native-camera: 5c1fbfecf63b802b8ca4a71c60d30a71550fb348
+  react-native-maps: f4b89da81626ad7f151a8bfcb79733295d31ce5c
   react-native-onesignal: 9fdf8cf885105266960a75567a38823bd824a22b
   react-native-webrtc: 40eca4cac200fda34fb843da07e3402211bbbd10
   React-RCTActionSheet: 53ea72699698b0b47a6421cb1c8b4ab215a774aa
@@ -1223,6 +1223,6 @@ SPEC CHECKSUMS:
   Yoga: 7d13633d129fd179e01b8953d38d47be90db185a
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 
-PODFILE CHECKSUM: 861a906968952890f0f6cc88acc8845ab933b34b
+PODFILE CHECKSUM: b444b569c5c4578d7a848e0f4a78fc7cb84ac0a3
 
 COCOAPODS: 1.10.0

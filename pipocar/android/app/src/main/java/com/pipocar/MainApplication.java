@@ -2,6 +2,7 @@ package com.pipocar;
 // com.myapp should be your package name
 import com.pipocar.generated.BasePackageList;
 import com.oblador.vectoricons.VectorIconsPackage;
+import com.airbnb.android.react.maps.MapsPackage;
 
 
 
@@ -22,8 +23,7 @@ import com.airbnb.android.react.lottie.LottiePackage;
 import org.unimodules.adapters.react.ModuleRegistryAdapter;
 import org.unimodules.adapters.react.ReactModuleRegistryProvider;
 import org.unimodules.core.interfaces.SingletonModule;
-
-
+import com.airbnb.android.react.maps.MapsPackage;
 
 
 public class MainApplication extends Application implements ReactApplication {
@@ -53,7 +53,7 @@ new ReactModuleRegistryProvider(new BasePackageList().getPackageList(), null);
           new LottiePackage();
           new LottiePackage();
           new com.oney.WebRTCModule.WebRTCModulePackage(); // <-- Add this line
-
+         // new MapsPackage();
           
           
           // Add unimodules
@@ -68,6 +68,17 @@ new ReactModuleRegistryProvider(new BasePackageList().getPackageList(), null);
 
           return packages;
         }
+
+        
+
+
+
+
+
+
+
+
+        
 
         @Override
         protected String getJSMainModuleName() {

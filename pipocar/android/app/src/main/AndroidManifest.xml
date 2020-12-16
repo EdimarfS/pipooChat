@@ -1,4 +1,4 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" 
 package="com.pipocar">
 
   <uses-permission android:name="android.permission.INTERNET"/>
@@ -12,21 +12,20 @@ package="com.pipocar">
   <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
   <uses-permission android:name="android.permission.WAKE_LOCK" />
 
-
-
   <uses-feature android:name="android.hardware.camera" android:required="false" />
   <uses-feature android:name="android.hardware.camera.front" android:required="false" />
   <!-- Optional permissions -->
   <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <application
-      android:name=".MainApplication"
-      android:largeHeap="true"
-      usesCleartextTraffic="true"
-      android:label="@string/app_name"
-      android:icon="@mipmap/ic_launcher"
-      android:roundIcon="@mipmap/ic_launcher_round"
-      android:allowBackup="false"
-      android:theme="@style/AppTheme">
+    android:name=".MainApplication"
+    android:largeHeap="true"
+    usesCleartextTraffic="true"
+    android:label="@string/app_name"
+    android:icon="@mipmap/ic_launcher"
+    android:roundIcon="@mipmap/ic_launcher_round"
+    android:allowBackup="false"
+    android:theme="@style/AppTheme">
+
       <activity
         android:name=".MainActivity"
         android:label="@string/app_name"
@@ -40,6 +39,16 @@ package="com.pipocar">
         </intent-filter>
       </activity>
       <activity android:name="com.facebook.react.devsupport.DevSettingsActivity" />
-    </application>
+
+
+    <meta-data
+     android:name="com.google.android.geo.API_KEY"
+     android:value="AIzaSyBEWr3TAeeAhJb_DLE88sRIJjKVNwmwE64"
+     
+     />
+  
+    <!-- You will also only need to add this uses-library tag -->
+    <uses-library android:name="org.apache.http.legacy" android:required="false"/>
+    </application> 
 
 </manifest>
