@@ -58,7 +58,7 @@ constructor(props)
               messageFetched:false,
               imageID: this.uniqueId(),
               gifs:[],
-              term:'love',
+              term:'',
               locationSeleted:false,
               showSend:false,
               latitude: 34.5199,
@@ -206,6 +206,8 @@ return (
     this._checkPermissions();
     this.setState({
       imageSelected: false,
+      showSend:false,
+      otherOptionClicked:true
   })
 
 
@@ -425,6 +427,7 @@ onSendMessage(messages=[])
       this.setState({
         imageSelected:'',
         imageFromChat:'',
+        showSend:false,
         otherOptionClicked:false,
 
     })
@@ -461,7 +464,14 @@ renderSend = (props) => {
   }}
   >
       <TouchableOpacity 
-      onPress={this.findNewImage}
+      onPress={()=>{
+        this.setState({
+          imageSelected:false,
+
+
+    
+        })
+      }}
       >
       <Image
       source={{
