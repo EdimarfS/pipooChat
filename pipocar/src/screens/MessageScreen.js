@@ -34,6 +34,7 @@ Spinner
 import ImageModal from 'react-native-image-modal';
 import { Modalize } from 'react-native-modalize';
 import {LocationView} from '../components/reusebleComponents/LocationView';
+import ImageBlurLoading from "react-native-image-blur-loading";
 
 
 
@@ -152,6 +153,7 @@ onEdit = (newTerm) =>  {
   this.setState({
     term:newTerm
   });
+
   this.fetchGifs();
 }
 
@@ -645,6 +647,7 @@ renderMessageImage = (props) => {
           height:150,
           marginLeft:10,
           marginRight:10,
+          marginTop:5,
          // borderRadius:10,
           alignSelf:'center',
   
@@ -682,6 +685,7 @@ renderHeader = () => {
       <TextInput
       autoCapitalize="none"
       placeholder="Search Giphy"
+      autoCorrect={false}
       style={{
         backgroundColor:'lightgrey',
         width:'100%',
@@ -813,20 +817,23 @@ render(){
               imageFromChat:item.images.original.url,
               imageSelected:true,
               showSend:true,
-              otherOptionClicked:true
+              otherOptionClicked:true,
+
 
             })
           this.onClose();
           }}
           >
-          <Image
+          <ImageBlurLoading
             resizeMode='contain'
             style={{
               width:100,
               height:100,
-             // backgroundColor:'red'
+              marginTop:5,
+              backgroundColor:'white'
             }}
             source={{uri: item.images.original.url}}
+            thumbnailSource={{uri: item.images.original.url}}
           />
           </TouchableOpacity>
           </View>

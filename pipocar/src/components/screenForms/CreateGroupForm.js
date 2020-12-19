@@ -40,7 +40,7 @@ class  CreateGroupForm extends Component {
           progress: 0,
           imageURI:'https://firebasestorage.googleapis.com/v0/b/pipocar-61cd8.appspot.com/o/groupCovers%2Fcef4c151ecd7c2fd46180b45fb5bc1a1.jpg?alt=media&token=8beea4de-e1fd-439d-8162-eb7bab61e41c',
           category:'Travel',
-          groupname:'My group',
+          groupname:'',
           finishStep:false
       };
   }
@@ -263,7 +263,7 @@ processUpload = (imageUrl) => {
 
 onButtonPress()
 {
-  const { groupname } = this.props;
+  const { groupname } = this.state;
 
 
 
@@ -278,11 +278,15 @@ onButtonPress()
         style: "cancel"
       },
       { text: "OK", onPress: () => { 
+
+
+          if(groupname!='')
+         {
           this.setState({
             finishStep:true
           })
-         
             this.UploadPublish();
+          }
           
 
        }}
@@ -296,20 +300,6 @@ onButtonPress()
 
    
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -359,7 +349,7 @@ render(){
       <View style={{ 
         alignSelf:'center', 
         marginTop:10}}>
-      <Text style={{ fontWeight:'bold', color:'grey'}}>Share your picture with others</Text>
+      <Text style={{ fontWeight:'bold', color:'grey'}}>Create a Room to connect your friends</Text>
       </View>
       
       <View>

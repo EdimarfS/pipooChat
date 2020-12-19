@@ -325,6 +325,7 @@ onPress={()=>{
                  top:5,
                  marginBottom:'6%',
                  flexDirection:'row',
+                // marginTop:5,
                 // backgroundColor:'red',           
 
                }}>
@@ -333,6 +334,7 @@ onPress={()=>{
                    width:40,
                    height:40,
                    borderRadius:50, 
+   
                  }}
                  thumbnailSource={{ uri: item.profilepicture}}
                  source={{ uri: item.profilepicture}}
@@ -557,7 +559,7 @@ onPress={()=>{
       <View
       style={{
         alignSelf:'center',
-        marginTop:5,
+
       }}
       >
         <Image
