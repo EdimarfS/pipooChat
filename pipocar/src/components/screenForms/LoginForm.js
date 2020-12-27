@@ -19,6 +19,7 @@ import {
   emailCHANGED, 
   passwordCHANGED, 
   loginUSER, 
+  emptyALL_FIELDS
 } from '../../actions/index';
 import { Spinner} from '../reusebleComponents/index';
 
@@ -173,7 +174,9 @@ render(){
       
       }
       <TouchableOpacity
-      onPress={()=>{ Actions.forgetpassword({type:'replace'})}}
+      onPress={()=>{ 
+        this.props.emptyALL_FIELDS();
+        Actions.forgetpassword({type:'replace'})}}
       >
       <View       
       style={{
@@ -192,7 +195,9 @@ render(){
       </TouchableOpacity>
 
       <TouchableOpacity
-      onPress={()=>{Actions.sign({type:'replace'})}}
+      onPress={()=>{
+        this.props.emptyALL_FIELDS();
+        Actions.sign({type:'replace'})}}
       >
       <View 
       style={{
@@ -249,4 +254,5 @@ export default connect(mapStateToProps, {
   emailCHANGED, 
   passwordCHANGED, 
   loginUSER, 
+  emptyALL_FIELDS
  })(LoginForm);

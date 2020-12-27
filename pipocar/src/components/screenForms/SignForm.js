@@ -17,7 +17,8 @@ import {
 import { 
     emailCHANGED, 
     passwordCHANGED, 
-    createUserACCOUNT
+    createUserACCOUNT,
+    emptyALL_FIELDS,
   } from '../../actions/index';
 import { connect } from 'react-redux';
 import { Spinner } from '../reusebleComponents/index';
@@ -111,7 +112,9 @@ render(){
         />
       </View>
       <TouchableOpacity 
-      onPress={()=>{ Actions.login({type:'replace'})}}
+      onPress={()=>{ 
+      this.props.emptyALL_FIELDS();  
+      Actions.login({type:'replace'})}}
       >
       <View       
       style={{
@@ -171,5 +174,6 @@ export default connect(mapStateToProps, {
   emailCHANGED, 
   passwordCHANGED, 
   createUserACCOUNT,
+  emptyALL_FIELDS
 
  })(SignForm);

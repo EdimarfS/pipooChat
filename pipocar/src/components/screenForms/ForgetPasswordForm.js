@@ -17,6 +17,7 @@ import {
   import { 
     emailCHANGED, 
     forgotPASSWORD,
+    emptyALL_FIELDS
 
   } from '../../actions/index';
 import {connect } from 'react-redux';
@@ -124,7 +125,10 @@ render(){
       </View>
 
 
-      <TouchableOpacity  onPress={()=>{ Actions.login({type:'replace'})}}>
+      <TouchableOpacity  onPress={()=>{ 
+        
+        this.props.emptyALL_FIELDS();
+        Actions.login({type:'replace'})}}>
       <View       
       style={{
         marginBottom:30,
@@ -179,6 +183,7 @@ const mapStateToProps = ({ auth }) => {
 export default connect(mapStateToProps, { 
   emailCHANGED, 
   forgotPASSWORD,
+  emptyALL_FIELDS
 
   
 })(ForgetPasswordForm);
