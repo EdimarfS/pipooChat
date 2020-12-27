@@ -76,7 +76,7 @@ UNSAFE_componentWillMount()
 { 
 
     //we are calling here the funtion to get all the groups
-    this.fetchCREATE_GROUP();
+    this.fetchGROUP();
   
 
 }
@@ -120,15 +120,10 @@ handleSearch = (text) => {
 
 
 
-
-
-
-
-
-
 //This functions is fetching the group names that we created 
-fetchCREATE_GROUP = () => {
 
+
+fetchGROUP = () => {
   console.log('Fetch Data Group!!!!!!!!!!!')
  firestore()
  .collection('MESSAGE_THREADS')
@@ -155,8 +150,6 @@ fetchCREATE_GROUP = () => {
 
 }
 
-
-
   data = [
     {
         travel : 'Travel',
@@ -179,16 +172,13 @@ fetchCREATE_GROUP = () => {
         
         other : 'Other',
         key:7,
-
-
-        
     }
     
     
     ]
 
 
-
+/* 
 //Fecthing Groups
 fetchCreateGroup = () => {
 
@@ -214,7 +204,7 @@ fetchCreateGroup = () => {
      })
  }) 
 
-}
+} */
 
 
 emptyGROUP = () => {
@@ -453,7 +443,7 @@ render(){
         <FlatList
           data={this.state.data}
           refreshing={this.state.onRefreshing}
-          onRefresh={this.fetchCREATE_GROUP}
+          onRefresh={this.fetchGROUP}
           ListEmptyComponent={this.emptyGROUP}
           showsVerticalScrollIndicator={false}
           showsHorizontalScrollIndicator={false}

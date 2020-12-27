@@ -7,21 +7,15 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { 
-  Input,
-  Button,
   InputDataEdit
 } from '../reusebleComponents/index';
 import { 
-  emailCHANGED, 
-  passwordCHANGED, 
   userUPDATE_DATA,
   createUSER
 } from '../../actions/index';
 import { connect } from 'react-redux';
-import auth from '@react-native-firebase/auth';
 import ImageBlurLoading from 'react-native-image-blur-loading';
 import { Spinner } from '../reusebleComponents/Spinner';
-import { Actions } from "react-native-gifted-chat";
 class  UserPersonalDataForm extends Component {
 
   constructor(props)
@@ -69,7 +63,7 @@ render(){
       marginLeft:10,
       marginRight:10,
       //backgroundColor:'#f2f2f2',
-  //    backgroundColor:'lightgrey'
+      //backgroundColor:'lightgrey'
 
     }}>  
     
@@ -230,8 +224,6 @@ const mapStateToProps = ({ auth }) => {
 }
 
 export default connect(mapStateToProps, {
-  emailCHANGED, 
-  passwordCHANGED, 
   userUPDATE_DATA,
   createUSER
  })(UserPersonalDataForm);

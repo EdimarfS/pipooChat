@@ -235,9 +235,7 @@ processUpload = (imageUrl) => {
     var website = this.state.website;
     const userID = auth().currentUser.uid;
     const date = new Date().getTime();
-    
 
-            
   var storeDATA = {
         title : Title,
         category: Categoty,
@@ -253,14 +251,7 @@ processUpload = (imageUrl) => {
 
   }
 
-  //Store field 
-      
-/*   database().ref(`/store/images`)
-  .set(storeDATA); */
-
   firestore().collection('EVENT').add(storeDATA);
- 
-
 
   database().ref(`/users/${userID}/event/${imageID}`)
   .set(storeDATA);
@@ -272,8 +263,6 @@ processUpload = (imageUrl) => {
       caption:'',
       uri:'',
   })      
-  
-  
 
   Actions.pop();
   Actions.refresh({});

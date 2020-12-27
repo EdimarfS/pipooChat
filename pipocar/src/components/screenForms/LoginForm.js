@@ -80,6 +80,8 @@ onButtonPress()
 
 render(){ 
   console.log('LoginForm');
+
+  console.log('LOADING!!!!!!!!', this.props.loading);
   return (
     <View 
     style={{
@@ -169,7 +171,6 @@ render(){
         
       </View>
       
-      
       }
       <TouchableOpacity
       onPress={()=>{ Actions.forgetpassword({type:'replace'})}}
@@ -186,7 +187,7 @@ render(){
       fontWeight:'bold',
       color:'#05c7fc'
 
-      }}>Forget your accout</Text>
+      }}>Forget your email or password</Text>
       </View>
       </TouchableOpacity>
 

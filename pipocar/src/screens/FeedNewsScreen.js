@@ -375,6 +375,8 @@ onPress={()=>{
                <TouchableOpacity 
                onPress={()=>{ 
 
+                Actions.comments({ postDetails: item })
+/* 
                 this.setState({
                   commentsTransaction: true,
                 })
@@ -383,16 +385,13 @@ onPress={()=>{
                   this.setState({
                     commentsTransaction: false,
                   })
-                Actions.comments({ postDetails: item })
-                }
+
+                } */
 
               
               }}
                style={{  alignSelf:'center'}}>
-               <Image
-                resizeMode="contain"
-              
-                imageBackgroundColor="lightgrey"
+               <Image              
                 style={{
                   width:400,
                   height:400,

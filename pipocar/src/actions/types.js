@@ -7,12 +7,13 @@ export const CREATE_ACCOUNT_USER_FAIL = "create_account_user_fail";
 export const LOGIN_USER = "login_user";
 export const CREATE_USER_SUCCESS = "create_user_success";
 export const USER_CREATED = "user_created";
-export const USER_CREATED_SUCCESS = "user_created";
+export const USER_CREATED_SUCCESS = "user_created_success";
 export const ACCOUNT_FIELD_EMPTY = "account_field_empty"
 export const RESET_PASSWORD_FAIL = "reset_password_fail";
 export const RESET_PASSWORD_SUCCESS = "reset_password_success";
 export const USER_UPDATED = "user_updated";
 export const CREATED_ACCOUNT = "created_account"
+export const USER_LOG_OUT = "user_logout"
 
 
 

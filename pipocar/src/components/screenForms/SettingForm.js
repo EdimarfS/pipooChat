@@ -30,14 +30,6 @@ import ImageBlurLoading from 'react-native-image-blur-loading';
 
 //AntDesign
 //import IconEvilIcons from 'react-native-vector-icons/EvilIcons';
-
-import { 
-  emailCHANGED, 
-  passwordCHANGED, 
-  userUPDATE_DATA,
-  createUSER,
-  updateUSER
- } from '../../actions/index'; 
 import { connect } from 'react-redux';
 import ImageModal from 'react-native-image-modal';
 
@@ -136,15 +128,6 @@ class  SettingForm extends Component {
     
 
 
-
-    onButtonPress()
-    {
-      console.log("Bottom pressed!");
-      const { userName, userID, userLocation, userBio } = this.state;
-   //   this.props.updateUSER(userName,userID,userLocation, userBio);
-    
-
-    }
 
 
 
@@ -754,20 +737,7 @@ render(){
 }
 }
 
-const mapStateToProps = ({ auth }) => {
-  
-  const { loading, errorOncreateAccount, userName, userID, userLocation, userBio, userDateOfRegistration} = auth;
-
-  return{ loading, errorOncreateAccount, userName, userID, userLocation, userBio, userDateOfRegistration};
-}
-
-export default connect(mapStateToProps, {
-  emailCHANGED, 
-  passwordCHANGED, 
-  userUPDATE_DATA,
-  createUSER,
-  updateUSER
- })(SettingForm);
+export default SettingForm;
 
 
 

@@ -18,8 +18,7 @@ class  LoginScreen extends Component {
 render(){ 
   console.log('LoginScreen');
   return (<LoginForm/>);
-}
-}
+}}
 
 
 

@@ -110,64 +110,61 @@ class  CreateGroupForm extends Component {
     });
     } 
           
-              //S4
+    //S4
     s4 = () => {
                   return Math.floor((1 + Math.random()) * 0x10000)
                     .toString(16)
                     .substring(1);
                 };
+    //Unique ID
+    uniqueId = () => {
+        return (
+          this.s4() + this.s4() + "-" + this.s4() + "-" + this.s4() + "-" + this.s4() + "-" + this.s4() + "-" + this.s4() + "-" + this.s4()
+        );
+      };
+
           
-              //UploadPublish
+    //UploadPublish
     UploadPublish = () => {
          
-                    this.uploadImage(this.state.imageURI);
-          
-     
-
-  
+        this.uploadImage(this.state.imageURI);
                
-              }
+    }
               
-              //Unique ID
-              uniqueId = () => {
-                  return (
-                    this.s4() + this.s4() + "-" + this.s4() + "-" + this.s4() + "-" + this.s4() + "-" + this.s4() + "-" + this.s4() + "-" + this.s4()
-                  );
-                };
-          
-          
-              //ImagePicker
-              findNewImage = async () => {
-                  this._checkPermissions();
-          
-          
-                  //Here we open the camera
-                  await ImagePicker.openPicker({
-                      mediaTypes: 'Images',
-                      width: 400,
-                      height: 400,
-                      cropping: true,
-  
-                      
-                  }).then(image => {
-                    this.setState({
-                      imageSelected: true,
-                      imageId: this.uniqueId(),
-                      imageURI: image.path,
-                      
-                  })
-                  }).catch(error => {
-                    console.log(error)
-                    this.setState({
-                      imageSelected: false
-                    });
 
-                  })
+          
+//ImagePicker
+findNewImage = async () => {
+    this._checkPermissions();
+
+
+    //Here we open the camera
+    await ImagePicker.openPicker({
+        mediaTypes: 'Images',
+        width: 400,
+        height: 400,
+        cropping: true,
+
+        
+    }).then(image => {
+      this.setState({
+        imageSelected: true,
+        imageId: this.uniqueId(),
+        imageURI: image.path,
+        
+    })
+    }).catch(error => {
+      console.log(error)
+      this.setState({
+        imageSelected: false
+      });
+
+    })
 }
 
 
 
-//Upload File ----------------------------------------->
+//Upload File
 
 uploadImage = async (uri) => {
   var that = this;
@@ -202,8 +199,6 @@ uploadImage = async (uri) => {
       })
   }
   )
-  
-
 
 }
 
@@ -217,9 +212,6 @@ processUpload = (imageUrl) => {
       groupcover:imageUrl,
 
   }
-
-  //Group field
-      
       firestore()
       .collection('MESSAGE_THREADS')
       .add({
@@ -244,15 +236,12 @@ processUpload = (imageUrl) => {
 
       })
 
-
   this.setState({
       uploading: false,
       imageSelected: false,
       caption:'',
       uri:'',
   })      
-  
-  
 
   Actions.pop();
   Actions.refresh({});

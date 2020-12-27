@@ -190,8 +190,6 @@ processUpload = (imageUrl) => {
       likes:0,
       comments_number: 0,
       liked: false,
-  
-
   }
   //Group field --> FIRESTORE
   firestore().collection('POST')
@@ -200,18 +198,12 @@ processUpload = (imageUrl) => {
   database().ref(`/users/${userID}/photos/${imageID}`)
   .set(photoObject);
 
-                                        
-                      
-
   this.setState({
       uploading: false,
       imageSelected: false,
       caption:'',
       imageURI:'https://firebasestorage.googleapis.com/v0/b/pipocar-61cd8.appspot.com/o/groupCovers%2Fcef4c151ecd7c2fd46180b45fb5bc1a1.jpg?alt=media&token=8beea4de-e1fd-439d-8162-eb7bab61e41c'
     }) 
-    
-    
-
 
 //Actions Here
 Actions.pop();

@@ -19,6 +19,7 @@ import {
      RESET_PASSWORD_SUCCESS,
      USER_PERSONAL_INFO_FETCH,
      CREATED_ACCOUNT,
+     USER_LOG_OUT,
 
      
       
@@ -47,13 +48,33 @@ export const loginUSER = ({ email, password }) => {
     
         dispatch({type: LOGIN_USER})
        { 
+        
             auth().signInWithEmailAndPassword(email, password)
-        .then(user => loginUSER_SUCCES(dispatch, user))
-        .catch(() => loginUSER_FAIL(dispatch));
+            .then(user => loginUSER_SUCCES(dispatch, user))
+            .catch(() => loginUSER_FAIL(dispatch));
         }
     }
+}
 
+const loginUSER_SUCCES = (dispatch, user) => {
 
+    dispatch({
+         type: LOGIN_USER_SUCCESS,
+         payload: user,
+     })
+   Actions.main(
+       {
+     type : 'replace'
+     }
+ )
+     
+ } 
+
+ const loginUSER_FAIL = (dispatch) => {
+
+    dispatch({
+        type:LOGIN_USER_FAIL,
+    })
 }
 
 export const createUserACCOUNT = ({ email, password}) => {
@@ -65,9 +86,26 @@ export const createUserACCOUNT = ({ email, password}) => {
         .catch(() => createACCOUNT_FAIL(dispatch));
     }
 
-
-
     }
+}
+
+const createACCOUNT_SUCCESS = (dispatch, user) => {
+    
+    dispatch({
+        type: CREATE_USER_SUCCESS,
+        payload: user,
+    })
+    Actions.userpersonaldata({
+        type:'replace'
+    });
+    
+} 
+
+const createACCOUNT_FAIL = (dispatch) => {
+
+    dispatch({
+        type:CREATE_ACCOUNT_USER_FAIL,
+    })
 }
 
 
@@ -89,17 +127,12 @@ export const userUPDATE_DATA= ({prop, value}) => {
 
     return(dispatch) => {
         dispatch({type: USER_CREATED})
+        {        
         var today = new Date();
         var date = today.getDate()+'.'+(today.getMonth()+1)+'.'+today.getFullYear();
         var userDateOfRegistration = date;
     
-        auth().currentUser.updateProfile({
-
-            displayName:userName,
-            photoURL:ImageDefault,
-            
-
-        });
+        auth().currentUser.updateProfile({ displayName:userName, photoURL:ImageDefault });
         database().ref(`/users/${currentUser.uid}`)
         .update({
                 userName, 
@@ -108,15 +141,22 @@ export const userUPDATE_DATA= ({prop, value}) => {
                 userBio, 
                 userDateOfRegistration
             })
-        .then(()=>{
-            dispatch({type: USER_CREATED_SUCCESS})
-            Actions.main({type:'replace'});
-        //  Actions.refresh({});
-        })
-    
+        .then(()=> userCREATED_SUCCESS(dispatch))
+    }
 
     }
 } 
+
+
+
+const userCREATED_SUCCESS = (dispatch) => {
+
+    dispatch({ type: USER_CREATED_SUCCESS })
+    {
+        Actions.main({type:'replace'});
+    }
+
+}
 
 
 
@@ -124,26 +164,17 @@ export const userUPDATE_DATA= ({prop, value}) => {
 //UpdateUser 
 export const updateUSER = (userName, userID, userLocation, userBio) => {
 
-
-
-
-
     console.log({userName, userID, userLocation, userBio});
     const { currentUser } = auth();
-
-
 
     return(dispatch) => {
     
         auth().currentUser.updateProfile({
 
             displayName:userName,
-            
 
         });
 
-
-        //RealTime Database    
         database()
         .ref(`/users/${currentUser.uid}`)
         .update({
@@ -153,27 +184,17 @@ export const updateUSER = (userName, userID, userLocation, userBio) => {
                 userBio:userBio,
             })
         .then(()=>{
-    
-            
-           dispatch(
-                {
-                    type: USER_UPDATED
-                }
-            )
-            Actions.pop();
-            Actions.refresh({});
+           dispatch({type: USER_UPDATED})
+           {
+             Actions.pop();
+           }
+
 
         }) 
         
 
         
     }
-
-
-    
-    
-
-   
 
 }
 
@@ -207,79 +228,8 @@ return(dispatch) => {
     })}
  
 }
-/*
-             userName = userData.userName;
-               userID = userData.userID;
-               userCountry = userData.userCountry;
-               console.log(userName, userID, userCountry);
-            dispatch(
-                {
-                    type: USER_FECH_SUCCESS,
-                    payload: snapshot.val(),
-                }
-            )
-*/
 
 
-const loginUSER_SUCCES = (dispatch, user) => {
-
-   dispatch({
-        type: LOGIN_USER_SUCCESS,
-        payload: user,
-    })
-    
-
-    //Actions.execute('replace', tabKey, { tabPage });
-   // Actions.feedNews( {type:'replace'});
-   //Actions.replace(tabKey, { tabPage });
-  //  Actions.execute('replace', tabKey, { tabPage });
-  //Actions.replace(feedNews, { FeedNewsScreen });
-  Actions.main(
-      {
-    type : 'replace'
-    }
-)
-    
-} 
-
-const createACCOUNT_SUCCESS = (dispatch, user, name) => {
-    
-    dispatch({
-        type: CREATE_USER_SUCCESS,
-        payload: user,
-    })
-    Actions.userpersonaldata({
-        type:'replace'
-    });
-    
-} 
-
-const createACCOUNT_FAIL = (dispatch) => {
-
-    dispatch({
-        type:CREATE_ACCOUNT_USER_FAIL,
-    })
-}
-
-
-
-
-const loginUSER_FAIL = (dispatch) => {
-
-    dispatch({
-        type:LOGIN_USER_FAIL,
-    })
-}
-
-
-
-export const accountFIELD_EMPTY = ({email, password}) => {
-
-    return(dispatch) => {dispatch({
-        type: ACCOUNT_FIELD_EMPTY,
-        payload: { email, password }
-    })}
-}
 
 export const emptyALL_FIELDS = () => {
 
@@ -290,20 +240,16 @@ export const emptyALL_FIELDS = () => {
 
 }
 
-//Fecthing the user Data
-/* export const  userPERSONAL_DATA = () => {
-    const { currentUser } = firebase.auth();
+/* 
+export const userLOGOUT = () => {
+    return(dispatch) => {    
+        dispatch({ type: USER_LOG_OUT})
+        {
+            auth().signOut();
 
-   return (dispatch) => {
-    firebase.database().ref(`/users/${currentUser.uid}/info/`)
-       .on('value', snapshot => {
+        }
 
-           console.log("USER DATA FETCH From User Reducer!!!!!!!!!!!!!!!!!!!!!!");
-               dispatch({
-                        type: USER_PERSONAL_INFO_FETCH,
-                        payload: snapshot.val(),
-               }) 
-                
-           })
-   }
-}  */
+    
+      } 
+    }
+ */
