@@ -486,7 +486,7 @@ PODS:
   - Permission-StoreKit (2.2.2):
     - RNPermissions
   - PersonalizedAdConsent (1.0.5)
-  - PromisesObjC (1.2.11)
+  - PromisesObjC (1.2.12)
   - RCTRequired (0.63.3)
   - RCTTypeSafety (0.63.3):
     - FBLazyVector (= 0.63.3)
@@ -1199,7 +1199,7 @@ SPEC CHECKSUMS:
   Permission-SpeechRecognition: 5f0ade4d1fb78994c350d8a4f149c458854d9bfe
   Permission-StoreKit: 1ea86f9fcee171a2780164d9a21ff12d58652f36
   PersonalizedAdConsent: dbecabb3467df967c16d9cebc2ef4a8890e4bbd8
-  PromisesObjC: 8c196f5a328c2cba3e74624585467a557dcb482f
+  PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
   RCTRequired: 48884c74035a0b5b76dbb7a998bd93bcfc5f2047
   RCTTypeSafety: edf4b618033c2f1c5b7bc3d90d8e085ed95ba2ab
   React: f36e90f3ceb976546e97df3403e37d226f79d0e3
