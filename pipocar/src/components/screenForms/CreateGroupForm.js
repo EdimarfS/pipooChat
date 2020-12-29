@@ -452,7 +452,7 @@ render(){
       }}>
         <Button
         onPress={this.onButtonPress.bind(this)}
-        label="Post"
+        label="Create"
         />
       </View>):
       <View
