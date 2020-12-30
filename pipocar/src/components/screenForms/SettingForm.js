@@ -492,7 +492,7 @@ render(){
                             renderItem={({item}) => {
                               if(item.author === auth().currentUser.uid)
                               return(
-                                <TouchableOpacity
+                                <TouchableOpacity                
                                 onLongPress={()=>{
                                   Alert.alert(
                                     item.name,
@@ -527,7 +527,9 @@ render(){
                                 >
  
 
-                                  <View style={{
+                                  <View 
+                                  opacity={0.6}
+                                  style={{
                                     flexDirection:'row'
                                   }}>
                                     <View style={{
@@ -710,7 +712,7 @@ render(){
                                   }}
                                   
                                   >
-                                      <Text style={{ alignSelf:'center', fontWeight:'bold', color:'grey'}}>Remove</Text>
+                                      <Text style={{ alignSelf:'center', fontWeight:'bold', color:'lightgrey', marginTop:5}}>Delete</Text>
                                   </TouchableOpacity>
                                
                                 </View>

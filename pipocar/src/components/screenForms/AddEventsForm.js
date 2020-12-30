@@ -455,6 +455,8 @@ render(){
       </View>
 
 
+
+
 { this.state.nextStep === true ? (
       <View style={{
         marginTop:10,

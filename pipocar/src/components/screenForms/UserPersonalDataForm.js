@@ -28,7 +28,8 @@ class  UserPersonalDataForm extends Component {
       userBio:'',
       loaded: false,
       data:[],
-      dataloaded:false
+      dataloaded:false,
+      errorMessage:''
     }
   }
 
@@ -42,7 +43,9 @@ class  UserPersonalDataForm extends Component {
   {
       console.log("UserPersonalData");
       const { userName, userID, userLocation, userBio, ImageDefault } = this.props;
-
+      this.setState({
+        errorMessage:'please fill the informations'
+      })
       if(this.props.userName != '' && this.props.userID!='' && this.props.userLocation!='' && this.props.userBio!=''){
       this.props.createUSER({userName,userID,userLocation, userBio, ImageDefault});
       }
@@ -167,6 +170,22 @@ render(){
         secureTextEntry
         />
       </View>
+      <View
+      style={{
+        justifyContent:'center',
+        alignSelf:'center',
+        marginBottom:10,
+        marginBottom:10
+      }}
+      >
+      <Text
+      style={{
+        fontSize:13,
+        color:'red',
+        fontWeight:'bold'
+
+      }}
+      >{this.state.errorMessage}</Text></View>
       
 { this.props.loading === false ? (      
   <TouchableOpacity onPress={this.onButtonPress.bind(this)}>

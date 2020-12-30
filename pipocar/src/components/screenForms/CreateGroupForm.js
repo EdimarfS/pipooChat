@@ -41,7 +41,8 @@ class  CreateGroupForm extends Component {
           imageURI:'https://firebasestorage.googleapis.com/v0/b/pipocar-61cd8.appspot.com/o/groupCovers%2Fcef4c151ecd7c2fd46180b45fb5bc1a1.jpg?alt=media&token=8beea4de-e1fd-439d-8162-eb7bab61e41c',
           category:'Travel',
           groupname:'',
-          finishStep:false
+          finishStep:false,
+          errorMessage:''
       };
   }
 
@@ -252,10 +253,12 @@ processUpload = (imageUrl) => {
 
 onButtonPress()
 {
-  const { groupname } = this.state;
+  const { groupname, errorMessage} = this.state;
+  this.setState({
+    errorMessage:'names are required'
+  })
 
-
-
+  if(groupname!=''){
 
   Alert.alert(
     this.state.title,
@@ -272,7 +275,9 @@ onButtonPress()
           if(groupname!='')
          {
           this.setState({
-            finishStep:true
+            finishStep:true,
+            errorMessage:'',
+            
           })
             this.UploadPublish();
           }
@@ -282,7 +287,7 @@ onButtonPress()
     ],
     { cancelable: false }
   );
-  
+  }
 
    
      
@@ -426,7 +431,8 @@ render(){
 
       <View style={{ 
       //  flex:1,
-      marginTop:10 
+      marginTop:10,
+      marginBottom:30
 
         }}>
         <InputForPosts
@@ -447,8 +453,24 @@ render(){
 
       </View>
 
+      <View
+      style={{
+       marginTop:30,
+       alignSelf:'center'
+        //marginBottom:10,
+      }}
+      >
+        <Text
+        style={{
+          fontSize:13,
+          fontWeight:'bold',
+          color:'red'
+        }}
+        >{this.state.errorMessage}</Text>
+      </View>
+
 { this.state.finishStep === false ? (      <View style={{
-        marginTop:60,
+        marginTop:20,
       }}>
         <Button
         onPress={this.onButtonPress.bind(this)}

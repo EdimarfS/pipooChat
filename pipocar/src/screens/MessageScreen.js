@@ -35,7 +35,7 @@ import ImageModal from 'react-native-image-modal';
 import { Modalize } from 'react-native-modalize';
 import {LocationView} from '../components/reusebleComponents/LocationView';
 import ImageBlurLoading from "react-native-image-blur-loading";
-
+import AntDesign from 'react-native-vector-icons/AntDesign';
 
 
 
@@ -120,7 +120,7 @@ renderItem = (item) => (
       style={{
         width:100,
         height:100,
-        backgroundColor:'red'
+        backgroundColor:'#f5f5f5'
       }}
       source={{uri: item.images.original.url}}
     />
@@ -483,7 +483,7 @@ renderSend = (props) => {
       style={{
           width:30,
           height:30,
-          backgroundColor:'red',
+          backgroundColor:'#f5f5f5',
           marginRight:10,
            borderRadius:5,
       }}
@@ -687,7 +687,7 @@ renderHeader = () => {
       placeholder="Search Giphy"
       autoCorrect={false}
       style={{
-        backgroundColor:'lightgrey',
+        backgroundColor:'#f5f5f5',
         width:'100%',
         height:40,
         borderRadius:5,
@@ -742,7 +742,27 @@ renderComposer = (props) => {
  )
 }
 
-
+renderEmpty = () => {
+  return(
+    <View
+    style={{
+      alignSelf:'center',
+      justifyContent:'center',
+      flexDirection:'row',
+      marginTop:'50%'
+    }}
+    >
+      <AntDesign name="search1" size={40} color="grey" />
+      <Text
+      style={{
+        alignSelf:'center',
+        fontSize:20,
+        color:'grey'
+      }}
+      >search gifs</Text>
+    </View>
+  )
+}
 
 render(){ 
   console.log('MessageScreen');
@@ -805,6 +825,7 @@ render(){
  <FlatList
         data={this.state.gifs}
         ListHeaderComponent={this.renderHeader}
+        ListEmptyComponent={this.renderEmpty}
         numColumns={3}
         renderItem={({item}) => (
           <View
@@ -812,12 +833,16 @@ render(){
             flex:1/3,
           }}>
           <TouchableOpacity 
+          style={{
+            marginTop:10
+          }}
           onPress={()=>{
             this.setState({
               imageFromChat:item.images.original.url,
               imageSelected:true,
               showSend:true,
               otherOptionClicked:true,
+              term:'',
 
 
             })
@@ -830,7 +855,7 @@ render(){
               width:100,
               height:100,
               marginTop:5,
-              backgroundColor:'white'
+              backgroundColor:'white',
             }}
             source={{uri: item.images.original.url}}
             thumbnailSource={{uri: item.images.original.url}}

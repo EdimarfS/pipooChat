@@ -36,6 +36,7 @@ class  AddPostForm extends Component {
           progress: 0,
           imageURI:'https://firebasestorage.googleapis.com/v0/b/pipocar-61cd8.appspot.com/o/groupCovers%2Fcef4c151ecd7c2fd46180b45fb5bc1a1.jpg?alt=media&token=8beea4de-e1fd-439d-8162-eb7bab61e41c',
           finishStep:false,
+          errorMessage:''
       };
   }
 
@@ -115,6 +116,7 @@ findNewImage = async () => {
           imageSelected: true,
           imageId: this.uniqueId(),
           imageURI: image.path,
+          errorMessage:'',
           
       })
       }).catch(error => {
@@ -215,11 +217,15 @@ Actions.refresh({});
 
 onButtonPress()
 { 
+  this.setState({
+    errorMessage:'please choose an image'
+  })
 
     if(this.state.imageSelected)
   {
     this.setState({
       finishStep:true,
+      errorMessage:''
 
     })
      this.UploadPublish();
@@ -288,7 +294,11 @@ render(){
       <View style={{ alignSelf:'center', marginTop:10}}>
       <Text style={{ fontWeight:'bold', color:'grey'}}>Share your picture with others</Text>
       </View>
-      <View>
+      <View
+      style={{
+        marginBottom:30
+      }}
+      >
         <InputForPosts
         autoCapitalize="none"
         autoCorrect={false}
@@ -300,10 +310,24 @@ render(){
         
         />
       </View>
+      <View
+      style={{
+        marginTop:40,
+        alignSelf:'center'
+      }}
+      >
+        <Text
+        style={{
+          fontWeight:'bold',
+          fontSize:13,
+          color:'red'
+        }}
+        >{this.state.errorMessage}</Text>
+      </View>
       
 { this.state.finishStep === false ?
      (      <View style={{
-        marginTop:60,
+        marginTop:20,
       }}>
         <Button
         onPress={this.onButtonPress.bind(this)}
