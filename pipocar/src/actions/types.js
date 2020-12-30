@@ -14,6 +14,7 @@ export const RESET_PASSWORD_SUCCESS = "reset_password_success";
 export const USER_UPDATED = "user_updated";
 export const CREATED_ACCOUNT = "created_account"
 export const USER_LOG_OUT = "user_logout"
+export const REQUEST_PASSWORD = "request_password"
 
 
 

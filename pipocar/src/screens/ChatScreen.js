@@ -658,7 +658,8 @@ render(){
               }}>
                 <Text
                 style={{
-                  fontWeight:'bold'
+                  fontWeight:'bold',
+                  color:'grey'
                 }}
                 >save</Text>
               </TouchableOpacity>

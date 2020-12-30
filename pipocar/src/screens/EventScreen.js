@@ -202,26 +202,30 @@ fetchSTORE = () => {
 renderHeader = () => {
   return(
     <View>
-        <View style={{ 
+{/*         <View style={{ 
           flex:1,
          // alignSelf:'center'
          marginLeft:10,
+         marginTop:20,
          flexDirection:'row',
-         backgroundColor:'white'
+         backgroundColor:'white',
+         alignSelf:'center'
          
           
           }}>
        <Text 
         style={{
-          fontSize:50,
-        //  fontWeight:'bold',
+          fontSize:40,
+          fontWeight:'bold',
           marginBottom:6,
+          color:'#303030',
+          
          // color:'grey'
          // backgroundColor:'red'
         }}>
           Events
         </Text>
-        </View>
+        </View> */}
     <View style={{ 
       flex:1,
       marginLeft:5,

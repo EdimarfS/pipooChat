@@ -40,11 +40,11 @@ class  AddEventsForm extends Component {
           uploading: false,
           progress: 0,
           imageURI:'https://firebasestorage.googleapis.com/v0/b/pipocar-61cd8.appspot.com/o/groupCovers%2Fparty.jpg?alt=media&token=faa0df66-56f4-4e85-9bc4-93c2d6fa070f',
-          title:'My event',
+          title:'',
           price:'0',
-          category:'Night Party',
+          category:'',
           condition:'New',
-          location:'Angola',
+          location:'',
           website: '',
           nextStep:false,
           finishStep:false,
@@ -457,7 +457,7 @@ render(){
 
 
 
-{ this.state.nextStep === true ? (
+{ this.state.nextStep === true && this.state.category!=''? (
       <View style={{
         marginTop:10,
       }}>
@@ -484,7 +484,7 @@ render(){
         marginBottom:50,
         }}>
         <InputDataEdit
-        placeholder="Title"
+        placeholder="Event name"
         autoCapitalize="none"
         autoCorrect={false}
         maxLength={20}

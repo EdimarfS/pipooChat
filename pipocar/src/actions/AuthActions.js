@@ -15,6 +15,7 @@ import {
      USER_UPDATED,
      USER_CREATED_SUCCESS,
      ACCOUNT_FIELD_EMPTY,
+     REQUEST_PASSWORD,
      RESET_PASSWORD_FAIL, 
      RESET_PASSWORD_SUCCESS,
      USER_PERSONAL_INFO_FETCH,
@@ -216,7 +217,10 @@ export const resetPASSWORD_RESET_SUCCESS = (dispatch) => {
 
 
 export const forgotPASSWORD = (email) => {
-return(dispatch) => {    
+return(dispatch) => { 
+    
+    dispatch({ type: REQUEST_PASSWORD})
+{    
     auth().sendPasswordResetEmail(email)
     .then(() => { 
         resetPASSWORD_RESET_SUCCESS(dispatch) 
@@ -225,7 +229,11 @@ return(dispatch) => {
         
         ).catch(() =>{ 
             resetPASSWORD_FAIL(dispatch)
-    })}
+    })
+}
+
+
+}
  
 }
 

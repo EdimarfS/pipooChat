@@ -469,9 +469,9 @@ renderSend = (props) => {
       onPress={()=>{
         this.setState({
           imageSelected:false,
-
-
-    
+          showSend:false,
+          findNewImage:false,
+          otherOptionClicked:false,
         })
       }}
       >

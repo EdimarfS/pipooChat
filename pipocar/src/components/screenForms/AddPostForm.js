@@ -217,9 +217,7 @@ Actions.refresh({});
 
 onButtonPress()
 { 
-  this.setState({
-    errorMessage:'please choose an image'
-  })
+
 
     if(this.state.imageSelected)
   {
@@ -229,6 +227,10 @@ onButtonPress()
 
     })
      this.UploadPublish();
+  }else{
+    this.setState({
+      errorMessage:'please choose an image'
+    })
   }
 
    
@@ -292,7 +294,7 @@ render(){
         </View>
       </View>
       <View style={{ alignSelf:'center', marginTop:10}}>
-      <Text style={{ fontWeight:'bold', color:'grey'}}>Share your picture with others</Text>
+      <Text style={{ fontWeight:'bold', color:'grey', fontSize:10}}>Share your picture with others</Text>
       </View>
       <View
       style={{

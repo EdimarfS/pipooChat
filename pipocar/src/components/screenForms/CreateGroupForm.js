@@ -254,9 +254,7 @@ processUpload = (imageUrl) => {
 onButtonPress()
 {
   const { groupname, errorMessage} = this.state;
-  this.setState({
-    errorMessage:'names are required'
-  })
+
 
   if(groupname!=''){
 
@@ -287,6 +285,10 @@ onButtonPress()
     ],
     { cancelable: false }
   );
+  }else{
+    this.setState({
+      errorMessage:'names are required'
+    })
   }
 
    
@@ -320,12 +322,12 @@ render(){
           borderWidth:1,
           borderColor:'#05c7fc',
           padding:10,
+          
 
           
         }}
         onPress={this.findNewImage}>
-        <ImageBlurLoading
-        thumbnailSource={{uri:this.state.imageURI}}
+        <Image
         source={{uri:this.state.imageURI}}
         style={{
           width:40,
@@ -343,7 +345,7 @@ render(){
       <View style={{ 
         alignSelf:'center', 
         marginTop:10}}>
-      <Text style={{ fontWeight:'bold', color:'grey'}}>Create a Room to connect your friends</Text>
+      <Text style={{ fontWeight:'bold', color:'grey', fontSize:10}}>Create a Room to connect your friends</Text>
       </View>
       
       <View>

@@ -43,19 +43,17 @@ class  UserPersonalDataForm extends Component {
   {
       console.log("UserPersonalData");
       const { userName, userID, userLocation, userBio, ImageDefault } = this.props;
-      this.setState({
-        errorMessage:'please fill the informations'
-      })
+
       if(this.props.userName != '' && this.props.userID!='' && this.props.userLocation!='' && this.props.userBio!=''){
       this.props.createUSER({userName,userID,userLocation, userBio, ImageDefault});
+      }else{
+        this.setState({
+          errorMessage:'please fill the informations'
+        })
+
       }
 
   }
-
-
-//      imageURI:'https://firebasestorage.googleapis.com/v0/b/pipocar-61cd8.appspot.com/o/groupCovers%2Fcef4c151ecd7c2fd46180b45fb5bc1a1.jpg?alt=media&token=8beea4de-e1fd-439d-8162-eb7bab61e41c'
-
-
 
 render(){ 
   console.log('LoginForm');
@@ -65,8 +63,7 @@ render(){
       flex:1,
       marginLeft:10,
       marginRight:10,
-      //backgroundColor:'#f2f2f2',
-      //backgroundColor:'lightgrey'
+
 
     }}>  
     

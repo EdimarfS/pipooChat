@@ -11,6 +11,7 @@ import {
     USER_CREATED_SUCCESS,
     USER_UPDATED,
     ACCOUNT_FIELD_EMPTY,
+    REQUEST_PASSWORD,
     FORGOT_PASSWORD,
     RESET_PASSWORD_FAIL,
     RESET_PASSWORD_SUCCESS,
@@ -69,6 +70,8 @@ export default (state = INITIAL_STATE, action) => {
            return { ...state, ...INITIAL_STATE }
        case FORGOT_PASSWORD:
            return { ...state, ...INITIAL_STATE}
+       case REQUEST_PASSWORD : 
+           return { ...state, loading:true, error:''}
        case RESET_PASSWORD_FAIL:
            return { ...state, requestNEW_PASSWORD_ERROR: 'Reset password fail', loading:false}
        case RESET_PASSWORD_SUCCESS:
