@@ -1,4 +1,4 @@
-import { Imag } from '@tensorflow/tfjs';
+import { image } from '@tensorflow/tfjs';
 import React,{Component} from 'react';
 import { 
     View,

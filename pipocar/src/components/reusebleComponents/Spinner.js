@@ -7,7 +7,6 @@ class Spinner extends Component {
 
   componentDidMount() {
     this.animation.play();
-    // Or set a specific startFrame and endFrame with:
     this.animation.play(1, 120);
   }
 
@@ -34,7 +33,6 @@ class Spinner extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-   // backgroundColor: 'red',
     alignItems: 'center',
     justifyContent: 'center',
 

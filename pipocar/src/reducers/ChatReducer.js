@@ -17,7 +17,6 @@ const INITIAL_STATE = {
 export default chatReducer = (state = INITIAL_STATE , action) => {
     switch (action.type) {
       case ADD_MESSAGES:
-        //return { ...state, messages: [action.messages, ...state.messages]}; 
         return {messages : GiftedChat.append(state.messages, action.messages)}
 
         case MESSAGE_GROUP_FETCH: //Must be checked 

@@ -1,10 +1,6 @@
 import React, { Component} from  'react';
 import { View, Text, TouchableOpacity} from  'react-native';
 
-/*
-This is a  reusable button
-*/
-
 const  Button =  ({onPress, label}) => {
 
     const  {container, ButtonConatiner, ButtonText} = styles;
@@ -27,12 +23,9 @@ const  Button =  ({onPress, label}) => {
 const styles = {
     container : {
       flex:1,
-       // justifyContent:'center',
         alignItems:'center',
-     //   backgroundColor:'red',
         marginTop:10,
-       // marginBottom:10,
-       alginSelf:'center',
+        alginSelf:'center',
     },
     ButtonConatiner: {
  

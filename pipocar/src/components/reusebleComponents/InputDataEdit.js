@@ -54,12 +54,7 @@ const styles = {
         backgroundColor:'white',
         padding:10,
         borderColor:'#d9d9d9',
-       // backgroundColor:'#f5f5f5',
-        //borderWidth:1,
         borderBottomWidth:0.3,
-       // backgroundColor:'red'
-    
-      //  borderRadius:10,
         
      },   
 }

@@ -1,6 +1,3 @@
-  
-//Essa é a aplicação Ngambwe, todos os direitos estão reservados para empresa @Uajiza
-// Uajiza - 2020
 import React, { Component } from "react";
 import { 
   View, 
@@ -27,24 +24,6 @@ import storage from '@react-native-firebase/storage';
 import { Spinner } from '../reusebleComponents/index';
 import { updateUSER } from  '../../actions/index';
 import { connect } from 'react-redux';
-
-/* 
-
-<InputDataEdit
-placeholder="Heyyy"
-value={this.state.userBio}
-onChangeText={text => this.setState({ userBio:text})}
-
-/>
-
- */
-
-
-
-
-
-
-
 
 class  UserPersonalEditDataForm extends Component {
 

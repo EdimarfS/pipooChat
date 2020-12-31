@@ -12,7 +12,6 @@ return( <View style={{
   alignItems:'center',
   flexDirection:'row',
   backgroundColor:'#f7f7f7',
-  //backgroundColor:'red',
   borderRadius:10,
   height:40,
   }}>
@@ -53,16 +52,10 @@ const styles = {
         height:40,
         fontSize:15,
         backgroundColor:'#f7f7f7',
-      //  backgroundColor:'red',
         padding:10,
         borderColor:'#e8e8e8',
-        //borderWidth:1,
         borderBottomWidth:0.3,
-       // borderRadius:90,
-     //   borderWidth:1,
-       // alignSelf:'center'
-    
-      //  borderRadius:10,
+
         
      },   
 }

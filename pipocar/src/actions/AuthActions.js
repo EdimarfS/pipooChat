@@ -247,17 +247,3 @@ export const emptyALL_FIELDS = () => {
     })}
 
 }
-
-/* 
-export const userLOGOUT = () => {
-    return(dispatch) => {    
-        dispatch({ type: USER_LOG_OUT})
-        {
-            auth().signOut();
-
-        }
-
-    
-      } 
-    }
- */

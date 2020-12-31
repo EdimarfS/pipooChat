@@ -1,10 +1,6 @@
 import React, { Component} from  'react';
 import { View, Text, TouchableOpacity} from  'react-native';
 
-/*
-This is a  reusable button
-*/
-
 const  CreateAnAccountButton =  ({onPress, label}) => {
 
     const  {container, ButtonConatiner, ButtonText} = styles;

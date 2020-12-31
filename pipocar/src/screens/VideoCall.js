@@ -42,11 +42,11 @@ class VideoCall extends Component {
     this.sessionId = credentials.SESSION_ID;
     this.token = credentials.TOKEN;
     this.state = {
-      subscriberIds: [], // Array for storing subscribers
-      localPublishAudio: true, // Local Audio state
-      localPublishVideo: true, // Local Video state
-      joinCall: false, // State variable for storing success
-      streamProperties: {}, // Handle individual stream properties,
+      subscriberIds: [], 
+      localPublishAudio: true, 
+      localPublishVideo: true, 
+      joinCall: false, 
+      streamProperties: {}, 
       mainSubscriberStreamId: null
     };
 
@@ -135,7 +135,6 @@ class VideoCall extends Component {
 
   componentDidMount() {
     this.animation.play();
-    // Or set a specific startFrame and endFrame with:
     this.animation.play(1, 120);
      setTimeout(
       function() {
@@ -380,12 +379,9 @@ class VideoCall extends Component {
   }
 }
 
-// todo remember to twick the styles to not copy agora
-
 const styles = StyleSheet.create({
   buttonView: {
     height:Platform.OS === 'ios'? 50 :  65,
-  //  backgroundColor: '#fff', //'#131415' Vonage Black
     display: 'flex',
     width: '100%',
     position: 'absolute',
